@@ -1,0 +1,11 @@
+{
+  "name": "stalkme-webui",
+  "version": "1.0.0",
+  "description": "Web UI for www.notstalking.me",
+  "author": "Kamila Součková <kamila@ksp.sk>",
+  "license": "MIT",
+  "repository": "https://github.com/AnotherKamila/stalkme",
+  "dependencies": {
+    "elm": "0.18.*"
+  }
+}
