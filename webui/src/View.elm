@@ -10,7 +10,7 @@ import Material.Footer     as Footer
 import Material.Options    as Options exposing (cs, css, div)
 import Material.Typography as Typography
 
-import CsvTsdb.View
+import CsvTsdb.TrackView
 
 import Model exposing (Model, Msg(..), Tab(..))
 
@@ -27,9 +27,7 @@ view model =
         tabs_options = [Color.background (Color.primaryDark)]
     in (Layout.render Mdl
         model.mdl
-        [ Layout.fixedHeader
-        , Layout.fixedTabs
-        , Layout.waterfall True
+        [ Layout.fixedHeader, Layout.fixedTabs, Layout.waterfall True
         , Layout.selectedTab tab_idx
         , Layout.onSelectTab (idx2tab >> SelectTab)
         ]
@@ -40,32 +38,6 @@ view model =
         }
     --|> Material.Scheme.topWithScheme Color.Teal Color.Red
     ) |> Scheme.topWithScheme Color.Indigo Color.Green
-
--- BODY --
-
-view_content : Model -> Html Msg
-view_content model =
-    let content = case model.tab of
-        Track    -> CsvTsdb.View.track model.data
-        View     -> text "Not Implemented Yet"
-        Explore  -> text "Not Implemented Yet"
-        NotFound -> Options.styled Html.h1
-            [ cs "mdl-typography--display-4", Typography.center ]
-            [ text "404" ]
-    in div [ cs "content" ] [ content ]
-
-footer =
-    let links = [ ("GitHub",   "https://github.com/AnotherKamila/stalkme")
-                , ("Feedback", "https://goo.gl/forms/AlMtCnldYr3frELa2")
-                , ("♥ Donate",   "https://liberapay.com/kamila/donate")
-                ]
-        link (t, h) = Footer.linkItem [ Footer.href h ] [ Footer.html <| text t ]
-        links_html = links |> List.map link
-    in Footer.mini [ cs "allthethings" ]
-        { left  = Footer.left  [] [ Footer.links [] links_html ]
-        , right = Footer.right [] []
-        }
-
 
 -- HEADER --
 
@@ -78,3 +50,30 @@ header model =
         , Layout.spacer
         ]
     ]
+
+-- BODY --
+
+view_content : Model -> Html Msg
+view_content model =
+    let content = case model.tab of
+        Track    -> CsvTsdb.TrackView.view model.data
+        View     -> text "Not Implemented Yet"
+        Explore  -> text "Not Implemented Yet"
+        NotFound -> Options.styled Html.h1
+            [ cs "mdl-typography--display-4", Typography.center ]
+            [ text "404" ]
+    in div [ cs "content" ] [ content ]
+
+-- FOOTER --
+
+footer =
+    let links = [ ("GitHub",   "https://github.com/AnotherKamila/stalkme")
+                , ("Feedback", "https://goo.gl/forms/AlMtCnldYr3frELa2")
+                , ("♥ Donate",   "https://liberapay.com/kamila/donate")
+                ]
+        link (t, h) = Footer.linkItem [ Footer.href h ] [ Footer.html <| text t ]
+        links_html = links |> List.map link
+    in Footer.mini [ cs "allthethings" ]
+        { left  = Footer.left  [] [ Footer.links [] links_html ]
+        , right = Footer.right [] []
+        }
