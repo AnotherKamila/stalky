@@ -16,8 +16,17 @@ def test(request):
 # for development
 @route('/dev/', branch=True)
 def proxy_devserver(request):
-    d = treq.get(ELM_DEVSERVER + request.uri[len('/dev'):])
-    d.addCallback(treq.content)
+    def stream_response(response):
+        request.setResponseCode(response.code)
+        for key, values in response.headers.getAllRawHeaders():
+            for value in values:
+                request.setHeader(key, value)
+        d = treq.collect(response, request.write)
+        d.addCallback(lambda _: request.finish())
+        return d
+
+    d = treq.request(request.method.decode('ascii'), ELM_DEVSERVER + request.uri[len('/dev'):])
+    d.addCallback(stream_response)
     return d
 
 
