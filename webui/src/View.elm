@@ -11,6 +11,7 @@ import Material.Options    as Options exposing (cs, css, div)
 import Material.Typography as Typography
 
 import TrackView
+import CsvTsdb.Graph
 
 import Model exposing (Model, Msg(..), Tab(..))
 
@@ -57,7 +58,7 @@ view_content : Model -> Html Msg
 view_content model =
     let content = case model.tab of
         Track    -> TrackView.view model
-        View     -> text "Not Implemented Yet"
+        View     -> CsvTsdb.Graph.view model.data
         Explore  -> text "Not Implemented Yet"
         NotFound -> Options.styled Html.h1
             [ cs "mdl-typography--display-4", Typography.center ]
