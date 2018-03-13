@@ -39,7 +39,9 @@ input model =
                 , Options.onInput DataInput -- TODO handle enter key
                 ] []
             , Button.render Mdl [1,1] model.mdl
-                [ Button.icon, Button.ripple, Button.colored ]
+                [ Button.icon, Button.ripple, Button.colored
+                , Options.onClick DataSubmit
+                ]
                 [ Icon.i "send" ]
             , div [ css "margin-left" "-3px"] (model.recent_labels |> List.map chip)
             , Slider.view

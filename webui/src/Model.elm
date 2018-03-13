@@ -1,5 +1,6 @@
 module Model exposing (Model, Tab(..), Msg(..), init)
 
+import Http
 import Material
 import Navigation
 import CsvTsdb.Model as CsvTsdb exposing (default_record) -- TODO remove exposing
@@ -21,9 +22,11 @@ type alias Model =
 
 type Msg = SelectTab Tab
          | NewData (Result String (List CsvTsdb.Record))
+         | RequestDone (Result Http.Error String)
          | RefreshWanted
          | DataInput String
          | SliderInput Float
+         | DataSubmit
          -- Boilerplate
          | Mdl (Material.Msg Msg) -- internal Mdl messages
 
