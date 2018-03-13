@@ -25,6 +25,7 @@ live:  ## Runs an elm-live server for development. Use alongside the normal run 
 
 $(OUTJS): $(shell find src)
 	npm install
+	$(shell npm bin)/elm-github-install
 	$(ELM_MAKE) $(ELMFLAGS) --yes $(MAIN) --output $(OUTJS)
 
 # -- HELPERS -- #

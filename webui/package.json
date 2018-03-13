@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "https://github.com/AnotherKamila/stalkme",
   "dependencies": {
-    "elm": "0.18.*"
+    "elm": "0.18.*",
+    "elm-github-install": "^1.6.1"
   }
 }

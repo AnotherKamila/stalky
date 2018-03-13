@@ -16,9 +16,15 @@
         "elm-lang/html": "2.0.0 <= v <= 2.0.0",
         "elm-lang/http": "1.0.0 <= v <= 1.0.0",
         "elm-lang/navigation": "2.1.0 <= v <= 2.1.0",
-        "juanedi/charty": "2.0.0 <= v < 3.0.0",
-        "justinmimbs/elm-date-extra": "3.0.0 <= v <= 3.0.0",
-        "rgrempel/elm-route-url": "4.0.0 <= v <= 4.0.0"
+        "justinmimbs/elm-date-extra": "2.0.0 <= v <= 3.0.0",
+        "rgrempel/elm-route-url": "4.0.0 <= v <= 4.0.0",
+        "terezka/line-charts": "0.0.0 <= v <= 1.0.0"
+    },
+    "dependency-sources": {
+        "terezka/line-charts": {
+            "url": "git@github.com:terezka/line-charts.git",
+            "ref": "master"
+        }
     },
     "elm-version": "0.18.0 <= v < 0.19.0"
 }
