@@ -10,7 +10,7 @@ import Material.Footer     as Footer
 import Material.Options    as Options exposing (cs, css, div)
 import Material.Typography as Typography
 
-import CsvTsdb.TrackView
+import TrackView
 
 import Model exposing (Model, Msg(..), Tab(..))
 
@@ -56,7 +56,7 @@ header model =
 view_content : Model -> Html Msg
 view_content model =
     let content = case model.tab of
-        Track    -> CsvTsdb.TrackView.view model
+        Track    -> TrackView.view model
         View     -> text "Not Implemented Yet"
         Explore  -> text "Not Implemented Yet"
         NotFound -> Options.styled Html.h1
@@ -69,7 +69,7 @@ view_content model =
 footer =
     let links = [ ("GitHub",   "https://github.com/AnotherKamila/stalkme")
                 , ("Feedback", "https://goo.gl/forms/AlMtCnldYr3frELa2")
-                , ("♥ Donate",   "https://liberapay.com/kamila/donate")
+                , ("♥ Donate", "https://liberapay.com/kamila/donate")
                 ]
         link (t, h) = Footer.linkItem [ Footer.href h ] [ Footer.html <| text t ]
         links_html = links |> List.map link

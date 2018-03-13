@@ -1,4 +1,4 @@
-module CsvTsdb.TrackView exposing (..)
+module TrackView exposing (..)
 
 import Date.Extra         as Date
 import List.Extra         as List
