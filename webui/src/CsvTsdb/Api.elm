@@ -18,10 +18,22 @@ decode_error = Decode.decode
     |> Decode.optional "error" (Decode.string) ""
     |> Decode.resolve
 
+post_ignore_response : String -> Http.Body -> Http.Request ()
+post_ignore_response url body =
+    Http.request
+        { method = "POST"
+        , headers = []
+        , url = url
+        , body = body
+        , expect = Http.expectStringResponse (\response -> Ok ())
+        , timeout = Nothing
+        , withCredentials = False
+        }
+
 get_records msg =
     Http.getString track_url
     |> Http.send (mapError toString >> andThen decode_records >> msg)
 
-send_input : String -> Http.Request String
+send_input : String -> Http.Request ()
 send_input input =
-    Http.post track_url (Http.stringBody "text/plain" input) decode_error
+    post_ignore_response track_url (Http.stringBody "text/plain" input)

@@ -13,11 +13,11 @@ update msg model =
     case msg of
         SelectTab new -> ({model | tab = new}, Cmd.none)
         NewData r     -> check r update_data Cmd.none model
-        RequestDone r -> check r (\_ -> identity) Cmd.none model
+        RequestDone r -> check r (\_ -> identity) refresh model
         DataInput s   -> ({model | data_input = s}, Cmd.none)
         SliderInput x -> ({model | data_input = add_or_replace_value model.data_input x, slider_input = x}, Cmd.none)
         RefreshWanted -> (model, refresh)
-        DataSubmit    -> ({model | data_input = ""}, send_input model.data_input)
+        DataSubmit    -> ({model | data_input = ""}, send_input model.data_input) -- TODO validation
         Mdl m         -> Material.update Mdl m model -- Mdl action handler
 
 update_data new model = {model | data = new, recent_labels = find_labels new}

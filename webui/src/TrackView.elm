@@ -66,7 +66,7 @@ recents : List Record -> Html msg
 recents records = Table.table
     [ cs "full-width", Elevation.e2 ]
     [ Table.tbody []
-        (records |> List.map (\record ->
+        (records |> List.reverse |> List.map (\record ->
             Table.tr []
                 [ Table.td [] [ text (view_date record.date) ]
                 , Table.td [] [ text record.label ]

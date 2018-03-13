@@ -21,8 +21,8 @@ type alias Model =
 
 
 type Msg = SelectTab Tab
-         | NewData (Result String (List CsvTsdb.Record))
-         | RequestDone (Result Http.Error String)
+         | NewData (Result String (List CsvTsdb.Record)) -- TODO change to Http.Error when possible
+         | RequestDone (Result Http.Error ())
          | RefreshWanted
          | DataInput String
          | SliderInput Float
