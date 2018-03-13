@@ -15,12 +15,42 @@ body {
 }
 
 .track-container {
-    width: 90%;
-    max-width: 400px;
-    margin: 3em auto;
+    width: 94%;
+    max-width: 500px;
+    margin: 2em auto;
 }
 
 .track-container .full-width {
-    margin: 2em auto;
+    margin: 1em auto;
     width: 100%;
+}
+
+.track-container .mdl-card__supporting-text {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.track-container .mdl-chip {
+    margin: 2px;
+    line-height: 24px;
+    height: 24px;
+    padding: 0 9px;
+}
+
+.track-container .mdl-textfield {
+    width: 410px;
+    max-width: 90%
+}
+.track-container .mdl-button {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+}
+
+.track-container .mdl-slider__container {
+    padding: 12px 0;
+}
+
+.track-container .mdl-data-table {
+    font-size: 11px;
 }

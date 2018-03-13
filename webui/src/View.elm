@@ -43,7 +43,7 @@ view model =
 
 header model =
     [ Layout.row
-        [ css "transition" "height 0.5s ease-in-out"
+        [ css "transition" "height 0.4s ease-in-out"
         --, Color.background (Color.primaryDark)
         ]
         [ Layout.title [] [text "Stalk Yourself!"]
@@ -56,7 +56,7 @@ header model =
 view_content : Model -> Html Msg
 view_content model =
     let content = case model.tab of
-        Track    -> CsvTsdb.TrackView.view model.data
+        Track    -> CsvTsdb.TrackView.view model
         View     -> text "Not Implemented Yet"
         Explore  -> text "Not Implemented Yet"
         NotFound -> Options.styled Html.h1
