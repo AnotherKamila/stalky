@@ -7,16 +7,13 @@ ELM_MAKE = $(shell npm bin)/elm-make  # npm bin because then I don't require a g
 ELM_LIVE = elm-live                   # you should have it in PATH if you're an elm dev :-)
 ELMFLAGS =
 
-.PHONY: default help clean clean-gitignore live
+.PHONY: default help clean clean-all clean-gitignore live
 
 default: help
 
 # -- END-USER RELEVANT -- #
 
 build: $(OUTJS)  ## Compiles the app.
-
-run: $(OUTJS) server.js  ## Runs the server.
-	./server.js
 
 # -- DEV TARGETS -- #
 

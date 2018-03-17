@@ -12,7 +12,19 @@ My secret plan is to integrate this with a few hardware trackers, details TBA. I
 I want this!
 ------------
 
-TODO install instructions
+Requires `python3` and `node`. Install these using your package manager.
+
+Type `make run`, open <http://localhost:8500> and enjoy!
+
+Put it on a server behind a reverse proxy such as nginx **with HTTP auth** if you want to use this from multiple devices.
+
+For more installation-related info (or if you want something non-standard), check [the wiki](https://github.com/AnotherKamila/stalky/wiki/Installation-and-Deployment).
+
+### Fun integrations
+
+You can use [IFTTT](https://ifttt.com)'s Webhooks endpoint to get data from just about anywhere. Example: Shout "Hey Google, write down, yoga 3" at your fancy expensive speaker. More details [in the wiki](https://github.com/AnotherKamila/stalky/wiki/Integrations).
+
+Also, it's just HTTP -- it's easy to roll your own!
 
 I like this!
 ------------

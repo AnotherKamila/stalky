@@ -8,7 +8,7 @@ from twisted.web.static import File
 from csvtsdb            import CsvTsdb
 
 DATAFILE      = os.getenv('DATAFILE', './data.csv')
-PORT          = int(os.getenv('PORT', '8501'))
+PORT          = int(os.getenv('PORT', '8500'))
 STATIC_DIR    = './webui/public/'
 ELM_DEVSERVER = 'http://localhost:8000'  # Proxies this from /dev/
 
