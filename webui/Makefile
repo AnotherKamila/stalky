@@ -1,5 +1,7 @@
-MAIN = src/Main.elm
-OUTJS = bundle.js
+MAIN       = src/Main.elm
+PUBLIC_DIR = public
+OUTJS_NAME = bundle.js
+OUTJS      = $(PUBLIC_DIR)/$(OUTJS_NAME)
 
 ELM_MAKE = $(shell npm bin)/elm-make  # npm bin because then I don't require a global install for non-developers
 ELM_LIVE = elm-live                   # you should have it in PATH if you're an elm dev :-)
@@ -18,8 +20,8 @@ run: $(OUTJS) server.js  ## Runs the server.
 
 # -- DEV TARGETS -- #
 
-live:  ## Runs an elm-live server for development. Use alongside the normal run target and access under /dev.
-	$(ELM_LIVE) $(MAIN) --output $(OUTJS) -- $(ELMFLAGS)
+live:  ## Runs an elm-live server for development. Use alongside the normal run target and access under /dev.;
+	$(ELM_LIVE) $(MAIN) --port=8000 --dir=$(PUBLIC_DIR) --output=$(OUTJS) -- $(ELMFLAGS)
 
 # -- THE TARGETS THAT ACTUALLY DO STUFF -- #
 
