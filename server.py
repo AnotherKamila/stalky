@@ -14,7 +14,7 @@ ELM_DEVSERVER = 'http://localhost:8000'  # Proxies this from /dev/
 
 @route('/track/')
 def test(request):
-    return CsvTsdb('./data.csv').resource
+    return CsvTsdb(DATAFILE).resource
 
 # for development
 @route('/dev/', branch=True)
@@ -38,4 +38,4 @@ def static_files(request):
     return File(STATIC_DIR)
 
 if __name__ == '__main__':
-    run("localhost", 8501)
+    run("localhost", PORT)
