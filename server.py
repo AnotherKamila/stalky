@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 
+import os
+
 import treq
-from klein   import route, run
-from csvtsdb import CsvTsdb
+from klein              import route, run
+from twisted.web.static import File
+from csvtsdb            import CsvTsdb
 
-DATAFILE      = './data.csv'
-ELM_DEVSERVER = b'http://localhost:8000'  # Proxies this from /dev/ (and allows CORS)
-PORT          = 8501
-
+DATAFILE      = os.getenv('DATAFILE', './data.csv')
+PORT          = int(os.getenv('PORT', '8501'))
+STATIC_DIR    = './webui/public/'
+ELM_DEVSERVER = 'http://localhost:8000'  # Proxies this from /dev/
 
 @route('/track/')
 def test(request):
@@ -25,10 +28,14 @@ def proxy_devserver(request):
         d.addCallback(lambda _: request.finish())
         return d
 
-    d = treq.request(request.method.decode('ascii'), ELM_DEVSERVER + request.uri[len('/dev'):])
+    url = ELM_DEVSERVER.encode('utf-8') + request.uri[len('/dev'):]
+    d = treq.request(request.method.decode('ascii'), url)
     d.addCallback(stream_response)
     return d
 
+@route('/', branch=True)
+def static_files(request):
+    return File(STATIC_DIR)
 
 if __name__ == '__main__':
     run("localhost", 8501)
