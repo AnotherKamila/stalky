@@ -16,6 +16,8 @@ Requires `python3` and `node`. Install these using your package manager.
 
 Type `make run`, open <http://localhost:8500> and enjoy!
 
+Actually, doesn't really require `node` because I have sinned and the compiled file is in the repo. Run `make dontbuild` before `make run` to use that instead of building it yourself.
+
 Put it on a server behind a reverse proxy such as nginx **with HTTP auth** if you want to use this from multiple devices.
 
 For more installation-related info (or if you want something non-standard), check [the wiki](https://github.com/AnotherKamila/stalky/wiki/Installation-and-Deployment).
