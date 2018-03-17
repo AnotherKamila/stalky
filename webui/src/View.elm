@@ -10,6 +10,7 @@ import Material.Footer     as Footer
 import Material.Options    as Options exposing (cs, css, div)
 import Material.Typography as Typography
 
+import Config
 import TrackView
 import CsvTsdb.Graph
 
@@ -68,7 +69,7 @@ view_content model =
 -- FOOTER --
 
 footer =
-    let links = [ ("GitHub",   "https://github.com/AnotherKamila/stalkme")
+    let links = [ ("GitHub",   "https://github.com/"++Config.github_repo)
                 , ("Feedback", "https://goo.gl/forms/AlMtCnldYr3frELa2")
                 , ("♥ Donate", "https://liberapay.com/kamila/donate")
                 ]
