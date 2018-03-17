@@ -3,7 +3,7 @@ Automat==0.6.0
 certifi==2018.1.18
 chardet==3.0.4
 constantly==15.1.0
-csvtsdb==0.1.5
+csvtsdb==0.1.6
 hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
