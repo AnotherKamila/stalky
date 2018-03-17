@@ -30,7 +30,7 @@ $(OUTJS):
 
 ./venv/bin/activate:
 	$(PYVENV) ./venv
-	sed -i 's/\$$(/(/g' venv/bin/activate.fish
+	sed 's/\$$(/(/g' -i venv/bin/activate.fish
 	. ./venv/bin/activate; pip install --upgrade pip
 
 # -- HELPERS -- #
