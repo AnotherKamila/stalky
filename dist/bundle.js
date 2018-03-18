@@ -21860,16 +21860,17 @@ var _AnotherKamila$stalkme$Update$add_or_replace_value = F2(
 				}));
 	});
 var _AnotherKamila$stalkme$Update$find_labels = function (_p2) {
-	return A2(
-		_elm_lang$core$List$take,
-		15,
-		_elm_community$list_extra$List_Extra$unique(
-			A2(
-				_elm_lang$core$List$map,
-				function (_) {
-					return _.label;
-				},
-				_p2)));
+	return _elm_lang$core$List$sort(
+		A2(
+			_elm_lang$core$List$take,
+			15,
+			_elm_community$list_extra$List_Extra$unique(
+				A2(
+					_elm_lang$core$List$map,
+					function (_) {
+						return _.label;
+					},
+					_p2))));
 };
 var _AnotherKamila$stalkme$Update$update_data = F2(
 	function ($new, model) {

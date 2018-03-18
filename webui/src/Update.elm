@@ -21,7 +21,7 @@ update msg model =
         Mdl m         -> Material.update Mdl m model -- Mdl action handler
 
 update_data new model = {model | data = new, recent_labels = find_labels new}
-find_labels = List.map .label >> List.unique >> List.take 15 -- Note: recent labels will be a separate query one day
+find_labels = List.map .label >> List.unique >> List.take 15 >> List.sort -- Note: recent labels might be a separate query one day
 
 add_or_replace_value : String -> Float -> String
 add_or_replace_value s v =
