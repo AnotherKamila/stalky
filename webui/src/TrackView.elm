@@ -76,4 +76,4 @@ recents records = Table.table
         )
     ]
 
-view_date = Date.toFormattedString "EEE MMM d, h:mm a"
+view_date = Date.toFormattedString "EEE MMM d, H:mm"

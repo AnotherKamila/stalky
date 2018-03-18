@@ -23701,7 +23701,7 @@ var _debois$elm_mdl$Material_Table$descending = _debois$elm_mdl$Material_Table$s
 var _debois$elm_mdl$Material_Table$Ascending = {ctor: 'Ascending'};
 var _debois$elm_mdl$Material_Table$ascending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Ascending);
 
-var _AnotherKamila$stalkme$TrackView$view_date = _justinmimbs$elm_date_extra$Date_Extra$toFormattedString('EEE MMM d, h:mm a');
+var _AnotherKamila$stalkme$TrackView$view_date = _justinmimbs$elm_date_extra$Date_Extra$toFormattedString('EEE MMM d, H:mm');
 var _AnotherKamila$stalkme$TrackView$recents = function (records) {
 	return A2(
 		_debois$elm_mdl$Material_Table$table,
