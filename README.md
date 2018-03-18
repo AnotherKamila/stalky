@@ -31,4 +31,4 @@ Also, it's just HTTP -- it's easy to roll your own!
 I like this!
 ------------
 
-Me too :-D If you want to increase my motivation and therefore the chances that I'll write some code today, you can [say thanks](https://saythanks.io/to/AnotherKamila) or [support me on Liberapay](https://liberapay.com/kamila/donate). Or _you_ can [write code](https://github.com/AnotherKamila/stalky/wiki/Development)!
+Me too :-D If you want to increase my motivation and therefore the chances that I'll write some code today, you can [say thanks](https://saythanks.io/to/AnotherKamila) or [support me on Liberapay](https://liberapay.com/kamila/donate). Or _you_ can [write code](https://github.com/AnotherKamila/stalky/wiki/Development-Quick-Start)!
