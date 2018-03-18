@@ -21862,7 +21862,7 @@ var _AnotherKamila$stalkme$Update$add_or_replace_value = F2(
 var _AnotherKamila$stalkme$Update$find_labels = function (_p2) {
 	return A2(
 		_elm_lang$core$List$take,
-		10,
+		15,
 		_elm_community$list_extra$List_Extra$unique(
 			A2(
 				_elm_lang$core$List$map,
