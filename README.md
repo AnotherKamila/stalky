@@ -12,7 +12,8 @@ My secret plan is to integrate this with a few hardware trackers, details TBA. I
 I want this!
 ------------
 
-Requires `python3` and `node`\*. Install these using your package manager.
+Requires `python3` and `node`\*. Install these using your package manager, e.g. `sudo apt-get install python3 nodejs`.
+
 
 Type `make run`, open <http://localhost:8500> and enjoy!
 
