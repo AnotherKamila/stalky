@@ -12,15 +12,15 @@ My secret plan is to integrate this with a few hardware trackers, details TBA. I
 I want this!
 ------------
 
-Requires `python3` and `node`*. Install these using your package manager.
+Requires `python3` and `node`\*. Install these using your package manager.
 
 Type `make run`, open <http://localhost:8500> and enjoy!
 
 Put it on a server behind a reverse proxy such as nginx **with HTTP auth** if you want to use this from multiple devices.
 
-For more installation-related info (or if you want something non-standard), check [the wiki](https://github.com/AnotherKamila/stalky/wiki/Installation-and-Deployment).
+For more details, check [the wiki](https://github.com/AnotherKamila/stalky/wiki/Installation-and-Deployment).
 
-* Actually, doesn't really require `node` because I have sinned and the compiled file is in the repo. Run `make dontbuild` before `make run` to use that instead of building it yourself. If you do this, you must re-run `make dontbuild` every time you pull.
+\* Actually, doesn't _really_ require `node` because I have sinned and the compiled file is in the repo. Look [here](https://github.com/AnotherKamila/stalky/wiki/Installation-and-Deployment#i-dont-want-to-install-nodejs) to go without.
 
 ### Fun integrations
 
@@ -31,4 +31,4 @@ Also, it's just HTTP -- it's easy to roll your own!
 I like this!
 ------------
 
-Me too :-D If you want to increase my motivation and therefore the chances that I'll write some code today, you can [say thanks](https://saythanks.io/to/AnotherKamila) or [support me on Liberapay](https://liberapay.com/kamila/donate). Or _you_ can write code and [send a pull request](https://github.com/AnotherKamila/stalky/)!
+Me too :-D If you want to increase my motivation and therefore the chances that I'll write some code today, you can [say thanks](https://saythanks.io/to/AnotherKamila) or [support me on Liberapay](https://liberapay.com/kamila/donate). Or _you_ can [write code](https://github.com/AnotherKamila/stalky/wiki/Development)!
