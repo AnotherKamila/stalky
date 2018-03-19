@@ -3,8 +3,8 @@ module Model exposing (Model, Tab(..), Msg(..), init)
 import Http
 import Material
 import Navigation
-import CsvTsdb.Model as CsvTsdb exposing (default_record) -- TODO remove exposing
-import CsvTsdb.Decode exposing (decode_record) -- TODO remove!
+import Window
+import CsvTsdb.Model as CsvTsdb
 
 type Tab = Track | View | Explore | NotFound
 
@@ -17,6 +17,7 @@ type alias Model =
     , slider_input    : Float
     , selected_series : List String
     , hovered_point   : Maybe CsvTsdb.Record
+    , window_size     : Window.Size
     -- Boilerplate
     , mdl             : Material.Model -- for Mdl components
     }
@@ -31,6 +32,7 @@ type Msg = SelectTab Tab
          | DataSubmit
          | Hovered (Maybe CsvTsdb.Record)
          | SeriesToggled String
+         | WindowResize Window.Size
          -- Boilerplate
          | Mdl (Material.Msg Msg) -- internal Mdl messages
 
@@ -49,4 +51,5 @@ init =
     , hovered_point   = Nothing
     -- Boilerplate
     , mdl             = Material.model
+    , window_size     = {height = 400, width = 700}
     }

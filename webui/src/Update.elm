@@ -4,6 +4,8 @@ import Http
 import Material
 import List.Extra   as List
 import Result.Extra as Result
+import Task
+import Window
 
 import Model exposing (Model, Msg(..))
 import CsvTsdb.Api as CsvTsdb
@@ -20,6 +22,7 @@ update msg model =
         DataSubmit      -> ({model | data_input = ""}, send_input model.data_input) -- TODO validation
         Hovered r       -> ({model | hovered_point = r}, Cmd.none)
         SeriesToggled s -> ({model | selected_series = toggle_member s model.selected_series}, Cmd.none)
+        WindowResize s  -> ({model | window_size = s}, Cmd.none)
         Mdl m           -> Material.update Mdl m model -- Mdl action handler
 
 update_data new model = {model | data = new, recent_labels = find_labels new}
@@ -52,4 +55,7 @@ refresh = CsvTsdb.get_records NewData
 -- INIT --
 
 init : Cmd Msg
-init = refresh
+init = Cmd.batch
+    [ refresh
+    , Task.perform WindowResize Window.size
+    ]

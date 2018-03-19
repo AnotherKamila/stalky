@@ -29,7 +29,7 @@ view model =
         labels_title = div [ Typo.subhead ] [ text "Select series to display:" ]
         graph_config =
             { id ="view-chart-chart"
-            , size = { width = 700, height = 400 }
+            , size = { width = model.window_size.width, height = model.window_size.height - 100 }
             , on_hover = Hovered
             , hovered = model.hovered_point
             }

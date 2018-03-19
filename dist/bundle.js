@@ -17793,10 +17793,27 @@ var _elm_lang$navigation$Navigation$onEffects = F4(
 	});
 _elm_lang$core$Native_Platform.effectManagers['Navigation'] = {pkg: 'elm-lang/navigation', init: _elm_lang$navigation$Navigation$init, onEffects: _elm_lang$navigation$Navigation$onEffects, onSelfMsg: _elm_lang$navigation$Navigation$onSelfMsg, tag: 'fx', cmdMap: _elm_lang$navigation$Navigation$cmdMap, subMap: _elm_lang$navigation$Navigation$subMap};
 
-var _AnotherKamila$stalkme$Model$Model = F9(
-	function (a, b, c, d, e, f, g, h, i) {
-		return {err: a, tab: b, data: c, recent_labels: d, data_input: e, slider_input: f, selected_series: g, hovered_point: h, mdl: i};
-	});
+var _AnotherKamila$stalkme$Model$Model = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return {err: a, tab: b, data: c, recent_labels: d, data_input: e, slider_input: f, selected_series: g, hovered_point: h, window_size: i, mdl: j};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
 var _AnotherKamila$stalkme$Model$NotFound = {ctor: 'NotFound'};
 var _AnotherKamila$stalkme$Model$Explore = {ctor: 'Explore'};
 var _AnotherKamila$stalkme$Model$View = {ctor: 'View'};
@@ -17810,10 +17827,14 @@ var _AnotherKamila$stalkme$Model$init = {
 	slider_input: 5,
 	selected_series: {ctor: '[]'},
 	hovered_point: _elm_lang$core$Maybe$Nothing,
-	mdl: _debois$elm_mdl$Material$model
+	mdl: _debois$elm_mdl$Material$model,
+	window_size: {height: 400, width: 700}
 };
 var _AnotherKamila$stalkme$Model$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
+};
+var _AnotherKamila$stalkme$Model$WindowResize = function (a) {
+	return {ctor: 'WindowResize', _0: a};
 };
 var _AnotherKamila$stalkme$Model$SeriesToggled = function (a) {
 	return {ctor: 'SeriesToggled', _0: a};
@@ -28803,7 +28824,7 @@ var _AnotherKamila$stalkme$GraphView$label_chip = F2(
 var _AnotherKamila$stalkme$GraphView$view = function (model) {
 	var graph_config = {
 		id: 'view-chart-chart',
-		size: {width: 700, height: 400},
+		size: {width: model.window_size.width, height: model.window_size.height - 100},
 		on_hover: _AnotherKamila$stalkme$Model$Hovered,
 		hovered: model.hovered_point
 	};
@@ -29763,7 +29784,16 @@ var _rgrempel$elm_route_url$RouteUrl$programWithFlags = function (_p23) {
 };
 
 var _AnotherKamila$stalkme$Update$refresh = _AnotherKamila$stalkme$CsvTsdb_Api$get_records(_AnotherKamila$stalkme$Model$NewData);
-var _AnotherKamila$stalkme$Update$init = _AnotherKamila$stalkme$Update$refresh;
+var _AnotherKamila$stalkme$Update$init = _elm_lang$core$Platform_Cmd$batch(
+	{
+		ctor: '::',
+		_0: _AnotherKamila$stalkme$Update$refresh,
+		_1: {
+			ctor: '::',
+			_0: A2(_elm_lang$core$Task$perform, _AnotherKamila$stalkme$Model$WindowResize, _elm_lang$window$Window$size),
+			_1: {ctor: '[]'}
+		}
+	});
 var _AnotherKamila$stalkme$Update$send_input = function (_p0) {
 	return A2(
 		_elm_lang$http$Http$send,
@@ -29913,6 +29943,14 @@ var _AnotherKamila$stalkme$Update$update = F2(
 						{
 							selected_series: A2(_AnotherKamila$stalkme$Update$toggle_member, _p3._0, model.selected_series)
 						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'WindowResize':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{window_size: _p3._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -31507,7 +31545,11 @@ var _AnotherKamila$stalkme$Subscriptions$subscriptions = function (model) {
 			_1: {
 				ctor: '::',
 				_0: A2(_debois$elm_mdl$Material_Layout$subs, _AnotherKamila$stalkme$Model$Mdl, model.mdl),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$window$Window$resizes(_AnotherKamila$stalkme$Model$WindowResize),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };
