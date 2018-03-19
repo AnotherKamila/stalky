@@ -9,14 +9,16 @@ import CsvTsdb.Decode exposing (decode_record) -- TODO remove!
 type Tab = Track | View | Explore | NotFound
 
 type alias Model =
-    { err           : String
-    , tab           : Tab
-    , data          : List CsvTsdb.Record
-    , data_input    : String
-    , slider_input  : Float
-    , recent_labels : List String
+    { err             : String
+    , tab             : Tab
+    , data            : List CsvTsdb.Record
+    , recent_labels   : List String
+    , data_input      : String
+    , slider_input    : Float
+    , selected_series : List String
+    , hovered_point   : Maybe CsvTsdb.Record
     -- Boilerplate
-    , mdl           : Material.Model -- for Mdl components
+    , mdl             : Material.Model -- for Mdl components
     }
 
 
@@ -27,6 +29,8 @@ type Msg = SelectTab Tab
          | DataInput String
          | SliderInput Float
          | DataSubmit
+         | Hovered (Maybe CsvTsdb.Record)
+         | SeriesToggled String
          -- Boilerplate
          | Mdl (Material.Msg Msg) -- internal Mdl messages
 
@@ -35,12 +39,14 @@ type Msg = SelectTab Tab
 
 init : Model
 init =
-    { err           = ""
-    , tab           = Track
-    , data          = []
-    , data_input    = ""
-    , slider_input  = 5
-    , recent_labels = []
+    { err             = ""
+    , tab             = Track
+    , data            = []
+    , recent_labels   = []
+    , data_input      = ""
+    , slider_input    = 5
+    , selected_series = []
+    , hovered_point   = Nothing
     -- Boilerplate
-    , mdl           = Material.model
+    , mdl             = Material.model
     }

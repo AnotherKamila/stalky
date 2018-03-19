@@ -17793,9 +17793,9 @@ var _elm_lang$navigation$Navigation$onEffects = F4(
 	});
 _elm_lang$core$Native_Platform.effectManagers['Navigation'] = {pkg: 'elm-lang/navigation', init: _elm_lang$navigation$Navigation$init, onEffects: _elm_lang$navigation$Navigation$onEffects, onSelfMsg: _elm_lang$navigation$Navigation$onSelfMsg, tag: 'fx', cmdMap: _elm_lang$navigation$Navigation$cmdMap, subMap: _elm_lang$navigation$Navigation$subMap};
 
-var _AnotherKamila$stalkme$Model$Model = F7(
-	function (a, b, c, d, e, f, g) {
-		return {err: a, tab: b, data: c, data_input: d, slider_input: e, recent_labels: f, mdl: g};
+var _AnotherKamila$stalkme$Model$Model = F9(
+	function (a, b, c, d, e, f, g, h, i) {
+		return {err: a, tab: b, data: c, recent_labels: d, data_input: e, slider_input: f, selected_series: g, hovered_point: h, mdl: i};
 	});
 var _AnotherKamila$stalkme$Model$NotFound = {ctor: 'NotFound'};
 var _AnotherKamila$stalkme$Model$Explore = {ctor: 'Explore'};
@@ -17805,13 +17805,21 @@ var _AnotherKamila$stalkme$Model$init = {
 	err: '',
 	tab: _AnotherKamila$stalkme$Model$Track,
 	data: {ctor: '[]'},
+	recent_labels: {ctor: '[]'},
 	data_input: '',
 	slider_input: 5,
-	recent_labels: {ctor: '[]'},
+	selected_series: {ctor: '[]'},
+	hovered_point: _elm_lang$core$Maybe$Nothing,
 	mdl: _debois$elm_mdl$Material$model
 };
 var _AnotherKamila$stalkme$Model$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
+};
+var _AnotherKamila$stalkme$Model$SeriesToggled = function (a) {
+	return {ctor: 'SeriesToggled', _0: a};
+};
+var _AnotherKamila$stalkme$Model$Hovered = function (a) {
+	return {ctor: 'Hovered', _0: a};
 };
 var _AnotherKamila$stalkme$Model$DataSubmit = {ctor: 'DataSubmit'};
 var _AnotherKamila$stalkme$Model$SliderInput = function (a) {
@@ -27731,163 +27739,287 @@ var _terezka$line_charts$LineChart_Axis_Title$atAxisMax = _terezka$line_charts$I
 var _terezka$line_charts$LineChart_Axis_Title$atDataMax = _terezka$line_charts$Internal_Axis_Title$atDataMax;
 var _terezka$line_charts$LineChart_Axis_Title$default = _terezka$line_charts$Internal_Axis_Title$default;
 
-var _AnotherKamila$stalkme$CsvTsdb_Graph$colorize = function (xs) {
-	var deg2color = function (x) {
-		return A3(
-			_elm_lang$core$Color$hsl,
-			_elm_lang$core$Basics$degrees(x),
-			0.8,
-			0.4);
-	};
-	var step = 360.0 / _elm_lang$core$Basics$toFloat(
-		_elm_lang$core$List$length(xs));
-	var colors = A2(
-		_elm_lang$core$List$map,
-		function (_p0) {
-			return deg2color(
-				A2(
-					F2(
-						function (x, y) {
-							return x * y;
-						}),
-					step,
-					_elm_lang$core$Basics$toFloat(_p0)));
-		},
-		A2(_elm_lang$core$List$range, 1, 50));
-	return A3(
-		_elm_lang$core$List$map2,
-		F2(
-			function (x, y) {
-				return x(y);
-			}),
-		xs,
-		colors);
+var _eskimoblood$elm_color_extra$Color_Manipulate$mixChannel = F3(
+	function (weight, c1, c2) {
+		return _elm_lang$core$Basics$round(
+			(_elm_lang$core$Basics$toFloat(c1) * weight) + (_elm_lang$core$Basics$toFloat(c2) * (1 - weight)));
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$calculateWeight = F3(
+	function (a1, a2, weight) {
+		var w1 = (weight * 2) - 1;
+		var a = a1 - a2;
+		var w2 = _elm_lang$core$Native_Utils.eq(w1 * a, -1) ? w1 : ((w1 + a) / (1 + (w1 * a)));
+		return (w2 + 1) / 2;
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$weightedMix = F3(
+	function (color1, color2, weight) {
+		var c2 = _elm_lang$core$Color$toRgb(color2);
+		var c1 = _elm_lang$core$Color$toRgb(color1);
+		var clampedWeight = A3(_elm_lang$core$Basics$clamp, 0, 1, weight);
+		var w = A3(_eskimoblood$elm_color_extra$Color_Manipulate$calculateWeight, c1.alpha, c2.alpha, clampedWeight);
+		var rMixed = A3(_eskimoblood$elm_color_extra$Color_Manipulate$mixChannel, w, c1.red, c2.red);
+		var gMixed = A3(_eskimoblood$elm_color_extra$Color_Manipulate$mixChannel, w, c1.green, c2.green);
+		var bMixed = A3(_eskimoblood$elm_color_extra$Color_Manipulate$mixChannel, w, c1.blue, c2.blue);
+		var alphaMixed = (c1.alpha * clampedWeight) + (c2.alpha * (1 - clampedWeight));
+		return A4(_elm_lang$core$Color$rgba, rMixed, gMixed, bMixed, alphaMixed);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$mix = F2(
+	function (c1, c2) {
+		return A3(_eskimoblood$elm_color_extra$Color_Manipulate$weightedMix, c1, c2, 0.5);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$scale = F3(
+	function (max, scaleAmount, value) {
+		var clampedValue = A3(_elm_lang$core$Basics$clamp, 0, max, value);
+		var clampedScale = A3(_elm_lang$core$Basics$clamp, -1.0, 1.0, scaleAmount);
+		var diff = (_elm_lang$core$Native_Utils.cmp(clampedScale, 0) > 0) ? (max - clampedValue) : clampedValue;
+		return clampedValue + (diff * clampedScale);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$scaleRgb = F2(
+	function (scaleBy, color) {
+		var rgb = _elm_lang$core$Color$toRgb(color);
+		var _p0 = scaleBy;
+		var rScale = _p0._0;
+		var gScale = _p0._1;
+		var bScale = _p0._2;
+		var aScale = _p0._3;
+		return A4(
+			_elm_lang$core$Color$rgba,
+			_elm_lang$core$Basics$round(
+				A3(
+					_eskimoblood$elm_color_extra$Color_Manipulate$scale,
+					255,
+					rScale,
+					_elm_lang$core$Basics$toFloat(rgb.red))),
+			_elm_lang$core$Basics$round(
+				A3(
+					_eskimoblood$elm_color_extra$Color_Manipulate$scale,
+					255,
+					gScale,
+					_elm_lang$core$Basics$toFloat(rgb.green))),
+			_elm_lang$core$Basics$round(
+				A3(
+					_eskimoblood$elm_color_extra$Color_Manipulate$scale,
+					255,
+					bScale,
+					_elm_lang$core$Basics$toFloat(rgb.blue))),
+			A3(_eskimoblood$elm_color_extra$Color_Manipulate$scale, 1.0, aScale, rgb.alpha));
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$scaleHsl = F2(
+	function (scaleBy, color) {
+		var hsl = _elm_lang$core$Color$toHsl(color);
+		var _p1 = scaleBy;
+		var saturationScale = _p1._0;
+		var lightnessScale = _p1._1;
+		var alphaScale = _p1._2;
+		return A4(
+			_elm_lang$core$Color$hsla,
+			hsl.hue,
+			A3(_eskimoblood$elm_color_extra$Color_Manipulate$scale, 1.0, saturationScale, hsl.saturation),
+			A3(_eskimoblood$elm_color_extra$Color_Manipulate$scale, 1.0, lightnessScale, hsl.lightness),
+			A3(_eskimoblood$elm_color_extra$Color_Manipulate$scale, 1.0, alphaScale, hsl.alpha));
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$rotateHue = F2(
+	function (angle, cl) {
+		var _p2 = _elm_lang$core$Color$toHsl(cl);
+		var hue = _p2.hue;
+		var saturation = _p2.saturation;
+		var lightness = _p2.lightness;
+		var alpha = _p2.alpha;
+		return A4(
+			_elm_lang$core$Color$hsla,
+			hue + _elm_lang$core$Basics$degrees(angle),
+			saturation,
+			lightness,
+			alpha);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$limit = A2(_elm_lang$core$Basics$clamp, 0, 1);
+var _eskimoblood$elm_color_extra$Color_Manipulate$darken = F2(
+	function (offset, cl) {
+		var _p3 = _elm_lang$core$Color$toHsl(cl);
+		var hue = _p3.hue;
+		var saturation = _p3.saturation;
+		var lightness = _p3.lightness;
+		var alpha = _p3.alpha;
+		return A4(
+			_elm_lang$core$Color$hsla,
+			hue,
+			saturation,
+			_eskimoblood$elm_color_extra$Color_Manipulate$limit(lightness - offset),
+			alpha);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$lighten = F2(
+	function (offset, cl) {
+		return A2(_eskimoblood$elm_color_extra$Color_Manipulate$darken, 0 - offset, cl);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$saturate = F2(
+	function (offset, cl) {
+		var _p4 = _elm_lang$core$Color$toHsl(cl);
+		var hue = _p4.hue;
+		var saturation = _p4.saturation;
+		var lightness = _p4.lightness;
+		var alpha = _p4.alpha;
+		return A4(
+			_elm_lang$core$Color$hsla,
+			hue,
+			_eskimoblood$elm_color_extra$Color_Manipulate$limit(saturation + offset),
+			lightness,
+			alpha);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$desaturate = F2(
+	function (offset, cl) {
+		return A2(_eskimoblood$elm_color_extra$Color_Manipulate$saturate, 0 - offset, cl);
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$grayscale = function (cl) {
+	return A2(_eskimoblood$elm_color_extra$Color_Manipulate$saturate, -1, cl);
 };
-var _AnotherKamila$stalkme$CsvTsdb_Graph$records_to_series = function () {
-	var grouplabel = function (_p1) {
-		return A2(
-			_elm_lang$core$Maybe$withDefault,
-			'whatever',
-			_elm_lang$core$List$head(
-				A2(
-					_elm_lang$core$List$map,
-					function (_) {
-						return _.label;
-					},
-					_p1)));
-	};
-	var group2series = function (rs) {
-		return {
-			ctor: '_Tuple2',
-			_0: grouplabel(rs),
-			_1: A2(
-				_elm_lang$core$List$sortBy,
-				function (_p2) {
-					return _elm_lang$core$Date$toTime(
+var _eskimoblood$elm_color_extra$Color_Manipulate$fadeIn = F2(
+	function (offset, cl) {
+		var _p5 = _elm_lang$core$Color$toHsl(cl);
+		var hue = _p5.hue;
+		var saturation = _p5.saturation;
+		var lightness = _p5.lightness;
+		var alpha = _p5.alpha;
+		return A4(
+			_elm_lang$core$Color$hsla,
+			hue,
+			saturation,
+			lightness,
+			_eskimoblood$elm_color_extra$Color_Manipulate$limit(alpha + offset));
+	});
+var _eskimoblood$elm_color_extra$Color_Manipulate$fadeOut = F2(
+	function (offset, cl) {
+		return A2(_eskimoblood$elm_color_extra$Color_Manipulate$fadeIn, 0 - offset, cl);
+	});
+
+var _AnotherKamila$stalkme$CsvTsdb_Graph$line_style = F2(
+	function (hovered, series) {
+		var _p0 = hovered;
+		if (_p0.ctor === 'Nothing') {
+			return A2(_terezka$line_charts$LineChart_Line$style, 1, _elm_lang$core$Basics$identity);
+		} else {
+			return A2(_elm_lang$core$List$member, _p0._0, series) ? A2(_terezka$line_charts$LineChart_Line$style, 2, _elm_lang$core$Basics$identity) : A2(
+				_terezka$line_charts$LineChart_Line$style,
+				1,
+				_eskimoblood$elm_color_extra$Color_Manipulate$lighten(0.2));
+		}
+	});
+var _AnotherKamila$stalkme$CsvTsdb_Graph$make_config = function (conf) {
+	return {
+		x: _terezka$line_charts$LineChart_Axis$custom(
+			{
+				title: A3(_terezka$line_charts$LineChart_Axis_Title$atDataMax, -10, 15, 'Date'),
+				variable: function (_p1) {
+					return _elm_lang$core$Maybe$Just(
+						_elm_lang$core$Date$toTime(
+							function (_) {
+								return _.date;
+							}(_p1)));
+				},
+				pixels: conf.size.width,
+				range: A2(_terezka$line_charts$LineChart_Axis_Range$padded, 20, 20),
+				axisLine: _terezka$line_charts$LineChart_Axis_Line$default,
+				ticks: _terezka$line_charts$LineChart_Axis_Ticks$time(5)
+			}),
+		y: _terezka$line_charts$LineChart_Axis$custom(
+			{
+				title: _terezka$line_charts$LineChart_Axis_Title$default(''),
+				variable: function (_p2) {
+					return _elm_lang$core$Maybe$Just(
 						function (_) {
-							return _.date;
+							return _.value;
 						}(_p2));
 				},
-				rs)
-		};
-	};
-	return function (_p3) {
-		return A2(
-			_elm_lang$core$List$map,
-			group2series,
-			A2(
-				_elm_community$list_extra$List_Extra$groupWhile,
-				F2(
-					function (a, b) {
-						return _elm_lang$core$Native_Utils.eq(a.label, b.label);
+				pixels: conf.size.height,
+				range: _terezka$line_charts$LineChart_Axis_Range$custom(
+					function (datarange) {
+						return {min: 0, max: datarange.max + 0.5};
 					}),
-				A2(
-					_elm_lang$core$List$sortBy,
-					function (_) {
-						return _.label;
-					},
-					_p3)));
-	};
-}();
-var _AnotherKamila$stalkme$CsvTsdb_Graph$config = F2(
-	function (size, id) {
-		return {
-			x: _terezka$line_charts$LineChart_Axis$custom(
-				{
-					title: A3(_terezka$line_charts$LineChart_Axis_Title$atDataMax, -20, 15, 'Date'),
-					variable: function (_p4) {
-						return _elm_lang$core$Maybe$Just(
-							_elm_lang$core$Date$toTime(
-								function (_) {
-									return _.date;
-								}(_p4)));
-					},
-					pixels: size.width,
-					range: A2(_terezka$line_charts$LineChart_Axis_Range$padded, 20, 20),
-					axisLine: _terezka$line_charts$LineChart_Axis_Line$default,
-					ticks: _terezka$line_charts$LineChart_Axis_Ticks$time(5)
-				}),
-			y: _terezka$line_charts$LineChart_Axis$custom(
-				{
-					title: _terezka$line_charts$LineChart_Axis_Title$default(''),
-					variable: function (_p5) {
-						return _elm_lang$core$Maybe$Just(
+				axisLine: _terezka$line_charts$LineChart_Axis_Line$default,
+				ticks: _terezka$line_charts$LineChart_Axis_Ticks$default
+			}),
+		container: _terezka$line_charts$LineChart_Container$custom(
+			{
+				attributesHtml: {ctor: '[]'},
+				attributesSvg: {ctor: '[]'},
+				size: _terezka$line_charts$LineChart_Container$relative,
+				margin: A4(_terezka$line_charts$LineChart_Container$Margin, 30, 30, 30, 30),
+				id: conf.id
+			}),
+		interpolation: _terezka$line_charts$LineChart_Interpolation$monotone,
+		intersection: _terezka$line_charts$LineChart_Axis_Intersection$default,
+		legends: _terezka$line_charts$LineChart_Legends$none,
+		events: _terezka$line_charts$LineChart_Events$custom(
+			{
+				ctor: '::',
+				_0: A2(_terezka$line_charts$LineChart_Events$onMouseMove, conf.on_hover, _terezka$line_charts$LineChart_Events$getNearest),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$LineChart_Events$onMouseLeave(
+						conf.on_hover(_elm_lang$core$Maybe$Nothing)),
+					_1: {ctor: '[]'}
+				}
+			}),
+		junk: A2(
+			_terezka$line_charts$LineChart_Junk$hoverOne,
+			conf.hovered,
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'date',
+					_1: function (_p3) {
+						return A2(
+							_justinmimbs$elm_date_extra$Date_Extra$toFormattedString,
+							'EEE MMM d, H:mm',
 							function (_) {
-								return _.value;
-							}(_p5));
+								return _.date;
+							}(_p3));
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'value',
+						_1: function (_p4) {
+							return _elm_lang$core$Basics$toString(
+								function (_) {
+									return _.value;
+								}(_p4));
+						}
 					},
-					pixels: size.height,
-					range: _terezka$line_charts$LineChart_Axis_Range$custom(
-						function (datarange) {
-							return {min: 0, max: datarange.max + 0.5};
-						}),
-					axisLine: _terezka$line_charts$LineChart_Axis_Line$default,
-					ticks: _terezka$line_charts$LineChart_Axis_Ticks$default
-				}),
-			container: _terezka$line_charts$LineChart_Container$custom(
-				{
-					attributesHtml: {ctor: '[]'},
-					attributesSvg: {ctor: '[]'},
-					size: _terezka$line_charts$LineChart_Container$relative,
-					margin: A4(_terezka$line_charts$LineChart_Container$Margin, 30, 30, 30, 30),
-					id: id
-				}),
-			interpolation: _terezka$line_charts$LineChart_Interpolation$default,
-			intersection: _terezka$line_charts$LineChart_Axis_Intersection$default,
-			legends: _terezka$line_charts$LineChart_Legends$none,
-			events: _terezka$line_charts$LineChart_Events$default,
-			junk: _terezka$line_charts$LineChart_Junk$default,
-			grid: _terezka$line_charts$LineChart_Grid$default,
-			area: _terezka$line_charts$LineChart_Area$default,
-			line: _terezka$line_charts$LineChart_Line$default,
-			dots: _terezka$line_charts$LineChart_Dots$default
-		};
-	});
-var _AnotherKamila$stalkme$CsvTsdb_Graph$view = F2(
-	function (size, id) {
-		var wrap_series = F2(
-			function (_p6, color) {
-				var _p7 = _p6;
-				return A4(_terezka$line_charts$LineChart$line, color, _terezka$line_charts$LineChart_Dots$circle, _p7._0, _p7._1);
-			});
-		return function (_p8) {
-			return A2(
-				_terezka$line_charts$LineChart$viewCustom,
-				A2(_AnotherKamila$stalkme$CsvTsdb_Graph$config, size, id),
-				_AnotherKamila$stalkme$CsvTsdb_Graph$colorize(
-					A2(
-						_elm_lang$core$List$map,
-						wrap_series,
-						_AnotherKamila$stalkme$CsvTsdb_Graph$records_to_series(_p8))));
-		};
-	});
-var _AnotherKamila$stalkme$CsvTsdb_Graph$init_model = {hovered: _elm_lang$core$Maybe$Nothing};
-var _AnotherKamila$stalkme$CsvTsdb_Graph$Model = function (a) {
-	return {hovered: a};
+					_1: {ctor: '[]'}
+				}
+			}),
+		grid: _terezka$line_charts$LineChart_Grid$default,
+		area: _terezka$line_charts$LineChart_Area$default,
+		line: _terezka$line_charts$LineChart_Line$custom(
+			_AnotherKamila$stalkme$CsvTsdb_Graph$line_style(conf.hovered)),
+		dots: _terezka$line_charts$LineChart_Dots$default
+	};
+};
+var _AnotherKamila$stalkme$CsvTsdb_Graph$view = function (conf) {
+	var wrap_series = function (s) {
+		return A4(_terezka$line_charts$LineChart$line, s.color, _terezka$line_charts$LineChart_Dots$circle, s.label, s.data);
+	};
+	return function (_p5) {
+		return A2(
+			_terezka$line_charts$LineChart$viewCustom,
+			_AnotherKamila$stalkme$CsvTsdb_Graph$make_config(conf),
+			A2(_elm_lang$core$List$map, wrap_series, _p5));
+	};
 };
 var _AnotherKamila$stalkme$CsvTsdb_Graph$Size = F2(
 	function (a, b) {
 		return {width: a, height: b};
+	});
+var _AnotherKamila$stalkme$CsvTsdb_Graph$Series = F3(
+	function (a, b, c) {
+		return {label: a, color: b, data: c};
+	});
+var _AnotherKamila$stalkme$CsvTsdb_Graph$GraphConfig = F4(
+	function (a, b, c, d) {
+		return {size: a, id: b, on_hover: c, hovered: d};
 	});
 
 var _debois$elm_mdl$Material_Color$text = function (_p0) {
@@ -28546,29 +28678,135 @@ var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Opti
 var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-2-color-contrast');
 var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-1-color-contrast');
 
-var _AnotherKamila$stalkme$GraphView$label_chip = function (t) {
-	return A2(
-		_debois$elm_mdl$Material_Chip$button,
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$background(
-				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Green, _debois$elm_mdl$Material_Color$S100)),
-			_1: {ctor: '[]'}
+var _AnotherKamila$stalkme$GraphView$colorize = function (xs) {
+	var deg2color = function (x) {
+		return A3(
+			_elm_lang$core$Color$hsl,
+			_elm_lang$core$Basics$degrees(x),
+			0.8,
+			0.5);
+	};
+	var step = 360.0 / _elm_lang$core$Basics$toFloat(
+		_elm_lang$core$List$length(xs));
+	var colors = A2(
+		_elm_lang$core$List$map,
+		function (_p0) {
+			return deg2color(
+				A2(
+					F2(
+						function (x, y) {
+							return x * y;
+						}),
+					step,
+					_elm_lang$core$Basics$toFloat(_p0)));
 		},
-		{
-			ctor: '::',
-			_0: A2(
-				_debois$elm_mdl$Material_Chip$content,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(t),
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		});
+		A2(_elm_lang$core$List$range, 1, 50));
+	return A3(
+		_elm_lang$core$List$map2,
+		F2(
+			function (x, y) {
+				return x(y);
+			}),
+		xs,
+		colors);
 };
+var _AnotherKamila$stalkme$GraphView$groupBy = function (f) {
+	return _elm_community$list_extra$List_Extra$groupWhile(
+		F2(
+			function (a, b) {
+				return _elm_lang$core$Native_Utils.eq(
+					f(a),
+					f(b));
+			}));
+};
+var _AnotherKamila$stalkme$GraphView$records_to_series = function () {
+	var grouplabel = function (_p1) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			'whatever',
+			_elm_lang$core$List$head(
+				A2(
+					_elm_lang$core$List$map,
+					function (_) {
+						return _.label;
+					},
+					_p1)));
+	};
+	var group2series = F2(
+		function (rs, color) {
+			return {
+				label: grouplabel(rs),
+				color: color,
+				data: A2(
+					_elm_lang$core$List$sortBy,
+					function (_p2) {
+						return _elm_lang$core$Date$toTime(
+							function (_) {
+								return _.date;
+							}(_p2));
+					},
+					rs)
+			};
+		});
+	return function (_p3) {
+		return _AnotherKamila$stalkme$GraphView$colorize(
+			A2(
+				_elm_lang$core$List$map,
+				group2series,
+				A2(
+					_AnotherKamila$stalkme$GraphView$groupBy,
+					function (_) {
+						return _.label;
+					},
+					A2(
+						_elm_lang$core$List$sortBy,
+						function (_) {
+							return _.label;
+						},
+						_p3))));
+	};
+}();
+var _AnotherKamila$stalkme$GraphView$label_chip = F2(
+	function (is_selected, s) {
+		return A2(
+			_debois$elm_mdl$Material_Chip$button,
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Options$css,
+					'background-color',
+					_eskimoblood$elm_color_extra$Color_Convert$colorToCssRgb(
+						A2(
+							_eskimoblood$elm_color_extra$Color_Manipulate$lighten,
+							is_selected ? 0.2 : 0.4,
+							s.color))),
+				_1: {
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$onClick(
+						_AnotherKamila$stalkme$Model$SeriesToggled(s.label)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Chip$content,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(s.label),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});
 var _AnotherKamila$stalkme$GraphView$view = function (model) {
+	var graph_config = {
+		id: 'view-chart-chart',
+		size: {width: 700, height: 400},
+		on_hover: _AnotherKamila$stalkme$Model$Hovered,
+		hovered: model.hovered_point
+	};
 	var labels_title = A2(
 		_debois$elm_mdl$Material_Options$div,
 		{
@@ -28581,15 +28819,22 @@ var _AnotherKamila$stalkme$GraphView$view = function (model) {
 			_0: _elm_lang$html$Html$text('Select series to display:'),
 			_1: {ctor: '[]'}
 		});
-	var labels = _elm_lang$core$List$sort(
-		_elm_community$list_extra$List_Extra$unique(
-			A2(
-				_elm_lang$core$List$map,
-				function (_) {
-					return _.label;
-				},
-				model.data)));
-	var labels_html = A2(_elm_lang$core$List$map, _AnotherKamila$stalkme$GraphView$label_chip, labels);
+	var series = _AnotherKamila$stalkme$GraphView$records_to_series(model.data);
+	var selected_series = A2(
+		_elm_lang$core$List$filter,
+		function (s) {
+			return A2(_elm_lang$core$List$member, s.label, model.selected_series);
+		},
+		series);
+	var labels_html = A2(
+		_elm_lang$core$List$map,
+		function (s) {
+			return A2(
+				_AnotherKamila$stalkme$GraphView$label_chip,
+				A2(_elm_lang$core$List$member, s.label, model.selected_series),
+				s);
+		},
+		series);
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
 		{
@@ -28609,11 +28854,7 @@ var _AnotherKamila$stalkme$GraphView$view = function (model) {
 				{ctor: '::', _0: labels_title, _1: labels_html}),
 			_1: {
 				ctor: '::',
-				_0: A3(
-					_AnotherKamila$stalkme$CsvTsdb_Graph$view,
-					{width: 700, height: 400},
-					'view-chart-chart',
-					model.data),
+				_0: A2(_AnotherKamila$stalkme$CsvTsdb_Graph$view, graph_config, selected_series),
 				_1: {ctor: '[]'}
 			}
 		});
@@ -29577,6 +29818,10 @@ var _AnotherKamila$stalkme$Update$add_or_replace_value = F2(
 					_1: {ctor: '[]'}
 				}));
 	});
+var _AnotherKamila$stalkme$Update$toggle_member = F2(
+	function (a, xs) {
+		return A2(_elm_lang$core$List$member, a, xs) ? A2(_elm_community$list_extra$List_Extra$remove, a, xs) : {ctor: '::', _0: a, _1: xs};
+	});
 var _AnotherKamila$stalkme$Update$find_labels = function (_p2) {
 	return _elm_lang$core$List$sort(
 		A2(
@@ -29651,6 +29896,24 @@ var _AnotherKamila$stalkme$Update$update = F2(
 						model,
 						{data_input: ''}),
 					_1: _AnotherKamila$stalkme$Update$send_input(model.data_input)
+				};
+			case 'Hovered':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{hovered_point: _p3._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SeriesToggled':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected_series: A2(_AnotherKamila$stalkme$Update$toggle_member, _p3._0, model.selected_series)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
 				return A3(_debois$elm_mdl$Material$update, _AnotherKamila$stalkme$Model$Mdl, _p3._0, model);

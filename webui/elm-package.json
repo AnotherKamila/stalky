@@ -16,6 +16,7 @@
         "elm-lang/html": "2.0.0 <= v <= 2.0.0",
         "elm-lang/http": "1.0.0 <= v <= 1.0.0",
         "elm-lang/navigation": "2.1.0 <= v <= 2.1.0",
+        "eskimoblood/elm-color-extra": "5.0.0 <= v < 6.0.0",
         "justinmimbs/elm-date-extra": "2.0.0 <= v <= 3.0.0",
         "rgrempel/elm-route-url": "4.0.0 <= v <= 4.0.0",
         "terezka/line-charts": "1.0.0 <= v <= 2.0.0"

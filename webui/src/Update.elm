@@ -11,17 +11,20 @@ import CsvTsdb.Api as CsvTsdb
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
-        SelectTab new -> ({model | tab = new}, Cmd.none)
-        NewData r     -> check r update_data Cmd.none model
-        RequestDone r -> check r (\_ -> identity) refresh model
-        DataInput s   -> ({model | data_input = s}, Cmd.none)
-        SliderInput x -> ({model | data_input = add_or_replace_value model.data_input x, slider_input = x}, Cmd.none)
-        RefreshWanted -> (model, refresh)
-        DataSubmit    -> ({model | data_input = ""}, send_input model.data_input) -- TODO validation
-        Mdl m         -> Material.update Mdl m model -- Mdl action handler
+        SelectTab new   -> ({model | tab = new}, Cmd.none)
+        NewData r       -> check r update_data Cmd.none model
+        RequestDone r   -> check r (\_ -> identity) refresh model
+        DataInput s     -> ({model | data_input = s}, Cmd.none)
+        SliderInput x   -> ({model | data_input = add_or_replace_value model.data_input x, slider_input = x}, Cmd.none)
+        RefreshWanted   -> (model, refresh)
+        DataSubmit      -> ({model | data_input = ""}, send_input model.data_input) -- TODO validation
+        Hovered r       -> ({model | hovered_point = r}, Cmd.none)
+        SeriesToggled s -> ({model | selected_series = toggle_member s model.selected_series}, Cmd.none)
+        Mdl m           -> Material.update Mdl m model -- Mdl action handler
 
 update_data new model = {model | data = new, recent_labels = find_labels new}
 find_labels = List.map .label >> List.unique >> List.take 15 >> List.sort -- Note: recent labels might be a separate query one day
+toggle_member a xs = if List.member a xs then List.remove a xs else a::xs
 
 add_or_replace_value : String -> Float -> String
 add_or_replace_value s v =
