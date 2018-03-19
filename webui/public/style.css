@@ -54,3 +54,12 @@ body {
 .track-container .mdl-data-table {
     font-size: 11px;
 }
+
+.view-chart-select-series {
+    margin: 2em auto;
+    text-align: center;
+}
+
+.view-chart-select-series .mdl-chip {
+    margin: 2px;
+}

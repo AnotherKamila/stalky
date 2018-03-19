@@ -12,7 +12,7 @@ import Material.Typography as Typography
 
 import Config
 import TrackView
-import CsvTsdb.Graph
+import GraphView
 
 import Model exposing (Model, Msg(..), Tab(..))
 
@@ -59,10 +59,10 @@ view_content : Model -> Html Msg
 view_content model =
     let content = case model.tab of
         Track    -> TrackView.view model
-        View     -> CsvTsdb.Graph.view model.data
+        View     -> GraphView.view model
         Explore  -> text "Not Implemented Yet"
         NotFound -> Options.styled Html.h1
-            [ cs "mdl-typography--display-4", Typography.center ]
+            [ Typography.display4, Typography.center ]
             [ text "404" ]
     in div [ cs "content" ] [ content ]
 

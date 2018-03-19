@@ -6679,12 +6679,12 @@ var _elm_lang$core$Date$Mar = {ctor: 'Mar'};
 var _elm_lang$core$Date$Feb = {ctor: 'Feb'};
 var _elm_lang$core$Date$Jan = {ctor: 'Jan'};
 
-var _justinmimbs$elm_date_extra$Date_Facts$msPerSecond = 1000;
-var _justinmimbs$elm_date_extra$Date_Facts$msPerMinute = 60 * _justinmimbs$elm_date_extra$Date_Facts$msPerSecond;
-var _justinmimbs$elm_date_extra$Date_Facts$msPerHour = 60 * _justinmimbs$elm_date_extra$Date_Facts$msPerMinute;
-var _justinmimbs$elm_date_extra$Date_Facts$msPerDay = 24 * _justinmimbs$elm_date_extra$Date_Facts$msPerHour;
-var _justinmimbs$elm_date_extra$Date_Facts$numberToWeekday = function (n) {
-	var _p0 = A2(_elm_lang$core$Basics$max, 1, n);
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerSecond = 1000;
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute = 60 * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerSecond;
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerHour = 60 * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute;
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerDay = 24 * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerHour;
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$dayOfWeekFromWeekdayNumber = function (n) {
+	var _p0 = n;
 	switch (_p0) {
 		case 1:
 			return _elm_lang$core$Date$Mon;
@@ -6702,7 +6702,7 @@ var _justinmimbs$elm_date_extra$Date_Facts$numberToWeekday = function (n) {
 			return _elm_lang$core$Date$Sun;
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Facts$weekdayToNumber = function (d) {
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$weekdayNumberFromDayOfWeek = function (d) {
 	var _p1 = d;
 	switch (_p1.ctor) {
 		case 'Mon':
@@ -6721,8 +6721,8 @@ var _justinmimbs$elm_date_extra$Date_Facts$weekdayToNumber = function (d) {
 			return 7;
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Facts$numberToMonth = function (n) {
-	var _p2 = A2(_elm_lang$core$Basics$max, 1, n);
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$monthFromMonthNumber = function (n) {
+	var _p2 = n;
 	switch (_p2) {
 		case 1:
 			return _elm_lang$core$Date$Jan;
@@ -6750,7 +6750,7 @@ var _justinmimbs$elm_date_extra$Date_Facts$numberToMonth = function (n) {
 			return _elm_lang$core$Date$Dec;
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Facts$monthToNumber = function (m) {
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$monthNumberFromMonth = function (m) {
 	var _p3 = m;
 	switch (_p3.ctor) {
 		case 'Jan':
@@ -6779,7 +6779,56 @@ var _justinmimbs$elm_date_extra$Date_Facts$monthToNumber = function (m) {
 			return 12;
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Facts$isLeapYear = function (y) {
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$months = {
+	ctor: '::',
+	_0: _elm_lang$core$Date$Jan,
+	_1: {
+		ctor: '::',
+		_0: _elm_lang$core$Date$Feb,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$core$Date$Mar,
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Date$Apr,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Date$May,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Date$Jun,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Date$Jul,
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Date$Aug,
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$core$Date$Sep,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Date$Oct,
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$core$Date$Nov,
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$core$Date$Dec,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear = function (y) {
 	return (_elm_lang$core$Native_Utils.eq(
 		A2(_elm_lang$core$Basics_ops['%'], y, 4),
 		0) && (!_elm_lang$core$Native_Utils.eq(
@@ -6788,14 +6837,14 @@ var _justinmimbs$elm_date_extra$Date_Facts$isLeapYear = function (y) {
 		A2(_elm_lang$core$Basics_ops['%'], y, 400),
 		0);
 };
-var _justinmimbs$elm_date_extra$Date_Facts$daysInMonth = F2(
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$daysInMonth = F2(
 	function (y, m) {
 		var _p4 = m;
 		switch (_p4.ctor) {
 			case 'Jan':
 				return 31;
 			case 'Feb':
-				return _justinmimbs$elm_date_extra$Date_Facts$isLeapYear(y) ? 29 : 28;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 29 : 28;
 			case 'Mar':
 				return 31;
 			case 'Apr':
@@ -6818,9 +6867,8 @@ var _justinmimbs$elm_date_extra$Date_Facts$daysInMonth = F2(
 				return 31;
 		}
 	});
-var _justinmimbs$elm_date_extra$Date_Facts$daysBeforeMonth = F2(
+var _justinmimbs$elm_date_extra$Date_Extra_Facts$daysBeforeStartOfMonth = F2(
 	function (y, m) {
-		var leapDays = _justinmimbs$elm_date_extra$Date_Facts$isLeapYear(y) ? 1 : 0;
 		var _p5 = m;
 		switch (_p5.ctor) {
 			case 'Jan':
@@ -6828,149 +6876,29 @@ var _justinmimbs$elm_date_extra$Date_Facts$daysBeforeMonth = F2(
 			case 'Feb':
 				return 31;
 			case 'Mar':
-				return 59 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 60 : 59;
 			case 'Apr':
-				return 90 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 91 : 90;
 			case 'May':
-				return 120 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 121 : 120;
 			case 'Jun':
-				return 151 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 152 : 151;
 			case 'Jul':
-				return 181 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 182 : 181;
 			case 'Aug':
-				return 212 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 213 : 212;
 			case 'Sep':
-				return 243 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 244 : 243;
 			case 'Oct':
-				return 273 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 274 : 273;
 			case 'Nov':
-				return 304 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 305 : 304;
 			default:
-				return 334 + leapDays;
+				return _justinmimbs$elm_date_extra$Date_Extra_Facts$isLeapYear(y) ? 335 : 334;
 		}
 	});
 
-var _justinmimbs$elm_date_extra$Date_RataDie$isBetween = F3(
-	function (a, b, x) {
-		return (_elm_lang$core$Native_Utils.cmp(a, x) < 1) && (_elm_lang$core$Native_Utils.cmp(x, b) < 1);
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear = function (y1) {
-	var y = y1 - 1;
-	var leapYears = (((y / 4) | 0) - ((y / 100) | 0)) + ((y / 400) | 0);
-	return (365 * y) + leapYears;
-};
-var _justinmimbs$elm_date_extra$Date_RataDie$fromOrdinalParts = F2(
-	function (y, od) {
-		return (A3(_justinmimbs$elm_date_extra$Date_RataDie$isBetween, 1, 365, od) || (_elm_lang$core$Native_Utils.eq(od, 366) && _justinmimbs$elm_date_extra$Date_Facts$isLeapYear(y))) ? _elm_lang$core$Result$Ok(
-			_justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear(y) + od) : _elm_lang$core$Result$Err(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Invalid ordinal date (',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(y),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						', ',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_elm_lang$core$Basics$toString(od),
-							')')))));
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$fromCalendarParts = F3(
-	function (y, mn, d) {
-		return (A3(_justinmimbs$elm_date_extra$Date_RataDie$isBetween, 1, 12, mn) && A3(
-			_justinmimbs$elm_date_extra$Date_RataDie$isBetween,
-			1,
-			A2(
-				_justinmimbs$elm_date_extra$Date_Facts$daysInMonth,
-				y,
-				_justinmimbs$elm_date_extra$Date_Facts$numberToMonth(mn)),
-			d)) ? _elm_lang$core$Result$Ok(
-			(_justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear(y) + A2(
-				_justinmimbs$elm_date_extra$Date_Facts$daysBeforeMonth,
-				y,
-				_justinmimbs$elm_date_extra$Date_Facts$numberToMonth(mn))) + d) : _elm_lang$core$Result$Err(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Invalid calendar date (',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(y),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						', ',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_elm_lang$core$Basics$toString(mn),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								', ',
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_elm_lang$core$Basics$toString(d),
-									')')))))));
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$fromOrdinalDate = F2(
-	function (y, od) {
-		var daysInY = _justinmimbs$elm_date_extra$Date_Facts$isLeapYear(y) ? 366 : 365;
-		return _justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear(y) + A3(_elm_lang$core$Basics$clamp, 1, daysInY, od);
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$fromCalendarDate = F3(
-	function (y, m, d) {
-		return (_justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear(y) + A2(_justinmimbs$elm_date_extra$Date_Facts$daysBeforeMonth, y, m)) + A3(
-			_elm_lang$core$Basics$clamp,
-			1,
-			A2(_justinmimbs$elm_date_extra$Date_Facts$daysInMonth, y, m),
-			d);
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$weekdayNumber = function (rd) {
-	var _p0 = A2(_elm_lang$core$Basics_ops['%'], rd, 7);
-	if (_p0 === 0) {
-		return 7;
-	} else {
-		return _p0;
-	}
-};
-var _justinmimbs$elm_date_extra$Date_RataDie$daysBeforeWeekYear = function (y) {
-	var jan4 = _justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear(y) + 4;
-	return jan4 - _justinmimbs$elm_date_extra$Date_RataDie$weekdayNumber(jan4);
-};
-var _justinmimbs$elm_date_extra$Date_RataDie$is53WeekYear = function (y) {
-	var wdnJan1 = _justinmimbs$elm_date_extra$Date_RataDie$weekdayNumber(
-		_justinmimbs$elm_date_extra$Date_RataDie$daysBeforeYear(y) + 1);
-	return _elm_lang$core$Native_Utils.eq(wdnJan1, 4) || (_elm_lang$core$Native_Utils.eq(wdnJan1, 3) && _justinmimbs$elm_date_extra$Date_Facts$isLeapYear(y));
-};
-var _justinmimbs$elm_date_extra$Date_RataDie$fromWeekParts = F3(
-	function (wy, wn, wdn) {
-		return (A3(_justinmimbs$elm_date_extra$Date_RataDie$isBetween, 1, 7, wdn) && (A3(_justinmimbs$elm_date_extra$Date_RataDie$isBetween, 1, 52, wn) || (_elm_lang$core$Native_Utils.eq(wn, 53) && _justinmimbs$elm_date_extra$Date_RataDie$is53WeekYear(wy)))) ? _elm_lang$core$Result$Ok(
-			(_justinmimbs$elm_date_extra$Date_RataDie$daysBeforeWeekYear(wy) + ((wn - 1) * 7)) + wdn) : _elm_lang$core$Result$Err(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Invalid week date (',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(wy),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						', ',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_elm_lang$core$Basics$toString(wn),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								', ',
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_elm_lang$core$Basics$toString(wdn),
-									')')))))));
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$fromWeekDate = F3(
-	function (wy, wn, wd) {
-		var weeksInWY = _justinmimbs$elm_date_extra$Date_RataDie$is53WeekYear(wy) ? 53 : 52;
-		return (_justinmimbs$elm_date_extra$Date_RataDie$daysBeforeWeekYear(wy) + ((A3(_elm_lang$core$Basics$clamp, 1, weeksInWY, wn) - 1) * 7)) + _justinmimbs$elm_date_extra$Date_Facts$weekdayToNumber(wd);
-	});
-var _justinmimbs$elm_date_extra$Date_RataDie$divideInt = F2(
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$divideInt = F2(
 	function (a, b) {
 		return {
 			ctor: '_Tuple2',
@@ -6978,30 +6906,159 @@ var _justinmimbs$elm_date_extra$Date_RataDie$divideInt = F2(
 			_1: A2(_elm_lang$core$Basics$rem, a, b)
 		};
 	});
-var _justinmimbs$elm_date_extra$Date_RataDie$year = function (rd) {
-	var _p1 = A2(_justinmimbs$elm_date_extra$Date_RataDie$divideInt, rd, 146097);
-	var n400 = _p1._0;
-	var r400 = _p1._1;
-	var _p2 = A2(_justinmimbs$elm_date_extra$Date_RataDie$divideInt, r400, 36524);
-	var n100 = _p2._0;
-	var r100 = _p2._1;
-	var _p3 = A2(_justinmimbs$elm_date_extra$Date_RataDie$divideInt, r100, 1461);
-	var n4 = _p3._0;
-	var r4 = _p3._1;
-	var _p4 = A2(_justinmimbs$elm_date_extra$Date_RataDie$divideInt, r4, 365);
-	var n1 = _p4._0;
-	var r1 = _p4._1;
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$year = function (rd) {
+	var _p0 = A2(_justinmimbs$elm_date_extra$Date_Internal_RataDie$divideInt, rd, 146097);
+	var n400 = _p0._0;
+	var r400 = _p0._1;
+	var _p1 = A2(_justinmimbs$elm_date_extra$Date_Internal_RataDie$divideInt, r400, 36524);
+	var n100 = _p1._0;
+	var r100 = _p1._1;
+	var _p2 = A2(_justinmimbs$elm_date_extra$Date_Internal_RataDie$divideInt, r100, 1461);
+	var n4 = _p2._0;
+	var r4 = _p2._1;
+	var _p3 = A2(_justinmimbs$elm_date_extra$Date_Internal_RataDie$divideInt, r4, 365);
+	var n1 = _p3._0;
+	var r1 = _p3._1;
 	var n = _elm_lang$core$Native_Utils.eq(r1, 0) ? 0 : 1;
 	return ((((n400 * 400) + (n100 * 100)) + (n4 * 4)) + n1) + n;
 };
-var _justinmimbs$elm_date_extra$Date_RataDie$weekYear = function (rd) {
-	return _justinmimbs$elm_date_extra$Date_RataDie$year(
-		rd + (4 - _justinmimbs$elm_date_extra$Date_RataDie$weekdayNumber(rd)));
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekdayNumber = function (rd) {
+	var _p4 = A2(_elm_lang$core$Basics_ops['%'], rd, 7);
+	if (_p4 === 0) {
+		return 7;
+	} else {
+		return _p4;
+	}
 };
-var _justinmimbs$elm_date_extra$Date_RataDie$weekNumber = function (rd) {
-	var week1Day1 = _justinmimbs$elm_date_extra$Date_RataDie$daysBeforeWeekYear(
-		_justinmimbs$elm_date_extra$Date_RataDie$weekYear(rd)) + 1;
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeYear = function (y1) {
+	var y = y1 - 1;
+	var leapYears = (((y / 4) | 0) - ((y / 100) | 0)) + ((y / 400) | 0);
+	return (365 * y) + leapYears;
+};
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeWeekYear = function (y) {
+	var jan4 = _justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeYear(y) + 4;
+	return jan4 - _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekdayNumber(jan4);
+};
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekYear = function (rd) {
+	return _justinmimbs$elm_date_extra$Date_Internal_RataDie$year(
+		rd + (4 - _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekdayNumber(rd)));
+};
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekNumber = function (rd) {
+	var week1Day1 = _justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeWeekYear(
+		_justinmimbs$elm_date_extra$Date_Internal_RataDie$weekYear(rd)) + 1;
 	return (((rd - week1Day1) / 7) | 0) + 1;
+};
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$fromWeekDate = F3(
+	function (wy, wn, wdn) {
+		return (_justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeWeekYear(wy) + ((wn - 1) * 7)) + wdn;
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$fromCalendarDate = F3(
+	function (y, m, d) {
+		return (_justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeYear(y) + A2(_justinmimbs$elm_date_extra$Date_Extra_Facts$daysBeforeStartOfMonth, y, m)) + d;
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_RataDie$fromOrdinalDate = F2(
+	function (y, od) {
+		return _justinmimbs$elm_date_extra$Date_Internal_RataDie$daysBeforeYear(y) + od;
+	});
+
+var _justinmimbs$elm_date_extra$Date_Internal_Core$msFromTimeParts = F4(
+	function (hh, mm, ss, ms) {
+		return (((_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerHour * hh) + (_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute * mm)) + (_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerSecond * ss)) + ms;
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromRataDie = function (rd) {
+	return (rd - 719163) * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerDay;
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromOrdinalDate = F2(
+	function (y, d) {
+		return _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromRataDie(
+			A2(_justinmimbs$elm_date_extra$Date_Internal_RataDie$fromOrdinalDate, y, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromCalendarDate = F3(
+	function (y, m, d) {
+		return _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromRataDie(
+			A3(_justinmimbs$elm_date_extra$Date_Internal_RataDie$fromCalendarDate, y, m, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromParts = F7(
+	function (y, m, d, hh, mm, ss, ms) {
+		return A3(_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromCalendarDate, y, m, d) + A4(_justinmimbs$elm_date_extra$Date_Internal_Core$msFromTimeParts, hh, mm, ss, ms);
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromWeekDate = F3(
+	function (y, w, d) {
+		return _justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromRataDie(
+			A3(_justinmimbs$elm_date_extra$Date_Internal_RataDie$fromWeekDate, y, w, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_Core$weekNumberFromCalendarDate = F3(
+	function (y, m, d) {
+		return _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekNumber(
+			A3(_justinmimbs$elm_date_extra$Date_Internal_RataDie$fromCalendarDate, y, m, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Internal_Core$weekYearFromCalendarDate = F3(
+	function (y, m, d) {
+		return _justinmimbs$elm_date_extra$Date_Internal_RataDie$weekYear(
+			A3(_justinmimbs$elm_date_extra$Date_Internal_RataDie$fromCalendarDate, y, m, d));
+	});
+
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$msOffsetFromUtc = function (date) {
+	var utcTime = _elm_lang$core$Date$toTime(date);
+	var localTime = _elm_lang$core$Basics$toFloat(
+		A7(
+			_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromParts,
+			_elm_lang$core$Date$year(date),
+			_elm_lang$core$Date$month(date),
+			_elm_lang$core$Date$day(date),
+			_elm_lang$core$Date$hour(date),
+			_elm_lang$core$Date$minute(date),
+			_elm_lang$core$Date$second(date),
+			_elm_lang$core$Date$millisecond(date)));
+	return _elm_lang$core$Basics$floor(localTime - utcTime);
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$offsetFromUtc = function (date) {
+	return (_justinmimbs$elm_date_extra$Date_Internal_Extract$msOffsetFromUtc(date) / _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute) | 0;
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$weekYear = function (date) {
+	return A3(
+		_justinmimbs$elm_date_extra$Date_Internal_Core$weekYearFromCalendarDate,
+		_elm_lang$core$Date$year(date),
+		_elm_lang$core$Date$month(date),
+		_elm_lang$core$Date$day(date));
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$weekNumber = function (date) {
+	return A3(
+		_justinmimbs$elm_date_extra$Date_Internal_Core$weekNumberFromCalendarDate,
+		_elm_lang$core$Date$year(date),
+		_elm_lang$core$Date$month(date),
+		_elm_lang$core$Date$day(date));
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$weekdayNumber = function (_p0) {
+	return _justinmimbs$elm_date_extra$Date_Extra_Facts$weekdayNumberFromDayOfWeek(
+		_elm_lang$core$Date$dayOfWeek(_p0));
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$fractionalDay = function (date) {
+	var timeOfDayMS = A4(
+		_justinmimbs$elm_date_extra$Date_Internal_Core$msFromTimeParts,
+		_elm_lang$core$Date$hour(date),
+		_elm_lang$core$Date$minute(date),
+		_elm_lang$core$Date$second(date),
+		_elm_lang$core$Date$millisecond(date));
+	return _elm_lang$core$Basics$toFloat(timeOfDayMS) / _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerDay);
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$ordinalDay = function (date) {
+	return A2(
+		_justinmimbs$elm_date_extra$Date_Extra_Facts$daysBeforeStartOfMonth,
+		_elm_lang$core$Date$year(date),
+		_elm_lang$core$Date$month(date)) + _elm_lang$core$Date$day(date);
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$monthNumber = function (_p1) {
+	return _justinmimbs$elm_date_extra$Date_Extra_Facts$monthNumberFromMonth(
+		_elm_lang$core$Date$month(_p1));
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Extract$quarter = function (date) {
+	return _elm_lang$core$Basics$ceiling(
+		function (n) {
+			return n / 3;
+		}(
+			_elm_lang$core$Basics$toFloat(
+				_justinmimbs$elm_date_extra$Date_Internal_Extract$monthNumber(date))));
 };
 
 //import Maybe, Native.List //
@@ -7141,72 +7198,33 @@ var _elm_lang$core$Regex$AtMost = function (a) {
 };
 var _elm_lang$core$Regex$All = {ctor: 'All'};
 
-var _justinmimbs$elm_date_extra$Date_Extra$numberToWeekday = _justinmimbs$elm_date_extra$Date_Facts$numberToWeekday;
-var _justinmimbs$elm_date_extra$Date_Extra$weekdayToNumber = _justinmimbs$elm_date_extra$Date_Facts$weekdayToNumber;
-var _justinmimbs$elm_date_extra$Date_Extra$numberToMonth = _justinmimbs$elm_date_extra$Date_Facts$numberToMonth;
-var _justinmimbs$elm_date_extra$Date_Extra$monthToNumber = _justinmimbs$elm_date_extra$Date_Facts$monthToNumber;
-var _justinmimbs$elm_date_extra$Date_Extra$toRataDie = function (date) {
-	return A3(
-		_justinmimbs$elm_date_extra$Date_RataDie$fromCalendarDate,
-		_elm_lang$core$Date$year(date),
-		_elm_lang$core$Date$month(date),
-		_elm_lang$core$Date$day(date));
+var _justinmimbs$elm_date_extra$Date_Internal_Format$toUtc = function (date) {
+	return _elm_lang$core$Date$fromTime(
+		_elm_lang$core$Date$toTime(date) - _elm_lang$core$Basics$toFloat(
+			_justinmimbs$elm_date_extra$Date_Internal_Extract$offsetFromUtc(date) * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute));
 };
-var _justinmimbs$elm_date_extra$Date_Extra$clamp = F3(
-	function (minimum, maximum, date) {
-		return (_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$Date$toTime(date),
-			_elm_lang$core$Date$toTime(minimum)) < 0) ? minimum : ((_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$Date$toTime(date),
-			_elm_lang$core$Date$toTime(maximum)) > 0) ? maximum : date);
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$isBetween = F3(
-	function (a, b, x) {
-		return (_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$Date$toTime(a),
-			_elm_lang$core$Date$toTime(x)) < 1) && (_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$Date$toTime(x),
-			_elm_lang$core$Date$toTime(b)) < 1);
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$compare = F2(
-	function (a, b) {
-		return A2(
-			_elm_lang$core$Basics$compare,
-			_elm_lang$core$Date$toTime(a),
-			_elm_lang$core$Date$toTime(b));
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$equal = F2(
-	function (a, b) {
-		return _elm_lang$core$Native_Utils.eq(
-			_elm_lang$core$Date$toTime(a),
-			_elm_lang$core$Date$toTime(b));
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$patternMatches = _elm_lang$core$Regex$regex('([yYQMwdDEeabhHmsSXx])\\1*|\'(?:[^\']|\'\')*?\'(?!\')');
-var _justinmimbs$elm_date_extra$Date_Extra$ordinalSuffix = function (n) {
-	var nn = A2(_elm_lang$core$Basics_ops['%'], n, 100);
-	var _p0 = A2(
-		_elm_lang$core$Basics$min,
-		(_elm_lang$core$Native_Utils.cmp(nn, 20) < 0) ? nn : A2(_elm_lang$core$Basics_ops['%'], nn, 10),
-		4);
+var _justinmimbs$elm_date_extra$Date_Internal_Format$nameForm = function (length) {
+	var _p0 = length;
 	switch (_p0) {
 		case 1:
-			return 'st';
+			return 'abbreviated';
 		case 2:
-			return 'nd';
+			return 'abbreviated';
 		case 3:
-			return 'rd';
+			return 'abbreviated';
+		case 4:
+			return 'full';
+		case 5:
+			return 'narrow';
+		case 6:
+			return 'short';
 		default:
-			return 'th';
+			return 'invalid';
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Extra$withOrdinalSuffix = function (n) {
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		_elm_lang$core$Basics$toString(n),
-		_justinmimbs$elm_date_extra$Date_Extra$ordinalSuffix(n));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$formatTimeOffset = F3(
-	function (separator, minutesIsOptional, offset) {
+var _justinmimbs$elm_date_extra$Date_Internal_Format$patternMatches = _elm_lang$core$Regex$regex('([yYQMwdDEeabhHmsSXx])\\1*|\'(?:[^\']|\'\')*?\'(?!\')');
+var _justinmimbs$elm_date_extra$Date_Internal_Format$formatTimeOffset = F3(
+	function (separator, minutesOptional, offset) {
 		var mm = A3(
 			_elm_lang$core$String$padLeft,
 			2,
@@ -7223,7 +7241,7 @@ var _justinmimbs$elm_date_extra$Date_Extra$formatTimeOffset = F3(
 			_elm_lang$core$Basics$toString(
 				(_elm_lang$core$Basics$abs(offset) / 60) | 0));
 		var sign = (_elm_lang$core$Native_Utils.cmp(offset, 0) > -1) ? '+' : '-';
-		return (minutesIsOptional && _elm_lang$core$Native_Utils.eq(mm, '00')) ? A2(_elm_lang$core$Basics_ops['++'], sign, hh) : A2(
+		return (minutesOptional && _elm_lang$core$Native_Utils.eq(mm, '00')) ? A2(_elm_lang$core$Basics_ops['++'], sign, hh) : A2(
 			_elm_lang$core$Basics_ops['++'],
 			sign,
 			A2(
@@ -7231,20 +7249,47 @@ var _justinmimbs$elm_date_extra$Date_Extra$formatTimeOffset = F3(
 				hh,
 				A2(_elm_lang$core$Basics_ops['++'], separator, mm)));
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$hour12 = function (date) {
+var _justinmimbs$elm_date_extra$Date_Internal_Format$ordinalSuffix = function (n) {
+	var nn = A2(_elm_lang$core$Basics_ops['%'], n, 100);
 	var _p1 = A2(
+		_elm_lang$core$Basics$min,
+		(_elm_lang$core$Native_Utils.cmp(nn, 20) < 0) ? nn : A2(_elm_lang$core$Basics_ops['%'], nn, 10),
+		4);
+	switch (_p1) {
+		case 0:
+			return 'th';
+		case 1:
+			return 'st';
+		case 2:
+			return 'nd';
+		case 3:
+			return 'rd';
+		case 4:
+			return 'th';
+		default:
+			return '';
+	}
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Format$withOrdinalSuffix = function (n) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(n),
+		_justinmimbs$elm_date_extra$Date_Internal_Format$ordinalSuffix(n));
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Format$hour12 = function (date) {
+	var _p2 = A2(
 		_elm_lang$core$Basics_ops['%'],
 		_elm_lang$core$Date$hour(date),
 		12);
-	if (_p1 === 0) {
+	if (_p2 === 0) {
 		return 12;
 	} else {
-		return _p1;
+		return _p2;
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Extra$weekdayToName = function (d) {
-	var _p2 = d;
-	switch (_p2.ctor) {
+var _justinmimbs$elm_date_extra$Date_Internal_Format$dayOfWeekName = function (d) {
+	var _p3 = d;
+	switch (_p3.ctor) {
 		case 'Mon':
 			return 'Monday';
 		case 'Tue':
@@ -7261,9 +7306,9 @@ var _justinmimbs$elm_date_extra$Date_Extra$weekdayToName = function (d) {
 			return 'Sunday';
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Extra$monthToName = function (m) {
-	var _p3 = m;
-	switch (_p3.ctor) {
+var _justinmimbs$elm_date_extra$Date_Internal_Format$monthName = function (m) {
+	var _p4 = m;
+	switch (_p4.ctor) {
 		case 'Jan':
 			return 'January';
 		case 'Feb':
@@ -7290,61 +7335,426 @@ var _justinmimbs$elm_date_extra$Date_Extra$monthToName = function (m) {
 			return 'December';
 	}
 };
-var _justinmimbs$elm_date_extra$Date_Extra$weekYear = function (_p4) {
-	return _justinmimbs$elm_date_extra$Date_RataDie$weekYear(
-		_justinmimbs$elm_date_extra$Date_Extra$toRataDie(_p4));
+var _justinmimbs$elm_date_extra$Date_Internal_Format$PM = {ctor: 'PM'};
+var _justinmimbs$elm_date_extra$Date_Internal_Format$Noon = {ctor: 'Noon'};
+var _justinmimbs$elm_date_extra$Date_Internal_Format$AM = {ctor: 'AM'};
+var _justinmimbs$elm_date_extra$Date_Internal_Format$Midnight = {ctor: 'Midnight'};
+var _justinmimbs$elm_date_extra$Date_Internal_Format$dayPeriod = function (date) {
+	var onTheHour = _elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Date$minute(date),
+		0) && (_elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Date$second(date),
+		0) && _elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Date$millisecond(date),
+		0));
+	var hh = _elm_lang$core$Date$hour(date);
+	return (_elm_lang$core$Native_Utils.eq(hh, 0) && onTheHour) ? _justinmimbs$elm_date_extra$Date_Internal_Format$Midnight : ((_elm_lang$core$Native_Utils.cmp(hh, 12) < 0) ? _justinmimbs$elm_date_extra$Date_Internal_Format$AM : ((_elm_lang$core$Native_Utils.eq(hh, 12) && onTheHour) ? _justinmimbs$elm_date_extra$Date_Internal_Format$Noon : _justinmimbs$elm_date_extra$Date_Internal_Format$PM));
 };
-var _justinmimbs$elm_date_extra$Date_Extra$weekNumber = function (_p5) {
-	return _justinmimbs$elm_date_extra$Date_RataDie$weekNumber(
-		_justinmimbs$elm_date_extra$Date_Extra$toRataDie(_p5));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$weekdayNumber = function (_p6) {
-	return _justinmimbs$elm_date_extra$Date_Extra$weekdayToNumber(
-		_elm_lang$core$Date$dayOfWeek(_p6));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday = F2(
-	function (wd, date) {
-		return A2(
-			_elm_lang$core$Basics_ops['%'],
-			(_justinmimbs$elm_date_extra$Date_Extra$weekdayNumber(date) + 7) - _justinmimbs$elm_date_extra$Date_Extra$weekdayToNumber(wd),
-			7);
+var _justinmimbs$elm_date_extra$Date_Internal_Format$format = F3(
+	function (asUtc, date, match) {
+		format:
+		while (true) {
+			var length = _elm_lang$core$String$length(match);
+			var $char = A2(_elm_lang$core$String$left, 1, match);
+			var _p5 = $char;
+			switch (_p5) {
+				case 'y':
+					var _p6 = length;
+					if (_p6 === 2) {
+						return A2(
+							_elm_lang$core$String$right,
+							2,
+							A3(
+								_elm_lang$core$String$padLeft,
+								length,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_elm_lang$core$Date$year(date))));
+					} else {
+						return A3(
+							_elm_lang$core$String$padLeft,
+							length,
+							_elm_lang$core$Native_Utils.chr('0'),
+							_elm_lang$core$Basics$toString(
+								_elm_lang$core$Date$year(date)));
+					}
+				case 'Y':
+					var _p7 = length;
+					if (_p7 === 2) {
+						return A2(
+							_elm_lang$core$String$right,
+							2,
+							A3(
+								_elm_lang$core$String$padLeft,
+								length,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Extract$weekYear(date))));
+					} else {
+						return A3(
+							_elm_lang$core$String$padLeft,
+							length,
+							_elm_lang$core$Native_Utils.chr('0'),
+							_elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$weekYear(date)));
+					}
+				case 'Q':
+					var _p8 = length;
+					switch (_p8) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$quarter(date));
+						case 2:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$quarter(date));
+						case 3:
+							return A2(
+								F2(
+									function (x, y) {
+										return A2(_elm_lang$core$Basics_ops['++'], x, y);
+									}),
+								'Q',
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Extract$quarter(date)));
+						case 4:
+							return _justinmimbs$elm_date_extra$Date_Internal_Format$withOrdinalSuffix(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$quarter(date));
+						case 5:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$quarter(date));
+						default:
+							return '';
+					}
+				case 'M':
+					var _p9 = length;
+					switch (_p9) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$monthNumber(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Extract$monthNumber(date)));
+						case 3:
+							return A2(
+								_elm_lang$core$String$left,
+								3,
+								_justinmimbs$elm_date_extra$Date_Internal_Format$monthName(
+									_elm_lang$core$Date$month(date)));
+						case 4:
+							return _justinmimbs$elm_date_extra$Date_Internal_Format$monthName(
+								_elm_lang$core$Date$month(date));
+						case 5:
+							return A2(
+								_elm_lang$core$String$left,
+								1,
+								_justinmimbs$elm_date_extra$Date_Internal_Format$monthName(
+									_elm_lang$core$Date$month(date)));
+						default:
+							return '';
+					}
+				case 'w':
+					var _p10 = length;
+					switch (_p10) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$weekNumber(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Extract$weekNumber(date)));
+						default:
+							return '';
+					}
+				case 'd':
+					var _p11 = length;
+					switch (_p11) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_elm_lang$core$Date$day(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_elm_lang$core$Date$day(date)));
+						case 3:
+							return _justinmimbs$elm_date_extra$Date_Internal_Format$withOrdinalSuffix(
+								_elm_lang$core$Date$day(date));
+						default:
+							return '';
+					}
+				case 'D':
+					var _p12 = length;
+					switch (_p12) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$ordinalDay(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Extract$ordinalDay(date)));
+						case 3:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								3,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Extract$ordinalDay(date)));
+						default:
+							return '';
+					}
+				case 'E':
+					var _p13 = _justinmimbs$elm_date_extra$Date_Internal_Format$nameForm(length);
+					switch (_p13) {
+						case 'abbreviated':
+							return A2(
+								_elm_lang$core$String$left,
+								3,
+								_justinmimbs$elm_date_extra$Date_Internal_Format$dayOfWeekName(
+									_elm_lang$core$Date$dayOfWeek(date)));
+						case 'full':
+							return _justinmimbs$elm_date_extra$Date_Internal_Format$dayOfWeekName(
+								_elm_lang$core$Date$dayOfWeek(date));
+						case 'narrow':
+							return A2(
+								_elm_lang$core$String$left,
+								1,
+								_justinmimbs$elm_date_extra$Date_Internal_Format$dayOfWeekName(
+									_elm_lang$core$Date$dayOfWeek(date)));
+						case 'short':
+							return A2(
+								_elm_lang$core$String$left,
+								2,
+								_justinmimbs$elm_date_extra$Date_Internal_Format$dayOfWeekName(
+									_elm_lang$core$Date$dayOfWeek(date)));
+						default:
+							return '';
+					}
+				case 'e':
+					var _p14 = length;
+					switch (_p14) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$weekdayNumber(date));
+						case 2:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Extract$weekdayNumber(date));
+						default:
+							var _v15 = asUtc,
+								_v16 = date,
+								_v17 = _elm_lang$core$String$toUpper(match);
+							asUtc = _v15;
+							date = _v16;
+							match = _v17;
+							continue format;
+					}
+				case 'a':
+					var p = _justinmimbs$elm_date_extra$Date_Internal_Format$dayPeriod(date);
+					var m = (_elm_lang$core$Native_Utils.eq(p, _justinmimbs$elm_date_extra$Date_Internal_Format$Midnight) || _elm_lang$core$Native_Utils.eq(p, _justinmimbs$elm_date_extra$Date_Internal_Format$AM)) ? 'A' : 'P';
+					var _p15 = _justinmimbs$elm_date_extra$Date_Internal_Format$nameForm(length);
+					switch (_p15) {
+						case 'abbreviated':
+							return A2(_elm_lang$core$Basics_ops['++'], m, 'M');
+						case 'full':
+							return A2(_elm_lang$core$Basics_ops['++'], m, '.M.');
+						case 'narrow':
+							return m;
+						default:
+							return '';
+					}
+				case 'b':
+					var _p16 = _justinmimbs$elm_date_extra$Date_Internal_Format$nameForm(length);
+					switch (_p16) {
+						case 'abbreviated':
+							var _p17 = _justinmimbs$elm_date_extra$Date_Internal_Format$dayPeriod(date);
+							switch (_p17.ctor) {
+								case 'Midnight':
+									return 'mid.';
+								case 'AM':
+									return 'am';
+								case 'Noon':
+									return 'noon';
+								default:
+									return 'pm';
+							}
+						case 'full':
+							var _p18 = _justinmimbs$elm_date_extra$Date_Internal_Format$dayPeriod(date);
+							switch (_p18.ctor) {
+								case 'Midnight':
+									return 'midnight';
+								case 'AM':
+									return 'a.m.';
+								case 'Noon':
+									return 'noon';
+								default:
+									return 'p.m.';
+							}
+						case 'narrow':
+							var _p19 = _justinmimbs$elm_date_extra$Date_Internal_Format$dayPeriod(date);
+							switch (_p19.ctor) {
+								case 'Midnight':
+									return 'md';
+								case 'AM':
+									return 'a';
+								case 'Noon':
+									return 'nn';
+								default:
+									return 'p';
+							}
+						default:
+							return '';
+					}
+				case 'h':
+					var _p20 = length;
+					switch (_p20) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_justinmimbs$elm_date_extra$Date_Internal_Format$hour12(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_justinmimbs$elm_date_extra$Date_Internal_Format$hour12(date)));
+						default:
+							return '';
+					}
+				case 'H':
+					var _p21 = length;
+					switch (_p21) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_elm_lang$core$Date$hour(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_elm_lang$core$Date$hour(date)));
+						default:
+							return '';
+					}
+				case 'm':
+					var _p22 = length;
+					switch (_p22) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_elm_lang$core$Date$minute(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_elm_lang$core$Date$minute(date)));
+						default:
+							return '';
+					}
+				case 's':
+					var _p23 = length;
+					switch (_p23) {
+						case 1:
+							return _elm_lang$core$Basics$toString(
+								_elm_lang$core$Date$second(date));
+						case 2:
+							return A3(
+								_elm_lang$core$String$padLeft,
+								2,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_elm_lang$core$Date$second(date)));
+						default:
+							return '';
+					}
+				case 'S':
+					return A3(
+						_elm_lang$core$String$padRight,
+						length,
+						_elm_lang$core$Native_Utils.chr('0'),
+						A2(
+							_elm_lang$core$String$left,
+							length,
+							A3(
+								_elm_lang$core$String$padLeft,
+								3,
+								_elm_lang$core$Native_Utils.chr('0'),
+								_elm_lang$core$Basics$toString(
+									_elm_lang$core$Date$millisecond(date)))));
+				case 'X':
+					if ((_elm_lang$core$Native_Utils.cmp(length, 4) < 0) && (asUtc || _elm_lang$core$Native_Utils.eq(
+						_justinmimbs$elm_date_extra$Date_Internal_Extract$offsetFromUtc(date),
+						0))) {
+						return 'Z';
+					} else {
+						var _v27 = asUtc,
+							_v28 = date,
+							_v29 = _elm_lang$core$String$toLower(match);
+						asUtc = _v27;
+						date = _v28;
+						match = _v29;
+						continue format;
+					}
+				case 'x':
+					var offset = asUtc ? 0 : _justinmimbs$elm_date_extra$Date_Internal_Extract$offsetFromUtc(date);
+					var _p24 = length;
+					switch (_p24) {
+						case 1:
+							return A3(_justinmimbs$elm_date_extra$Date_Internal_Format$formatTimeOffset, '', true, offset);
+						case 2:
+							return A3(_justinmimbs$elm_date_extra$Date_Internal_Format$formatTimeOffset, '', false, offset);
+						case 3:
+							return A3(_justinmimbs$elm_date_extra$Date_Internal_Format$formatTimeOffset, ':', false, offset);
+						default:
+							return '';
+					}
+				case '\'':
+					return _elm_lang$core$Native_Utils.eq(match, '\'\'') ? '\'' : A4(
+						_elm_lang$core$Regex$replace,
+						_elm_lang$core$Regex$All,
+						_elm_lang$core$Regex$regex('\'\''),
+						function (_p25) {
+							return '\'';
+						},
+						A3(_elm_lang$core$String$slice, 1, -1, match));
+				default:
+					return '';
+			}
+		}
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$ordinalDay = function (date) {
-	return A2(
-		_justinmimbs$elm_date_extra$Date_Facts$daysBeforeMonth,
-		_elm_lang$core$Date$year(date),
-		_elm_lang$core$Date$month(date)) + _elm_lang$core$Date$day(date);
-};
-var _justinmimbs$elm_date_extra$Date_Extra$monthNumber = function (_p7) {
-	return _justinmimbs$elm_date_extra$Date_Extra$monthToNumber(
-		_elm_lang$core$Date$month(_p7));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$quarterToMonth = function (q) {
-	return _justinmimbs$elm_date_extra$Date_Extra$numberToMonth((q * 3) - 2);
-};
-var _justinmimbs$elm_date_extra$Date_Extra$monthToQuarter = function (m) {
-	return ((_justinmimbs$elm_date_extra$Date_Extra$monthToNumber(m) + 2) / 3) | 0;
-};
-var _justinmimbs$elm_date_extra$Date_Extra$quarter = function (_p8) {
-	return _justinmimbs$elm_date_extra$Date_Extra$monthToQuarter(
-		_elm_lang$core$Date$month(_p8));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$matchToInt = function ($default) {
-	return function (_p9) {
-		return A2(
-			_elm_lang$core$Maybe$withDefault,
-			$default,
-			A2(
-				_elm_lang$core$Maybe$andThen,
-				function (_p10) {
-					return _elm_lang$core$Result$toMaybe(
-						_elm_lang$core$String$toInt(_p10));
-				},
-				_p9));
-	};
-};
-var _justinmimbs$elm_date_extra$Date_Extra$isoDateRegex = function () {
-	var time = 'T(\\d{2})(?:(\\:)?(\\d{2})(?:\\10(\\d{2}))?)?([\\.,]\\d+)?(?:(Z)|(?:([+−\\-])(\\d{2})(?:\\:?(\\d{2}))?))?';
+var _justinmimbs$elm_date_extra$Date_Internal_Format$toFormattedString = F3(
+	function (asUtc, pattern, date) {
+		var date_ = asUtc ? _justinmimbs$elm_date_extra$Date_Internal_Format$toUtc(date) : date;
+		return A4(
+			_elm_lang$core$Regex$replace,
+			_elm_lang$core$Regex$All,
+			_justinmimbs$elm_date_extra$Date_Internal_Format$patternMatches,
+			function (_p26) {
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Internal_Format$format,
+					asUtc,
+					date_,
+					function (_) {
+						return _.match;
+					}(_p26));
+			},
+			pattern);
+	});
+
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$isoDateRegex = function () {
+	var time = 'T(\\d{2})(?:(\\:)?(\\d{2})(?:\\10(\\d{2}))?)?(\\.\\d+)?(?:(Z)|(?:([+\\-])(\\d{2})(?:\\:?(\\d{2}))?))?';
 	var ord = '\\-?(\\d{3})';
 	var week = '(\\-)?W(\\d{2})(?:\\5(\\d))?';
 	var cal = '(\\-)?(\\d{2})(?:\\2(\\d{2}))?';
@@ -7382,190 +7792,20 @@ var _justinmimbs$elm_date_extra$Date_Extra$isoDateRegex = function () {
 												'(?:',
 												A2(_elm_lang$core$Basics_ops['++'], time, ')?$'))))))))))));
 }();
-var _justinmimbs$elm_date_extra$Date_Extra$fromUnixTime = function (_p11) {
-	return _elm_lang$core$Date$fromTime(
-		_elm_lang$core$Basics$toFloat(_p11));
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToFloat = function (_p0) {
+	return _elm_lang$core$Result$toMaybe(
+		_elm_lang$core$String$toFloat(_p0));
 };
-var _justinmimbs$elm_date_extra$Date_Extra$msFromTimeParts = F4(
-	function (hh, mm, ss, ms) {
-		return (((_justinmimbs$elm_date_extra$Date_Facts$msPerHour * hh) + (_justinmimbs$elm_date_extra$Date_Facts$msPerMinute * mm)) + (_justinmimbs$elm_date_extra$Date_Facts$msPerSecond * ss)) + ms;
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$fractionalDay = function (date) {
-	var timeOfDayMS = A4(
-		_justinmimbs$elm_date_extra$Date_Extra$msFromTimeParts,
-		_elm_lang$core$Date$hour(date),
-		_elm_lang$core$Date$minute(date),
-		_elm_lang$core$Date$second(date),
-		_elm_lang$core$Date$millisecond(date));
-	return _elm_lang$core$Basics$toFloat(timeOfDayMS) / _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Facts$msPerDay);
-};
-var _justinmimbs$elm_date_extra$Date_Extra$toMonths = function (date) {
-	var _p12 = {
-		ctor: '_Tuple3',
-		_0: _elm_lang$core$Date$year(date),
-		_1: _elm_lang$core$Date$month(date),
-		_2: _elm_lang$core$Date$day(date)
-	};
-	var y = _p12._0;
-	var m = _p12._1;
-	var d = _p12._2;
-	var wholeMonths = ((12 * (y - 1)) + _justinmimbs$elm_date_extra$Date_Extra$monthToNumber(m)) - 1;
-	return (_elm_lang$core$Basics$toFloat(wholeMonths) + (_elm_lang$core$Basics$toFloat(d) / 100)) + (_justinmimbs$elm_date_extra$Date_Extra$fractionalDay(date) / 100);
-};
-var _justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie = function (rd) {
-	return (rd - 719163) * _justinmimbs$elm_date_extra$Date_Facts$msPerDay;
-};
-var _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc = function (date) {
-	var utcTime = _elm_lang$core$Date$toTime(date);
-	var localTime = _elm_lang$core$Basics$toFloat(
-		_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(
-			A3(
-				_justinmimbs$elm_date_extra$Date_RataDie$fromCalendarDate,
-				_elm_lang$core$Date$year(date),
-				_elm_lang$core$Date$month(date),
-				_elm_lang$core$Date$day(date))) + A4(
-			_justinmimbs$elm_date_extra$Date_Extra$msFromTimeParts,
-			_elm_lang$core$Date$hour(date),
-			_elm_lang$core$Date$minute(date),
-			_elm_lang$core$Date$second(date),
-			_elm_lang$core$Date$millisecond(date)));
-	return (_elm_lang$core$Basics$floor(localTime - utcTime) / _justinmimbs$elm_date_extra$Date_Facts$msPerMinute) | 0;
-};
-var _justinmimbs$elm_date_extra$Date_Extra$fromSpec = F3(
-	function (_p14, _p13, offsetSpec) {
-		var _p15 = _p14;
-		var _p19 = _p15._0;
-		var _p16 = _p13;
-		var _p18 = _p16._0;
-		var _p17 = offsetSpec;
-		if (_p17.ctor === 'Offset') {
-			return _justinmimbs$elm_date_extra$Date_Extra$fromUnixTime((_p19 + _p18) - (_p17._0 * _justinmimbs$elm_date_extra$Date_Facts$msPerMinute));
-		} else {
-			var unixTime = _p19 + _p18;
-			var offset0 = _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(
-				_justinmimbs$elm_date_extra$Date_Extra$fromUnixTime(unixTime));
-			var date1 = _justinmimbs$elm_date_extra$Date_Extra$fromUnixTime(unixTime - (offset0 * _justinmimbs$elm_date_extra$Date_Facts$msPerMinute));
-			var offset1 = _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date1);
-			if (_elm_lang$core$Native_Utils.eq(offset0, offset1)) {
-				return date1;
-			} else {
-				var date2 = _justinmimbs$elm_date_extra$Date_Extra$fromUnixTime(unixTime - (offset1 * _justinmimbs$elm_date_extra$Date_Facts$msPerMinute));
-				var offset2 = _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date2);
-				return _elm_lang$core$Native_Utils.eq(offset1, offset2) ? date2 : date1;
-			}
-		}
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$DateMS = function (a) {
-	return {ctor: 'DateMS', _0: a};
-};
-var _justinmimbs$elm_date_extra$Date_Extra$calendarDate = F3(
-	function (y, m, d) {
-		return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
-			_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(
-				A3(_justinmimbs$elm_date_extra$Date_RataDie$fromCalendarDate, y, m, d)));
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$ordinalDate = F2(
-	function (y, od) {
-		return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
-			_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(
-				A2(_justinmimbs$elm_date_extra$Date_RataDie$fromOrdinalDate, y, od)));
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$weekDate = F3(
-	function (wy, wn, wd) {
-		return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
-			_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(
-				A3(_justinmimbs$elm_date_extra$Date_RataDie$fromWeekDate, wy, wn, wd)));
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$dateFromMatches = F6(
-	function (yyyy, calMM, calDD, weekWW, weekD, ordDDD) {
-		return A2(
-			_elm_lang$core$Result$map,
-			function (_p20) {
-				return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
-					_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(_p20));
-			},
-			function () {
-				var y = A2(
-					_elm_lang$core$Result$withDefault,
-					1,
-					_elm_lang$core$String$toInt(yyyy));
-				var _p21 = {ctor: '_Tuple2', _0: calMM, _1: weekWW};
-				_v7_2:
-				do {
-					if (_p21.ctor === '_Tuple2') {
-						if (_p21._0.ctor === 'Just') {
-							if (_p21._1.ctor === 'Nothing') {
-								return A3(
-									_justinmimbs$elm_date_extra$Date_RataDie$fromCalendarParts,
-									y,
-									A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 1, calMM),
-									A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 1, calDD));
-							} else {
-								break _v7_2;
-							}
-						} else {
-							if (_p21._1.ctor === 'Just') {
-								return A3(
-									_justinmimbs$elm_date_extra$Date_RataDie$fromWeekParts,
-									y,
-									A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 1, weekWW),
-									A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 1, weekD));
-							} else {
-								break _v7_2;
-							}
-						}
-					} else {
-						break _v7_2;
-					}
-				} while(false);
-				return A2(
-					_justinmimbs$elm_date_extra$Date_RataDie$fromOrdinalParts,
-					y,
-					A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 1, ordDDD));
-			}());
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$TimeMS = function (a) {
-	return {ctor: 'TimeMS', _0: a};
-};
-var _justinmimbs$elm_date_extra$Date_Extra$midnight = _justinmimbs$elm_date_extra$Date_Extra$TimeMS(0);
-var _justinmimbs$elm_date_extra$Date_Extra$time = F4(
-	function (hh, mm, ss, ms) {
-		return _justinmimbs$elm_date_extra$Date_Extra$TimeMS(
-			A4(
-				_justinmimbs$elm_date_extra$Date_Extra$msFromTimeParts,
-				A3(_elm_lang$core$Basics$clamp, 0, 23, hh),
-				A3(_elm_lang$core$Basics$clamp, 0, 59, mm),
-				A3(_elm_lang$core$Basics$clamp, 0, 59, ss),
-				A3(_elm_lang$core$Basics$clamp, 0, 999, ms)));
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$timeFromMatches = F4(
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$msFromMatches = F4(
 	function (timeHH, timeMM, timeSS, timeF) {
 		var fractional = A2(
 			_elm_lang$core$Maybe$withDefault,
 			0.0,
-			A2(
-				_elm_lang$core$Maybe$andThen,
-				function (_p22) {
-					return _elm_lang$core$Result$toMaybe(
-						_elm_lang$core$String$toFloat(
-							A4(
-								_elm_lang$core$Regex$replace,
-								_elm_lang$core$Regex$All,
-								_elm_lang$core$Regex$regex(','),
-								function (_p23) {
-									return '.';
-								},
-								_p22)));
-				},
-				timeF));
-		var _p24 = function () {
-			var _p26 = A2(
+			A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToFloat, timeF));
+		var _p1 = function () {
+			var _p2 = A2(
 				_elm_lang$core$List$map,
-				_elm_lang$core$Maybe$andThen(
-					function (_p25) {
-						return _elm_lang$core$Result$toMaybe(
-							_elm_lang$core$String$toFloat(_p25));
-					}),
+				_elm_lang$core$Maybe$andThen(_justinmimbs$elm_date_extra$Date_Internal_Parse$stringToFloat),
 				{
 					ctor: '::',
 					_0: timeHH,
@@ -7579,846 +7819,360 @@ var _justinmimbs$elm_date_extra$Date_Extra$timeFromMatches = F4(
 						}
 					}
 				});
-			_v8_3:
+			_v0_3:
 			do {
-				if (((_p26.ctor === '::') && (_p26._0.ctor === 'Just')) && (_p26._1.ctor === '::')) {
-					if (_p26._1._0.ctor === 'Just') {
-						if (_p26._1._1.ctor === '::') {
-							if (_p26._1._1._0.ctor === 'Just') {
-								if (_p26._1._1._1.ctor === '[]') {
-									return {ctor: '_Tuple3', _0: _p26._0._0, _1: _p26._1._0._0, _2: _p26._1._1._0._0 + fractional};
+				if (((_p2.ctor === '::') && (_p2._0.ctor === 'Just')) && (_p2._1.ctor === '::')) {
+					if (_p2._1._0.ctor === 'Just') {
+						if (_p2._1._1.ctor === '::') {
+							if (_p2._1._1._0.ctor === 'Just') {
+								if (_p2._1._1._1.ctor === '[]') {
+									return {ctor: '_Tuple3', _0: _p2._0._0, _1: _p2._1._0._0, _2: _p2._1._1._0._0 + fractional};
 								} else {
-									break _v8_3;
+									break _v0_3;
 								}
 							} else {
-								if (_p26._1._1._1.ctor === '[]') {
-									return {ctor: '_Tuple3', _0: _p26._0._0, _1: _p26._1._0._0 + fractional, _2: 0.0};
+								if (_p2._1._1._1.ctor === '[]') {
+									return {ctor: '_Tuple3', _0: _p2._0._0, _1: _p2._1._0._0 + fractional, _2: 0.0};
 								} else {
-									break _v8_3;
+									break _v0_3;
 								}
 							}
 						} else {
-							break _v8_3;
+							break _v0_3;
 						}
 					} else {
-						if (((_p26._1._1.ctor === '::') && (_p26._1._1._0.ctor === 'Nothing')) && (_p26._1._1._1.ctor === '[]')) {
-							return {ctor: '_Tuple3', _0: _p26._0._0 + fractional, _1: 0.0, _2: 0.0};
+						if (((_p2._1._1.ctor === '::') && (_p2._1._1._0.ctor === 'Nothing')) && (_p2._1._1._1.ctor === '[]')) {
+							return {ctor: '_Tuple3', _0: _p2._0._0 + fractional, _1: 0.0, _2: 0.0};
 						} else {
-							break _v8_3;
+							break _v0_3;
 						}
 					}
 				} else {
-					break _v8_3;
+					break _v0_3;
 				}
 			} while(false);
 			return {ctor: '_Tuple3', _0: 0.0, _1: 0.0, _2: 0.0};
 		}();
-		var hh = _p24._0;
-		var mm = _p24._1;
-		var ss = _p24._2;
-		return (_elm_lang$core$Native_Utils.cmp(hh, 24) > -1) ? _elm_lang$core$Result$Err(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Invalid time (hours = ',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(hh),
-					')'))) : ((_elm_lang$core$Native_Utils.cmp(mm, 60) > -1) ? _elm_lang$core$Result$Err(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Invalid time (minutes = ',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(mm),
-					')'))) : ((_elm_lang$core$Native_Utils.cmp(ss, 60) > -1) ? _elm_lang$core$Result$Err(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Invalid time (seconds = ',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(ss),
-					')'))) : _elm_lang$core$Result$Ok(
-			_justinmimbs$elm_date_extra$Date_Extra$TimeMS(
-				_elm_lang$core$Basics$round(
-					((hh * _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Facts$msPerHour)) + (mm * _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Facts$msPerMinute))) + (ss * _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Facts$msPerSecond)))))));
+		var hh = _p1._0;
+		var mm = _p1._1;
+		var ss = _p1._2;
+		return _elm_lang$core$Basics$round(
+			((hh * _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerHour)) + (mm * _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute))) + (ss * _elm_lang$core$Basics$toFloat(_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerSecond)));
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$Local = {ctor: 'Local'};
-var _justinmimbs$elm_date_extra$Date_Extra$local = _justinmimbs$elm_date_extra$Date_Extra$Local;
-var _justinmimbs$elm_date_extra$Date_Extra$fromParts = F7(
-	function (y, m, d, hh, mm, ss, ms) {
-		return A3(
-			_justinmimbs$elm_date_extra$Date_Extra$fromSpec,
-			A3(_justinmimbs$elm_date_extra$Date_Extra$calendarDate, y, m, d),
-			A4(_justinmimbs$elm_date_extra$Date_Extra$time, hh, mm, ss, ms),
-			_justinmimbs$elm_date_extra$Date_Extra$local);
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate = F3(
-	function (y, m, d) {
-		return A3(
-			_justinmimbs$elm_date_extra$Date_Extra$fromSpec,
-			A3(_justinmimbs$elm_date_extra$Date_Extra$calendarDate, y, m, d),
-			_justinmimbs$elm_date_extra$Date_Extra$midnight,
-			_justinmimbs$elm_date_extra$Date_Extra$local);
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$fromRataDie = function (rd) {
-	return A3(
-		_justinmimbs$elm_date_extra$Date_Extra$fromSpec,
-		_justinmimbs$elm_date_extra$Date_Extra$DateMS(
-			_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(rd)),
-		_justinmimbs$elm_date_extra$Date_Extra$midnight,
-		_justinmimbs$elm_date_extra$Date_Extra$local);
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt = function (_p3) {
+	return _elm_lang$core$Result$toMaybe(
+		_elm_lang$core$String$toInt(_p3));
 };
-var _justinmimbs$elm_date_extra$Date_Extra$floor = F2(
-	function (interval, date) {
-		var _p27 = interval;
-		switch (_p27.ctor) {
-			case 'Millisecond':
-				return date;
-			case 'Second':
-				return A7(
-					_justinmimbs$elm_date_extra$Date_Extra$fromParts,
-					_elm_lang$core$Date$year(date),
-					_elm_lang$core$Date$month(date),
-					_elm_lang$core$Date$day(date),
-					_elm_lang$core$Date$hour(date),
-					_elm_lang$core$Date$minute(date),
-					_elm_lang$core$Date$second(date),
-					0);
-			case 'Minute':
-				return A7(
-					_justinmimbs$elm_date_extra$Date_Extra$fromParts,
-					_elm_lang$core$Date$year(date),
-					_elm_lang$core$Date$month(date),
-					_elm_lang$core$Date$day(date),
-					_elm_lang$core$Date$hour(date),
-					_elm_lang$core$Date$minute(date),
-					0,
-					0);
-			case 'Hour':
-				return A7(
-					_justinmimbs$elm_date_extra$Date_Extra$fromParts,
-					_elm_lang$core$Date$year(date),
-					_elm_lang$core$Date$month(date),
-					_elm_lang$core$Date$day(date),
-					_elm_lang$core$Date$hour(date),
-					0,
-					0,
-					0);
-			case 'Day':
-				return A3(
-					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
-					_elm_lang$core$Date$year(date),
-					_elm_lang$core$Date$month(date),
-					_elm_lang$core$Date$day(date));
-			case 'Month':
-				return A3(
-					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
-					_elm_lang$core$Date$year(date),
-					_elm_lang$core$Date$month(date),
-					1);
-			case 'Year':
-				return A3(
-					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
-					_elm_lang$core$Date$year(date),
-					_elm_lang$core$Date$Jan,
-					1);
-			case 'Quarter':
-				return A3(
-					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
-					_elm_lang$core$Date$year(date),
-					_justinmimbs$elm_date_extra$Date_Extra$quarterToMonth(
-						_justinmimbs$elm_date_extra$Date_Extra$quarter(date)),
-					1);
-			case 'Week':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Mon, date));
-			case 'Monday':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Mon, date));
-			case 'Tuesday':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Tue, date));
-			case 'Wednesday':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Wed, date));
-			case 'Thursday':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Thu, date));
-			case 'Friday':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Fri, date));
-			case 'Saturday':
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Sat, date));
-			default:
-				return _justinmimbs$elm_date_extra$Date_Extra$fromRataDie(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date) - A2(_justinmimbs$elm_date_extra$Date_Extra$daysSincePreviousWeekday, _elm_lang$core$Date$Sun, date));
-		}
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$Offset = function (a) {
-	return {ctor: 'Offset', _0: a};
-};
-var _justinmimbs$elm_date_extra$Date_Extra$utc = _justinmimbs$elm_date_extra$Date_Extra$Offset(0);
-var _justinmimbs$elm_date_extra$Date_Extra$offset = _justinmimbs$elm_date_extra$Date_Extra$Offset;
-var _justinmimbs$elm_date_extra$Date_Extra$offsetFromMatches = F4(
-	function (tzZ, tzSign, tzHH, tzMM) {
-		var _p28 = {ctor: '_Tuple2', _0: tzZ, _1: tzSign};
-		_v10_2:
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$unixTimeFromMatches = F6(
+	function (yyyy, calMM, calDD, weekWW, weekD, ordDDD) {
+		var y = A2(
+			_elm_lang$core$Maybe$withDefault,
+			1,
+			_justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt(yyyy));
+		var _p4 = {ctor: '_Tuple2', _0: calMM, _1: weekWW};
+		_v1_2:
 		do {
-			if (_p28.ctor === '_Tuple2') {
-				if (_p28._0.ctor === 'Just') {
-					if ((_p28._0._0 === 'Z') && (_p28._1.ctor === 'Nothing')) {
-						return _elm_lang$core$Result$Ok(_justinmimbs$elm_date_extra$Date_Extra$utc);
+			if (_p4.ctor === '_Tuple2') {
+				if (_p4._0.ctor === 'Just') {
+					if (_p4._1.ctor === 'Nothing') {
+						return A3(
+							_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromCalendarDate,
+							y,
+							_justinmimbs$elm_date_extra$Date_Extra_Facts$monthFromMonthNumber(
+								A2(
+									_elm_lang$core$Maybe$withDefault,
+									1,
+									A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, calMM))),
+							A2(
+								_elm_lang$core$Maybe$withDefault,
+								1,
+								A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, calDD)));
 					} else {
-						break _v10_2;
+						break _v1_2;
 					}
 				} else {
-					if (_p28._1.ctor === 'Just') {
-						var mm = A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 0, tzMM);
-						var hh = A2(_justinmimbs$elm_date_extra$Date_Extra$matchToInt, 0, tzHH);
-						return (_elm_lang$core$Native_Utils.cmp(hh, 23) > 0) ? _elm_lang$core$Result$Err(
+					if (_p4._1.ctor === 'Just') {
+						return A3(
+							_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromWeekDate,
+							y,
 							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'Invalid offset (hours = ',
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_elm_lang$core$Basics$toString(hh),
-									')'))) : ((_elm_lang$core$Native_Utils.cmp(mm, 59) > 0) ? _elm_lang$core$Result$Err(
+								_elm_lang$core$Maybe$withDefault,
+								1,
+								A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, weekWW)),
 							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'Invalid offset (minutes = ',
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_elm_lang$core$Basics$toString(mm),
-									')'))) : (_elm_lang$core$Native_Utils.eq(_p28._1._0, '+') ? _elm_lang$core$Result$Ok(
-							_justinmimbs$elm_date_extra$Date_Extra$offset((hh * 60) + mm)) : _elm_lang$core$Result$Ok(
-							_justinmimbs$elm_date_extra$Date_Extra$offset((hh * -60) - mm))));
+								_elm_lang$core$Maybe$withDefault,
+								1,
+								A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, weekD)));
 					} else {
-						break _v10_2;
+						break _v1_2;
 					}
 				}
 			} else {
-				break _v10_2;
+				break _v1_2;
 			}
 		} while(false);
-		return _elm_lang$core$Result$Ok(_justinmimbs$elm_date_extra$Date_Extra$local);
+		return A2(
+			_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromOrdinalDate,
+			y,
+			A2(
+				_elm_lang$core$Maybe$withDefault,
+				1,
+				A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, ordDDD)));
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$fromMatches = function (matches) {
-	var _p29 = matches;
-	if (((((((((((((((((((_p29.ctor === '::') && (_p29._0.ctor === 'Just')) && (_p29._1.ctor === '::')) && (_p29._1._1.ctor === '::')) && (_p29._1._1._1.ctor === '::')) && (_p29._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '[]')) {
-		return A4(
-			_elm_lang$core$Result$map3,
-			_justinmimbs$elm_date_extra$Date_Extra$fromSpec,
-			A6(_justinmimbs$elm_date_extra$Date_Extra$dateFromMatches, _p29._0._0, _p29._1._1._0, _p29._1._1._1._0, _p29._1._1._1._1._1._0, _p29._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._0),
-			A4(_justinmimbs$elm_date_extra$Date_Extra$timeFromMatches, _p29._1._1._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._1._1._1._1._1._0),
-			A4(_justinmimbs$elm_date_extra$Date_Extra$offsetFromMatches, _p29._1._1._1._1._1._1._1._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._0, _p29._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._0));
-	} else {
-		return _elm_lang$core$Result$Err('Unexpected matches');
-	}
-};
-var _justinmimbs$elm_date_extra$Date_Extra$fromIsoString = function (s) {
-	return A2(
-		_elm_lang$core$Result$mapError,
-		F2(
-			function (x, y) {
-				return A2(_elm_lang$core$Basics_ops['++'], x, y);
-			})(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'Failed to create a Date from string \'',
-				A2(_elm_lang$core$Basics_ops['++'], s, '\': '))),
-		A2(
-			_elm_lang$core$Result$andThen,
-			function (_p30) {
-				return _justinmimbs$elm_date_extra$Date_Extra$fromMatches(
-					function (_) {
-						return _.submatches;
-					}(_p30));
-			},
-			A2(
-				_elm_lang$core$Result$fromMaybe,
-				'Invalid ISO 8601 format',
-				_elm_lang$core$List$head(
-					A3(
-						_elm_lang$core$Regex$find,
-						_elm_lang$core$Regex$AtMost(1),
-						_justinmimbs$elm_date_extra$Date_Extra$isoDateRegex,
-						s)))));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$PM = {ctor: 'PM'};
-var _justinmimbs$elm_date_extra$Date_Extra$Noon = {ctor: 'Noon'};
-var _justinmimbs$elm_date_extra$Date_Extra$AM = {ctor: 'AM'};
-var _justinmimbs$elm_date_extra$Date_Extra$Midnight = {ctor: 'Midnight'};
-var _justinmimbs$elm_date_extra$Date_Extra$dayPeriod = function (date) {
-	var onTheHour = _elm_lang$core$Native_Utils.eq(
-		_elm_lang$core$Date$minute(date),
-		0) && (_elm_lang$core$Native_Utils.eq(
-		_elm_lang$core$Date$second(date),
-		0) && _elm_lang$core$Native_Utils.eq(
-		_elm_lang$core$Date$millisecond(date),
-		0));
-	var hh = _elm_lang$core$Date$hour(date);
-	return (_elm_lang$core$Native_Utils.eq(hh, 0) && onTheHour) ? _justinmimbs$elm_date_extra$Date_Extra$Midnight : ((_elm_lang$core$Native_Utils.cmp(hh, 12) < 0) ? _justinmimbs$elm_date_extra$Date_Extra$AM : ((_elm_lang$core$Native_Utils.eq(hh, 12) && onTheHour) ? _justinmimbs$elm_date_extra$Date_Extra$Noon : _justinmimbs$elm_date_extra$Date_Extra$PM));
-};
-var _justinmimbs$elm_date_extra$Date_Extra$Invalid = {ctor: 'Invalid'};
-var _justinmimbs$elm_date_extra$Date_Extra$Short = {ctor: 'Short'};
-var _justinmimbs$elm_date_extra$Date_Extra$Narrow = {ctor: 'Narrow'};
-var _justinmimbs$elm_date_extra$Date_Extra$Full = {ctor: 'Full'};
-var _justinmimbs$elm_date_extra$Date_Extra$Abbreviated = {ctor: 'Abbreviated'};
-var _justinmimbs$elm_date_extra$Date_Extra$formatStyleFromLength = function (length) {
-	var _p31 = length;
-	switch (_p31) {
-		case 1:
-			return _justinmimbs$elm_date_extra$Date_Extra$Abbreviated;
-		case 2:
-			return _justinmimbs$elm_date_extra$Date_Extra$Abbreviated;
-		case 3:
-			return _justinmimbs$elm_date_extra$Date_Extra$Abbreviated;
-		case 4:
-			return _justinmimbs$elm_date_extra$Date_Extra$Full;
-		case 5:
-			return _justinmimbs$elm_date_extra$Date_Extra$Narrow;
-		case 6:
-			return _justinmimbs$elm_date_extra$Date_Extra$Short;
-		default:
-			return _justinmimbs$elm_date_extra$Date_Extra$Invalid;
-	}
-};
-var _justinmimbs$elm_date_extra$Date_Extra$format = F3(
-	function (asUtc, date, match) {
-		format:
-		while (true) {
-			var length = _elm_lang$core$String$length(match);
-			var $char = A2(_elm_lang$core$String$left, 1, match);
-			var _p32 = $char;
-			switch (_p32) {
-				case 'y':
-					var _p33 = length;
-					if (_p33 === 2) {
-						return A2(
-							_elm_lang$core$String$right,
-							2,
-							A3(
-								_elm_lang$core$String$padLeft,
-								length,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$year(date))));
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$offsetFromMatches = F4(
+	function (tzZ, tzSign, tzHH, tzMM) {
+		var _p5 = {ctor: '_Tuple2', _0: tzZ, _1: tzSign};
+		_v2_2:
+		do {
+			if (_p5.ctor === '_Tuple2') {
+				if (_p5._0.ctor === 'Just') {
+					if ((_p5._0._0 === 'Z') && (_p5._1.ctor === 'Nothing')) {
+						return _elm_lang$core$Maybe$Just(0);
 					} else {
-						return A3(
-							_elm_lang$core$String$padLeft,
-							length,
-							_elm_lang$core$Native_Utils.chr('0'),
-							_elm_lang$core$Basics$toString(
-								_elm_lang$core$Date$year(date)));
+						break _v2_2;
 					}
-				case 'Y':
-					var _p34 = length;
-					if (_p34 === 2) {
-						return A2(
-							_elm_lang$core$String$right,
-							2,
-							A3(
-								_elm_lang$core$String$padLeft,
-								length,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$weekYear(date))));
+				} else {
+					if (_p5._1.ctor === 'Just') {
+						var mm = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, tzMM));
+						var hh = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Maybe$andThen, _justinmimbs$elm_date_extra$Date_Internal_Parse$stringToInt, tzHH));
+						return _elm_lang$core$Maybe$Just(
+							(_elm_lang$core$Native_Utils.eq(_p5._1._0, '+') ? 1 : -1) * ((hh * 60) + mm));
 					} else {
-						return A3(
-							_elm_lang$core$String$padLeft,
-							length,
-							_elm_lang$core$Native_Utils.chr('0'),
-							_elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$weekYear(date)));
+						break _v2_2;
 					}
-				case 'Q':
-					var _p35 = length;
-					switch (_p35) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$quarter(date));
-						case 2:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$quarter(date));
-						case 3:
-							return A2(
-								F2(
-									function (x, y) {
-										return A2(_elm_lang$core$Basics_ops['++'], x, y);
-									}),
-								'Q',
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$quarter(date)));
-						case 4:
-							return _justinmimbs$elm_date_extra$Date_Extra$withOrdinalSuffix(
-								_justinmimbs$elm_date_extra$Date_Extra$quarter(date));
-						case 5:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$quarter(date));
-						default:
-							return '';
-					}
-				case 'M':
-					var _p36 = length;
-					switch (_p36) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$monthNumber(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$monthNumber(date)));
-						case 3:
-							return A2(
-								_elm_lang$core$String$left,
-								3,
-								_justinmimbs$elm_date_extra$Date_Extra$monthToName(
-									_elm_lang$core$Date$month(date)));
-						case 4:
-							return _justinmimbs$elm_date_extra$Date_Extra$monthToName(
-								_elm_lang$core$Date$month(date));
-						case 5:
-							return A2(
-								_elm_lang$core$String$left,
-								1,
-								_justinmimbs$elm_date_extra$Date_Extra$monthToName(
-									_elm_lang$core$Date$month(date)));
-						default:
-							return '';
-					}
-				case 'w':
-					var _p37 = length;
-					switch (_p37) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$weekNumber(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$weekNumber(date)));
-						default:
-							return '';
-					}
-				case 'd':
-					var _p38 = length;
-					switch (_p38) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_elm_lang$core$Date$day(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$day(date)));
-						case 3:
-							return _justinmimbs$elm_date_extra$Date_Extra$withOrdinalSuffix(
-								_elm_lang$core$Date$day(date));
-						default:
-							return '';
-					}
-				case 'D':
-					var _p39 = length;
-					switch (_p39) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$ordinalDay(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$ordinalDay(date)));
-						case 3:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								3,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$ordinalDay(date)));
-						default:
-							return '';
-					}
-				case 'E':
-					var _p40 = _justinmimbs$elm_date_extra$Date_Extra$formatStyleFromLength(length);
-					switch (_p40.ctor) {
-						case 'Abbreviated':
-							return A2(
-								_elm_lang$core$String$left,
-								3,
-								_justinmimbs$elm_date_extra$Date_Extra$weekdayToName(
-									_elm_lang$core$Date$dayOfWeek(date)));
-						case 'Full':
-							return _justinmimbs$elm_date_extra$Date_Extra$weekdayToName(
-								_elm_lang$core$Date$dayOfWeek(date));
-						case 'Narrow':
-							return A2(
-								_elm_lang$core$String$left,
-								1,
-								_justinmimbs$elm_date_extra$Date_Extra$weekdayToName(
-									_elm_lang$core$Date$dayOfWeek(date)));
-						case 'Short':
-							return A2(
-								_elm_lang$core$String$left,
-								2,
-								_justinmimbs$elm_date_extra$Date_Extra$weekdayToName(
-									_elm_lang$core$Date$dayOfWeek(date)));
-						default:
-							return '';
-					}
-				case 'e':
-					var _p41 = length;
-					switch (_p41) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$weekdayNumber(date));
-						case 2:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$weekdayNumber(date));
-						default:
-							var _v23 = asUtc,
-								_v24 = date,
-								_v25 = _elm_lang$core$String$toUpper(match);
-							asUtc = _v23;
-							date = _v24;
-							match = _v25;
-							continue format;
-					}
-				case 'a':
-					var p = _justinmimbs$elm_date_extra$Date_Extra$dayPeriod(date);
-					var m = (_elm_lang$core$Native_Utils.eq(p, _justinmimbs$elm_date_extra$Date_Extra$Midnight) || _elm_lang$core$Native_Utils.eq(p, _justinmimbs$elm_date_extra$Date_Extra$AM)) ? 'A' : 'P';
-					var _p42 = _justinmimbs$elm_date_extra$Date_Extra$formatStyleFromLength(length);
-					switch (_p42.ctor) {
-						case 'Abbreviated':
-							return A2(_elm_lang$core$Basics_ops['++'], m, 'M');
-						case 'Full':
-							return A2(_elm_lang$core$Basics_ops['++'], m, '.M.');
-						case 'Narrow':
-							return m;
-						default:
-							return '';
-					}
-				case 'b':
-					var _p43 = _justinmimbs$elm_date_extra$Date_Extra$formatStyleFromLength(length);
-					switch (_p43.ctor) {
-						case 'Abbreviated':
-							var _p44 = _justinmimbs$elm_date_extra$Date_Extra$dayPeriod(date);
-							switch (_p44.ctor) {
-								case 'Midnight':
-									return 'mid.';
-								case 'AM':
-									return 'am';
-								case 'Noon':
-									return 'noon';
-								default:
-									return 'pm';
-							}
-						case 'Full':
-							var _p45 = _justinmimbs$elm_date_extra$Date_Extra$dayPeriod(date);
-							switch (_p45.ctor) {
-								case 'Midnight':
-									return 'midnight';
-								case 'AM':
-									return 'a.m.';
-								case 'Noon':
-									return 'noon';
-								default:
-									return 'p.m.';
-							}
-						case 'Narrow':
-							var _p46 = _justinmimbs$elm_date_extra$Date_Extra$dayPeriod(date);
-							switch (_p46.ctor) {
-								case 'Midnight':
-									return 'md';
-								case 'AM':
-									return 'a';
-								case 'Noon':
-									return 'nn';
-								default:
-									return 'p';
-							}
-						default:
-							return '';
-					}
-				case 'h':
-					var _p47 = length;
-					switch (_p47) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_justinmimbs$elm_date_extra$Date_Extra$hour12(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_justinmimbs$elm_date_extra$Date_Extra$hour12(date)));
-						default:
-							return '';
-					}
-				case 'H':
-					var _p48 = length;
-					switch (_p48) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_elm_lang$core$Date$hour(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$hour(date)));
-						default:
-							return '';
-					}
-				case 'm':
-					var _p49 = length;
-					switch (_p49) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_elm_lang$core$Date$minute(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$minute(date)));
-						default:
-							return '';
-					}
-				case 's':
-					var _p50 = length;
-					switch (_p50) {
-						case 1:
-							return _elm_lang$core$Basics$toString(
-								_elm_lang$core$Date$second(date));
-						case 2:
-							return A3(
-								_elm_lang$core$String$padLeft,
-								2,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$second(date)));
-						default:
-							return '';
-					}
-				case 'S':
-					return A3(
-						_elm_lang$core$String$padRight,
-						length,
-						_elm_lang$core$Native_Utils.chr('0'),
-						A2(
-							_elm_lang$core$String$left,
-							length,
-							A3(
-								_elm_lang$core$String$padLeft,
-								3,
-								_elm_lang$core$Native_Utils.chr('0'),
-								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$millisecond(date)))));
-				case 'X':
-					if ((_elm_lang$core$Native_Utils.cmp(length, 4) < 0) && (asUtc || _elm_lang$core$Native_Utils.eq(
-						_justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date),
-						0))) {
-						return 'Z';
-					} else {
-						var _v35 = asUtc,
-							_v36 = date,
-							_v37 = _elm_lang$core$String$toLower(match);
-						asUtc = _v35;
-						date = _v36;
-						match = _v37;
-						continue format;
-					}
-				case 'x':
-					var offset = asUtc ? 0 : _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date);
-					var _p51 = length;
-					switch (_p51) {
-						case 1:
-							return A3(_justinmimbs$elm_date_extra$Date_Extra$formatTimeOffset, '', true, offset);
-						case 2:
-							return A3(_justinmimbs$elm_date_extra$Date_Extra$formatTimeOffset, '', false, offset);
-						case 3:
-							return A3(_justinmimbs$elm_date_extra$Date_Extra$formatTimeOffset, ':', false, offset);
-						default:
-							return '';
-					}
-				case '\'':
-					return _elm_lang$core$Native_Utils.eq(match, '\'\'') ? '\'' : A4(
-						_elm_lang$core$Regex$replace,
-						_elm_lang$core$Regex$All,
-						_elm_lang$core$Regex$regex('\'\''),
-						function (_p52) {
-							return '\'';
-						},
-						A3(_elm_lang$core$String$slice, 1, -1, match));
-				default:
-					return '';
+				}
+			} else {
+				break _v2_2;
 			}
-		}
+		} while(false);
+		return _elm_lang$core$Maybe$Nothing;
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$toFormattedString_ = F3(
-	function (asUtc, pattern, date) {
-		var date_ = asUtc ? _elm_lang$core$Date$fromTime(
-			_elm_lang$core$Date$toTime(date) - _elm_lang$core$Basics$toFloat(
-				_justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date) * _justinmimbs$elm_date_extra$Date_Facts$msPerMinute)) : date;
-		return A4(
-			_elm_lang$core$Regex$replace,
-			_elm_lang$core$Regex$All,
-			_justinmimbs$elm_date_extra$Date_Extra$patternMatches,
-			function (_p53) {
-				return A3(
-					_justinmimbs$elm_date_extra$Date_Extra$format,
-					asUtc,
-					date_,
-					function (_) {
-						return _.match;
-					}(_p53));
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$offsetTimeFromMatches = function (matches) {
+	var _p6 = matches;
+	if (((((((((((((((((((_p6.ctor === '::') && (_p6._0.ctor === 'Just')) && (_p6._1.ctor === '::')) && (_p6._1._1.ctor === '::')) && (_p6._1._1._1.ctor === '::')) && (_p6._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '::')) && (_p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1.ctor === '[]')) {
+		var offset = A4(_justinmimbs$elm_date_extra$Date_Internal_Parse$offsetFromMatches, _p6._1._1._1._1._1._1._1._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._1._0);
+		var timeMS = A4(_justinmimbs$elm_date_extra$Date_Internal_Parse$msFromMatches, _p6._1._1._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._1._1._1._1._1._0);
+		var dateMS = A6(_justinmimbs$elm_date_extra$Date_Internal_Parse$unixTimeFromMatches, _p6._0._0, _p6._1._1._0, _p6._1._1._1._0, _p6._1._1._1._1._1._0, _p6._1._1._1._1._1._1._0, _p6._1._1._1._1._1._1._1._0);
+		return _elm_lang$core$Maybe$Just(
+			{ctor: '_Tuple2', _0: offset, _1: dateMS + timeMS});
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _justinmimbs$elm_date_extra$Date_Internal_Parse$offsetTimeFromIsoString = function (s) {
+	return A2(
+		_elm_lang$core$Maybe$andThen,
+		_justinmimbs$elm_date_extra$Date_Internal_Parse$offsetTimeFromMatches,
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (_) {
+				return _.submatches;
 			},
-			pattern);
+			_elm_lang$core$List$head(
+				A3(
+					_elm_lang$core$Regex$find,
+					_elm_lang$core$Regex$AtMost(1),
+					_justinmimbs$elm_date_extra$Date_Internal_Parse$isoDateRegex,
+					s))));
+};
+
+var _justinmimbs$elm_date_extra$Date_Extra$toRataDie = function (date) {
+	return A3(
+		_justinmimbs$elm_date_extra$Date_Internal_RataDie$fromCalendarDate,
+		_elm_lang$core$Date$year(date),
+		_elm_lang$core$Date$month(date),
+		_elm_lang$core$Date$day(date));
+};
+var _justinmimbs$elm_date_extra$Date_Extra$toParts = function (date) {
+	return {
+		ctor: '_Tuple7',
+		_0: _elm_lang$core$Date$year(date),
+		_1: _elm_lang$core$Date$month(date),
+		_2: _elm_lang$core$Date$day(date),
+		_3: _elm_lang$core$Date$hour(date),
+		_4: _elm_lang$core$Date$minute(date),
+		_5: _elm_lang$core$Date$second(date),
+		_6: _elm_lang$core$Date$millisecond(date)
+	};
+};
+var _justinmimbs$elm_date_extra$Date_Extra$monthFromQuarter = function (q) {
+	var _p0 = q;
+	switch (_p0) {
+		case 1:
+			return _elm_lang$core$Date$Jan;
+		case 2:
+			return _elm_lang$core$Date$Apr;
+		case 3:
+			return _elm_lang$core$Date$Jul;
+		default:
+			return _elm_lang$core$Date$Oct;
+	}
+};
+var _justinmimbs$elm_date_extra$Date_Extra$clamp = F3(
+	function (min, max, date) {
+		return (_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$Date$toTime(date),
+			_elm_lang$core$Date$toTime(min)) < 0) ? min : ((_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$Date$toTime(date),
+			_elm_lang$core$Date$toTime(max)) > 0) ? max : date);
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$toFormattedString = _justinmimbs$elm_date_extra$Date_Extra$toFormattedString_(false);
-var _justinmimbs$elm_date_extra$Date_Extra$toUtcFormattedString = _justinmimbs$elm_date_extra$Date_Extra$toFormattedString_(true);
-var _justinmimbs$elm_date_extra$Date_Extra$toIsoString = A2(_justinmimbs$elm_date_extra$Date_Extra$toFormattedString_, false, 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx');
-var _justinmimbs$elm_date_extra$Date_Extra$toUtcIsoString = A2(_justinmimbs$elm_date_extra$Date_Extra$toFormattedString_, true, 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX');
-var _justinmimbs$elm_date_extra$Date_Extra$Millisecond = {ctor: 'Millisecond'};
-var _justinmimbs$elm_date_extra$Date_Extra$Second = {ctor: 'Second'};
-var _justinmimbs$elm_date_extra$Date_Extra$Minute = {ctor: 'Minute'};
-var _justinmimbs$elm_date_extra$Date_Extra$Hour = {ctor: 'Hour'};
-var _justinmimbs$elm_date_extra$Date_Extra$Day = {ctor: 'Day'};
-var _justinmimbs$elm_date_extra$Date_Extra$Sunday = {ctor: 'Sunday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Saturday = {ctor: 'Saturday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Friday = {ctor: 'Friday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Thursday = {ctor: 'Thursday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Wednesday = {ctor: 'Wednesday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Tuesday = {ctor: 'Tuesday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Monday = {ctor: 'Monday'};
-var _justinmimbs$elm_date_extra$Date_Extra$Week = {ctor: 'Week'};
-var _justinmimbs$elm_date_extra$Date_Extra$Month = {ctor: 'Month'};
+var _justinmimbs$elm_date_extra$Date_Extra$comparableIsBetween = F3(
+	function (a, b, x) {
+		return ((_elm_lang$core$Native_Utils.cmp(a, x) < 1) && (_elm_lang$core$Native_Utils.cmp(x, b) < 1)) || ((_elm_lang$core$Native_Utils.cmp(b, x) < 1) && (_elm_lang$core$Native_Utils.cmp(x, a) < 1));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$isBetween = F3(
+	function (date1, date2, date) {
+		return A3(
+			_justinmimbs$elm_date_extra$Date_Extra$comparableIsBetween,
+			_elm_lang$core$Date$toTime(date1),
+			_elm_lang$core$Date$toTime(date2),
+			_elm_lang$core$Date$toTime(date));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$compare = F2(
+	function (a, b) {
+		return A2(
+			_elm_lang$core$Basics$compare,
+			_elm_lang$core$Date$toTime(a),
+			_elm_lang$core$Date$toTime(b));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$equal = F2(
+	function (a, b) {
+		return _elm_lang$core$Native_Utils.eq(
+			_elm_lang$core$Date$toTime(a),
+			_elm_lang$core$Date$toTime(b));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc = _justinmimbs$elm_date_extra$Date_Internal_Extract$offsetFromUtc;
+var _justinmimbs$elm_date_extra$Date_Extra$weekYear = _justinmimbs$elm_date_extra$Date_Internal_Extract$weekYear;
+var _justinmimbs$elm_date_extra$Date_Extra$weekNumber = _justinmimbs$elm_date_extra$Date_Internal_Extract$weekNumber;
+var _justinmimbs$elm_date_extra$Date_Extra$weekdayNumber = _justinmimbs$elm_date_extra$Date_Internal_Extract$weekdayNumber;
+var _justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek = F2(
+	function (d, date) {
+		return _elm_lang$core$Basics$negate(
+			A2(
+				_elm_lang$core$Basics_ops['%'],
+				(_justinmimbs$elm_date_extra$Date_Extra$weekdayNumber(date) - _justinmimbs$elm_date_extra$Date_Extra_Facts$weekdayNumberFromDayOfWeek(d)) + 7,
+				7));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$fractionalDay = _justinmimbs$elm_date_extra$Date_Internal_Extract$fractionalDay;
+var _justinmimbs$elm_date_extra$Date_Extra$ordinalDay = _justinmimbs$elm_date_extra$Date_Internal_Extract$ordinalDay;
+var _justinmimbs$elm_date_extra$Date_Extra$quarter = _justinmimbs$elm_date_extra$Date_Internal_Extract$quarter;
+var _justinmimbs$elm_date_extra$Date_Extra$monthNumber = _justinmimbs$elm_date_extra$Date_Internal_Extract$monthNumber;
+var _justinmimbs$elm_date_extra$Date_Extra$ordinalMonth = function (date) {
+	return (_elm_lang$core$Date$year(date) * 12) + _justinmimbs$elm_date_extra$Date_Extra$monthNumber(date);
+};
+var _justinmimbs$elm_date_extra$Date_Extra$diffMonth = F2(
+	function (date1, date2) {
+		var fractionalMonth = function (date) {
+			return (_elm_lang$core$Basics$toFloat(
+				_elm_lang$core$Date$day(date) - 1) + _justinmimbs$elm_date_extra$Date_Extra$fractionalDay(date)) / 31;
+		};
+		var ordinalMonthFloat = function (date) {
+			return _elm_lang$core$Basics$toFloat(
+				_justinmimbs$elm_date_extra$Date_Extra$ordinalMonth(date)) + fractionalMonth(date);
+		};
+		return _elm_lang$core$Basics$truncate(
+			ordinalMonthFloat(date2) - ordinalMonthFloat(date1));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$toUtcFormattedString = _justinmimbs$elm_date_extra$Date_Internal_Format$toFormattedString(true);
+var _justinmimbs$elm_date_extra$Date_Extra$toUtcIsoString = _justinmimbs$elm_date_extra$Date_Extra$toUtcFormattedString('yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX');
+var _justinmimbs$elm_date_extra$Date_Extra$toFormattedString = _justinmimbs$elm_date_extra$Date_Internal_Format$toFormattedString(false);
+var _justinmimbs$elm_date_extra$Date_Extra$toIsoString = _justinmimbs$elm_date_extra$Date_Extra$toFormattedString('yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx');
+var _justinmimbs$elm_date_extra$Date_Extra$fromTime = function (_p1) {
+	return _elm_lang$core$Date$fromTime(
+		_elm_lang$core$Basics$toFloat(_p1));
+};
+var _justinmimbs$elm_date_extra$Date_Extra$fromOffsetTime = function (_p2) {
+	var _p3 = _p2;
+	var _p5 = _p3._1;
+	var _p4 = _p3._0;
+	if (_p4.ctor === 'Just') {
+		return _justinmimbs$elm_date_extra$Date_Extra$fromTime(_p5 - (_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute * _p4._0));
+	} else {
+		var offset0 = _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(
+			_justinmimbs$elm_date_extra$Date_Extra$fromTime(_p5));
+		var date1 = _justinmimbs$elm_date_extra$Date_Extra$fromTime(_p5 - (_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute * offset0));
+		var offset1 = _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date1);
+		if (_elm_lang$core$Native_Utils.eq(offset0, offset1)) {
+			return date1;
+		} else {
+			var date2 = _justinmimbs$elm_date_extra$Date_Extra$fromTime(_p5 - (_justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute * offset1));
+			var offset2 = _justinmimbs$elm_date_extra$Date_Extra$offsetFromUtc(date2);
+			return _elm_lang$core$Native_Utils.eq(offset1, offset2) ? date2 : date1;
+		}
+	}
+};
+var _justinmimbs$elm_date_extra$Date_Extra$fromParts = F7(
+	function (y, m, d, hh, mm, ss, ms) {
+		return _justinmimbs$elm_date_extra$Date_Extra$fromOffsetTime(
+			{
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Maybe$Nothing,
+				_1: A7(_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromParts, y, m, d, hh, mm, ss, ms)
+			});
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$addMonths = F2(
+	function (n, date) {
+		var om = (_justinmimbs$elm_date_extra$Date_Extra$ordinalMonth(date) + n) + -1;
+		var y_ = (om / 12) | 0;
+		var m_ = _justinmimbs$elm_date_extra$Date_Extra_Facts$monthFromMonthNumber(
+			A2(_elm_lang$core$Basics_ops['%'], om, 12) + 1);
+		var _p6 = _justinmimbs$elm_date_extra$Date_Extra$toParts(date);
+		var y = _p6._0;
+		var m = _p6._1;
+		var d = _p6._2;
+		var hh = _p6._3;
+		var mm = _p6._4;
+		var ss = _p6._5;
+		var ms = _p6._6;
+		var d_ = A2(
+			_elm_lang$core$Basics$min,
+			d,
+			A2(_justinmimbs$elm_date_extra$Date_Extra_Facts$daysInMonth, y_, m_));
+		return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y_, m_, d_, hh, mm, ss, ms);
+	});
 var _justinmimbs$elm_date_extra$Date_Extra$add = F3(
 	function (interval, n, date) {
-		add:
-		while (true) {
-			var _p54 = interval;
-			switch (_p54.ctor) {
-				case 'Millisecond':
-					return _elm_lang$core$Date$fromTime(
-						_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n));
-				case 'Second':
-					return _elm_lang$core$Date$fromTime(
-						_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n * _justinmimbs$elm_date_extra$Date_Facts$msPerSecond));
-				case 'Minute':
-					return _elm_lang$core$Date$fromTime(
-						_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n * _justinmimbs$elm_date_extra$Date_Facts$msPerMinute));
-				case 'Hour':
-					return _elm_lang$core$Date$fromTime(
-						_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n * _justinmimbs$elm_date_extra$Date_Facts$msPerHour));
-				case 'Day':
-					var _p55 = {
-						ctor: '_Tuple7',
-						_0: _elm_lang$core$Date$year(date),
-						_1: _elm_lang$core$Date$month(date),
-						_2: _elm_lang$core$Date$day(date),
-						_3: _elm_lang$core$Date$hour(date),
-						_4: _elm_lang$core$Date$minute(date),
-						_5: _elm_lang$core$Date$second(date),
-						_6: _elm_lang$core$Date$millisecond(date)
-					};
-					var y = _p55._0;
-					var m = _p55._1;
-					var d = _p55._2;
-					var hh = _p55._3;
-					var mm = _p55._4;
-					var ss = _p55._5;
-					var ms = _p55._6;
-					return A3(
-						_justinmimbs$elm_date_extra$Date_Extra$fromSpec,
-						_justinmimbs$elm_date_extra$Date_Extra$DateMS(
-							_justinmimbs$elm_date_extra$Date_Extra$unixTimeFromRataDie(
-								A3(_justinmimbs$elm_date_extra$Date_RataDie$fromCalendarDate, y, m, d) + n)),
-						A4(_justinmimbs$elm_date_extra$Date_Extra$time, hh, mm, ss, ms),
-						_justinmimbs$elm_date_extra$Date_Extra$local);
-				case 'Month':
-					var _p56 = {
-						ctor: '_Tuple7',
-						_0: _elm_lang$core$Date$year(date),
-						_1: _justinmimbs$elm_date_extra$Date_Extra$monthNumber(date),
-						_2: _elm_lang$core$Date$day(date),
-						_3: _elm_lang$core$Date$hour(date),
-						_4: _elm_lang$core$Date$minute(date),
-						_5: _elm_lang$core$Date$second(date),
-						_6: _elm_lang$core$Date$millisecond(date)
-					};
-					var y = _p56._0;
-					var mn = _p56._1;
-					var d = _p56._2;
-					var hh = _p56._3;
-					var mm = _p56._4;
-					var ss = _p56._5;
-					var ms = _p56._6;
-					var wholeMonths = (((12 * (y - 1)) + mn) - 1) + n;
-					return A7(
-						_justinmimbs$elm_date_extra$Date_Extra$fromParts,
-						((wholeMonths / 12) | 0) + 1,
-						_justinmimbs$elm_date_extra$Date_Extra$numberToMonth(
-							A2(_elm_lang$core$Basics_ops['%'], wholeMonths, 12) + 1),
-						d,
-						hh,
-						mm,
-						ss,
-						ms);
-				case 'Year':
-					var _v40 = _justinmimbs$elm_date_extra$Date_Extra$Month,
-						_v41 = n * 12,
-						_v42 = date;
-					interval = _v40;
-					n = _v41;
-					date = _v42;
-					continue add;
-				case 'Quarter':
-					var _v43 = _justinmimbs$elm_date_extra$Date_Extra$Month,
-						_v44 = n * 3,
-						_v45 = date;
-					interval = _v43;
-					n = _v44;
-					date = _v45;
-					continue add;
-				case 'Week':
-					var _v46 = _justinmimbs$elm_date_extra$Date_Extra$Day,
-						_v47 = n * 7,
-						_v48 = date;
-					interval = _v46;
-					n = _v47;
-					date = _v48;
-					continue add;
-				default:
-					var _v49 = _justinmimbs$elm_date_extra$Date_Extra$Day,
-						_v50 = n * 7,
-						_v51 = date;
-					interval = _v49;
-					n = _v50;
-					date = _v51;
-					continue add;
-			}
+		var _p7 = _justinmimbs$elm_date_extra$Date_Extra$toParts(date);
+		var y = _p7._0;
+		var m = _p7._1;
+		var d = _p7._2;
+		var hh = _p7._3;
+		var mm = _p7._4;
+		var ss = _p7._5;
+		var ms = _p7._6;
+		var _p8 = interval;
+		switch (_p8.ctor) {
+			case 'Millisecond':
+				return _elm_lang$core$Date$fromTime(
+					_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n));
+			case 'Second':
+				return _elm_lang$core$Date$fromTime(
+					_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerSecond));
+			case 'Minute':
+				return _elm_lang$core$Date$fromTime(
+					_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute));
+			case 'Hour':
+				return _elm_lang$core$Date$fromTime(
+					_elm_lang$core$Date$toTime(date) + _elm_lang$core$Basics$toFloat(n * _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerHour));
+			case 'Day':
+				return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y, m, d + n, hh, mm, ss, ms);
+			case 'Month':
+				return A2(_justinmimbs$elm_date_extra$Date_Extra$addMonths, n, date);
+			case 'Year':
+				return A2(_justinmimbs$elm_date_extra$Date_Extra$addMonths, n * 12, date);
+			case 'Quarter':
+				return A2(_justinmimbs$elm_date_extra$Date_Extra$addMonths, n * 3, date);
+			case 'Week':
+				return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y, m, d + (n * 7), hh, mm, ss, ms);
+			default:
+				return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y, m, d + (n * 7), hh, mm, ss, ms);
 		}
-	});
-var _justinmimbs$elm_date_extra$Date_Extra$ceiling = F2(
-	function (interval, date) {
-		var floored = A2(_justinmimbs$elm_date_extra$Date_Extra$floor, interval, date);
-		return _elm_lang$core$Native_Utils.eq(
-			_elm_lang$core$Date$toTime(date),
-			_elm_lang$core$Date$toTime(floored)) ? date : A3(_justinmimbs$elm_date_extra$Date_Extra$add, interval, 1, floored);
 	});
 var _justinmimbs$elm_date_extra$Date_Extra$rangeHelp = F5(
 	function (interval, step, end, revList, date) {
@@ -8427,21 +8181,119 @@ var _justinmimbs$elm_date_extra$Date_Extra$rangeHelp = F5(
 			if (_elm_lang$core$Native_Utils.cmp(
 				_elm_lang$core$Date$toTime(date),
 				_elm_lang$core$Date$toTime(end)) < 0) {
-				var _v52 = interval,
-					_v53 = step,
-					_v54 = end,
-					_v55 = {ctor: '::', _0: date, _1: revList},
-					_v56 = A3(_justinmimbs$elm_date_extra$Date_Extra$add, interval, step, date);
-				interval = _v52;
-				step = _v53;
-				end = _v54;
-				revList = _v55;
-				date = _v56;
+				var _v4 = interval,
+					_v5 = step,
+					_v6 = end,
+					_v7 = {ctor: '::', _0: date, _1: revList},
+					_v8 = A3(_justinmimbs$elm_date_extra$Date_Extra$add, interval, step, date);
+				interval = _v4;
+				step = _v5;
+				end = _v6;
+				revList = _v7;
+				date = _v8;
 				continue rangeHelp;
 			} else {
 				return _elm_lang$core$List$reverse(revList);
 			}
 		}
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate = F3(
+	function (y, m, d) {
+		return _justinmimbs$elm_date_extra$Date_Extra$fromOffsetTime(
+			{
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Maybe$Nothing,
+				_1: A3(_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromCalendarDate, y, m, d)
+			});
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$floor = F2(
+	function (interval, date) {
+		var _p9 = _justinmimbs$elm_date_extra$Date_Extra$toParts(date);
+		var y = _p9._0;
+		var m = _p9._1;
+		var d = _p9._2;
+		var hh = _p9._3;
+		var mm = _p9._4;
+		var ss = _p9._5;
+		var _p10 = interval;
+		switch (_p10.ctor) {
+			case 'Millisecond':
+				return date;
+			case 'Second':
+				return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y, m, d, hh, mm, ss, 0);
+			case 'Minute':
+				return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y, m, d, hh, mm, 0, 0);
+			case 'Hour':
+				return A7(_justinmimbs$elm_date_extra$Date_Extra$fromParts, y, m, d, hh, 0, 0, 0);
+			case 'Day':
+				return A3(_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate, y, m, d);
+			case 'Month':
+				return A3(_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate, y, m, 1);
+			case 'Year':
+				return A3(_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate, y, _elm_lang$core$Date$Jan, 1);
+			case 'Quarter':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					_justinmimbs$elm_date_extra$Date_Extra$monthFromQuarter(
+						_justinmimbs$elm_date_extra$Date_Extra$quarter(date)),
+					1);
+			case 'Week':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Mon, date));
+			case 'Monday':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Mon, date));
+			case 'Tuesday':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Tue, date));
+			case 'Wednesday':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Wed, date));
+			case 'Thursday':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Thu, date));
+			case 'Friday':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Fri, date));
+			case 'Saturday':
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Sat, date));
+			default:
+				return A3(
+					_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate,
+					y,
+					m,
+					d + A2(_justinmimbs$elm_date_extra$Date_Extra$daysToPreviousDayOfWeek, _elm_lang$core$Date$Sun, date));
+		}
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$ceiling = F2(
+	function (interval, date) {
+		var floored = A2(_justinmimbs$elm_date_extra$Date_Extra$floor, interval, date);
+		return _elm_lang$core$Native_Utils.eq(
+			_elm_lang$core$Date$toTime(date),
+			_elm_lang$core$Date$toTime(floored)) ? date : A3(_justinmimbs$elm_date_extra$Date_Extra$add, interval, 1, floored);
 	});
 var _justinmimbs$elm_date_extra$Date_Extra$range = F4(
 	function (interval, step, start, end) {
@@ -8456,51 +8308,117 @@ var _justinmimbs$elm_date_extra$Date_Extra$range = F4(
 			{ctor: '[]'},
 			first) : {ctor: '[]'};
 	});
+var _justinmimbs$elm_date_extra$Date_Extra$fromIsoString = function (_p11) {
+	return A2(
+		_elm_lang$core$Maybe$map,
+		_justinmimbs$elm_date_extra$Date_Extra$fromOffsetTime,
+		_justinmimbs$elm_date_extra$Date_Internal_Parse$offsetTimeFromIsoString(_p11));
+};
+var _justinmimbs$elm_date_extra$Date_Extra$fromSpec = F3(
+	function (_p14, _p13, _p12) {
+		var _p15 = _p14;
+		var _p16 = _p13;
+		var _p17 = _p12;
+		return _justinmimbs$elm_date_extra$Date_Extra$fromOffsetTime(
+			{ctor: '_Tuple2', _0: _p15._0, _1: _p17._0 + _p16._0});
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$Offset = function (a) {
+	return {ctor: 'Offset', _0: a};
+};
+var _justinmimbs$elm_date_extra$Date_Extra$utc = _justinmimbs$elm_date_extra$Date_Extra$Offset(
+	_elm_lang$core$Maybe$Just(0));
+var _justinmimbs$elm_date_extra$Date_Extra$offset = function (minutes) {
+	return _justinmimbs$elm_date_extra$Date_Extra$Offset(
+		_elm_lang$core$Maybe$Just(minutes));
+};
+var _justinmimbs$elm_date_extra$Date_Extra$local = _justinmimbs$elm_date_extra$Date_Extra$Offset(_elm_lang$core$Maybe$Nothing);
+var _justinmimbs$elm_date_extra$Date_Extra$TimeMS = function (a) {
+	return {ctor: 'TimeMS', _0: a};
+};
+var _justinmimbs$elm_date_extra$Date_Extra$noTime = _justinmimbs$elm_date_extra$Date_Extra$TimeMS(0);
+var _justinmimbs$elm_date_extra$Date_Extra$atTime = F4(
+	function (hh, mm, ss, ms) {
+		return _justinmimbs$elm_date_extra$Date_Extra$TimeMS(
+			A4(_justinmimbs$elm_date_extra$Date_Internal_Core$msFromTimeParts, hh, mm, ss, ms));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$DateMS = function (a) {
+	return {ctor: 'DateMS', _0: a};
+};
+var _justinmimbs$elm_date_extra$Date_Extra$calendarDate = F3(
+	function (y, m, d) {
+		return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
+			A3(_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromCalendarDate, y, m, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$ordinalDate = F2(
+	function (y, d) {
+		return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
+			A2(_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromOrdinalDate, y, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$weekDate = F3(
+	function (y, w, d) {
+		return _justinmimbs$elm_date_extra$Date_Extra$DateMS(
+			A3(_justinmimbs$elm_date_extra$Date_Internal_Core$unixTimeFromWeekDate, y, w, d));
+	});
+var _justinmimbs$elm_date_extra$Date_Extra$Sunday = {ctor: 'Sunday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Saturday = {ctor: 'Saturday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Friday = {ctor: 'Friday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Thursday = {ctor: 'Thursday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Wednesday = {ctor: 'Wednesday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Tuesday = {ctor: 'Tuesday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Monday = {ctor: 'Monday'};
+var _justinmimbs$elm_date_extra$Date_Extra$Week = {ctor: 'Week'};
+var _justinmimbs$elm_date_extra$Date_Extra$Quarter = {ctor: 'Quarter'};
+var _justinmimbs$elm_date_extra$Date_Extra$Year = {ctor: 'Year'};
+var _justinmimbs$elm_date_extra$Date_Extra$Month = {ctor: 'Month'};
+var _justinmimbs$elm_date_extra$Date_Extra$Day = {ctor: 'Day'};
 var _justinmimbs$elm_date_extra$Date_Extra$diff = F3(
 	function (interval, date1, date2) {
-		var _p57 = interval;
-		switch (_p57.ctor) {
+		var diffMS = _elm_lang$core$Basics$floor(
+			_elm_lang$core$Date$toTime(date2) - _elm_lang$core$Date$toTime(date1));
+		var _p18 = interval;
+		switch (_p18.ctor) {
 			case 'Millisecond':
-				return _elm_lang$core$Basics$floor(
-					_elm_lang$core$Date$toTime(date2) - _elm_lang$core$Date$toTime(date1));
+				return diffMS;
 			case 'Second':
-				return (A3(_justinmimbs$elm_date_extra$Date_Extra$diff, _justinmimbs$elm_date_extra$Date_Extra$Millisecond, date1, date2) / _justinmimbs$elm_date_extra$Date_Facts$msPerSecond) | 0;
+				return (diffMS / _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerSecond) | 0;
 			case 'Minute':
-				return (A3(_justinmimbs$elm_date_extra$Date_Extra$diff, _justinmimbs$elm_date_extra$Date_Extra$Millisecond, date1, date2) / _justinmimbs$elm_date_extra$Date_Facts$msPerMinute) | 0;
+				return (diffMS / _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerMinute) | 0;
 			case 'Hour':
-				return (A3(_justinmimbs$elm_date_extra$Date_Extra$diff, _justinmimbs$elm_date_extra$Date_Extra$Millisecond, date1, date2) / _justinmimbs$elm_date_extra$Date_Facts$msPerHour) | 0;
+				return (diffMS / _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerHour) | 0;
 			case 'Day':
-				var rdm2 = _elm_lang$core$Basics$toFloat(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date2)) + _justinmimbs$elm_date_extra$Date_Extra$fractionalDay(date2);
-				var rdm1 = _elm_lang$core$Basics$toFloat(
-					_justinmimbs$elm_date_extra$Date_Extra$toRataDie(date1)) + _justinmimbs$elm_date_extra$Date_Extra$fractionalDay(date1);
-				return _elm_lang$core$Basics$truncate(rdm2 - rdm1);
+				return (diffMS / _justinmimbs$elm_date_extra$Date_Extra_Facts$msPerDay) | 0;
 			case 'Month':
-				return _elm_lang$core$Basics$truncate(
-					_justinmimbs$elm_date_extra$Date_Extra$toMonths(date2) - _justinmimbs$elm_date_extra$Date_Extra$toMonths(date1));
+				return A2(_justinmimbs$elm_date_extra$Date_Extra$diffMonth, date1, date2);
 			case 'Year':
-				return (A3(_justinmimbs$elm_date_extra$Date_Extra$diff, _justinmimbs$elm_date_extra$Date_Extra$Month, date1, date2) / 12) | 0;
+				return (A2(_justinmimbs$elm_date_extra$Date_Extra$diffMonth, date1, date2) / 12) | 0;
 			case 'Quarter':
-				return (A3(_justinmimbs$elm_date_extra$Date_Extra$diff, _justinmimbs$elm_date_extra$Date_Extra$Month, date1, date2) / 3) | 0;
+				return (A2(_justinmimbs$elm_date_extra$Date_Extra$diffMonth, date1, date2) / 3) | 0;
 			case 'Week':
 				return (A3(_justinmimbs$elm_date_extra$Date_Extra$diff, _justinmimbs$elm_date_extra$Date_Extra$Day, date1, date2) / 7) | 0;
 			default:
-				var _p58 = _p57;
+				var _p19 = _p18;
 				return (A3(
 					_justinmimbs$elm_date_extra$Date_Extra$diff,
 					_justinmimbs$elm_date_extra$Date_Extra$Day,
-					A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p58, date1),
-					A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p58, date2)) / 7) | 0;
+					A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p19, date1),
+					A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p19, date2)) / 7) | 0;
 		}
 	});
-var _justinmimbs$elm_date_extra$Date_Extra$Quarter = {ctor: 'Quarter'};
-var _justinmimbs$elm_date_extra$Date_Extra$Year = {ctor: 'Year'};
+var _justinmimbs$elm_date_extra$Date_Extra$fromRataDie = function (rd) {
+	return A3(
+		_justinmimbs$elm_date_extra$Date_Extra$add,
+		_justinmimbs$elm_date_extra$Date_Extra$Day,
+		rd - 719163,
+		A3(_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate, 1970, _elm_lang$core$Date$Jan, 1));
+};
+var _justinmimbs$elm_date_extra$Date_Extra$Hour = {ctor: 'Hour'};
+var _justinmimbs$elm_date_extra$Date_Extra$Minute = {ctor: 'Minute'};
 var _justinmimbs$elm_date_extra$Date_Extra$equalBy = F3(
 	function (interval, date1, date2) {
 		equalBy:
 		while (true) {
-			var _p59 = interval;
-			switch (_p59.ctor) {
+			var _p20 = interval;
+			switch (_p20.ctor) {
 				case 'Millisecond':
 					return _elm_lang$core$Native_Utils.eq(
 						_elm_lang$core$Date$toTime(date1),
@@ -8540,17 +8458,19 @@ var _justinmimbs$elm_date_extra$Date_Extra$equalBy = F3(
 						_justinmimbs$elm_date_extra$Date_Extra$weekYear(date1),
 						_justinmimbs$elm_date_extra$Date_Extra$weekYear(date2));
 				default:
-					var _p60 = _p59;
-					var _v59 = _justinmimbs$elm_date_extra$Date_Extra$Day,
-						_v60 = A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p60, date1),
-						_v61 = A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p60, date2);
-					interval = _v59;
-					date1 = _v60;
-					date2 = _v61;
+					var _p21 = _p20;
+					var _v15 = _justinmimbs$elm_date_extra$Date_Extra$Day,
+						_v16 = A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p21, date1),
+						_v17 = A2(_justinmimbs$elm_date_extra$Date_Extra$floor, _p21, date2);
+					interval = _v15;
+					date1 = _v16;
+					date2 = _v17;
 					continue equalBy;
 			}
 		}
 	});
+var _justinmimbs$elm_date_extra$Date_Extra$Second = {ctor: 'Second'};
+var _justinmimbs$elm_date_extra$Date_Extra$Millisecond = {ctor: 'Millisecond'};
 
 var _AnotherKamila$stalkme$CsvTsdb_Model$default_record = {
 	date: A3(_justinmimbs$elm_date_extra$Date_Extra$fromCalendarDate, 1970, _elm_lang$core$Date$Jan, 1),
@@ -19526,115 +19446,6 @@ var _elm_community$list_extra$List_Extra$last = function (items) {
 	}
 };
 
-var _juanedi$charty$Charty_ArrayUtil$maximum = function () {
-	var combine = F2(
-		function (x, r) {
-			return _elm_lang$core$Maybe$Just(
-				A2(
-					_elm_lang$core$Basics$max,
-					x,
-					A2(_elm_lang$core$Maybe$withDefault, x, r)));
-		});
-	return A2(_elm_lang$core$Array$foldr, combine, _elm_lang$core$Maybe$Nothing);
-}();
-var _juanedi$charty$Charty_ArrayUtil$unsafeMaximum = function (a) {
-	var _p0 = _juanedi$charty$Charty_ArrayUtil$maximum(a);
-	if (_p0.ctor === 'Nothing') {
-		return _elm_lang$core$Native_Utils.crashCase(
-			'Charty.ArrayUtil',
-			{
-				start: {line: 48, column: 5},
-				end: {line: 53, column: 14}
-			},
-			_p0)('invalid state');
-	} else {
-		return _p0._0;
-	}
-};
-var _juanedi$charty$Charty_ArrayUtil$unsafeGet = F2(
-	function (i, array) {
-		var _p2 = A2(_elm_lang$core$Array$get, i, array);
-		if (_p2.ctor === 'Nothing') {
-			return _elm_lang$core$Native_Utils.crashCase(
-				'Charty.ArrayUtil',
-				{
-					start: {line: 23, column: 5},
-					end: {line: 28, column: 14}
-				},
-				_p2)('invalid state');
-		} else {
-			return _p2._0;
-		}
-	});
-var _juanedi$charty$Charty_ArrayUtil$unsafeFirst = function (array) {
-	return A2(_juanedi$charty$Charty_ArrayUtil$unsafeGet, 0, array);
-};
-var _juanedi$charty$Charty_ArrayUtil$unsafeLast = function (array) {
-	return A2(
-		_juanedi$charty$Charty_ArrayUtil$unsafeGet,
-		_elm_lang$core$Array$length(array) - 1,
-		array);
-};
-
-var _juanedi$charty$Charty_Color$defaultPalette = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: '#4D4D4D',
-		_1: {
-			ctor: '::',
-			_0: '#5DA5DA',
-			_1: {
-				ctor: '::',
-				_0: '#FAA43A',
-				_1: {
-					ctor: '::',
-					_0: '#60BD68',
-					_1: {
-						ctor: '::',
-						_0: '#F17CB0',
-						_1: {
-							ctor: '::',
-							_0: '#B2912F',
-							_1: {
-								ctor: '::',
-								_0: '#B276B2',
-								_1: {
-									ctor: '::',
-									_0: '#DECF3F',
-									_1: {
-										ctor: '::',
-										_0: '#F15854',
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _juanedi$charty$Charty_Color$assignDefaults = function (dataset) {
-	var colorCount = _elm_lang$core$Array$length(_juanedi$charty$Charty_Color$defaultPalette);
-	var color = function (index) {
-		return A2(
-			_juanedi$charty$Charty_ArrayUtil$unsafeGet,
-			A2(_elm_lang$core$Basics_ops['%'], index, colorCount),
-			_juanedi$charty$Charty_Color$defaultPalette);
-	};
-	return A2(
-		_elm_lang$core$List$indexedMap,
-		F2(
-			function (i, series) {
-				return {
-					ctor: '_Tuple2',
-					_0: color(i),
-					_1: series
-				};
-			}),
-		dataset);
-};
-
 var _elm_lang$svg$Svg$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _elm_lang$svg$Svg$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$svg$Svg$svgNamespace = A2(
@@ -19976,176 +19787,3126 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _juanedi$charty$Charty_Labels$labelRow = F3(
-	function (config, index, _p0) {
-		var _p1 = _p0;
-		var _p2 = _p1._1;
-		var displayText = (_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$String$length(_p2),
-			30) > 0) ? A2(
-			_elm_lang$core$Basics_ops['++'],
-			A2(_elm_lang$core$String$left, 27, _p2),
-			'...') : _p2;
-		var colorDimensions = 30;
-		var paddingTop = 100 + (index * 70);
-		var xBase = 1000 + 50;
+var _terezka$line_charts$Internal_Coordinate$largestRange = F2(
+	function (data, range) {
+		return {
+			min: A2(_elm_lang$core$Basics$min, data.min, range.min),
+			max: A2(_elm_lang$core$Basics$max, data.max, range.max)
+		};
+	});
+var _terezka$line_charts$Internal_Coordinate$smallestRange = F2(
+	function (data, range) {
+		return {
+			min: A2(_elm_lang$core$Basics$max, data.min, range.min),
+			max: A2(_elm_lang$core$Basics$min, data.max, range.max)
+		};
+	});
+var _terezka$line_charts$Internal_Coordinate$lengthY = function (system) {
+	return A2(_elm_lang$core$Basics$max, 1, (system.frame.size.height - system.frame.margin.bottom) - system.frame.margin.top);
+};
+var _terezka$line_charts$Internal_Coordinate$lengthX = function (system) {
+	return A2(_elm_lang$core$Basics$max, 1, (system.frame.size.width - system.frame.margin.left) - system.frame.margin.right);
+};
+var _terezka$line_charts$Internal_Coordinate$reachY = function (system) {
+	var diff = system.y.max - system.y.min;
+	return (_elm_lang$core$Native_Utils.cmp(diff, 0) > 0) ? diff : 1;
+};
+var _terezka$line_charts$Internal_Coordinate$reachX = function (system) {
+	var diff = system.x.max - system.x.min;
+	return (_elm_lang$core$Native_Utils.cmp(diff, 0) > 0) ? diff : 1;
+};
+var _terezka$line_charts$Internal_Coordinate$ground = function (range) {
+	return _elm_lang$core$Native_Utils.update(
+		range,
+		{
+			min: A2(_elm_lang$core$Basics$min, range.min, 0)
+		});
+};
+var _terezka$line_charts$Internal_Coordinate$maximum = function (toValue) {
+	return function (_p0) {
 		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			{
+			_elm_lang$core$Maybe$withDefault,
+			1,
+			_elm_lang$core$List$maximum(
+				A2(_elm_lang$core$List$map, toValue, _p0)));
+	};
+};
+var _terezka$line_charts$Internal_Coordinate$minimum = function (toValue) {
+	return function (_p1) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$minimum(
+				A2(_elm_lang$core$List$map, toValue, _p1)));
+	};
+};
+var _terezka$line_charts$Internal_Coordinate$minimumOrZero = function (toValue) {
+	return function (_p2) {
+		return A2(
+			_elm_lang$core$Basics$min,
+			0,
+			A2(_terezka$line_charts$Internal_Coordinate$minimum, toValue, _p2));
+	};
+};
+var _terezka$line_charts$Internal_Coordinate$range = F2(
+	function (toValue, data) {
+		var range = {
+			min: A2(_terezka$line_charts$Internal_Coordinate$minimum, toValue, data),
+			max: A2(_terezka$line_charts$Internal_Coordinate$maximum, toValue, data)
+		};
+		return _elm_lang$core$Native_Utils.eq(range.min, range.max) ? _elm_lang$core$Native_Utils.update(
+			range,
+			{max: range.max + 1}) : range;
+	});
+var _terezka$line_charts$Internal_Coordinate$System = F6(
+	function (a, b, c, d, e, f) {
+		return {frame: a, x: b, y: c, xData: d, yData: e, id: f};
+	});
+var _terezka$line_charts$Internal_Coordinate$Frame = F2(
+	function (a, b) {
+		return {margin: a, size: b};
+	});
+var _terezka$line_charts$Internal_Coordinate$Size = F2(
+	function (a, b) {
+		return {width: a, height: b};
+	});
+var _terezka$line_charts$Internal_Coordinate$Margin = F4(
+	function (a, b, c, d) {
+		return {top: a, right: b, bottom: c, left: d};
+	});
+var _terezka$line_charts$Internal_Coordinate$Range = F2(
+	function (a, b) {
+		return {min: a, max: b};
+	});
+
+var _terezka$line_charts$Internal_Container$sizeStyles = F3(
+	function (_p0, width, height) {
+		var _p1 = _p0;
+		var _p2 = _p1._0.size;
+		if (_p2.ctor === 'Static') {
+			return {
 				ctor: '::',
-				_0: A2(
-					_elm_lang$svg$Svg$rect,
-					{
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$x(
-							_elm_lang$core$Basics$toString(xBase)),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$y(
-								_elm_lang$core$Basics$toString(
-									paddingTop - _elm_lang$core$Basics$floor(colorDimensions / 2))),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$width(
-									_elm_lang$core$Basics$toString(colorDimensions)),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$height(
-										_elm_lang$core$Basics$toString(colorDimensions)),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$fill(_p1._0),
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					},
-					{ctor: '[]'}),
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'height',
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(height),
+						'px')
+				},
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$svg$Svg$text_,
-						{
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'width',
+						_1: A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(width),
+							'px')
+					},
+					_1: {ctor: '[]'}
+				}
+			};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
+var _terezka$line_charts$Internal_Container$properties = F2(
+	function (f, _p3) {
+		var _p4 = _p3;
+		return f(_p4._0);
+	});
+var _terezka$line_charts$Internal_Container$Properties = F5(
+	function (a, b, c, d, e) {
+		return {attributesHtml: a, attributesSvg: b, size: c, margin: d, id: e};
+	});
+var _terezka$line_charts$Internal_Container$Margin = F4(
+	function (a, b, c, d) {
+		return {top: a, right: b, bottom: c, left: d};
+	});
+var _terezka$line_charts$Internal_Container$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Container$custom = _terezka$line_charts$Internal_Container$Config;
+var _terezka$line_charts$Internal_Container$Relative = {ctor: 'Relative'};
+var _terezka$line_charts$Internal_Container$relative = _terezka$line_charts$Internal_Container$Relative;
+var _terezka$line_charts$Internal_Container$responsive = function (id) {
+	return _terezka$line_charts$Internal_Container$custom(
+		{
+			attributesHtml: {ctor: '[]'},
+			attributesSvg: {ctor: '[]'},
+			size: _terezka$line_charts$Internal_Container$relative,
+			margin: A4(_terezka$line_charts$Internal_Container$Margin, 60, 140, 60, 80),
+			id: id
+		});
+};
+var _terezka$line_charts$Internal_Container$Static = {ctor: 'Static'};
+var _terezka$line_charts$Internal_Container$static = _terezka$line_charts$Internal_Container$Static;
+var _terezka$line_charts$Internal_Container$spaced = F5(
+	function (id, top, right, bottom, left) {
+		return _terezka$line_charts$Internal_Container$custom(
+			{
+				attributesHtml: {ctor: '[]'},
+				attributesSvg: {ctor: '[]'},
+				size: _terezka$line_charts$Internal_Container$static,
+				margin: A4(_terezka$line_charts$Internal_Container$Margin, top, right, bottom, left),
+				id: id
+			});
+	});
+var _terezka$line_charts$Internal_Container$styled = F2(
+	function (id, styles) {
+		return _terezka$line_charts$Internal_Container$custom(
+			{
+				attributesHtml: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(styles),
+					_1: {ctor: '[]'}
+				},
+				attributesSvg: {ctor: '[]'},
+				size: _terezka$line_charts$Internal_Container$static,
+				margin: A4(_terezka$line_charts$Internal_Container$Margin, 60, 140, 60, 80),
+				id: id
+			});
+	});
+var _terezka$line_charts$Internal_Container$default = function (id) {
+	return A2(
+		_terezka$line_charts$Internal_Container$styled,
+		id,
+		{ctor: '[]'});
+};
+
+var _terezka$line_charts$LineChart_Container$static = _terezka$line_charts$Internal_Container$static;
+var _terezka$line_charts$LineChart_Container$relative = _terezka$line_charts$Internal_Container$relative;
+var _terezka$line_charts$LineChart_Container$custom = _terezka$line_charts$Internal_Container$custom;
+var _terezka$line_charts$LineChart_Container$responsive = _terezka$line_charts$Internal_Container$responsive;
+var _terezka$line_charts$LineChart_Container$styled = _terezka$line_charts$Internal_Container$styled;
+var _terezka$line_charts$LineChart_Container$spaced = _terezka$line_charts$Internal_Container$spaced;
+var _terezka$line_charts$LineChart_Container$default = _terezka$line_charts$Internal_Container$default;
+var _terezka$line_charts$LineChart_Container$Properties = F5(
+	function (a, b, c, d, e) {
+		return {attributesHtml: a, attributesSvg: b, size: c, margin: d, id: e};
+	});
+var _terezka$line_charts$LineChart_Container$Margin = F4(
+	function (a, b, c, d) {
+		return {top: a, right: b, bottom: c, left: d};
+	});
+
+var _terezka$line_charts$LineChart_Coordinate$scaleDataY = F2(
+	function (system, value) {
+		return (value * _terezka$line_charts$Internal_Coordinate$reachY(system)) / _terezka$line_charts$Internal_Coordinate$lengthY(system);
+	});
+var _terezka$line_charts$LineChart_Coordinate$scaleDataX = F2(
+	function (system, value) {
+		return (value * _terezka$line_charts$Internal_Coordinate$reachX(system)) / _terezka$line_charts$Internal_Coordinate$lengthX(system);
+	});
+var _terezka$line_charts$LineChart_Coordinate$scaleSvgY = F2(
+	function (system, value) {
+		return (value * _terezka$line_charts$Internal_Coordinate$lengthY(system)) / _terezka$line_charts$Internal_Coordinate$reachY(system);
+	});
+var _terezka$line_charts$LineChart_Coordinate$scaleSvgX = F2(
+	function (system, value) {
+		return (value * _terezka$line_charts$Internal_Coordinate$lengthX(system)) / _terezka$line_charts$Internal_Coordinate$reachX(system);
+	});
+var _terezka$line_charts$LineChart_Coordinate$toDataY = F2(
+	function (system, value) {
+		return system.y.max - A2(_terezka$line_charts$LineChart_Coordinate$scaleDataY, system, value - system.frame.margin.top);
+	});
+var _terezka$line_charts$LineChart_Coordinate$toDataX = F2(
+	function (system, value) {
+		return system.x.min + A2(_terezka$line_charts$LineChart_Coordinate$scaleDataX, system, value - system.frame.margin.left);
+	});
+var _terezka$line_charts$LineChart_Coordinate$toData = F2(
+	function (system, point) {
+		return {
+			x: A2(_terezka$line_charts$LineChart_Coordinate$toDataX, system, point.x),
+			y: A2(_terezka$line_charts$LineChart_Coordinate$toDataY, system, point.y)
+		};
+	});
+var _terezka$line_charts$LineChart_Coordinate$toSvgY = F2(
+	function (system, value) {
+		return A2(_terezka$line_charts$LineChart_Coordinate$scaleSvgY, system, system.y.max - value) + system.frame.margin.top;
+	});
+var _terezka$line_charts$LineChart_Coordinate$toSvgX = F2(
+	function (system, value) {
+		return A2(_terezka$line_charts$LineChart_Coordinate$scaleSvgX, system, value - system.x.min) + system.frame.margin.left;
+	});
+var _terezka$line_charts$LineChart_Coordinate$toSvg = F2(
+	function (system, point) {
+		return {
+			x: A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, point.x),
+			y: A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, point.y)
+		};
+	});
+var _terezka$line_charts$LineChart_Coordinate$Frame = F2(
+	function (a, b) {
+		return {margin: a, size: b};
+	});
+var _terezka$line_charts$LineChart_Coordinate$Size = F2(
+	function (a, b) {
+		return {width: a, height: b};
+	});
+var _terezka$line_charts$LineChart_Coordinate$System = F6(
+	function (a, b, c, d, e, f) {
+		return {frame: a, x: b, y: c, xData: d, yData: e, id: f};
+	});
+var _terezka$line_charts$LineChart_Coordinate$Range = F2(
+	function (a, b) {
+		return {min: a, max: b};
+	});
+var _terezka$line_charts$LineChart_Coordinate$Point = F2(
+	function (a, b) {
+		return {x: a, y: b};
+	});
+
+var _elm_lang$core$Color$fmod = F2(
+	function (f, n) {
+		var integer = _elm_lang$core$Basics$floor(f);
+		return (_elm_lang$core$Basics$toFloat(
+			A2(_elm_lang$core$Basics_ops['%'], integer, n)) + f) - _elm_lang$core$Basics$toFloat(integer);
+	});
+var _elm_lang$core$Color$rgbToHsl = F3(
+	function (red, green, blue) {
+		var b = _elm_lang$core$Basics$toFloat(blue) / 255;
+		var g = _elm_lang$core$Basics$toFloat(green) / 255;
+		var r = _elm_lang$core$Basics$toFloat(red) / 255;
+		var cMax = A2(
+			_elm_lang$core$Basics$max,
+			A2(_elm_lang$core$Basics$max, r, g),
+			b);
+		var cMin = A2(
+			_elm_lang$core$Basics$min,
+			A2(_elm_lang$core$Basics$min, r, g),
+			b);
+		var c = cMax - cMin;
+		var lightness = (cMax + cMin) / 2;
+		var saturation = _elm_lang$core$Native_Utils.eq(lightness, 0) ? 0 : (c / (1 - _elm_lang$core$Basics$abs((2 * lightness) - 1)));
+		var hue = _elm_lang$core$Basics$degrees(60) * (_elm_lang$core$Native_Utils.eq(cMax, r) ? A2(_elm_lang$core$Color$fmod, (g - b) / c, 6) : (_elm_lang$core$Native_Utils.eq(cMax, g) ? (((b - r) / c) + 2) : (((r - g) / c) + 4)));
+		return {ctor: '_Tuple3', _0: hue, _1: saturation, _2: lightness};
+	});
+var _elm_lang$core$Color$hslToRgb = F3(
+	function (hue, saturation, lightness) {
+		var normHue = hue / _elm_lang$core$Basics$degrees(60);
+		var chroma = (1 - _elm_lang$core$Basics$abs((2 * lightness) - 1)) * saturation;
+		var x = chroma * (1 - _elm_lang$core$Basics$abs(
+			A2(_elm_lang$core$Color$fmod, normHue, 2) - 1));
+		var _p0 = (_elm_lang$core$Native_Utils.cmp(normHue, 0) < 0) ? {ctor: '_Tuple3', _0: 0, _1: 0, _2: 0} : ((_elm_lang$core$Native_Utils.cmp(normHue, 1) < 0) ? {ctor: '_Tuple3', _0: chroma, _1: x, _2: 0} : ((_elm_lang$core$Native_Utils.cmp(normHue, 2) < 0) ? {ctor: '_Tuple3', _0: x, _1: chroma, _2: 0} : ((_elm_lang$core$Native_Utils.cmp(normHue, 3) < 0) ? {ctor: '_Tuple3', _0: 0, _1: chroma, _2: x} : ((_elm_lang$core$Native_Utils.cmp(normHue, 4) < 0) ? {ctor: '_Tuple3', _0: 0, _1: x, _2: chroma} : ((_elm_lang$core$Native_Utils.cmp(normHue, 5) < 0) ? {ctor: '_Tuple3', _0: x, _1: 0, _2: chroma} : ((_elm_lang$core$Native_Utils.cmp(normHue, 6) < 0) ? {ctor: '_Tuple3', _0: chroma, _1: 0, _2: x} : {ctor: '_Tuple3', _0: 0, _1: 0, _2: 0}))))));
+		var r = _p0._0;
+		var g = _p0._1;
+		var b = _p0._2;
+		var m = lightness - (chroma / 2);
+		return {ctor: '_Tuple3', _0: r + m, _1: g + m, _2: b + m};
+	});
+var _elm_lang$core$Color$toRgb = function (color) {
+	var _p1 = color;
+	if (_p1.ctor === 'RGBA') {
+		return {red: _p1._0, green: _p1._1, blue: _p1._2, alpha: _p1._3};
+	} else {
+		var _p2 = A3(_elm_lang$core$Color$hslToRgb, _p1._0, _p1._1, _p1._2);
+		var r = _p2._0;
+		var g = _p2._1;
+		var b = _p2._2;
+		return {
+			red: _elm_lang$core$Basics$round(255 * r),
+			green: _elm_lang$core$Basics$round(255 * g),
+			blue: _elm_lang$core$Basics$round(255 * b),
+			alpha: _p1._3
+		};
+	}
+};
+var _elm_lang$core$Color$toHsl = function (color) {
+	var _p3 = color;
+	if (_p3.ctor === 'HSLA') {
+		return {hue: _p3._0, saturation: _p3._1, lightness: _p3._2, alpha: _p3._3};
+	} else {
+		var _p4 = A3(_elm_lang$core$Color$rgbToHsl, _p3._0, _p3._1, _p3._2);
+		var h = _p4._0;
+		var s = _p4._1;
+		var l = _p4._2;
+		return {hue: h, saturation: s, lightness: l, alpha: _p3._3};
+	}
+};
+var _elm_lang$core$Color$HSLA = F4(
+	function (a, b, c, d) {
+		return {ctor: 'HSLA', _0: a, _1: b, _2: c, _3: d};
+	});
+var _elm_lang$core$Color$hsla = F4(
+	function (hue, saturation, lightness, alpha) {
+		return A4(
+			_elm_lang$core$Color$HSLA,
+			hue - _elm_lang$core$Basics$turns(
+				_elm_lang$core$Basics$toFloat(
+					_elm_lang$core$Basics$floor(hue / (2 * _elm_lang$core$Basics$pi)))),
+			saturation,
+			lightness,
+			alpha);
+	});
+var _elm_lang$core$Color$hsl = F3(
+	function (hue, saturation, lightness) {
+		return A4(_elm_lang$core$Color$hsla, hue, saturation, lightness, 1);
+	});
+var _elm_lang$core$Color$complement = function (color) {
+	var _p5 = color;
+	if (_p5.ctor === 'HSLA') {
+		return A4(
+			_elm_lang$core$Color$hsla,
+			_p5._0 + _elm_lang$core$Basics$degrees(180),
+			_p5._1,
+			_p5._2,
+			_p5._3);
+	} else {
+		var _p6 = A3(_elm_lang$core$Color$rgbToHsl, _p5._0, _p5._1, _p5._2);
+		var h = _p6._0;
+		var s = _p6._1;
+		var l = _p6._2;
+		return A4(
+			_elm_lang$core$Color$hsla,
+			h + _elm_lang$core$Basics$degrees(180),
+			s,
+			l,
+			_p5._3);
+	}
+};
+var _elm_lang$core$Color$grayscale = function (p) {
+	return A4(_elm_lang$core$Color$HSLA, 0, 0, 1 - p, 1);
+};
+var _elm_lang$core$Color$greyscale = function (p) {
+	return A4(_elm_lang$core$Color$HSLA, 0, 0, 1 - p, 1);
+};
+var _elm_lang$core$Color$RGBA = F4(
+	function (a, b, c, d) {
+		return {ctor: 'RGBA', _0: a, _1: b, _2: c, _3: d};
+	});
+var _elm_lang$core$Color$rgba = _elm_lang$core$Color$RGBA;
+var _elm_lang$core$Color$rgb = F3(
+	function (r, g, b) {
+		return A4(_elm_lang$core$Color$RGBA, r, g, b, 1);
+	});
+var _elm_lang$core$Color$lightRed = A4(_elm_lang$core$Color$RGBA, 239, 41, 41, 1);
+var _elm_lang$core$Color$red = A4(_elm_lang$core$Color$RGBA, 204, 0, 0, 1);
+var _elm_lang$core$Color$darkRed = A4(_elm_lang$core$Color$RGBA, 164, 0, 0, 1);
+var _elm_lang$core$Color$lightOrange = A4(_elm_lang$core$Color$RGBA, 252, 175, 62, 1);
+var _elm_lang$core$Color$orange = A4(_elm_lang$core$Color$RGBA, 245, 121, 0, 1);
+var _elm_lang$core$Color$darkOrange = A4(_elm_lang$core$Color$RGBA, 206, 92, 0, 1);
+var _elm_lang$core$Color$lightYellow = A4(_elm_lang$core$Color$RGBA, 255, 233, 79, 1);
+var _elm_lang$core$Color$yellow = A4(_elm_lang$core$Color$RGBA, 237, 212, 0, 1);
+var _elm_lang$core$Color$darkYellow = A4(_elm_lang$core$Color$RGBA, 196, 160, 0, 1);
+var _elm_lang$core$Color$lightGreen = A4(_elm_lang$core$Color$RGBA, 138, 226, 52, 1);
+var _elm_lang$core$Color$green = A4(_elm_lang$core$Color$RGBA, 115, 210, 22, 1);
+var _elm_lang$core$Color$darkGreen = A4(_elm_lang$core$Color$RGBA, 78, 154, 6, 1);
+var _elm_lang$core$Color$lightBlue = A4(_elm_lang$core$Color$RGBA, 114, 159, 207, 1);
+var _elm_lang$core$Color$blue = A4(_elm_lang$core$Color$RGBA, 52, 101, 164, 1);
+var _elm_lang$core$Color$darkBlue = A4(_elm_lang$core$Color$RGBA, 32, 74, 135, 1);
+var _elm_lang$core$Color$lightPurple = A4(_elm_lang$core$Color$RGBA, 173, 127, 168, 1);
+var _elm_lang$core$Color$purple = A4(_elm_lang$core$Color$RGBA, 117, 80, 123, 1);
+var _elm_lang$core$Color$darkPurple = A4(_elm_lang$core$Color$RGBA, 92, 53, 102, 1);
+var _elm_lang$core$Color$lightBrown = A4(_elm_lang$core$Color$RGBA, 233, 185, 110, 1);
+var _elm_lang$core$Color$brown = A4(_elm_lang$core$Color$RGBA, 193, 125, 17, 1);
+var _elm_lang$core$Color$darkBrown = A4(_elm_lang$core$Color$RGBA, 143, 89, 2, 1);
+var _elm_lang$core$Color$black = A4(_elm_lang$core$Color$RGBA, 0, 0, 0, 1);
+var _elm_lang$core$Color$white = A4(_elm_lang$core$Color$RGBA, 255, 255, 255, 1);
+var _elm_lang$core$Color$lightGrey = A4(_elm_lang$core$Color$RGBA, 238, 238, 236, 1);
+var _elm_lang$core$Color$grey = A4(_elm_lang$core$Color$RGBA, 211, 215, 207, 1);
+var _elm_lang$core$Color$darkGrey = A4(_elm_lang$core$Color$RGBA, 186, 189, 182, 1);
+var _elm_lang$core$Color$lightGray = A4(_elm_lang$core$Color$RGBA, 238, 238, 236, 1);
+var _elm_lang$core$Color$gray = A4(_elm_lang$core$Color$RGBA, 211, 215, 207, 1);
+var _elm_lang$core$Color$darkGray = A4(_elm_lang$core$Color$RGBA, 186, 189, 182, 1);
+var _elm_lang$core$Color$lightCharcoal = A4(_elm_lang$core$Color$RGBA, 136, 138, 133, 1);
+var _elm_lang$core$Color$charcoal = A4(_elm_lang$core$Color$RGBA, 85, 87, 83, 1);
+var _elm_lang$core$Color$darkCharcoal = A4(_elm_lang$core$Color$RGBA, 46, 52, 54, 1);
+var _elm_lang$core$Color$Radial = F5(
+	function (a, b, c, d, e) {
+		return {ctor: 'Radial', _0: a, _1: b, _2: c, _3: d, _4: e};
+	});
+var _elm_lang$core$Color$radial = _elm_lang$core$Color$Radial;
+var _elm_lang$core$Color$Linear = F3(
+	function (a, b, c) {
+		return {ctor: 'Linear', _0: a, _1: b, _2: c};
+	});
+var _elm_lang$core$Color$linear = _elm_lang$core$Color$Linear;
+
+var _fredcy$elm_parseint$ParseInt$charFromInt = function (i) {
+	return (_elm_lang$core$Native_Utils.cmp(i, 10) < 0) ? _elm_lang$core$Char$fromCode(
+		i + _elm_lang$core$Char$toCode(
+			_elm_lang$core$Native_Utils.chr('0'))) : ((_elm_lang$core$Native_Utils.cmp(i, 36) < 0) ? _elm_lang$core$Char$fromCode(
+		(i - 10) + _elm_lang$core$Char$toCode(
+			_elm_lang$core$Native_Utils.chr('A'))) : _elm_lang$core$Native_Utils.crash(
+		'ParseInt',
+		{
+			start: {line: 158, column: 9},
+			end: {line: 158, column: 20}
+		})(
+		_elm_lang$core$Basics$toString(i)));
+};
+var _fredcy$elm_parseint$ParseInt$toRadixUnsafe = F2(
+	function (radix, i) {
+		return (_elm_lang$core$Native_Utils.cmp(i, radix) < 0) ? _elm_lang$core$String$fromChar(
+			_fredcy$elm_parseint$ParseInt$charFromInt(i)) : A2(
+			_elm_lang$core$Basics_ops['++'],
+			A2(_fredcy$elm_parseint$ParseInt$toRadixUnsafe, radix, (i / radix) | 0),
+			_elm_lang$core$String$fromChar(
+				_fredcy$elm_parseint$ParseInt$charFromInt(
+					A2(_elm_lang$core$Basics_ops['%'], i, radix))));
+	});
+var _fredcy$elm_parseint$ParseInt$toOct = _fredcy$elm_parseint$ParseInt$toRadixUnsafe(8);
+var _fredcy$elm_parseint$ParseInt$toHex = _fredcy$elm_parseint$ParseInt$toRadixUnsafe(16);
+var _fredcy$elm_parseint$ParseInt$isBetween = F3(
+	function (lower, upper, c) {
+		var ci = _elm_lang$core$Char$toCode(c);
+		return (_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$Char$toCode(lower),
+			ci) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			ci,
+			_elm_lang$core$Char$toCode(upper)) < 1);
+	});
+var _fredcy$elm_parseint$ParseInt$charOffset = F2(
+	function (basis, c) {
+		return _elm_lang$core$Char$toCode(c) - _elm_lang$core$Char$toCode(basis);
+	});
+var _fredcy$elm_parseint$ParseInt$InvalidRadix = function (a) {
+	return {ctor: 'InvalidRadix', _0: a};
+};
+var _fredcy$elm_parseint$ParseInt$toRadix = F2(
+	function (radix, i) {
+		return ((_elm_lang$core$Native_Utils.cmp(2, radix) < 1) && (_elm_lang$core$Native_Utils.cmp(radix, 36) < 1)) ? ((_elm_lang$core$Native_Utils.cmp(i, 0) < 0) ? _elm_lang$core$Result$Ok(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'-',
+				A2(_fredcy$elm_parseint$ParseInt$toRadixUnsafe, radix, 0 - i))) : _elm_lang$core$Result$Ok(
+			A2(_fredcy$elm_parseint$ParseInt$toRadixUnsafe, radix, i))) : _elm_lang$core$Result$Err(
+			_fredcy$elm_parseint$ParseInt$InvalidRadix(radix));
+	});
+var _fredcy$elm_parseint$ParseInt$OutOfRange = function (a) {
+	return {ctor: 'OutOfRange', _0: a};
+};
+var _fredcy$elm_parseint$ParseInt$InvalidChar = function (a) {
+	return {ctor: 'InvalidChar', _0: a};
+};
+var _fredcy$elm_parseint$ParseInt$intFromChar = F2(
+	function (radix, c) {
+		var validInt = function (i) {
+			return (_elm_lang$core$Native_Utils.cmp(i, radix) < 0) ? _elm_lang$core$Result$Ok(i) : _elm_lang$core$Result$Err(
+				_fredcy$elm_parseint$ParseInt$OutOfRange(c));
+		};
+		var toInt = A3(
+			_fredcy$elm_parseint$ParseInt$isBetween,
+			_elm_lang$core$Native_Utils.chr('0'),
+			_elm_lang$core$Native_Utils.chr('9'),
+			c) ? _elm_lang$core$Result$Ok(
+			A2(
+				_fredcy$elm_parseint$ParseInt$charOffset,
+				_elm_lang$core$Native_Utils.chr('0'),
+				c)) : (A3(
+			_fredcy$elm_parseint$ParseInt$isBetween,
+			_elm_lang$core$Native_Utils.chr('a'),
+			_elm_lang$core$Native_Utils.chr('z'),
+			c) ? _elm_lang$core$Result$Ok(
+			10 + A2(
+				_fredcy$elm_parseint$ParseInt$charOffset,
+				_elm_lang$core$Native_Utils.chr('a'),
+				c)) : (A3(
+			_fredcy$elm_parseint$ParseInt$isBetween,
+			_elm_lang$core$Native_Utils.chr('A'),
+			_elm_lang$core$Native_Utils.chr('Z'),
+			c) ? _elm_lang$core$Result$Ok(
+			10 + A2(
+				_fredcy$elm_parseint$ParseInt$charOffset,
+				_elm_lang$core$Native_Utils.chr('A'),
+				c)) : _elm_lang$core$Result$Err(
+			_fredcy$elm_parseint$ParseInt$InvalidChar(c))));
+		return A2(_elm_lang$core$Result$andThen, validInt, toInt);
+	});
+var _fredcy$elm_parseint$ParseInt$parseIntR = F2(
+	function (radix, rstring) {
+		var _p0 = _elm_lang$core$String$uncons(rstring);
+		if (_p0.ctor === 'Nothing') {
+			return _elm_lang$core$Result$Ok(0);
+		} else {
+			return A2(
+				_elm_lang$core$Result$andThen,
+				function (ci) {
+					return A2(
+						_elm_lang$core$Result$andThen,
+						function (ri) {
+							return _elm_lang$core$Result$Ok(ci + (ri * radix));
+						},
+						A2(_fredcy$elm_parseint$ParseInt$parseIntR, radix, _p0._0._1));
+				},
+				A2(_fredcy$elm_parseint$ParseInt$intFromChar, radix, _p0._0._0));
+		}
+	});
+var _fredcy$elm_parseint$ParseInt$parseIntRadix = F2(
+	function (radix, string) {
+		return ((_elm_lang$core$Native_Utils.cmp(2, radix) < 1) && (_elm_lang$core$Native_Utils.cmp(radix, 36) < 1)) ? A2(
+			_fredcy$elm_parseint$ParseInt$parseIntR,
+			radix,
+			_elm_lang$core$String$reverse(string)) : _elm_lang$core$Result$Err(
+			_fredcy$elm_parseint$ParseInt$InvalidRadix(radix));
+	});
+var _fredcy$elm_parseint$ParseInt$parseInt = _fredcy$elm_parseint$ParseInt$parseIntRadix(10);
+var _fredcy$elm_parseint$ParseInt$parseIntOct = _fredcy$elm_parseint$ParseInt$parseIntRadix(8);
+var _fredcy$elm_parseint$ParseInt$parseIntHex = _fredcy$elm_parseint$ParseInt$parseIntRadix(16);
+
+var _eskimoblood$elm_color_extra$Color_Convert$xyzToColor = function (_p0) {
+	var _p1 = _p0;
+	var c = function (ch) {
+		var ch_ = (_elm_lang$core$Native_Utils.cmp(ch, 3.1308e-3) > 0) ? ((1.055 * Math.pow(ch, 1 / 2.4)) - 5.5e-2) : (12.92 * ch);
+		return _elm_lang$core$Basics$round(
+			A3(_elm_lang$core$Basics$clamp, 0, 255, ch_ * 255));
+	};
+	var z_ = _p1.z / 100;
+	var y_ = _p1.y / 100;
+	var x_ = _p1.x / 100;
+	var r = ((x_ * 3.2404542) + (y_ * -1.5371385)) + (z_ * -0.4986);
+	var g = ((x_ * -0.969266) + (y_ * 1.8760108)) + (z_ * 4.1556e-2);
+	var b = ((x_ * 5.56434e-2) + (y_ * -0.2040259)) + (z_ * 1.0572252);
+	return A3(
+		_elm_lang$core$Color$rgb,
+		c(r),
+		c(g),
+		c(b));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$labToXyz = function (_p2) {
+	var _p3 = _p2;
+	var y = (_p3.l + 16) / 116;
+	var c = function (ch) {
+		var ch_ = (ch * ch) * ch;
+		return (_elm_lang$core$Native_Utils.cmp(ch_, 8.856e-3) > 0) ? ch_ : ((ch - (16 / 116)) / 7.787);
+	};
+	return {
+		y: c(y) * 100,
+		x: c(y + (_p3.a / 500)) * 95.047,
+		z: c(y - (_p3.b / 200)) * 108.883
+	};
+};
+var _eskimoblood$elm_color_extra$Color_Convert$labToColor = function (_p4) {
+	return _eskimoblood$elm_color_extra$Color_Convert$xyzToColor(
+		_eskimoblood$elm_color_extra$Color_Convert$labToXyz(_p4));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$xyzToLab = function (_p5) {
+	var _p6 = _p5;
+	var c = function (ch) {
+		return (_elm_lang$core$Native_Utils.cmp(ch, 8.856e-3) > 0) ? Math.pow(ch, 1 / 3) : ((7.787 * ch) + (16 / 116));
+	};
+	var x_ = c(_p6.x / 95.047);
+	var y_ = c(_p6.y / 100);
+	var z_ = c(_p6.z / 108.883);
+	return {l: (116 * y_) - 16, a: 500 * (x_ - y_), b: 200 * (y_ - z_)};
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToXyz = function (cl) {
+	var _p7 = _elm_lang$core$Color$toRgb(cl);
+	var red = _p7.red;
+	var green = _p7.green;
+	var blue = _p7.blue;
+	var c = function (ch) {
+		var ch_ = _elm_lang$core$Basics$toFloat(ch) / 255;
+		var ch__ = (_elm_lang$core$Native_Utils.cmp(ch_, 4.045e-2) > 0) ? Math.pow((ch_ + 5.5e-2) / 1.055, 2.4) : (ch_ / 12.92);
+		return ch__ * 100;
+	};
+	var r = c(red);
+	var g = c(green);
+	var b = c(blue);
+	return {x: ((r * 0.4124) + (g * 0.3576)) + (b * 0.1805), y: ((r * 0.2126) + (g * 0.7152)) + (b * 7.22e-2), z: ((r * 1.93e-2) + (g * 0.1192)) + (b * 0.9505)};
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToLab = function (_p8) {
+	return _eskimoblood$elm_color_extra$Color_Convert$xyzToLab(
+		_eskimoblood$elm_color_extra$Color_Convert$colorToXyz(_p8));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$toRadix = function (n) {
+	var getChr = function (c) {
+		return (_elm_lang$core$Native_Utils.cmp(c, 10) < 0) ? _elm_lang$core$Basics$toString(c) : _elm_lang$core$String$fromChar(
+			_elm_lang$core$Char$fromCode(87 + c));
+	};
+	return (_elm_lang$core$Native_Utils.cmp(n, 16) < 0) ? getChr(n) : A2(
+		_elm_lang$core$Basics_ops['++'],
+		_eskimoblood$elm_color_extra$Color_Convert$toRadix((n / 16) | 0),
+		getChr(
+			A2(_elm_lang$core$Basics_ops['%'], n, 16)));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$toHex = function (_p9) {
+	return A3(
+		_elm_lang$core$String$padLeft,
+		2,
+		_elm_lang$core$Native_Utils.chr('0'),
+		_eskimoblood$elm_color_extra$Color_Convert$toRadix(_p9));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToHex = function (cl) {
+	var _p10 = _elm_lang$core$Color$toRgb(cl);
+	var red = _p10.red;
+	var green = _p10.green;
+	var blue = _p10.blue;
+	return A2(
+		_elm_lang$core$String$join,
+		'',
+		A2(
+			F2(
+				function (x, y) {
+					return {ctor: '::', _0: x, _1: y};
+				}),
+			'#',
+			A2(
+				_elm_lang$core$List$map,
+				_eskimoblood$elm_color_extra$Color_Convert$toHex,
+				{
+					ctor: '::',
+					_0: red,
+					_1: {
+						ctor: '::',
+						_0: green,
+						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$x(
-								_elm_lang$core$Basics$toString((xBase + colorDimensions) + 20)),
+							_0: blue,
+							_1: {ctor: '[]'}
+						}
+					}
+				})));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$hexToColor = function () {
+	var pattern = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'^',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'#?',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'(?:',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'(?:([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2}))',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'|',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'(?:([a-f\\d])([a-f\\d])([a-f\\d]))',
+								A2(_elm_lang$core$Basics_ops['++'], ')', '$'))))))));
+	var extend = function (token) {
+		var _p11 = _elm_lang$core$String$toList(token);
+		if ((_p11.ctor === '::') && (_p11._1.ctor === '[]')) {
+			var _p12 = _p11._0;
+			return _elm_lang$core$String$fromList(
+				{
+					ctor: '::',
+					_0: _p12,
+					_1: {
+						ctor: '::',
+						_0: _p12,
+						_1: {ctor: '[]'}
+					}
+				});
+		} else {
+			return token;
+		}
+	};
+	return function (_p13) {
+		return A2(
+			_elm_lang$core$Result$andThen,
+			function (colors) {
+				var _p15 = A2(
+					_elm_lang$core$List$map,
+					function (_p14) {
+						return _fredcy$elm_parseint$ParseInt$parseIntHex(
+							extend(_p14));
+					},
+					colors);
+				if (((((((_p15.ctor === '::') && (_p15._0.ctor === 'Ok')) && (_p15._1.ctor === '::')) && (_p15._1._0.ctor === 'Ok')) && (_p15._1._1.ctor === '::')) && (_p15._1._1._0.ctor === 'Ok')) && (_p15._1._1._1.ctor === '[]')) {
+					return _elm_lang$core$Result$Ok(
+						A3(_elm_lang$core$Color$rgb, _p15._0._0, _p15._1._0._0, _p15._1._1._0._0));
+				} else {
+					return _elm_lang$core$Result$Err('Parsing ints from hex failed');
+				}
+			},
+			A2(
+				_elm_lang$core$Result$fromMaybe,
+				'Parsing hex regex failed',
+				A2(
+					_elm_lang$core$Maybe$map,
+					_elm_lang$core$List$filterMap(_elm_lang$core$Basics$identity),
+					A2(
+						_elm_lang$core$Maybe$map,
+						function (_) {
+							return _.submatches;
+						},
+						_elm_lang$core$List$head(
+							A3(
+								_elm_lang$core$Regex$find,
+								_elm_lang$core$Regex$AtMost(1),
+								_elm_lang$core$Regex$regex(pattern),
+								_elm_lang$core$String$toLower(_p13)))))));
+	};
+}();
+var _eskimoblood$elm_color_extra$Color_Convert$cssColorString = F2(
+	function (kind, values) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			kind,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'(',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					A2(_elm_lang$core$String$join, ', ', values),
+					')')));
+	});
+var _eskimoblood$elm_color_extra$Color_Convert$toPercentString = function (_p16) {
+	return A3(
+		_elm_lang$core$Basics$flip,
+		F2(
+			function (x, y) {
+				return A2(_elm_lang$core$Basics_ops['++'], x, y);
+			}),
+		'%',
+		_elm_lang$core$Basics$toString(
+			_elm_lang$core$Basics$round(
+				A2(
+					F2(
+						function (x, y) {
+							return x * y;
+						}),
+					100,
+					_p16))));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$hueToString = function (_p17) {
+	return _elm_lang$core$Basics$toString(
+		_elm_lang$core$Basics$round(
+			A3(
+				_elm_lang$core$Basics$flip,
+				F2(
+					function (x, y) {
+						return x / y;
+					}),
+				_elm_lang$core$Basics$pi,
+				A2(
+					F2(
+						function (x, y) {
+							return x * y;
+						}),
+					180,
+					_p17))));
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToCssHsla = function (cl) {
+	var _p18 = _elm_lang$core$Color$toHsl(cl);
+	var hue = _p18.hue;
+	var saturation = _p18.saturation;
+	var lightness = _p18.lightness;
+	var alpha = _p18.alpha;
+	return A2(
+		_eskimoblood$elm_color_extra$Color_Convert$cssColorString,
+		'hsla',
+		{
+			ctor: '::',
+			_0: _eskimoblood$elm_color_extra$Color_Convert$hueToString(hue),
+			_1: {
+				ctor: '::',
+				_0: _eskimoblood$elm_color_extra$Color_Convert$toPercentString(saturation),
+				_1: {
+					ctor: '::',
+					_0: _eskimoblood$elm_color_extra$Color_Convert$toPercentString(lightness),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Basics$toString(alpha),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToCssHsl = function (cl) {
+	var _p19 = _elm_lang$core$Color$toHsl(cl);
+	var hue = _p19.hue;
+	var saturation = _p19.saturation;
+	var lightness = _p19.lightness;
+	var alpha = _p19.alpha;
+	return A2(
+		_eskimoblood$elm_color_extra$Color_Convert$cssColorString,
+		'hsl',
+		{
+			ctor: '::',
+			_0: _eskimoblood$elm_color_extra$Color_Convert$hueToString(hue),
+			_1: {
+				ctor: '::',
+				_0: _eskimoblood$elm_color_extra$Color_Convert$toPercentString(saturation),
+				_1: {
+					ctor: '::',
+					_0: _eskimoblood$elm_color_extra$Color_Convert$toPercentString(lightness),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToCssRgba = function (cl) {
+	var _p20 = _elm_lang$core$Color$toRgb(cl);
+	var red = _p20.red;
+	var green = _p20.green;
+	var blue = _p20.blue;
+	var alpha = _p20.alpha;
+	return A2(
+		_eskimoblood$elm_color_extra$Color_Convert$cssColorString,
+		'rgba',
+		{
+			ctor: '::',
+			_0: _elm_lang$core$Basics$toString(red),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(green),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Basics$toString(blue),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Basics$toString(alpha),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _eskimoblood$elm_color_extra$Color_Convert$colorToCssRgb = function (cl) {
+	var _p21 = _elm_lang$core$Color$toRgb(cl);
+	var red = _p21.red;
+	var green = _p21.green;
+	var blue = _p21.blue;
+	var alpha = _p21.alpha;
+	return A2(
+		_eskimoblood$elm_color_extra$Color_Convert$cssColorString,
+		'rgb',
+		{
+			ctor: '::',
+			_0: _elm_lang$core$Basics$toString(red),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(green),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Basics$toString(blue),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _eskimoblood$elm_color_extra$Color_Convert$XYZ = F3(
+	function (a, b, c) {
+		return {x: a, y: b, z: c};
+	});
+var _eskimoblood$elm_color_extra$Color_Convert$Lab = F3(
+	function (a, b, c) {
+		return {l: a, a: b, b: c};
+	});
+
+var _terezka$line_charts$LineChart_Colors$transparent = A4(_elm_lang$core$Color$rgba, 0, 0, 0, 0);
+var _terezka$line_charts$LineChart_Colors$grayLightest = A3(_elm_lang$core$Color$rgb, 243, 243, 243);
+var _terezka$line_charts$LineChart_Colors$grayLight = A3(_elm_lang$core$Color$rgb, 211, 211, 211);
+var _terezka$line_charts$LineChart_Colors$gray = A3(_elm_lang$core$Color$rgb, 163, 163, 163);
+var _terezka$line_charts$LineChart_Colors$black = A3(_elm_lang$core$Color$rgb, 0, 0, 0);
+var _terezka$line_charts$LineChart_Colors$strongBlue = A4(_elm_lang$core$Color$rgba, 89, 51, 204, 1);
+var _terezka$line_charts$LineChart_Colors$tealLight = A4(_elm_lang$core$Color$rgba, 128, 203, 196, 1);
+var _terezka$line_charts$LineChart_Colors$teal = A4(_elm_lang$core$Color$rgba, 29, 233, 182, 1);
+var _terezka$line_charts$LineChart_Colors$cyanLight = A4(_elm_lang$core$Color$rgba, 128, 222, 234, 1);
+var _terezka$line_charts$LineChart_Colors$cyan = A4(_elm_lang$core$Color$rgba, 0, 229, 255, 1);
+var _terezka$line_charts$LineChart_Colors$purpleLight = A4(_elm_lang$core$Color$rgba, 206, 147, 216, 1);
+var _terezka$line_charts$LineChart_Colors$purple = A4(_elm_lang$core$Color$rgba, 156, 39, 176, 1);
+var _terezka$line_charts$LineChart_Colors$rust = A4(_elm_lang$core$Color$rgba, 205, 102, 51, 1);
+var _terezka$line_charts$LineChart_Colors$redLight = A4(_elm_lang$core$Color$rgba, 239, 154, 154, 1);
+var _terezka$line_charts$LineChart_Colors$red = A4(_elm_lang$core$Color$rgba, 216, 27, 96, 1);
+var _terezka$line_charts$LineChart_Colors$greenLight = A4(_elm_lang$core$Color$rgba, 197, 225, 165, 1);
+var _terezka$line_charts$LineChart_Colors$green = A4(_elm_lang$core$Color$rgba, 67, 160, 71, 1);
+var _terezka$line_charts$LineChart_Colors$blueLight = A4(_elm_lang$core$Color$rgba, 128, 222, 234, 1);
+var _terezka$line_charts$LineChart_Colors$blue = A4(_elm_lang$core$Color$rgba, 3, 169, 244, 1);
+var _terezka$line_charts$LineChart_Colors$goldLight = A4(_elm_lang$core$Color$rgba, 255, 204, 128, 1);
+var _terezka$line_charts$LineChart_Colors$gold = A4(_elm_lang$core$Color$rgba, 205, 145, 60, 1);
+var _terezka$line_charts$LineChart_Colors$pinkLight = A4(_elm_lang$core$Color$rgba, 244, 143, 177, 1);
+var _terezka$line_charts$LineChart_Colors$pink = A4(_elm_lang$core$Color$rgba, 245, 105, 215, 1);
+
+var _terezka$line_charts$Internal_Path$bool = function (bool) {
+	return bool ? '1' : '0';
+};
+var _terezka$line_charts$Internal_Path$point = function (_p0) {
+	var _p1 = _p0;
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(_p1.x),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			' ',
+			_elm_lang$core$Basics$toString(_p1.y)));
+};
+var _terezka$line_charts$Internal_Path$points = function (points) {
+	return A2(
+		_elm_lang$core$String$join,
+		',',
+		A2(_elm_lang$core$List$map, _terezka$line_charts$Internal_Path$point, points));
+};
+var _terezka$line_charts$Internal_Path$join = function (commands) {
+	return A2(_elm_lang$core$String$join, ' ', commands);
+};
+var _terezka$line_charts$Internal_Path$toString = function (command) {
+	var _p2 = command;
+	switch (_p2.ctor) {
+		case 'Close':
+			return 'Z';
+		case 'Move':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'M',
+				_terezka$line_charts$Internal_Path$point(_p2._0));
+		case 'Line':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'L',
+				_terezka$line_charts$Internal_Path$point(_p2._0));
+		case 'Horizontal':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'H',
+				_elm_lang$core$Basics$toString(_p2._0));
+		case 'Vertical':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'V',
+				_elm_lang$core$Basics$toString(_p2._0));
+		case 'CubicBeziers':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'C',
+				_terezka$line_charts$Internal_Path$points(
+					{
+						ctor: '::',
+						_0: _p2._0,
+						_1: {
+							ctor: '::',
+							_0: _p2._1,
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$y(
-									_elm_lang$core$Basics$toString(paddingTop)),
+								_0: _p2._2,
+								_1: {ctor: '[]'}
+							}
+						}
+					}));
+		case 'CubicBeziersShort':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'Q',
+				_terezka$line_charts$Internal_Path$points(
+					{
+						ctor: '::',
+						_0: _p2._0,
+						_1: {
+							ctor: '::',
+							_0: _p2._1,
+							_1: {ctor: '[]'}
+						}
+					}));
+		case 'QuadraticBeziers':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'Q',
+				_terezka$line_charts$Internal_Path$points(
+					{
+						ctor: '::',
+						_0: _p2._0,
+						_1: {
+							ctor: '::',
+							_0: _p2._1,
+							_1: {ctor: '[]'}
+						}
+					}));
+		case 'QuadraticBeziersShort':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'T',
+				_terezka$line_charts$Internal_Path$point(_p2._0));
+		default:
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'A',
+				_terezka$line_charts$Internal_Path$join(
+					{
+						ctor: '::',
+						_0: _elm_lang$core$Basics$toString(_p2._0),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Basics$toString(_p2._1),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Basics$toString(_p2._2),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$fill(config.labelsColor),
+									_0: _terezka$line_charts$Internal_Path$bool(_p2._3),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$fontFamily('sans-serif'),
+										_0: _terezka$line_charts$Internal_Path$bool(_p2._4),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$fontSize('25px'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$alignmentBaseline('middle'),
-												_1: {ctor: '[]'}
-											}
+											_0: _terezka$line_charts$Internal_Path$point(_p2._5),
+											_1: {ctor: '[]'}
 										}
 									}
 								}
 							}
-						},
+						}
+					}));
+	}
+};
+var _terezka$line_charts$Internal_Path$toPoint = function (command) {
+	var _p3 = command;
+	switch (_p3.ctor) {
+		case 'Close':
+			return A2(_terezka$line_charts$LineChart_Coordinate$Point, 0, 0);
+		case 'Move':
+			return _p3._0;
+		case 'Line':
+			return _p3._0;
+		case 'Horizontal':
+			return A2(_terezka$line_charts$LineChart_Coordinate$Point, _p3._0, 0);
+		case 'Vertical':
+			return A2(_terezka$line_charts$LineChart_Coordinate$Point, 0, _p3._0);
+		case 'CubicBeziers':
+			return _p3._2;
+		case 'CubicBeziersShort':
+			return _p3._1;
+		case 'QuadraticBeziers':
+			return _p3._1;
+		case 'QuadraticBeziersShort':
+			return _p3._0;
+		default:
+			return _p3._5;
+	}
+};
+var _terezka$line_charts$Internal_Path$viewPath = function (attributes) {
+	return A2(
+		_elm_lang$svg$Svg$path,
+		attributes,
+		{ctor: '[]'});
+};
+var _terezka$line_charts$Internal_Path$Close = {ctor: 'Close'};
+var _terezka$line_charts$Internal_Path$Arc = F6(
+	function (a, b, c, d, e, f) {
+		return {ctor: 'Arc', _0: a, _1: b, _2: c, _3: d, _4: e, _5: f};
+	});
+var _terezka$line_charts$Internal_Path$QuadraticBeziersShort = function (a) {
+	return {ctor: 'QuadraticBeziersShort', _0: a};
+};
+var _terezka$line_charts$Internal_Path$QuadraticBeziers = F2(
+	function (a, b) {
+		return {ctor: 'QuadraticBeziers', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Path$CubicBeziersShort = F2(
+	function (a, b) {
+		return {ctor: 'CubicBeziersShort', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Path$CubicBeziers = F3(
+	function (a, b, c) {
+		return {ctor: 'CubicBeziers', _0: a, _1: b, _2: c};
+	});
+var _terezka$line_charts$Internal_Path$Vertical = function (a) {
+	return {ctor: 'Vertical', _0: a};
+};
+var _terezka$line_charts$Internal_Path$Horizontal = function (a) {
+	return {ctor: 'Horizontal', _0: a};
+};
+var _terezka$line_charts$Internal_Path$Line = function (a) {
+	return {ctor: 'Line', _0: a};
+};
+var _terezka$line_charts$Internal_Path$Move = function (a) {
+	return {ctor: 'Move', _0: a};
+};
+var _terezka$line_charts$Internal_Path$translate = F2(
+	function (system, command) {
+		var _p4 = command;
+		switch (_p4.ctor) {
+			case 'Move':
+				return _terezka$line_charts$Internal_Path$Move(
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._0));
+			case 'Line':
+				return _terezka$line_charts$Internal_Path$Line(
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._0));
+			case 'Horizontal':
+				return _terezka$line_charts$Internal_Path$Horizontal(
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, _p4._0));
+			case 'Vertical':
+				return _terezka$line_charts$Internal_Path$Vertical(
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, _p4._0));
+			case 'CubicBeziers':
+				return A3(
+					_terezka$line_charts$Internal_Path$CubicBeziers,
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._0),
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._1),
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._2));
+			case 'CubicBeziersShort':
+				return A2(
+					_terezka$line_charts$Internal_Path$CubicBeziersShort,
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._0),
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._1));
+			case 'QuadraticBeziers':
+				return A2(
+					_terezka$line_charts$Internal_Path$QuadraticBeziers,
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._0),
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._1));
+			case 'QuadraticBeziersShort':
+				return _terezka$line_charts$Internal_Path$QuadraticBeziersShort(
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._0));
+			case 'Arc':
+				return A6(
+					_terezka$line_charts$Internal_Path$Arc,
+					_p4._0,
+					_p4._1,
+					_p4._2,
+					_p4._3,
+					_p4._4,
+					A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, _p4._5));
+			default:
+				return _terezka$line_charts$Internal_Path$Close;
+		}
+	});
+var _terezka$line_charts$Internal_Path$description = F2(
+	function (system, commands) {
+		return _terezka$line_charts$Internal_Path$join(
+			A2(
+				_elm_lang$core$List$map,
+				function (_p5) {
+					return _terezka$line_charts$Internal_Path$toString(
+						A2(_terezka$line_charts$Internal_Path$translate, system, _p5));
+				},
+				commands));
+	});
+var _terezka$line_charts$Internal_Path$view = F3(
+	function (system, attributes, commands) {
+		return _terezka$line_charts$Internal_Path$viewPath(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				attributes,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$d(
+						A2(_terezka$line_charts$Internal_Path$description, system, commands)),
+					_1: {ctor: '[]'}
+				}));
+	});
+
+var _terezka$line_charts$Internal_Utils$part = F4(
+	function (isReal, points, current, parts) {
+		part:
+		while (true) {
+			var _p0 = points;
+			if (_p0.ctor === '::') {
+				var _p2 = _p0._1;
+				var _p1 = _p0._0;
+				if (isReal(_p1)) {
+					var _v1 = isReal,
+						_v2 = _p2,
+						_v3 = A2(
+						_elm_lang$core$Basics_ops['++'],
+						current,
 						{
 							ctor: '::',
-							_0: _elm_lang$svg$Svg$text(displayText),
+							_0: _p1,
 							_1: {ctor: '[]'}
 						}),
+						_v4 = parts;
+					isReal = _v1;
+					points = _v2;
+					current = _v3;
+					parts = _v4;
+					continue part;
+				} else {
+					var _v5 = isReal,
+						_v6 = _p2,
+						_v7 = {ctor: '[]'},
+						_v8 = {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: current,
+							_1: _elm_lang$core$Maybe$Just(_p1)
+						},
+						_1: parts
+					};
+					isReal = _v5;
+					points = _v6;
+					current = _v7;
+					parts = _v8;
+					continue part;
+				}
+			} else {
+				return {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: current, _1: _elm_lang$core$Maybe$Nothing},
+					_1: parts
+				};
+			}
+		}
+	});
+var _terezka$line_charts$Internal_Utils$magnitude = function (num) {
+	return _elm_lang$core$Basics$toFloat(
+		Math.pow(
+			10,
+			_elm_lang$core$Basics$floor(
+				A2(_elm_lang$core$Basics$logBase, _elm_lang$core$Basics$e, num) / A2(_elm_lang$core$Basics$logBase, _elm_lang$core$Basics$e, 10))));
+};
+var _terezka$line_charts$Internal_Utils$toChartAreaId = function (id) {
+	return A2(_elm_lang$core$Basics_ops['++'], 'chart__chart-area--', id);
+};
+var _terezka$line_charts$Internal_Utils$last = function (list) {
+	return _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$drop,
+			_elm_lang$core$List$length(list) - 1,
+			list));
+};
+var _terezka$line_charts$Internal_Utils$lastSafe = F2(
+	function (first, rest) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			first,
+			_terezka$line_charts$Internal_Utils$last(rest));
+	});
+var _terezka$line_charts$Internal_Utils$towardsZero = function (_p3) {
+	var _p4 = _p3;
+	return A3(_elm_lang$core$Basics$clamp, _p4.min, _p4.max, 0);
+};
+var _terezka$line_charts$Internal_Utils$viewWithEdges = F2(
+	function (stuff, view) {
+		var _p5 = stuff;
+		if (_p5.ctor === '::') {
+			var _p7 = _p5._1;
+			var _p6 = _p5._0;
+			return A3(
+				view,
+				_p6,
+				_p7,
+				A2(_terezka$line_charts$Internal_Utils$lastSafe, _p6, _p7));
+		} else {
+			return _elm_lang$svg$Svg$text('');
+		}
+	});
+var _terezka$line_charts$Internal_Utils$viewWithFirst = F2(
+	function (stuff, view) {
+		var _p8 = stuff;
+		if (_p8.ctor === '::') {
+			return A2(view, _p8._0, _p8._1);
+		} else {
+			return _elm_lang$svg$Svg$text('');
+		}
+	});
+var _terezka$line_charts$Internal_Utils$withFirst = F2(
+	function (stuff, process) {
+		var _p9 = stuff;
+		if (_p9.ctor === '::') {
+			return _elm_lang$core$Maybe$Just(
+				A2(process, _p9._0, _p9._1));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _terezka$line_charts$Internal_Utils$nonEmptyList = function (list) {
+	return _elm_lang$core$List$isEmpty(list) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(list);
+};
+var _terezka$line_charts$Internal_Utils$viewMaybeHtml = F2(
+	function (a, view) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			_elm_lang$html$Html$text(''),
+			A2(_elm_lang$core$Maybe$map, view, a));
+	});
+var _terezka$line_charts$Internal_Utils$viewMaybe = F2(
+	function (a, view) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			_elm_lang$svg$Svg$text(''),
+			A2(_elm_lang$core$Maybe$map, view, a));
+	});
+var _terezka$line_charts$Internal_Utils$viewIf = F2(
+	function (condition, view) {
+		return condition ? view(
+			{ctor: '_Tuple0'}) : _elm_lang$svg$Svg$text('');
+	});
+var _terezka$line_charts$Internal_Utils$indexedMap2 = F3(
+	function (f, a, b) {
+		var collect = F4(
+			function (a, b, i, c) {
+				collect:
+				while (true) {
+					var _p10 = {ctor: '_Tuple2', _0: a, _1: b};
+					if (_p10._0.ctor === '::') {
+						if (_p10._1.ctor === '::') {
+							var _v14 = _p10._0._1,
+								_v15 = _p10._1._1,
+								_v16 = i + 1,
+								_v17 = A2(
+								_elm_lang$core$Basics_ops['++'],
+								c,
+								{
+									ctor: '::',
+									_0: A3(f, i, _p10._0._0, _p10._1._0),
+									_1: {ctor: '[]'}
+								});
+							a = _v14;
+							b = _v15;
+							i = _v16;
+							c = _v17;
+							continue collect;
+						} else {
+							return c;
+						}
+					} else {
+						return c;
+					}
+				}
+			});
+		return A4(
+			collect,
+			a,
+			b,
+			0,
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Utils$unzip3 = function (pairs) {
+	var step = F2(
+		function (_p12, _p11) {
+			var _p13 = _p12;
+			var _p14 = _p11;
+			return {
+				ctor: '_Tuple3',
+				_0: {ctor: '::', _0: _p13._0, _1: _p14._0},
+				_1: {ctor: '::', _0: _p13._1, _1: _p14._1},
+				_2: {ctor: '::', _0: _p13._2, _1: _p14._2}
+			};
+		});
+	return A3(
+		_elm_lang$core$List$foldr,
+		step,
+		{
+			ctor: '_Tuple3',
+			_0: {ctor: '[]'},
+			_1: {ctor: '[]'},
+			_2: {ctor: '[]'}
+		},
+		pairs);
+};
+var _terezka$line_charts$Internal_Utils$concat = F3(
+	function (first, second, third) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			first,
+			A2(_elm_lang$core$Basics_ops['++'], second, third));
+	});
+var _terezka$line_charts$Internal_Utils$apply2 = F3(
+	function (stuff1, stuff2, toNewStuff) {
+		return A2(toNewStuff, stuff1, stuff2);
+	});
+var _terezka$line_charts$Internal_Utils$apply = F2(
+	function (stuff, toNewStuff) {
+		return toNewStuff(stuff);
+	});
+
+var _terezka$line_charts$Internal_Svg$anchorStyle = function (anchor) {
+	var anchorString = function () {
+		var _p0 = anchor;
+		switch (_p0.ctor) {
+			case 'Start':
+				return 'start';
+			case 'Middle':
+				return 'middle';
+			default:
+				return 'end';
+		}
+	}();
+	return _elm_lang$svg$Svg_Attributes$style(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'text-anchor: ',
+			A2(_elm_lang$core$Basics_ops['++'], anchorString, ';')));
+};
+var _terezka$line_charts$Internal_Svg$label = F2(
+	function (color, string) {
+		return A2(
+			_elm_lang$svg$Svg$text_,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$fill(color),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
 					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$tspan,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg$text(string),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$Internal_Svg$yTick = F5(
+	function (system, width, userAttributes, x, y) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__tick'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
+					_1: {ctor: '[]'}
+				}
+			},
+			userAttributes,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$x1(
+					_elm_lang$core$Basics$toString(
+						A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, x))),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$x2(
+						_elm_lang$core$Basics$toString(
+							A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, x) - width)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$y1(
+							_elm_lang$core$Basics$toString(
+								A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, y))),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$y2(
+								_elm_lang$core$Basics$toString(
+									A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, y))),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+		return A2(
+			_elm_lang$svg$Svg$line,
+			attributes,
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Svg$xTick = F5(
+	function (system, height, userAttributes, y, x) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
+				_1: {ctor: '[]'}
+			},
+			userAttributes,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$x1(
+					_elm_lang$core$Basics$toString(
+						A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, x))),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$x2(
+						_elm_lang$core$Basics$toString(
+							A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, x))),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$y1(
+							_elm_lang$core$Basics$toString(
+								A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, y))),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$y2(
+								_elm_lang$core$Basics$toString(
+									A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, y) + height)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+		return A2(
+			_elm_lang$svg$Svg$line,
+			attributes,
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Svg$rectangle = F6(
+	function (system, userAttributes, x1, x2, y1, y2) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$fill(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
+				_1: {ctor: '[]'}
+			},
+			userAttributes,
+			{ctor: '[]'});
+		return A3(
+			_terezka$line_charts$Internal_Path$view,
+			system,
+			attributes,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Path$Move(
+					{x: x1, y: y1}),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Path$Line(
+						{x: x1, y: y2}),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Path$Line(
+							{x: x2, y: y2}),
+						_1: {
+							ctor: '::',
+							_0: _terezka$line_charts$Internal_Path$Line(
+								{x: x2, y: y1}),
+							_1: {ctor: '[]'}
+						}
+					}
 				}
 			});
 	});
-var _juanedi$charty$Charty_Labels$drawLabels = F2(
-	function (config, slices) {
-		var labels = function (slices) {
-			return A2(
-				_elm_lang$core$List$indexedMap,
-				_juanedi$charty$Charty_Labels$labelRow(config),
-				slices);
-		};
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			labels(slices));
-	});
-var _juanedi$charty$Charty_Labels$withLabels = F3(
-	function (config, labels, chart) {
-		var background = A2(
-			_elm_lang$svg$Svg$rect,
+var _terezka$line_charts$Internal_Svg$vertical = F5(
+	function (system, userAttributes, x, y1, y2) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
 			{
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('1450'),
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$height('1000'),
+					_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
+					_1: {ctor: '[]'}
+				}
+			},
+			userAttributes,
+			{ctor: '[]'});
+		return A3(
+			_terezka$line_charts$Internal_Path$view,
+			system,
+			attributes,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Path$Move(
+					{x: x, y: y1}),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Path$Line(
+						{x: x, y: y1}),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill(config.background),
+						_0: _terezka$line_charts$Internal_Path$Line(
+							{x: x, y: y2}),
 						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Svg$verticalGrid = F3(
+	function (system, userAttributes, x) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
+					_1: {ctor: '[]'}
+				}
+			},
+			userAttributes,
+			{ctor: '[]'});
+		return A5(_terezka$line_charts$Internal_Svg$vertical, system, attributes, x, system.y.min, system.y.max);
+	});
+var _terezka$line_charts$Internal_Svg$horizontal = F5(
+	function (system, userAttributes, y, x1, x2) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
+					_1: {ctor: '[]'}
+				}
+			},
+			userAttributes,
+			{ctor: '[]'});
+		return A3(
+			_terezka$line_charts$Internal_Path$view,
+			system,
+			attributes,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Path$Move(
+					{x: x1, y: y}),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Path$Line(
+						{x: x1, y: y}),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Path$Line(
+							{x: x2, y: y}),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Svg$horizontalGrid = F3(
+	function (system, userAttributes, y) {
+		var attributes = A3(
+			_terezka$line_charts$Internal_Utils$concat,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_terezka$line_charts$LineChart_Colors$gray)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
+					_1: {ctor: '[]'}
+				}
+			},
+			userAttributes,
+			{ctor: '[]'});
+		return A5(_terezka$line_charts$Internal_Svg$horizontal, system, attributes, y, system.x.min, system.x.max);
+	});
+var _terezka$line_charts$Internal_Svg$gridDot = F3(
+	function (radius, color, point) {
+		return A2(
+			_elm_lang$svg$Svg$circle,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$cx(
+					_elm_lang$core$Basics$toString(point.x)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$cy(
+						_elm_lang$core$Basics$toString(point.y)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$r(
+							_elm_lang$core$Basics$toString(radius)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$fill(
+								_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+							_1: {ctor: '[]'}
+						}
 					}
 				}
 			},
 			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Svg$withinChartArea = function (_p1) {
+	var _p2 = _p1;
+	return _elm_lang$svg$Svg_Attributes$clipPath(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'url(#',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_terezka$line_charts$Internal_Utils$toChartAreaId(_p2.id),
+				')')));
+};
+var _terezka$line_charts$Internal_Svg$End = {ctor: 'End'};
+var _terezka$line_charts$Internal_Svg$Middle = {ctor: 'Middle'};
+var _terezka$line_charts$Internal_Svg$Start = {ctor: 'Start'};
+var _terezka$line_charts$Internal_Svg$Transfrom = F2(
+	function (a, b) {
+		return {ctor: 'Transfrom', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Svg$move = F3(
+	function (system, x, y) {
 		return A2(
-			_elm_lang$svg$Svg$svg,
+			_terezka$line_charts$Internal_Svg$Transfrom,
+			A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, x),
+			A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, y));
+	});
+var _terezka$line_charts$Internal_Svg$offset = F2(
+	function (x, y) {
+		return A2(_terezka$line_charts$Internal_Svg$Transfrom, x, y);
+	});
+var _terezka$line_charts$Internal_Svg$addPosition = F2(
+	function (_p4, _p3) {
+		var _p5 = _p4;
+		var _p6 = _p3;
+		return A2(_terezka$line_charts$Internal_Svg$Transfrom, _p6._0 + _p5._0, _p6._1 + _p5._1);
+	});
+var _terezka$line_charts$Internal_Svg$toPosition = A2(
+	_elm_lang$core$List$foldr,
+	_terezka$line_charts$Internal_Svg$addPosition,
+	A2(_terezka$line_charts$Internal_Svg$Transfrom, 0, 0));
+var _terezka$line_charts$Internal_Svg$transform = function (translations) {
+	var _p7 = _terezka$line_charts$Internal_Svg$toPosition(translations);
+	var x = _p7._0;
+	var y = _p7._1;
+	return _elm_lang$svg$Svg_Attributes$transform(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'translate(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(x),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					', ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(y),
+						')')))));
+};
+
+var _terezka$line_charts$Internal_Junk$find = F2(
+	function (hovered, data) {
+		find:
+		while (true) {
+			var _p0 = hovered;
+			if (_p0.ctor === '[]') {
+				return _elm_lang$core$Maybe$Nothing;
+			} else {
+				var _p1 = _p0._0;
+				if (A2(
+					_elm_lang$core$List$any,
+					F2(
+						function (x, y) {
+							return _elm_lang$core$Native_Utils.eq(x, y);
+						})(_p1),
+					data)) {
+					return _elm_lang$core$Maybe$Just(_p1);
+				} else {
+					var _v1 = _p0._1,
+						_v2 = data;
+					hovered = _v1;
+					data = _v2;
+					continue find;
+				}
+			}
+		}
+	});
+var _terezka$line_charts$Internal_Junk$findSeries = F2(
+	function (hovered, datas) {
+		findSeries:
+		while (true) {
+			var _p2 = datas;
+			if (_p2.ctor === '[]') {
+				return _elm_lang$core$Maybe$Nothing;
+			} else {
+				var _p4 = _p2._0._2;
+				var _p3 = A2(
+					_terezka$line_charts$Internal_Junk$find,
+					{
+						ctor: '::',
+						_0: hovered,
+						_1: {ctor: '[]'}
+					},
+					_p4);
+				if (_p3.ctor === 'Just') {
+					return _elm_lang$core$Maybe$Just(
+						{ctor: '_Tuple3', _0: _p2._0._0, _1: _p2._0._1, _2: _p4});
+				} else {
+					var _v5 = hovered,
+						_v6 = _p2._1;
+					hovered = _v5;
+					datas = _v6;
+					continue findSeries;
+				}
+			}
+		}
+	});
+var _terezka$line_charts$Internal_Junk$shouldFlip = F2(
+	function (system, x) {
+		return _elm_lang$core$Native_Utils.cmp(x - system.x.min, system.x.max - x) > 0;
+	});
+var _terezka$line_charts$Internal_Junk$middle = F2(
+	function (r, system) {
+		var range = r(system);
+		return range.min + ((range.max - range.min) / 2);
+	});
+var _terezka$line_charts$Internal_Junk$viewRow = F3(
+	function (color, label, value) {
+		return A2(
+			_elm_lang$html$Html$p,
 			{
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 1450 1000'),
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'margin', _1: '3px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'color', _1: color},
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						label,
+						A2(_elm_lang$core$Basics_ops['++'], ': ', value))),
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$Internal_Junk$viewHeader = _elm_lang$html$Html$p(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$style(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '3px'},
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$style('width: 100%; height:auto;'),
+					_0: {ctor: '_Tuple2', _0: 'margin-bottom', _1: '5px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'padding', _1: '3px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'border-bottom', _1: '1px solid rgb(163, 163, 163)'},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}),
+		_1: {ctor: '[]'}
+	});
+var _terezka$line_charts$Internal_Junk$standardStyles = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'padding', _1: '5px'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'min-width', _1: '100px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'background', _1: 'rgba(255,255,255,0.8)'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'border', _1: '1px solid #d3d3d3'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '5px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'pointer-events', _1: 'none'},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	}
+};
+var _terezka$line_charts$Internal_Junk$hoverAt = F5(
+	function (system, x, y, styles, view) {
+		var yPercentage = (A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, y) * 100) / system.frame.size.height;
+		var space = A2(_terezka$line_charts$Internal_Junk$shouldFlip, system, x) ? -15 : 15;
+		var xPercentage = ((A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, x) + space) * 100) / system.frame.size.width;
+		var posititonStyles = {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'left',
+				_1: A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(xPercentage),
+					'%')
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'top',
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(yPercentage),
+						'%')
+				},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '-400px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$line_charts$Internal_Junk$shouldFlip, system, x) ? {ctor: '_Tuple2', _0: 'transform', _1: 'translateX(-100%)'} : {ctor: '_Tuple2', _0: 'transform', _1: 'translateX(0)'},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		};
+		var containerStyles = A2(
+			_elm_lang$core$Basics_ops['++'],
+			_terezka$line_charts$Internal_Junk$standardStyles,
+			A2(_elm_lang$core$Basics_ops['++'], posititonStyles, styles));
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(containerStyles),
+				_1: {ctor: '[]'}
+			},
+			view);
+	});
+var _terezka$line_charts$Internal_Junk$hover = F3(
+	function (system, x, styles) {
+		var containerStyles = A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: A2(_terezka$line_charts$Internal_Junk$shouldFlip, system, x) ? {ctor: '_Tuple2', _0: 'transform', _1: 'translate(-100%, -50%)'} : {ctor: '_Tuple2', _0: 'transform', _1: 'translate(0, -50%)'},
+				_1: {ctor: '[]'}
+			},
+			styles);
+		var y = A2(
+			_terezka$line_charts$Internal_Junk$middle,
+			function (_) {
+				return _.y;
+			},
+			system);
+		return A4(_terezka$line_charts$Internal_Junk$hoverAt, system, x, y, containerStyles);
+	});
+var _terezka$line_charts$Internal_Junk$hoverManyHtml = F8(
+	function (system, toX, toY, formatX, formatY, first, hovered, series) {
+		var viewValue = function (_p5) {
+			var _p6 = _p5;
+			return A2(
+				_terezka$line_charts$Internal_Utils$viewMaybe,
+				A2(_terezka$line_charts$Internal_Junk$find, hovered, _p6._2),
+				function (hovered) {
+					return A3(
+						_terezka$line_charts$Internal_Junk$viewRow,
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p6._0),
+						_p6._1,
+						formatY(hovered));
+				});
+		};
+		var x = A2(
+			_elm_lang$core$Maybe$withDefault,
+			A2(
+				_terezka$line_charts$Internal_Junk$middle,
+				function (_) {
+					return _.x;
+				},
+				system),
+			toX(first));
+		return A4(
+			_terezka$line_charts$Internal_Junk$hover,
+			system,
+			x,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Junk$viewHeader(
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							formatX(first)),
+						_1: {ctor: '[]'}
+					}),
+				_1: A2(_elm_lang$core$List$map, viewValue, series)
+			});
+	});
+var _terezka$line_charts$Internal_Junk$hoverOneHtml = F6(
+	function (series, system, toX, toY, properties, hovered) {
+		var viewValue = function (_p7) {
+			var _p8 = _p7;
+			return A3(
+				_terezka$line_charts$Internal_Junk$viewRow,
+				'inherit',
+				_p8._0,
+				_p8._1(hovered));
+		};
+		var viewColorLabel = F2(
+			function (color, label) {
+				return A2(
+					_elm_lang$html$Html$p,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin', _1: '0'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'color', _1: color},
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(label),
+						_1: {ctor: '[]'}
+					});
+			});
+		var viewHeaderOne = A2(
+			_terezka$line_charts$Internal_Utils$viewMaybe,
+			A2(_terezka$line_charts$Internal_Junk$findSeries, hovered, series),
+			function (_p9) {
+				var _p10 = _p9;
+				return _terezka$line_charts$Internal_Junk$viewHeader(
+					{
+						ctor: '::',
+						_0: A2(
+							viewColorLabel,
+							_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p10._0),
+							_p10._1),
+						_1: {ctor: '[]'}
+					});
+			});
+		var y = A2(
+			_elm_lang$core$Maybe$withDefault,
+			A2(
+				_terezka$line_charts$Internal_Junk$middle,
+				function (_) {
+					return _.y;
+				},
+				system),
+			toY(hovered));
+		var x = A2(
+			_elm_lang$core$Maybe$withDefault,
+			A2(
+				_terezka$line_charts$Internal_Junk$middle,
+				function (_) {
+					return _.x;
+				},
+				system),
+			toX(hovered));
+		return A5(
+			_terezka$line_charts$Internal_Junk$hoverAt,
+			system,
+			x,
+			y,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: viewHeaderOne,
+				_1: A2(_elm_lang$core$List$map, viewValue, properties)
+			});
+	});
+var _terezka$line_charts$Internal_Junk$addBelow = F2(
+	function (below, layers) {
+		return _elm_lang$core$Native_Utils.update(
+			layers,
+			{
+				below: A2(_elm_lang$core$Basics_ops['++'], below, layers.below)
+			});
+	});
+var _terezka$line_charts$Internal_Junk$getLayers = F5(
+	function (series, toX, toY, system, _p11) {
+		var _p12 = _p11;
+		return A4(_p12._0, series, toX, toY, system);
+	});
+var _terezka$line_charts$Internal_Junk$Layers = F3(
+	function (a, b, c) {
+		return {below: a, above: b, html: c};
+	});
+var _terezka$line_charts$Internal_Junk$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Junk$none = _terezka$line_charts$Internal_Junk$Config(
+	F4(
+		function (_p16, _p15, _p14, _p13) {
+			return A3(
+				_terezka$line_charts$Internal_Junk$Layers,
+				{ctor: '[]'},
+				{ctor: '[]'},
+				{ctor: '[]'});
+		}));
+var _terezka$line_charts$Internal_Junk$custom = function (func) {
+	return _terezka$line_charts$Internal_Junk$Config(
+		F3(
+			function (_p19, _p18, _p17) {
+				return func;
+			}));
+};
+var _terezka$line_charts$Internal_Junk$hoverOne = F2(
+	function (hovered, properties) {
+		return _terezka$line_charts$Internal_Junk$Config(
+			F4(
+				function (series, toX, toY, system) {
+					return {
+						below: {ctor: '[]'},
+						above: {ctor: '[]'},
+						html: {
+							ctor: '::',
+							_0: A2(
+								_terezka$line_charts$Internal_Utils$viewMaybe,
+								hovered,
+								A5(_terezka$line_charts$Internal_Junk$hoverOneHtml, series, system, toX, toY, properties)),
+							_1: {ctor: '[]'}
+						}
+					};
+				}));
+	});
+var _terezka$line_charts$Internal_Junk$hoverMany = F3(
+	function (hovered, formatX, formatY) {
+		var _p20 = hovered;
+		if (_p20.ctor === '[]') {
+			return _terezka$line_charts$Internal_Junk$none;
+		} else {
+			var _p21 = _p20._0;
+			return _terezka$line_charts$Internal_Junk$Config(
+				F4(
+					function (series, toX, toY, system) {
+						var xValue = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							toX(_p21));
+						return {
+							below: {
+								ctor: '::',
+								_0: A3(
+									_terezka$line_charts$Internal_Svg$verticalGrid,
+									system,
+									{ctor: '[]'},
+									xValue),
+								_1: {ctor: '[]'}
+							},
+							above: {ctor: '[]'},
+							html: {
+								ctor: '::',
+								_0: A8(_terezka$line_charts$Internal_Junk$hoverManyHtml, system, toX, toY, formatX, formatY, _p21, hovered, series),
+								_1: {ctor: '[]'}
+							}
+						};
+					}));
+		}
+	});
+
+var _terezka$line_charts$LineChart_Junk$hoverAt = _terezka$line_charts$Internal_Junk$hoverAt;
+var _terezka$line_charts$LineChart_Junk$hover = _terezka$line_charts$Internal_Junk$hover;
+var _terezka$line_charts$LineChart_Junk$withinChartArea = _terezka$line_charts$Internal_Svg$withinChartArea;
+var _terezka$line_charts$LineChart_Junk$label = function (color) {
+	return _terezka$line_charts$Internal_Svg$label(
+		_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color));
+};
+var _terezka$line_charts$LineChart_Junk$circle = F5(
+	function (system, radius, color, x, y) {
+		return A3(
+			_terezka$line_charts$Internal_Svg$gridDot,
+			radius,
+			color,
+			A2(
+				_terezka$line_charts$LineChart_Coordinate$toSvg,
+				system,
+				A2(_terezka$line_charts$LineChart_Coordinate$Point, x, y)));
+	});
+var _terezka$line_charts$LineChart_Junk$rectangle = F2(
+	function (system, attributes) {
+		return A2(
+			_terezka$line_charts$Internal_Svg$rectangle,
+			system,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$withinChartArea(system),
+				_1: attributes
+			});
+	});
+var _terezka$line_charts$LineChart_Junk$horizontalCustom = F2(
+	function (system, attributes) {
+		return A2(
+			_terezka$line_charts$Internal_Svg$horizontal,
+			system,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$withinChartArea(system),
+				_1: attributes
+			});
+	});
+var _terezka$line_charts$LineChart_Junk$verticalCustom = F2(
+	function (system, attributes) {
+		return A2(
+			_terezka$line_charts$Internal_Svg$vertical,
+			system,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$withinChartArea(system),
+				_1: attributes
+			});
+	});
+var _terezka$line_charts$LineChart_Junk$horizontal = F3(
+	function (system, attributes, at) {
+		return A5(
+			_terezka$line_charts$Internal_Svg$horizontal,
+			system,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$withinChartArea(system),
+				_1: attributes
+			},
+			at,
+			system.x.min,
+			system.x.max);
+	});
+var _terezka$line_charts$LineChart_Junk$vertical = F3(
+	function (system, attributes, at) {
+		return A5(
+			_terezka$line_charts$Internal_Svg$vertical,
+			system,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$withinChartArea(system),
+				_1: attributes
+			},
+			at,
+			system.y.min,
+			system.y.max);
+	});
+var _terezka$line_charts$LineChart_Junk$offset = _terezka$line_charts$Internal_Svg$offset;
+var _terezka$line_charts$LineChart_Junk$move = _terezka$line_charts$Internal_Svg$move;
+var _terezka$line_charts$LineChart_Junk$transform = _terezka$line_charts$Internal_Svg$transform;
+var _terezka$line_charts$LineChart_Junk$placed = F5(
+	function (system, x, y, xo, yo) {
+		return _elm_lang$svg$Svg$g(
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$transform(
+					{
+						ctor: '::',
+						_0: A3(_terezka$line_charts$LineChart_Junk$move, system, x, y),
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$line_charts$LineChart_Junk$offset, xo, yo),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$LineChart_Junk$labelAt = F8(
+	function (system, x, y, xo, yo, anchor, color, text) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Junk$transform(
+					{
+						ctor: '::',
+						_0: A3(_terezka$line_charts$LineChart_Junk$move, system, x, y),
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$line_charts$LineChart_Junk$offset, xo, yo),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$style(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'text-anchor: ',
+							A2(_elm_lang$core$Basics_ops['++'], anchor, ';'))),
 					_1: {ctor: '[]'}
 				}
 			},
 			{
 				ctor: '::',
-				_0: background,
-				_1: {
-					ctor: '::',
-					_0: chart,
-					_1: {
-						ctor: '::',
-						_0: A2(_juanedi$charty$Charty_Labels$drawLabels, config, labels),
-						_1: {ctor: '[]'}
-					}
-				}
+				_0: A2(_terezka$line_charts$LineChart_Junk$label, color, text),
+				_1: {ctor: '[]'}
 			});
 	});
-var _juanedi$charty$Charty_Labels$Config = F2(
-	function (a, b) {
-		return {background: a, labelsColor: b};
+var _terezka$line_charts$LineChart_Junk$custom = _terezka$line_charts$Internal_Junk$custom;
+var _terezka$line_charts$LineChart_Junk$hoverMany = _terezka$line_charts$Internal_Junk$hoverMany;
+var _terezka$line_charts$LineChart_Junk$hoverOne = _terezka$line_charts$Internal_Junk$hoverOne;
+var _terezka$line_charts$LineChart_Junk$default = _terezka$line_charts$Internal_Junk$none;
+var _terezka$line_charts$LineChart_Junk$Layers = F3(
+	function (a, b, c) {
+		return {below: a, above: b, html: c};
 	});
 
-var _juanedi$charty$Charty_SelectList$include = _elm_lang$core$Maybe$Just;
-var _juanedi$charty$Charty_SelectList$maybe = _elm_lang$core$Basics$identity;
-var _juanedi$charty$Charty_SelectList$iff = F2(
-	function (include, x) {
-		return include ? _elm_lang$core$Maybe$Just(x) : _elm_lang$core$Maybe$Nothing;
+var _terezka$line_charts$Internal_Area$opacityContainer = function (config) {
+	var _p0 = config;
+	switch (_p0.ctor) {
+		case 'None':
+			return 1;
+		case 'Normal':
+			return 1;
+		case 'Stacked':
+			return _p0._0;
+		default:
+			return _p0._0;
+	}
+};
+var _terezka$line_charts$Internal_Area$opacitySingle = function (config) {
+	var _p1 = config;
+	switch (_p1.ctor) {
+		case 'None':
+			return 0;
+		case 'Normal':
+			return _p1._0;
+		case 'Stacked':
+			return 1;
+		default:
+			return 1;
+	}
+};
+var _terezka$line_charts$Internal_Area$opacity = function (config) {
+	var _p2 = config;
+	switch (_p2.ctor) {
+		case 'None':
+			return 0;
+		case 'Normal':
+			return _p2._0;
+		case 'Stacked':
+			return _p2._0;
+		default:
+			return _p2._0;
+	}
+};
+var _terezka$line_charts$Internal_Area$hasArea = function (config) {
+	var _p3 = config;
+	switch (_p3.ctor) {
+		case 'None':
+			return false;
+		case 'Normal':
+			return true;
+		case 'Stacked':
+			return true;
+		default:
+			return true;
+	}
+};
+var _terezka$line_charts$Internal_Area$Percentage = function (a) {
+	return {ctor: 'Percentage', _0: a};
+};
+var _terezka$line_charts$Internal_Area$percentage = _terezka$line_charts$Internal_Area$Percentage;
+var _terezka$line_charts$Internal_Area$Stacked = function (a) {
+	return {ctor: 'Stacked', _0: a};
+};
+var _terezka$line_charts$Internal_Area$stacked = _terezka$line_charts$Internal_Area$Stacked;
+var _terezka$line_charts$Internal_Area$Normal = function (a) {
+	return {ctor: 'Normal', _0: a};
+};
+var _terezka$line_charts$Internal_Area$normal = _terezka$line_charts$Internal_Area$Normal;
+var _terezka$line_charts$Internal_Area$None = {ctor: 'None'};
+var _terezka$line_charts$Internal_Area$none = _terezka$line_charts$Internal_Area$None;
+var _terezka$line_charts$Internal_Area$default = _terezka$line_charts$Internal_Area$none;
+
+var _terezka$line_charts$LineChart_Area$percentage = _terezka$line_charts$Internal_Area$percentage;
+var _terezka$line_charts$LineChart_Area$stacked = _terezka$line_charts$Internal_Area$stacked;
+var _terezka$line_charts$LineChart_Area$normal = _terezka$line_charts$Internal_Area$normal;
+var _terezka$line_charts$LineChart_Area$default = _terezka$line_charts$Internal_Area$none;
+
+var _terezka$line_charts$Internal_Axis_Tick$properties = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0;
+};
+var _terezka$line_charts$Internal_Axis_Tick$isPositive = function (direction) {
+	var _p2 = direction;
+	if (_p2.ctor === 'Positive') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _terezka$line_charts$Internal_Axis_Tick$Properties = F7(
+	function (a, b, c, d, e, f, g) {
+		return {position: a, color: b, width: c, length: d, grid: e, direction: f, label: g};
 	});
-var _juanedi$charty$Charty_SelectList$unless = F2(
-	function (exclude, x) {
-		return A2(_juanedi$charty$Charty_SelectList$iff, !exclude, x);
+var _terezka$line_charts$Internal_Axis_Tick$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Tick$custom = _terezka$line_charts$Internal_Axis_Tick$Config;
+var _terezka$line_charts$Internal_Axis_Tick$Positive = {ctor: 'Positive'};
+var _terezka$line_charts$Internal_Axis_Tick$opposite = function (n) {
+	return _terezka$line_charts$Internal_Axis_Tick$custom(
+		{
+			position: n,
+			color: _terezka$line_charts$LineChart_Colors$gray,
+			width: 1,
+			length: 5,
+			grid: true,
+			direction: _terezka$line_charts$Internal_Axis_Tick$Positive,
+			label: _elm_lang$core$Maybe$Just(
+				A2(
+					_terezka$line_charts$Internal_Svg$label,
+					'inherit',
+					_elm_lang$core$Basics$toString(n)))
+		});
+};
+var _terezka$line_charts$Internal_Axis_Tick$Negative = {ctor: 'Negative'};
+var _terezka$line_charts$Internal_Axis_Tick$int = function (n) {
+	return _terezka$line_charts$Internal_Axis_Tick$custom(
+		{
+			position: _elm_lang$core$Basics$toFloat(n),
+			color: _terezka$line_charts$LineChart_Colors$gray,
+			width: 1,
+			length: 5,
+			grid: true,
+			direction: _terezka$line_charts$Internal_Axis_Tick$Negative,
+			label: _elm_lang$core$Maybe$Just(
+				A2(
+					_terezka$line_charts$Internal_Svg$label,
+					'inherit',
+					_elm_lang$core$Basics$toString(n)))
+		});
+};
+var _terezka$line_charts$Internal_Axis_Tick$float = function (n) {
+	return _terezka$line_charts$Internal_Axis_Tick$custom(
+		{
+			position: n,
+			color: _terezka$line_charts$LineChart_Colors$gray,
+			width: 1,
+			length: 5,
+			grid: true,
+			direction: _terezka$line_charts$Internal_Axis_Tick$Negative,
+			label: _elm_lang$core$Maybe$Just(
+				A2(
+					_terezka$line_charts$Internal_Svg$label,
+					'inherit',
+					_elm_lang$core$Basics$toString(n)))
+		});
+};
+var _terezka$line_charts$Internal_Axis_Tick$gridless = function (n) {
+	return _terezka$line_charts$Internal_Axis_Tick$custom(
+		{
+			position: n,
+			color: _terezka$line_charts$LineChart_Colors$gray,
+			width: 1,
+			length: 5,
+			grid: false,
+			direction: _terezka$line_charts$Internal_Axis_Tick$Negative,
+			label: _elm_lang$core$Maybe$Just(
+				A2(
+					_terezka$line_charts$Internal_Svg$label,
+					'inherit',
+					_elm_lang$core$Basics$toString(n)))
+		});
+};
+var _terezka$line_charts$Internal_Axis_Tick$labelless = function (n) {
+	return _terezka$line_charts$Internal_Axis_Tick$custom(
+		{position: n, color: _terezka$line_charts$LineChart_Colors$gray, width: 1, length: 5, grid: true, direction: _terezka$line_charts$Internal_Axis_Tick$Negative, label: _elm_lang$core$Maybe$Nothing});
+};
+var _terezka$line_charts$Internal_Axis_Tick$long = function (n) {
+	return _terezka$line_charts$Internal_Axis_Tick$custom(
+		{
+			position: n,
+			color: _terezka$line_charts$LineChart_Colors$gray,
+			width: 1,
+			length: 20,
+			grid: true,
+			direction: _terezka$line_charts$Internal_Axis_Tick$Negative,
+			label: _elm_lang$core$Maybe$Just(
+				A2(
+					_terezka$line_charts$Internal_Svg$label,
+					'inherit',
+					_elm_lang$core$Basics$toString(n)))
+		});
+};
+
+var _mgold$elm_date_format$Date_Local$brazilian = {
+	date: {
+		months: {jan: 'Janeiro', feb: 'Fevereiro', mar: 'Março', apr: 'Abril', may: 'Maio', jun: 'Junho', jul: 'Julho', aug: 'Agosto', sep: 'Setembro', oct: 'Outubro', nov: 'Novembro', dec: 'Dezembro'},
+		monthsAbbrev: {jan: 'Jan', feb: 'Fev', mar: 'Mar', apr: 'Abr', may: 'Mai', jun: 'Jun', jul: 'Jul', aug: 'Ago', sep: 'Set', oct: 'Out', nov: 'Nov', dec: 'Dez'},
+		wdays: {mon: 'Segunda-feira', tue: 'Terça-feira', wed: 'Quarta-feira', thu: 'Quinta-feira', fri: 'Sexta-feira', sat: 'Sábado', sun: 'Domingo'},
+		wdaysAbbrev: {mon: 'Seg', tue: 'Ter', wed: 'Qua', thu: 'Qui', fri: 'Sex', sat: 'Sáb', sun: 'Dom'},
+		defaultFormat: _elm_lang$core$Maybe$Just('%e de %B de %Y')
+	},
+	time: {
+		am: 'am',
+		pm: 'pm',
+		defaultFormat: _elm_lang$core$Maybe$Just('%k:%M')
+	},
+	timeZones: _elm_lang$core$Maybe$Nothing,
+	defaultFormat: _elm_lang$core$Maybe$Nothing
+};
+var _mgold$elm_date_format$Date_Local$french = {
+	date: {
+		months: {jan: 'Janvier', feb: 'Février', mar: 'Mars', apr: 'Avril', may: 'Mai', jun: 'Juin', jul: 'Juillet', aug: 'Août', sep: 'Septembre', oct: 'Octobre', nov: 'Novembre', dec: 'Décembre'},
+		monthsAbbrev: {jan: 'Jan', feb: 'Fév', mar: 'Mar', apr: 'Avr', may: 'Mai', jun: 'Jui', jul: 'Jul', aug: 'Aoû', sep: 'Sep', oct: 'Oct', nov: 'Nov', dec: 'Déc'},
+		wdays: {mon: 'Lundi', tue: 'Mardi', wed: 'Mercredi', thu: 'Jeudi', fri: 'Vendredi', sat: 'Samedi', sun: 'Dimanche'},
+		wdaysAbbrev: {mon: 'Lun', tue: 'Mar', wed: 'Mer', thu: 'Jeu', fri: 'Ven', sat: 'Sam', sun: 'Dim'},
+		defaultFormat: _elm_lang$core$Maybe$Nothing
+	},
+	time: {am: 'am', pm: 'pm', defaultFormat: _elm_lang$core$Maybe$Nothing},
+	timeZones: _elm_lang$core$Maybe$Nothing,
+	defaultFormat: _elm_lang$core$Maybe$Nothing
+};
+var _mgold$elm_date_format$Date_Local$international = {
+	date: {
+		months: {jan: 'January', feb: 'February', mar: 'March', apr: 'April', may: 'May', jun: 'June', jul: 'July', aug: 'August', sep: 'September', oct: 'October', nov: 'November', dec: 'December'},
+		monthsAbbrev: {jan: 'Jan', feb: 'Feb', mar: 'Mar', apr: 'Apr', may: 'May', jun: 'Jun', jul: 'Jul', aug: 'Aug', sep: 'Sep', oct: 'Oct', nov: 'Nov', dec: 'Dec'},
+		wdays: {mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday', fri: 'Friday', sat: 'Saturday', sun: 'Sunday'},
+		wdaysAbbrev: {mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat', sun: 'Sun'},
+		defaultFormat: _elm_lang$core$Maybe$Nothing
+	},
+	time: {am: 'am', pm: 'pm', defaultFormat: _elm_lang$core$Maybe$Nothing},
+	timeZones: _elm_lang$core$Maybe$Nothing,
+	defaultFormat: _elm_lang$core$Maybe$Nothing
+};
+var _mgold$elm_date_format$Date_Local$Local = F4(
+	function (a, b, c, d) {
+		return {date: a, time: b, timeZones: c, defaultFormat: d};
 	});
-var _juanedi$charty$Charty_SelectList$select = A2(
-	_elm_lang$core$List$foldr,
-	F2(
-		function (item, rec) {
-			var _p0 = item;
-			if (_p0.ctor === 'Just') {
-				return {ctor: '::', _0: _p0._0, _1: rec};
-			} else {
-				return rec;
+var _mgold$elm_date_format$Date_Local$Months = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return function (k) {
+											return function (l) {
+												return {jan: a, feb: b, mar: c, apr: d, may: e, jun: f, jul: g, aug: h, sep: i, oct: j, nov: k, dec: l};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+var _mgold$elm_date_format$Date_Local$WeekDays = F7(
+	function (a, b, c, d, e, f, g) {
+		return {mon: a, tue: b, wed: c, thu: d, fri: e, sat: f, sun: g};
+	});
+
+var _mgold$elm_date_format$Date_Format$padWith = function (padding) {
+	var padder = function () {
+		var _p0 = padding;
+		switch (_p0.ctor) {
+			case 'NoPadding':
+				return _elm_lang$core$Basics$identity;
+			case 'Zero':
+				return A2(
+					_elm_lang$core$String$padLeft,
+					2,
+					_elm_lang$core$Native_Utils.chr('0'));
+			case 'ZeroThreeDigits':
+				return A2(
+					_elm_lang$core$String$padLeft,
+					3,
+					_elm_lang$core$Native_Utils.chr('0'));
+			default:
+				return A2(
+					_elm_lang$core$String$padLeft,
+					2,
+					_elm_lang$core$Native_Utils.chr(' '));
+		}
+	}();
+	return function (_p1) {
+		return padder(
+			_elm_lang$core$Basics$toString(_p1));
+	};
+};
+var _mgold$elm_date_format$Date_Format$zero2twelve = function (n) {
+	return _elm_lang$core$Native_Utils.eq(n, 0) ? 12 : n;
+};
+var _mgold$elm_date_format$Date_Format$mod12 = function (h) {
+	return A2(_elm_lang$core$Basics_ops['%'], h, 12);
+};
+var _mgold$elm_date_format$Date_Format$dayOfWeekToWord = F2(
+	function (loc, dow) {
+		var _p2 = dow;
+		switch (_p2.ctor) {
+			case 'Mon':
+				return loc.mon;
+			case 'Tue':
+				return loc.tue;
+			case 'Wed':
+				return loc.wed;
+			case 'Thu':
+				return loc.thu;
+			case 'Fri':
+				return loc.fri;
+			case 'Sat':
+				return loc.sat;
+			default:
+				return loc.sun;
+		}
+	});
+var _mgold$elm_date_format$Date_Format$monthToWord = F2(
+	function (loc, m) {
+		var _p3 = m;
+		switch (_p3.ctor) {
+			case 'Jan':
+				return loc.jan;
+			case 'Feb':
+				return loc.feb;
+			case 'Mar':
+				return loc.mar;
+			case 'Apr':
+				return loc.apr;
+			case 'May':
+				return loc.may;
+			case 'Jun':
+				return loc.jun;
+			case 'Jul':
+				return loc.jul;
+			case 'Aug':
+				return loc.aug;
+			case 'Sep':
+				return loc.sep;
+			case 'Oct':
+				return loc.oct;
+			case 'Nov':
+				return loc.nov;
+			default:
+				return loc.dec;
+		}
+	});
+var _mgold$elm_date_format$Date_Format$monthToInt = function (m) {
+	var _p4 = m;
+	switch (_p4.ctor) {
+		case 'Jan':
+			return 1;
+		case 'Feb':
+			return 2;
+		case 'Mar':
+			return 3;
+		case 'Apr':
+			return 4;
+		case 'May':
+			return 5;
+		case 'Jun':
+			return 6;
+		case 'Jul':
+			return 7;
+		case 'Aug':
+			return 8;
+		case 'Sep':
+			return 9;
+		case 'Oct':
+			return 10;
+		case 'Nov':
+			return 11;
+		default:
+			return 12;
+	}
+};
+var _mgold$elm_date_format$Date_Format$re = _elm_lang$core$Regex$regex('%(_|-|0)?(%|Y|y|m|B|b|d|e|a|A|H|k|I|l|L|p|P|M|S)');
+var _mgold$elm_date_format$Date_Format$ZeroThreeDigits = {ctor: 'ZeroThreeDigits'};
+var _mgold$elm_date_format$Date_Format$Zero = {ctor: 'Zero'};
+var _mgold$elm_date_format$Date_Format$Space = {ctor: 'Space'};
+var _mgold$elm_date_format$Date_Format$NoPadding = {ctor: 'NoPadding'};
+var _mgold$elm_date_format$Date_Format$formatToken = F3(
+	function (loc, d, m) {
+		var _p5 = function () {
+			var _p6 = m.submatches;
+			_v4_4:
+			do {
+				if (_p6.ctor === '::') {
+					if (_p6._0.ctor === 'Just') {
+						if (((_p6._1.ctor === '::') && (_p6._1._0.ctor === 'Just')) && (_p6._1._1.ctor === '[]')) {
+							switch (_p6._0._0) {
+								case '-':
+									return {
+										ctor: '_Tuple2',
+										_0: _elm_lang$core$Maybe$Just(_mgold$elm_date_format$Date_Format$NoPadding),
+										_1: _p6._1._0._0
+									};
+								case '_':
+									return {
+										ctor: '_Tuple2',
+										_0: _elm_lang$core$Maybe$Just(_mgold$elm_date_format$Date_Format$Space),
+										_1: _p6._1._0._0
+									};
+								case '0':
+									return {
+										ctor: '_Tuple2',
+										_0: _elm_lang$core$Maybe$Just(_mgold$elm_date_format$Date_Format$Zero),
+										_1: _p6._1._0._0
+									};
+								default:
+									break _v4_4;
+							}
+						} else {
+							break _v4_4;
+						}
+					} else {
+						if (((_p6._1.ctor === '::') && (_p6._1._0.ctor === 'Just')) && (_p6._1._1.ctor === '[]')) {
+							return {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: _p6._1._0._0};
+						} else {
+							break _v4_4;
+						}
+					}
+				} else {
+					break _v4_4;
+				}
+			} while(false);
+			return {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: ' '};
+		}();
+		var padding = _p5._0;
+		var symbol = _p5._1;
+		var _p7 = symbol;
+		switch (_p7) {
+			case '%':
+				return '%';
+			case 'Y':
+				return _elm_lang$core$Basics$toString(
+					_elm_lang$core$Date$year(d));
+			case 'y':
+				return A2(
+					_elm_lang$core$String$right,
+					2,
+					_elm_lang$core$Basics$toString(
+						_elm_lang$core$Date$year(d)));
+			case 'm':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Zero, padding),
+					_mgold$elm_date_format$Date_Format$monthToInt(
+						_elm_lang$core$Date$month(d)));
+			case 'B':
+				return A2(
+					_mgold$elm_date_format$Date_Format$monthToWord,
+					loc.date.months,
+					_elm_lang$core$Date$month(d));
+			case 'b':
+				return A2(
+					_mgold$elm_date_format$Date_Format$monthToWord,
+					loc.date.monthsAbbrev,
+					_elm_lang$core$Date$month(d));
+			case 'd':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Zero, padding),
+					_elm_lang$core$Date$day(d));
+			case 'e':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Space, padding),
+					_elm_lang$core$Date$day(d));
+			case 'a':
+				return A2(
+					_mgold$elm_date_format$Date_Format$dayOfWeekToWord,
+					loc.date.wdaysAbbrev,
+					_elm_lang$core$Date$dayOfWeek(d));
+			case 'A':
+				return A2(
+					_mgold$elm_date_format$Date_Format$dayOfWeekToWord,
+					loc.date.wdays,
+					_elm_lang$core$Date$dayOfWeek(d));
+			case 'H':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Zero, padding),
+					_elm_lang$core$Date$hour(d));
+			case 'k':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Space, padding),
+					_elm_lang$core$Date$hour(d));
+			case 'I':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Zero, padding),
+					_mgold$elm_date_format$Date_Format$zero2twelve(
+						_mgold$elm_date_format$Date_Format$mod12(
+							_elm_lang$core$Date$hour(d))));
+			case 'l':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Space, padding),
+					_mgold$elm_date_format$Date_Format$zero2twelve(
+						_mgold$elm_date_format$Date_Format$mod12(
+							_elm_lang$core$Date$hour(d))));
+			case 'p':
+				return (_elm_lang$core$Native_Utils.cmp(
+					_elm_lang$core$Date$hour(d),
+					12) < 0) ? _elm_lang$core$String$toUpper(loc.time.am) : _elm_lang$core$String$toUpper(loc.time.pm);
+			case 'P':
+				return (_elm_lang$core$Native_Utils.cmp(
+					_elm_lang$core$Date$hour(d),
+					12) < 0) ? loc.time.am : loc.time.pm;
+			case 'M':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Zero, padding),
+					_elm_lang$core$Date$minute(d));
+			case 'S':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$Zero, padding),
+					_elm_lang$core$Date$second(d));
+			case 'L':
+				return A2(
+					_mgold$elm_date_format$Date_Format$padWith,
+					A2(_elm_lang$core$Maybe$withDefault, _mgold$elm_date_format$Date_Format$ZeroThreeDigits, padding),
+					_elm_lang$core$Date$millisecond(d));
+			default:
+				return '';
+		}
+	});
+var _mgold$elm_date_format$Date_Format$localFormat = F3(
+	function (loc, s, d) {
+		return A4(
+			_elm_lang$core$Regex$replace,
+			_elm_lang$core$Regex$All,
+			_mgold$elm_date_format$Date_Format$re,
+			A2(_mgold$elm_date_format$Date_Format$formatToken, loc, d),
+			s);
+	});
+var _mgold$elm_date_format$Date_Format$format = F2(
+	function (s, d) {
+		return A3(_mgold$elm_date_format$Date_Format$localFormat, _mgold$elm_date_format$Date_Local$international, s, d);
+	});
+var _mgold$elm_date_format$Date_Format$formatISO8601 = _mgold$elm_date_format$Date_Format$format('%Y-%m-%dT%H:%M:%SZ');
+
+var _terezka$line_charts$LineChart_Axis_Tick$formatBold = function (unit) {
+	return function (_p0) {
+		return function () {
+			var _p1 = unit;
+			switch (_p1.ctor) {
+				case 'Millisecond':
+					return function (_p2) {
+						return _elm_lang$core$Basics$toString(
+							_elm_lang$core$Date$toTime(_p2));
+					};
+				case 'Second':
+					return _mgold$elm_date_format$Date_Format$format('%S');
+				case 'Minute':
+					return _mgold$elm_date_format$Date_Format$format('%M');
+				case 'Hour':
+					return _mgold$elm_date_format$Date_Format$format('%l%P');
+				case 'Day':
+					return _mgold$elm_date_format$Date_Format$format('%a');
+				case 'Week':
+					return _justinmimbs$elm_date_extra$Date_Extra$toFormattedString('\'Week\' w');
+				case 'Month':
+					return _mgold$elm_date_format$Date_Format$format('%b');
+				default:
+					return _mgold$elm_date_format$Date_Format$format('%Y');
 			}
-		}),
-	{ctor: '[]'});
+		}()(
+			_elm_lang$core$Date$fromTime(_p0));
+	};
+};
+var _terezka$line_charts$LineChart_Axis_Tick$formatNorm = F2(
+	function (unit, time) {
+		var format2 = _justinmimbs$elm_date_extra$Date_Extra$toFormattedString;
+		var format1 = _mgold$elm_date_format$Date_Format$format;
+		var date = _elm_lang$core$Date$fromTime(time);
+		var _p3 = unit;
+		switch (_p3.ctor) {
+			case 'Millisecond':
+				return _elm_lang$core$Basics$toString(time);
+			case 'Second':
+				return A2(format1, '%S', date);
+			case 'Minute':
+				return A2(format1, '%M', date);
+			case 'Hour':
+				return A2(format1, '%l%P', date);
+			case 'Day':
+				return A2(format1, '%e', date);
+			case 'Week':
+				return A2(format2, '\'Week\' w', date);
+			case 'Month':
+				return A2(format1, '%b', date);
+			default:
+				return A2(format1, '%Y', date);
+		}
+	});
+var _terezka$line_charts$LineChart_Axis_Tick$custom = _terezka$line_charts$Internal_Axis_Tick$custom;
+var _terezka$line_charts$LineChart_Axis_Tick$positive = _terezka$line_charts$Internal_Axis_Tick$Positive;
+var _terezka$line_charts$LineChart_Axis_Tick$negative = _terezka$line_charts$Internal_Axis_Tick$Negative;
+var _terezka$line_charts$LineChart_Axis_Tick$long = _terezka$line_charts$Internal_Axis_Tick$long;
+var _terezka$line_charts$LineChart_Axis_Tick$opposite = _terezka$line_charts$Internal_Axis_Tick$opposite;
+var _terezka$line_charts$LineChart_Axis_Tick$labelless = _terezka$line_charts$Internal_Axis_Tick$labelless;
+var _terezka$line_charts$LineChart_Axis_Tick$gridless = _terezka$line_charts$Internal_Axis_Tick$gridless;
+var _terezka$line_charts$LineChart_Axis_Tick$float = _terezka$line_charts$Internal_Axis_Tick$float;
+var _terezka$line_charts$LineChart_Axis_Tick$int = _terezka$line_charts$Internal_Axis_Tick$int;
+var _terezka$line_charts$LineChart_Axis_Tick$Time = F4(
+	function (a, b, c, d) {
+		return {timestamp: a, isFirst: b, interval: c, change: d};
+	});
+var _terezka$line_charts$LineChart_Axis_Tick$Interval = F2(
+	function (a, b) {
+		return {unit: a, multiple: b};
+	});
+var _terezka$line_charts$LineChart_Axis_Tick$Properties = F7(
+	function (a, b, c, d, e, f, g) {
+		return {position: a, color: b, width: c, length: d, grid: e, direction: f, label: g};
+	});
+var _terezka$line_charts$LineChart_Axis_Tick$Year = {ctor: 'Year'};
+var _terezka$line_charts$LineChart_Axis_Tick$Month = {ctor: 'Month'};
+var _terezka$line_charts$LineChart_Axis_Tick$Week = {ctor: 'Week'};
+var _terezka$line_charts$LineChart_Axis_Tick$Day = {ctor: 'Day'};
+var _terezka$line_charts$LineChart_Axis_Tick$Hour = {ctor: 'Hour'};
+var _terezka$line_charts$LineChart_Axis_Tick$Minute = {ctor: 'Minute'};
+var _terezka$line_charts$LineChart_Axis_Tick$Second = {ctor: 'Second'};
+var _terezka$line_charts$LineChart_Axis_Tick$nextUnit = function (unit) {
+	var _p4 = unit;
+	switch (_p4.ctor) {
+		case 'Millisecond':
+			return _terezka$line_charts$LineChart_Axis_Tick$Second;
+		case 'Second':
+			return _terezka$line_charts$LineChart_Axis_Tick$Minute;
+		case 'Minute':
+			return _terezka$line_charts$LineChart_Axis_Tick$Hour;
+		case 'Hour':
+			return _terezka$line_charts$LineChart_Axis_Tick$Day;
+		case 'Day':
+			return _terezka$line_charts$LineChart_Axis_Tick$Week;
+		case 'Week':
+			return _terezka$line_charts$LineChart_Axis_Tick$Month;
+		case 'Month':
+			return _terezka$line_charts$LineChart_Axis_Tick$Year;
+		default:
+			return _terezka$line_charts$LineChart_Axis_Tick$Year;
+	}
+};
+var _terezka$line_charts$LineChart_Axis_Tick$format = function (_p5) {
+	var _p6 = _p5;
+	var _p9 = _p6.timestamp;
+	var _p8 = _p6.interval;
+	if (_p6.isFirst) {
+		return A2(
+			_terezka$line_charts$LineChart_Axis_Tick$formatBold,
+			_terezka$line_charts$LineChart_Axis_Tick$nextUnit(_p8.unit),
+			_p9);
+	} else {
+		var _p7 = _p6.change;
+		if (_p7.ctor === 'Just') {
+			return A2(_terezka$line_charts$LineChart_Axis_Tick$formatBold, _p7._0, _p9);
+		} else {
+			return A2(_terezka$line_charts$LineChart_Axis_Tick$formatNorm, _p8.unit, _p9);
+		}
+	}
+};
+var _terezka$line_charts$LineChart_Axis_Tick$time = function (time) {
+	return _terezka$line_charts$LineChart_Axis_Tick$custom(
+		{
+			position: time.timestamp,
+			color: _elm_lang$core$Color$gray,
+			width: 1,
+			length: 5,
+			grid: true,
+			direction: _terezka$line_charts$LineChart_Axis_Tick$negative,
+			label: _elm_lang$core$Maybe$Just(
+				A2(
+					_terezka$line_charts$Internal_Svg$label,
+					'inherit',
+					_terezka$line_charts$LineChart_Axis_Tick$format(time)))
+		});
+};
+var _terezka$line_charts$LineChart_Axis_Tick$Millisecond = {ctor: 'Millisecond'};
+
+var _terezka$line_charts$Internal_Data$isWithinRange = F2(
+	function (system, point) {
+		return _elm_lang$core$Native_Utils.eq(
+			A3(_elm_lang$core$Basics$clamp, system.x.min, system.x.max, point.x),
+			point.x) && _elm_lang$core$Native_Utils.eq(
+			A3(_elm_lang$core$Basics$clamp, system.y.min, system.y.max, point.y),
+			point.y);
+	});
+var _terezka$line_charts$Internal_Data$Data = F3(
+	function (a, b, c) {
+		return {user: a, point: b, isReal: c};
+	});
+var _terezka$line_charts$Internal_Data$Point = F2(
+	function (a, b) {
+		return {x: a, y: b};
+	});
+
+var _terezka$line_charts$Internal_Axis_Range$applyY = F2(
+	function (range, system) {
+		var _p0 = range;
+		switch (_p0.ctor) {
+			case 'Padded':
+				var _p4 = _p0._0;
+				var _p3 = _p0._1;
+				var _p1 = system;
+				var frame = _p1.frame;
+				var _p2 = frame;
+				var size = _p2.size;
+				var system_ = _elm_lang$core$Native_Utils.update(
+					system,
+					{
+						frame: _elm_lang$core$Native_Utils.update(
+							frame,
+							{
+								size: _elm_lang$core$Native_Utils.update(
+									size,
+									{
+										height: A2(_elm_lang$core$Basics$max, 1, (size.height - _p4) - _p3)
+									})
+							})
+					});
+				var scale = _terezka$line_charts$LineChart_Coordinate$scaleDataY(system_);
+				return A2(
+					_terezka$line_charts$LineChart_Coordinate$Range,
+					system.y.min - scale(_p4),
+					system.y.max + scale(_p3));
+			case 'Window':
+				return A2(_terezka$line_charts$LineChart_Coordinate$Range, _p0._0, _p0._1);
+			default:
+				return _p0._0(system.y);
+		}
+	});
+var _terezka$line_charts$Internal_Axis_Range$applyX = F2(
+	function (range, system) {
+		var _p5 = range;
+		switch (_p5.ctor) {
+			case 'Padded':
+				var _p9 = _p5._0;
+				var _p8 = _p5._1;
+				var _p6 = system;
+				var frame = _p6.frame;
+				var _p7 = frame;
+				var size = _p7.size;
+				var system_ = _elm_lang$core$Native_Utils.update(
+					system,
+					{
+						frame: _elm_lang$core$Native_Utils.update(
+							frame,
+							{
+								size: _elm_lang$core$Native_Utils.update(
+									size,
+									{
+										width: A2(_elm_lang$core$Basics$max, 1, (size.width - _p9) - _p8)
+									})
+							})
+					});
+				var scale = _terezka$line_charts$LineChart_Coordinate$scaleDataX(system_);
+				return A2(
+					_terezka$line_charts$LineChart_Coordinate$Range,
+					system.x.min - scale(_p9),
+					system.x.max + scale(_p8));
+			case 'Window':
+				return A2(_terezka$line_charts$LineChart_Coordinate$Range, _p5._0, _p5._1);
+			default:
+				return _p5._0(system.x);
+		}
+	});
+var _terezka$line_charts$Internal_Axis_Range$Custom = function (a) {
+	return {ctor: 'Custom', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Range$custom = _terezka$line_charts$Internal_Axis_Range$Custom;
+var _terezka$line_charts$Internal_Axis_Range$Window = F2(
+	function (a, b) {
+		return {ctor: 'Window', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Axis_Range$window = _terezka$line_charts$Internal_Axis_Range$Window;
+var _terezka$line_charts$Internal_Axis_Range$Padded = F2(
+	function (a, b) {
+		return {ctor: 'Padded', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Axis_Range$padded = _terezka$line_charts$Internal_Axis_Range$Padded;
+var _terezka$line_charts$Internal_Axis_Range$default = A2(_terezka$line_charts$Internal_Axis_Range$padded, 0, 0);
 
 var _myrho$elm_round$Round$funNum = F3(
 	function (fun, s, fl) {
@@ -20356,500 +23117,4654 @@ var _myrho$elm_round$Round$roundCom = _myrho$elm_round$Round$roundFun(
 	});
 var _myrho$elm_round$Round$roundNumCom = _myrho$elm_round$Round$funNum(_myrho$elm_round$Round$roundCom);
 
-var _juanedi$charty$Charty_LineChart$drawPoint = F3(
-	function (transform, color, point) {
-		var handle = F2(
-			function (event, setting) {
-				return A2(
-					_elm_lang$core$Maybe$map,
-					function (f) {
-						return event(
-							f(point));
-					},
-					setting);
-			});
-		var _p0 = transform(point);
-		var x = _p0._0;
-		var y = _p0._1;
-		return A2(
-			_elm_lang$svg$Svg$circle,
-			_juanedi$charty$Charty_SelectList$select(
-				{
-					ctor: '::',
-					_0: _juanedi$charty$Charty_SelectList$include(
-						_elm_lang$svg$Svg_Attributes$cx(
-							_elm_lang$core$Basics$toString(x))),
-					_1: {
-						ctor: '::',
-						_0: _juanedi$charty$Charty_SelectList$include(
-							_elm_lang$svg$Svg_Attributes$cy(
-								_elm_lang$core$Basics$toString(y))),
-						_1: {
-							ctor: '::',
-							_0: _juanedi$charty$Charty_SelectList$include(
-								_elm_lang$svg$Svg_Attributes$r('10')),
-							_1: {
-								ctor: '::',
-								_0: _juanedi$charty$Charty_SelectList$include(
-									_elm_lang$svg$Svg_Attributes$fill(color)),
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}),
-			{ctor: '[]'});
-	});
-var _juanedi$charty$Charty_LineChart$drawPoints = F2(
-	function (transform, _p1) {
-		var _p2 = _p1;
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			A2(
-				_elm_lang$core$List$map,
-				A2(_juanedi$charty$Charty_LineChart$drawPoint, transform, _p2._0),
-				_p2._1.data));
-	});
-var _juanedi$charty$Charty_LineChart$drawLine = F2(
-	function (transform, _p3) {
-		var _p4 = _p3;
-		var pointString = function (_p5) {
-			var _p6 = _p5;
+var _terezka$line_charts$Internal_Axis_Values_Time$magnitude = F2(
+	function (interval, unit) {
+		var _p0 = unit;
+		if (_p0.ctor === 'Year') {
 			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				_elm_lang$core$Basics$toString(_p6._0),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					' ',
-					_elm_lang$core$Basics$toString(_p6._1)));
-		};
-		var attr = A2(
-			_elm_lang$core$String$join,
-			', ',
-			A2(
-				_elm_lang$core$List$map,
-				function (_p7) {
-					return pointString(
-						transform(_p7));
-				},
-				_p4._1.data));
-		return A2(
-			_elm_lang$svg$Svg$polyline,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$points(attr),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$stroke(_p4._0),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
-						_1: {ctor: '[]'}
-					}
-				}
-			},
-			{ctor: '[]'});
+				_elm_lang$core$Basics$max,
+				1,
+				_terezka$line_charts$Internal_Utils$magnitude(interval));
+		} else {
+			return 1;
+		}
 	});
-var _juanedi$charty$Charty_LineChart$initTransform = F2(
-	function (_p9, _p8) {
-		var _p10 = _p9;
-		var _p11 = _p8;
-		var _p15 = _p11.top;
-		var _p14 = _p11.left;
-		var scaleFactor = F3(
-			function (vm, vM, v) {
-				return _elm_lang$core$Native_Utils.eq(vm, vM) ? 0.5 : ((v - vm) / (vM - vm));
-			});
-		var drawingHeight = (1000 - _p15) - _p11.bottom;
-		var drawingWidth = (1000 - _p11.right) - _p14;
-		return function (_p12) {
-			var _p13 = _p12;
-			return {
-				ctor: '_Tuple2',
-				_0: _p14 + (drawingWidth * A3(scaleFactor, _p10.xMin, _p10.xMax, _p13._0)),
-				_1: (1000 - _p15) - (drawingHeight * A3(scaleFactor, _p10.yMin, _p10.yMax, _p13._1))
-			};
-		};
-	});
-var _juanedi$charty$Charty_LineChart$gsub = F2(
-	function (regex, replacement) {
-		return A3(
-			_elm_lang$core$Regex$replace,
-			_elm_lang$core$Regex$All,
-			_elm_lang$core$Regex$regex(regex),
-			_elm_lang$core$Basics$always(replacement));
-	});
-var _juanedi$charty$Charty_LineChart$label = function (precision) {
-	return function (_p16) {
-		return A3(
-			_juanedi$charty$Charty_LineChart$gsub,
-			'\\.0+$',
-			'',
-			A2(_myrho$elm_round$Round$ceiling, precision, _p16));
+var _terezka$line_charts$Internal_Axis_Values_Time$highestMultiple = function (_p1) {
+	return _elm_lang$core$Basics$toFloat(
+		A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$head(
+				_elm_lang$core$List$reverse(_p1))));
+};
+var _terezka$line_charts$Internal_Axis_Values_Time$toParts = function (date) {
+	return {
+		ctor: '_Tuple7',
+		_0: _elm_lang$core$Date$year(date),
+		_1: _elm_lang$core$Date$month(date),
+		_2: _elm_lang$core$Date$day(date),
+		_3: _elm_lang$core$Date$hour(date),
+		_4: _elm_lang$core$Date$minute(date),
+		_5: _elm_lang$core$Date$second(date),
+		_6: _elm_lang$core$Date$millisecond(date)
 	};
 };
-var _juanedi$charty$Charty_LineChart$axis = F2(
-	function (cfg, drawingSettings) {
-		var axisLine = F2(
-			function (_p18, _p17) {
-				var _p19 = _p18;
-				var _p20 = _p17;
-				return A2(
-					_elm_lang$svg$Svg$line,
-					{
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$x1(
-							_elm_lang$core$Basics$toString(_p19._0)),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$y1(
-								_elm_lang$core$Basics$toString(_p19._1)),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$x2(
-									_elm_lang$core$Basics$toString(_p20._0)),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$y2(
-										_elm_lang$core$Basics$toString(_p20._1)),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$stroke('#CFCFCF'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$strokeDasharray('5 5'),
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}
-						}
-					},
-					{ctor: '[]'});
-			});
-		var _p21 = drawingSettings.padding;
-		var top = _p21.top;
-		var right = _p21.right;
-		var bottom = _p21.bottom;
-		var left = _p21.left;
-		var referenceLine = function (yVal) {
-			var yT = _elm_lang$core$Tuple$second(
-				drawingSettings.transform(
-					{ctor: '_Tuple2', _0: 0, _1: yVal}));
-			return A2(
-				_elm_lang$svg$Svg$g,
-				{ctor: '[]'},
-				{
+var _terezka$line_charts$Internal_Axis_Values_Time$toExtraUnit = function (unit) {
+	var _p2 = unit;
+	switch (_p2.ctor) {
+		case 'Millisecond':
+			return _justinmimbs$elm_date_extra$Date_Extra$Millisecond;
+		case 'Second':
+			return _justinmimbs$elm_date_extra$Date_Extra$Second;
+		case 'Minute':
+			return _justinmimbs$elm_date_extra$Date_Extra$Minute;
+		case 'Hour':
+			return _justinmimbs$elm_date_extra$Date_Extra$Hour;
+		case 'Day':
+			return _justinmimbs$elm_date_extra$Date_Extra$Day;
+		case 'Week':
+			return _justinmimbs$elm_date_extra$Date_Extra$Week;
+		case 'Month':
+			return _justinmimbs$elm_date_extra$Date_Extra$Month;
+		default:
+			return _justinmimbs$elm_date_extra$Date_Extra$Year;
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values_Time$multiples = function (unit) {
+	var _p3 = unit;
+	switch (_p3.ctor) {
+		case 'Millisecond':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
 					ctor: '::',
-					_0: A2(
-						axisLine,
-						{ctor: '_Tuple2', _0: left, _1: yT},
-						{ctor: '_Tuple2', _0: 1000 - right, _1: yT}),
+					_0: 2,
 					_1: {
 						ctor: '::',
-						_0: A2(
-							_elm_lang$svg$Svg$text_,
-							{
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 10,
+							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$x(
-									_elm_lang$core$Basics$toString(left - 15)),
+								_0: 20,
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$y(
-										_elm_lang$core$Basics$toString(yT + 8)),
+									_0: 25,
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$textAnchor('end'),
+										_0: 50,
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$fontFamily('Oxygen,Helvetica,Arial,sans-serif'),
+											_0: 100,
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$fontSize('24px'),
+												_0: 200,
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$fill('#CFCFCF'),
+													_0: 500,
 													_1: {ctor: '[]'}
 												}
 											}
 										}
 									}
 								}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$svg$Svg$text(
-									A2(_juanedi$charty$Charty_LineChart$label, cfg.labelPrecision, yVal)),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				});
-		};
-		var yLabels = A3(
-			_elm_lang$core$Array$foldr,
-			F2(
-				function (l, r) {
-					return {
-						ctor: '::',
-						_0: referenceLine(l),
-						_1: r
-					};
-				}),
-			{ctor: '[]'},
-			drawingSettings.yLabels);
-		var yAxis = A2(
-			axisLine,
-			{ctor: '_Tuple2', _0: left, _1: bottom},
-			{ctor: '_Tuple2', _0: left, _1: 1000 - top});
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			{ctor: '::', _0: yAxis, _1: yLabels});
-	});
-var _juanedi$charty$Charty_LineChart$initPadding = F2(
-	function (cfg, yLabels) {
-		var labelOffset = function (_p22) {
-			return function (n) {
-				return _elm_lang$core$Basics$toFloat(n) * 20;
-			}(
-				_elm_lang$core$String$length(
-					A3(
-						_juanedi$charty$Charty_LineChart$gsub,
-						'\\.',
-						'',
-						A2(_juanedi$charty$Charty_LineChart$label, cfg.labelPrecision, _p22))));
-		};
-		var leftOffset = _juanedi$charty$Charty_ArrayUtil$unsafeMaximum(
-			A2(_elm_lang$core$Array$map, labelOffset, yLabels));
-		return {top: 50, right: 50, bottom: 50, left: leftOffset};
-	});
-var _juanedi$charty$Charty_LineChart$initYLabels = F2(
-	function (yMin, yMax) {
-		if (_elm_lang$core$Native_Utils.eq(yMin, yMax)) {
-			return _elm_lang$core$Array$fromList(
-				_elm_lang$core$List$sort(
-					{
-						ctor: '::',
-						_0: 0,
-						_1: {
-							ctor: '::',
-							_0: yMin,
-							_1: {
-								ctor: '::',
-								_0: 2 * yMin,
-								_1: {ctor: '[]'}
 							}
 						}
-					}));
-		} else {
-			var splitRange = F3(
-				function (min, max, pieces) {
-					if (_elm_lang$core$Native_Utils.eq(pieces, 0)) {
-						return {
-							ctor: '::',
-							_0: min,
-							_1: {ctor: '[]'}
-						};
-					} else {
-						var step = (max - min) / _elm_lang$core$Basics$toFloat(pieces);
-						return {
-							ctor: '::',
-							_0: min,
-							_1: A3(splitRange, min + step, max, pieces - 1)
-						};
-					}
-				});
-			return _elm_lang$core$Array$fromList(
-				A3(splitRange, yMin, yMax, 6));
-		}
-	});
-var _juanedi$charty$Charty_LineChart$initDrawingSettings = F2(
-	function (cfg, dataset) {
-		var points = A2(
-			_elm_lang$core$List$concatMap,
-			function (_) {
-				return _.data;
-			},
-			dataset);
-		var xs = A2(
-			_elm_lang$core$List$map,
-			function (_p23) {
-				var _p24 = _p23;
-				return _p24._0;
-			},
-			points);
-		var ys = A2(
-			_elm_lang$core$List$map,
-			function (_p25) {
-				var _p26 = _p25;
-				return _p26._1;
-			},
-			points);
-		var _p27 = {
-			ctor: '_Tuple4',
-			_0: _elm_lang$core$List$minimum(xs),
-			_1: _elm_lang$core$List$maximum(xs),
-			_2: _elm_lang$core$List$minimum(ys),
-			_3: _elm_lang$core$List$maximum(ys)
-		};
-		if (((((_p27.ctor === '_Tuple4') && (_p27._0.ctor === 'Just')) && (_p27._1.ctor === 'Just')) && (_p27._2.ctor === 'Just')) && (_p27._3.ctor === 'Just')) {
-			var yLabels = A2(_juanedi$charty$Charty_LineChart$initYLabels, _p27._2._0, _p27._3._0);
-			var bounds = {
-				xMin: _p27._0._0,
-				xMax: _p27._1._0,
-				yMin: _juanedi$charty$Charty_ArrayUtil$unsafeFirst(yLabels),
-				yMax: _juanedi$charty$Charty_ArrayUtil$unsafeLast(yLabels)
-			};
-			var padding = A2(_juanedi$charty$Charty_LineChart$initPadding, cfg, yLabels);
-			return {
-				padding: padding,
-				transform: A2(_juanedi$charty$Charty_LineChart$initTransform, bounds, padding),
-				yLabels: yLabels
-			};
-		} else {
-			var padding = {top: 50, right: 50, bottom: 50, left: 50};
-			return {
-				padding: padding,
-				transform: A2(
-					_juanedi$charty$Charty_LineChart$initTransform,
-					{xMin: 0, xMax: 0, yMin: 0, yMax: 0},
-					padding),
-				yLabels: _elm_lang$core$Array$fromList(
-					{
-						ctor: '::',
-						_0: 0,
-						_1: {ctor: '[]'}
-					})
-			};
-		}
-	});
-var _juanedi$charty$Charty_LineChart$addLabels = F3(
-	function (cfg, chart, labels) {
-		return A3(
-			_juanedi$charty$Charty_Labels$withLabels,
-			{background: cfg.background, labelsColor: '#333333'},
-			labels,
-			chart);
-	});
-var _juanedi$charty$Charty_LineChart$view = F2(
-	function (cfg, dataset) {
-		var seriesWithColors = cfg.colorAssignment(dataset);
-		var drawingSettings = A2(_juanedi$charty$Charty_LineChart$initDrawingSettings, cfg, dataset);
-		var lines = A2(
-			_elm_lang$core$List$map,
-			_juanedi$charty$Charty_LineChart$drawLine(drawingSettings.transform),
-			seriesWithColors);
-		var points = cfg.drawPoints ? A2(
-			_elm_lang$core$List$map,
-			_juanedi$charty$Charty_LineChart$drawPoints(drawingSettings.transform),
-			seriesWithColors) : {ctor: '[]'};
-		var background = A2(
-			_elm_lang$svg$Svg$rect,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('1000'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$height('1000'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill(cfg.background),
-						_1: {ctor: '[]'}
 					}
 				}
-			},
-			{ctor: '[]'});
-		var chart = function (attrs) {
-			return A2(
-				_elm_lang$svg$Svg$svg,
-				{
+			};
+		case 'Second':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 1000 1000'),
-					_1: attrs
-				},
-				{
-					ctor: '::',
-					_0: background,
+					_0: 2,
 					_1: {
 						ctor: '::',
-						_0: A2(_juanedi$charty$Charty_LineChart$axis, cfg, drawingSettings),
+						_0: 5,
 						_1: {
 							ctor: '::',
-							_0: A2(
-								_elm_lang$svg$Svg$g,
-								{ctor: '[]'},
-								lines),
+							_0: 10,
 							_1: {
 								ctor: '::',
-								_0: A2(
-									_elm_lang$svg$Svg$g,
-									{ctor: '[]'},
-									points),
+								_0: 15,
+								_1: {
+									ctor: '::',
+									_0: 30,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			};
+		case 'Minute':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
+					ctor: '::',
+					_0: 2,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 10,
+							_1: {
+								ctor: '::',
+								_0: 15,
+								_1: {
+									ctor: '::',
+									_0: 30,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			};
+		case 'Hour':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
+					ctor: '::',
+					_0: 2,
+					_1: {
+						ctor: '::',
+						_0: 3,
+						_1: {
+							ctor: '::',
+							_0: 4,
+							_1: {
+								ctor: '::',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 8,
+									_1: {
+										ctor: '::',
+										_0: 12,
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			};
+		case 'Day':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
+					ctor: '::',
+					_0: 2,
+					_1: {ctor: '[]'}
+				}
+			};
+		case 'Week':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
+					ctor: '::',
+					_0: 2,
+					_1: {ctor: '[]'}
+				}
+			};
+		case 'Month':
+			return {
+				ctor: '::',
+				_0: 1,
+				_1: {
+					ctor: '::',
+					_0: 2,
+					_1: {
+						ctor: '::',
+						_0: 3,
+						_1: {
+							ctor: '::',
+							_0: 4,
+							_1: {
+								ctor: '::',
+								_0: 6,
 								_1: {ctor: '[]'}
 							}
 						}
 					}
-				});
-		};
-		return cfg.drawLabels ? A3(
-			_juanedi$charty$Charty_LineChart$addLabels,
-			cfg,
-			chart(
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$width('1000'),
-					_1: {ctor: '[]'}
-				}),
-			A2(
-				_elm_lang$core$List$map,
-				function (_p28) {
-					var _p29 = _p28;
-					return {ctor: '_Tuple2', _0: _p29._0, _1: _p29._1.label};
-				},
-				seriesWithColors)) : chart(
-			{
+				}
+			};
+		default:
+			return {
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('100%'),
+				_0: 1,
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$height('100%'),
+					_0: 2,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 10,
+							_1: {
+								ctor: '::',
+								_0: 20,
+								_1: {
+									ctor: '::',
+									_0: 25,
+									_1: {
+										ctor: '::',
+										_0: 50,
+										_1: {
+											ctor: '::',
+											_0: 100,
+											_1: {
+												ctor: '::',
+												_0: 200,
+												_1: {
+													ctor: '::',
+													_0: 500,
+													_1: {
+														ctor: '::',
+														_0: 1000,
+														_1: {
+															ctor: '::',
+															_0: 10000,
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			};
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values_Time$toMs = function (unit) {
+	var _p4 = unit;
+	switch (_p4.ctor) {
+		case 'Millisecond':
+			return 1;
+		case 'Second':
+			return 1000;
+		case 'Minute':
+			return 60000;
+		case 'Hour':
+			return 3600000;
+		case 'Day':
+			return 24 * 3600000;
+		case 'Week':
+			return (7 * 24) * 3600000;
+		case 'Month':
+			return (28 * 24) * 3600000;
+		default:
+			return (364 * 24) * 3600000;
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values_Time$all = {
+	ctor: '::',
+	_0: _terezka$line_charts$LineChart_Axis_Tick$Millisecond,
+	_1: {
+		ctor: '::',
+		_0: _terezka$line_charts$LineChart_Axis_Tick$Second,
+		_1: {
+			ctor: '::',
+			_0: _terezka$line_charts$LineChart_Axis_Tick$Minute,
+			_1: {
+				ctor: '::',
+				_0: _terezka$line_charts$LineChart_Axis_Tick$Hour,
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$LineChart_Axis_Tick$Day,
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$LineChart_Axis_Tick$Week,
+						_1: {
+							ctor: '::',
+							_0: _terezka$line_charts$LineChart_Axis_Tick$Month,
+							_1: {
+								ctor: '::',
+								_0: _terezka$line_charts$LineChart_Axis_Tick$Year,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values_Time$allReversed = _elm_lang$core$List$reverse(_terezka$line_charts$Internal_Axis_Values_Time$all);
+var _terezka$line_charts$Internal_Axis_Values_Time$getUnitChange = F3(
+	function (interval, value, next) {
+		var equalBy = function (unit) {
+			return A3(
+				_justinmimbs$elm_date_extra$Date_Extra$equalBy,
+				_terezka$line_charts$Internal_Axis_Values_Time$toExtraUnit(unit),
+				_elm_lang$core$Date$fromTime(value),
+				_elm_lang$core$Date$fromTime(next));
+		};
+		var unitChange_ = function (units) {
+			unitChange_:
+			while (true) {
+				var _p5 = units;
+				if (_p5.ctor === '::') {
+					if (_p5._0.ctor === 'Week') {
+						var _v5 = _p5._1;
+						units = _v5;
+						continue unitChange_;
+					} else {
+						var _p6 = _p5._0;
+						if (_elm_lang$core$Native_Utils.cmp(
+							_terezka$line_charts$Internal_Axis_Values_Time$toMs(_p6),
+							_terezka$line_charts$Internal_Axis_Values_Time$toMs(interval)) < 1) {
+							return _elm_lang$core$Maybe$Nothing;
+						} else {
+							if (!equalBy(_p6)) {
+								return _elm_lang$core$Maybe$Just(_p6);
+							} else {
+								var _v6 = _p5._1;
+								units = _v6;
+								continue unitChange_;
+							}
+						}
+					}
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			}
+		};
+		return unitChange_(_terezka$line_charts$Internal_Axis_Values_Time$allReversed);
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$next = F3(
+	function (timestamp, unit, multiple) {
+		return _elm_lang$core$Date$toTime(
+			A3(
+				_justinmimbs$elm_date_extra$Date_Extra$add,
+				_terezka$line_charts$Internal_Axis_Values_Time$toExtraUnit(unit),
+				multiple,
+				_elm_lang$core$Date$fromTime(timestamp)));
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$ceilingTo = F2(
+	function (number, prec) {
+		return prec * _elm_lang$core$Basics$toFloat(
+			_elm_lang$core$Basics$ceiling(number / prec));
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$ceilingToInt = F2(
+	function (number, prec) {
+		return _elm_lang$core$Basics$ceiling(
+			A2(
+				_terezka$line_charts$Internal_Axis_Values_Time$ceilingTo,
+				_elm_lang$core$Basics$toFloat(number),
+				_elm_lang$core$Basics$toFloat(prec)));
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$ceilingToWeek = F2(
+	function (date, multiple) {
+		var weekNumber = A2(
+			_terezka$line_charts$Internal_Axis_Values_Time$ceilingToInt,
+			_justinmimbs$elm_date_extra$Date_Extra$weekNumber(date),
+			multiple);
+		return A3(
+			_justinmimbs$elm_date_extra$Date_Extra$fromSpec,
+			_justinmimbs$elm_date_extra$Date_Extra$utc,
+			_justinmimbs$elm_date_extra$Date_Extra$noTime,
+			A3(
+				_justinmimbs$elm_date_extra$Date_Extra$weekDate,
+				_elm_lang$core$Date$year(date),
+				weekNumber,
+				1));
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$ceilingToMonth = F2(
+	function (date, multiple) {
+		return _justinmimbs$elm_date_extra$Date_Extra_Facts$monthFromMonthNumber(
+			A2(
+				_terezka$line_charts$Internal_Axis_Values_Time$ceilingToInt,
+				_justinmimbs$elm_date_extra$Date_Extra$monthNumber(date),
+				multiple));
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$beginAt = F3(
+	function (min, unit, multiple) {
+		var interval = _terezka$line_charts$Internal_Axis_Values_Time$toMs(unit) * _elm_lang$core$Basics$toFloat(multiple);
+		var date = A2(
+			_justinmimbs$elm_date_extra$Date_Extra$ceiling,
+			_terezka$line_charts$Internal_Axis_Values_Time$toExtraUnit(unit),
+			_elm_lang$core$Date$fromTime(min));
+		var _p7 = _terezka$line_charts$Internal_Axis_Values_Time$toParts(date);
+		var y = _p7._0;
+		var m = _p7._1;
+		var d = _p7._2;
+		var hh = _p7._3;
+		var mm = _p7._4;
+		var ss = _p7._5;
+		var _p8 = unit;
+		switch (_p8.ctor) {
+			case 'Millisecond':
+				return A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingTo, min, interval);
+			case 'Second':
+				return A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingTo, min, interval);
+			case 'Minute':
+				return A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingTo, min, interval);
+			case 'Hour':
+				return _elm_lang$core$Date$toTime(
+					A7(
+						_justinmimbs$elm_date_extra$Date_Extra$fromParts,
+						y,
+						m,
+						d,
+						A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingToInt, hh, multiple),
+						0,
+						0,
+						0));
+			case 'Day':
+				return _elm_lang$core$Date$toTime(
+					A7(
+						_justinmimbs$elm_date_extra$Date_Extra$fromParts,
+						y,
+						m,
+						A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingToInt, d, multiple),
+						0,
+						0,
+						0,
+						0));
+			case 'Week':
+				return _elm_lang$core$Date$toTime(
+					A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingToWeek, date, multiple));
+			case 'Month':
+				return _elm_lang$core$Date$toTime(
+					A7(
+						_justinmimbs$elm_date_extra$Date_Extra$fromParts,
+						y,
+						A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingToMonth, date, multiple),
+						1,
+						0,
+						0,
+						0,
+						0));
+			default:
+				return _elm_lang$core$Date$toTime(
+					A7(
+						_justinmimbs$elm_date_extra$Date_Extra$fromParts,
+						A2(_terezka$line_charts$Internal_Axis_Values_Time$ceilingToInt, y, multiple),
+						_elm_lang$core$Date$Jan,
+						1,
+						0,
+						0,
+						0,
+						0));
+		}
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$findBestMultiple = F2(
+	function (interval, unit) {
+		var middleOfNext = F2(
+			function (m1, m2) {
+				return ((_elm_lang$core$Basics$toFloat(m1) * _terezka$line_charts$Internal_Axis_Values_Time$toMs(unit)) + (_elm_lang$core$Basics$toFloat(m2) * _terezka$line_charts$Internal_Axis_Values_Time$toMs(unit))) / 2;
+			});
+		var findBest_ = function (multiples) {
+			findBest_:
+			while (true) {
+				var _p9 = multiples;
+				if (_p9.ctor === '::') {
+					if (_p9._1.ctor === '::') {
+						var _p11 = _p9._1._0;
+						var _p10 = _p9._0;
+						if (_elm_lang$core$Native_Utils.cmp(
+							interval,
+							A2(middleOfNext, _p10, _p11)) < 1) {
+							return _p10;
+						} else {
+							var _v9 = {ctor: '::', _0: _p11, _1: _p9._1._1};
+							multiples = _v9;
+							continue findBest_;
+						}
+					} else {
+						return _p9._0;
+					}
+				} else {
+					return 1;
+				}
+			}
+		};
+		return findBest_(
+			_terezka$line_charts$Internal_Axis_Values_Time$multiples(unit));
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$findBestUnit = F2(
+	function (interval, units) {
+		var middleOfNext = F2(
+			function (u1, u2) {
+				return ((_terezka$line_charts$Internal_Axis_Values_Time$toMs(u1) * _terezka$line_charts$Internal_Axis_Values_Time$highestMultiple(
+					_terezka$line_charts$Internal_Axis_Values_Time$multiples(u1))) + _terezka$line_charts$Internal_Axis_Values_Time$toMs(u2)) / 2;
+			});
+		var findBest_ = F2(
+			function (units, u0) {
+				findBest_:
+				while (true) {
+					var _p12 = units;
+					if (_p12.ctor === '::') {
+						if (_p12._1.ctor === '::') {
+							var _p14 = _p12._1._0;
+							var _p13 = _p12._0;
+							if (_elm_lang$core$Native_Utils.cmp(
+								interval,
+								A2(middleOfNext, _p13, _p14)) < 1) {
+								return _p13;
+							} else {
+								var _v11 = {ctor: '::', _0: _p14, _1: _p12._1._1},
+									_v12 = _p13;
+								units = _v11;
+								u0 = _v12;
+								continue findBest_;
+							}
+						} else {
+							return _p12._0;
+						}
+					} else {
+						return _terezka$line_charts$LineChart_Axis_Tick$Year;
+					}
+				}
+			});
+		return A2(findBest_, units, _terezka$line_charts$LineChart_Axis_Tick$Year);
+	});
+var _terezka$line_charts$Internal_Axis_Values_Time$values = F2(
+	function (amountRough, range) {
+		var intervalRough = (range.max - range.min) / _elm_lang$core$Basics$toFloat(amountRough);
+		var unit = A2(_terezka$line_charts$Internal_Axis_Values_Time$findBestUnit, intervalRough, _terezka$line_charts$Internal_Axis_Values_Time$all);
+		var multiple = A2(_terezka$line_charts$Internal_Axis_Values_Time$findBestMultiple, intervalRough, unit);
+		var interval = _terezka$line_charts$Internal_Axis_Values_Time$toMs(unit) * _elm_lang$core$Basics$toFloat(multiple);
+		var beginning = A3(_terezka$line_charts$Internal_Axis_Values_Time$beginAt, range.min, unit, multiple);
+		var toPositions = F2(
+			function (acc, i) {
+				toPositions:
+				while (true) {
+					var next_ = A3(_terezka$line_charts$Internal_Axis_Values_Time$next, beginning, unit, i * multiple);
+					if (_elm_lang$core$Native_Utils.cmp(next_, range.max) > 0) {
+						return acc;
+					} else {
+						var _v13 = A2(
+							_elm_lang$core$Basics_ops['++'],
+							acc,
+							{
+								ctor: '::',
+								_0: next_,
+								_1: {ctor: '[]'}
+							}),
+							_v14 = i + 1;
+						acc = _v13;
+						i = _v14;
+						continue toPositions;
+					}
+				}
+			});
+		var toTime = F3(
+			function (unitChange, value, isFirst) {
+				return {
+					change: unitChange,
+					interval: A2(_terezka$line_charts$LineChart_Axis_Tick$Interval, unit, multiple),
+					timestamp: value,
+					isFirst: isFirst
+				};
+			});
+		var toTimes = F3(
+			function (values, unitChange, acc) {
+				toTimes:
+				while (true) {
+					var _p15 = values;
+					if (_p15.ctor === '::') {
+						if (_p15._1.ctor === '::') {
+							var _p17 = _p15._0;
+							var _p16 = _p15._1._0;
+							var newUnitChange = A3(_terezka$line_charts$Internal_Axis_Values_Time$getUnitChange, unit, _p17, _p16);
+							var isFirst = _elm_lang$core$List$isEmpty(acc);
+							var newAcc = {
+								ctor: '::',
+								_0: A3(toTime, unitChange, _p17, isFirst),
+								_1: acc
+							};
+							var _v16 = {ctor: '::', _0: _p16, _1: _p15._1._1},
+								_v17 = newUnitChange,
+								_v18 = newAcc;
+							values = _v16;
+							unitChange = _v17;
+							acc = _v18;
+							continue toTimes;
+						} else {
+							return {
+								ctor: '::',
+								_0: A3(
+									toTime,
+									unitChange,
+									_p15._0,
+									_elm_lang$core$List$isEmpty(acc)),
+								_1: acc
+							};
+						}
+					} else {
+						return acc;
+					}
+				}
+			});
+		return A3(
+			toTimes,
+			A2(
+				toPositions,
+				{ctor: '[]'},
+				0),
+			_elm_lang$core$Maybe$Nothing,
+			{ctor: '[]'});
+	});
+
+var _terezka$line_charts$Internal_Axis_Values$ceilingTo = F2(
+	function (prec, number) {
+		return prec * _elm_lang$core$Basics$toFloat(
+			_elm_lang$core$Basics$ceiling(number / prec));
+	});
+var _terezka$line_charts$Internal_Axis_Values$getPrecision = function (number) {
+	var _p0 = A2(
+		_elm_lang$core$String$split,
+		'e',
+		_elm_lang$core$Basics$toString(number));
+	if (((_p0.ctor === '::') && (_p0._1.ctor === '::')) && (_p0._1._1.ctor === '[]')) {
+		return _elm_lang$core$Basics$abs(
+			A2(
+				_elm_lang$core$Result$withDefault,
+				0,
+				_elm_lang$core$String$toInt(_p0._1._0)));
+	} else {
+		var _p1 = A2(
+			_elm_lang$core$String$split,
+			'.',
+			_elm_lang$core$Basics$toString(number));
+		if (((_p1.ctor === '::') && (_p1._1.ctor === '::')) && (_p1._1._1.ctor === '[]')) {
+			return _elm_lang$core$String$length(_p1._1._0);
+		} else {
+			return 0;
+		}
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values$correctFloat = function (prec) {
+	return function (_p2) {
+		return A2(
+			_elm_lang$core$Result$withDefault,
+			0,
+			_elm_lang$core$String$toFloat(
+				A2(_myrho$elm_round$Round$round, prec, _p2)));
+	};
+};
+var _terezka$line_charts$Internal_Axis_Values$getMultiples = F3(
+	function (magnitude, allowDecimals, hasTickAmount) {
+		var defaults = hasTickAmount ? {
+			ctor: '::',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 1.2,
+				_1: {
+					ctor: '::',
+					_0: 1.5,
+					_1: {
+						ctor: '::',
+						_0: 2,
+						_1: {
+							ctor: '::',
+							_0: 2.5,
+							_1: {
+								ctor: '::',
+								_0: 3,
+								_1: {
+									ctor: '::',
+									_0: 4,
+									_1: {
+										ctor: '::',
+										_0: 5,
+										_1: {
+											ctor: '::',
+											_0: 6,
+											_1: {
+												ctor: '::',
+												_0: 8,
+												_1: {
+													ctor: '::',
+													_0: 10,
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		} : {
+			ctor: '::',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 2.5,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 10,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		};
+		return allowDecimals ? defaults : (_elm_lang$core$Native_Utils.eq(magnitude, 1) ? A2(
+			_elm_lang$core$List$filter,
+			function (n) {
+				return _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Basics$toFloat(
+						_elm_lang$core$Basics$round(n)),
+					n);
+			},
+			defaults) : ((_elm_lang$core$Native_Utils.cmp(magnitude, 0.1) < 1) ? {
+			ctor: '::',
+			_0: 1 / magnitude,
+			_1: {ctor: '[]'}
+		} : defaults));
+	});
+var _terezka$line_charts$Internal_Axis_Values$getInterval = F3(
+	function (intervalRaw, allowDecimals, hasTickAmount) {
+		var magnitude = _terezka$line_charts$Internal_Utils$magnitude(intervalRaw);
+		var normalized = intervalRaw / magnitude;
+		var findMultiple = function (multiples) {
+			findMultiple:
+			while (true) {
+				var _p3 = multiples;
+				if (_p3.ctor === '::') {
+					if (_p3._1.ctor === '::') {
+						var _p5 = _p3._1._0;
+						var _p4 = _p3._0;
+						if (_elm_lang$core$Native_Utils.cmp(normalized, (_p4 + _p5) / 2) < 1) {
+							return _p4;
+						} else {
+							var _v3 = {ctor: '::', _0: _p5, _1: _p3._1._1};
+							multiples = _v3;
+							continue findMultiple;
+						}
+					} else {
+						var _p6 = _p3._0;
+						if (_elm_lang$core$Native_Utils.cmp(normalized, _p6) < 1) {
+							return _p6;
+						} else {
+							var _v4 = _p3._1;
+							multiples = _v4;
+							continue findMultiple;
+						}
+					}
+				} else {
+					return 1;
+				}
+			}
+		};
+		var multiples = A3(_terezka$line_charts$Internal_Axis_Values$getMultiples, magnitude, allowDecimals, hasTickAmount);
+		var findMultipleExact = function (multiples) {
+			findMultipleExact:
+			while (true) {
+				var _p7 = multiples;
+				if (_p7.ctor === '::') {
+					var _p8 = _p7._0;
+					if (_elm_lang$core$Native_Utils.cmp(_p8 * magnitude, intervalRaw) > -1) {
+						return _p8;
+					} else {
+						var _v6 = _p7._1;
+						multiples = _v6;
+						continue findMultipleExact;
+					}
+				} else {
+					return 1;
+				}
+			}
+		};
+		var multiple = hasTickAmount ? findMultipleExact(multiples) : findMultiple(multiples);
+		var precision = _terezka$line_charts$Internal_Axis_Values$getPrecision(magnitude) + _terezka$line_charts$Internal_Axis_Values$getPrecision(multiple);
+		return A2(_terezka$line_charts$Internal_Axis_Values$correctFloat, precision, multiple * magnitude);
+	});
+var _terezka$line_charts$Internal_Axis_Values$positions = F5(
+	function (range, beginning, interval, m, acc) {
+		positions:
+		while (true) {
+			var next = A2(
+				_terezka$line_charts$Internal_Axis_Values$correctFloat,
+				_terezka$line_charts$Internal_Axis_Values$getPrecision(interval),
+				beginning + (m * interval));
+			if (_elm_lang$core$Native_Utils.cmp(next, range.max) > 0) {
+				return acc;
+			} else {
+				var _v7 = range,
+					_v8 = beginning,
+					_v9 = interval,
+					_v10 = m + 1,
+					_v11 = A2(
+					_elm_lang$core$Basics_ops['++'],
+					acc,
+					{
+						ctor: '::',
+						_0: next,
+						_1: {ctor: '[]'}
+					});
+				range = _v7;
+				beginning = _v8;
+				interval = _v9;
+				m = _v10;
+				acc = _v11;
+				continue positions;
+			}
+		}
+	});
+var _terezka$line_charts$Internal_Axis_Values$getBeginning = F2(
+	function (min, interval) {
+		var multiple = min / interval;
+		return _elm_lang$core$Native_Utils.eq(
+			multiple,
+			_elm_lang$core$Basics$toFloat(
+				_elm_lang$core$Basics$round(multiple))) ? min : A2(_terezka$line_charts$Internal_Axis_Values$ceilingTo, interval, min);
+	});
+var _terezka$line_charts$Internal_Axis_Values$values = F4(
+	function (allowDecimals, exact, amountRough, range) {
+		var intervalRough = (range.max - range.min) / _elm_lang$core$Basics$toFloat(amountRough);
+		var interval = A3(_terezka$line_charts$Internal_Axis_Values$getInterval, intervalRough, allowDecimals, exact);
+		var intervalSafe = _elm_lang$core$Native_Utils.eq(interval, 0) ? 1 : interval;
+		var beginning = A2(_terezka$line_charts$Internal_Axis_Values$getBeginning, range.min, intervalSafe);
+		var amountRoughSafe = _elm_lang$core$Native_Utils.eq(amountRough, 0) ? 1 : amountRough;
+		return A5(
+			_terezka$line_charts$Internal_Axis_Values$positions,
+			range,
+			beginning,
+			intervalSafe,
+			0,
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Axis_Values$time = _terezka$line_charts$Internal_Axis_Values_Time$values;
+var _terezka$line_charts$Internal_Axis_Values$custom = F3(
+	function (intersection, interval, range) {
+		var offset = function (value) {
+			return interval * _elm_lang$core$Basics$toFloat(
+				_elm_lang$core$Basics$floor(value / interval));
+		};
+		var beginning = intersection - offset(intersection - range.min);
+		return A5(
+			_terezka$line_charts$Internal_Axis_Values$positions,
+			range,
+			beginning,
+			interval,
+			0,
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Axis_Values$float = function (amount) {
+	var _p9 = amount;
+	if (_p9.ctor === 'Exactly') {
+		return A3(_terezka$line_charts$Internal_Axis_Values$values, true, true, _p9._0);
+	} else {
+		return A3(_terezka$line_charts$Internal_Axis_Values$values, true, false, _p9._0);
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values$int = function (amount) {
+	var _p10 = amount;
+	if (_p10.ctor === 'Exactly') {
+		return function (_p11) {
+			return A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Basics$round,
+				A4(_terezka$line_charts$Internal_Axis_Values$values, false, true, _p10._0, _p11));
+		};
+	} else {
+		return function (_p12) {
+			return A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Basics$round,
+				A4(_terezka$line_charts$Internal_Axis_Values$values, false, false, _p10._0, _p12));
+		};
+	}
+};
+var _terezka$line_charts$Internal_Axis_Values$Around = function (a) {
+	return {ctor: 'Around', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Values$around = _terezka$line_charts$Internal_Axis_Values$Around;
+var _terezka$line_charts$Internal_Axis_Values$Exactly = function (a) {
+	return {ctor: 'Exactly', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Values$exactly = _terezka$line_charts$Internal_Axis_Values$Exactly;
+
+var _terezka$line_charts$Internal_Axis_Ticks$ticks = F3(
+	function (dataRange, range, _p0) {
+		var _p1 = _p0;
+		return A2(
+			_elm_lang$core$List$map,
+			_terezka$line_charts$Internal_Axis_Tick$properties,
+			A2(_p1._0, dataRange, range));
+	});
+var _terezka$line_charts$Internal_Axis_Ticks$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Ticks$custom = _terezka$line_charts$Internal_Axis_Ticks$Config;
+var _terezka$line_charts$Internal_Axis_Ticks$intCustom = F2(
+	function (amount, tick) {
+		return _terezka$line_charts$Internal_Axis_Ticks$custom(
+			F2(
+				function (data, range) {
+					return A2(
+						_elm_lang$core$List$map,
+						tick,
+						A2(
+							_terezka$line_charts$Internal_Axis_Values$int,
+							_terezka$line_charts$Internal_Axis_Values$around(amount),
+							A2(_terezka$line_charts$Internal_Coordinate$smallestRange, data, range)));
+				}));
+	});
+var _terezka$line_charts$Internal_Axis_Ticks$int = function (amount) {
+	return A2(_terezka$line_charts$Internal_Axis_Ticks$intCustom, amount, _terezka$line_charts$LineChart_Axis_Tick$int);
+};
+var _terezka$line_charts$Internal_Axis_Ticks$floatCustom = F2(
+	function (amount, tick) {
+		return _terezka$line_charts$Internal_Axis_Ticks$custom(
+			F2(
+				function (data, range) {
+					return A2(
+						_elm_lang$core$List$map,
+						tick,
+						A2(
+							_terezka$line_charts$Internal_Axis_Values$float,
+							_terezka$line_charts$Internal_Axis_Values$around(amount),
+							A2(_terezka$line_charts$Internal_Coordinate$smallestRange, data, range)));
+				}));
+	});
+var _terezka$line_charts$Internal_Axis_Ticks$float = function (amount) {
+	return A2(_terezka$line_charts$Internal_Axis_Ticks$floatCustom, amount, _terezka$line_charts$LineChart_Axis_Tick$float);
+};
+var _terezka$line_charts$Internal_Axis_Ticks$timeCustom = F2(
+	function (amount, tick) {
+		return _terezka$line_charts$Internal_Axis_Ticks$custom(
+			F2(
+				function (data, range) {
+					return A2(
+						_elm_lang$core$List$map,
+						tick,
+						A2(
+							_terezka$line_charts$Internal_Axis_Values$time,
+							amount,
+							A2(_terezka$line_charts$Internal_Coordinate$smallestRange, data, range)));
+				}));
+	});
+var _terezka$line_charts$Internal_Axis_Ticks$time = function (amount) {
+	return A2(_terezka$line_charts$Internal_Axis_Ticks$timeCustom, amount, _terezka$line_charts$LineChart_Axis_Tick$time);
+};
+
+var _terezka$line_charts$Internal_Axis_Line$config = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0;
+};
+var _terezka$line_charts$Internal_Axis_Line$Properties = F5(
+	function (a, b, c, d, e) {
+		return {color: a, width: b, events: c, start: d, end: e};
+	});
+var _terezka$line_charts$Internal_Axis_Line$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Line$custom = _terezka$line_charts$Internal_Axis_Line$Config;
+var _terezka$line_charts$Internal_Axis_Line$none = _terezka$line_charts$Internal_Axis_Line$custom(
+	F2(
+		function (_p3, _p2) {
+			var _p4 = _p2;
+			return {
+				color: _terezka$line_charts$LineChart_Colors$transparent,
+				width: 0,
+				events: {ctor: '[]'},
+				start: _p4.min,
+				end: _p4.max
+			};
+		}));
+var _terezka$line_charts$Internal_Axis_Line$full = function (color) {
+	return _terezka$line_charts$Internal_Axis_Line$custom(
+		F2(
+			function (data, range) {
+				return {
+					color: color,
+					width: 1,
+					events: {ctor: '[]'},
+					start: range.min,
+					end: range.max
+				};
+			}));
+};
+var _terezka$line_charts$Internal_Axis_Line$default = _terezka$line_charts$Internal_Axis_Line$full(_terezka$line_charts$LineChart_Colors$gray);
+var _terezka$line_charts$Internal_Axis_Line$rangeFrame = function (color) {
+	return _terezka$line_charts$Internal_Axis_Line$custom(
+		F2(
+			function (data, range) {
+				var smallest = A2(_terezka$line_charts$Internal_Coordinate$smallestRange, data, range);
+				return {
+					color: color,
+					width: 1,
+					events: {ctor: '[]'},
+					start: smallest.min,
+					end: smallest.max
+				};
+			}));
+};
+
+var _terezka$line_charts$Internal_Axis_Intersection$getY = function (_p0) {
+	var _p1 = _p0;
+	return function (_p2) {
+		return function (_) {
+			return _.y;
+		}(
+			_p1._0(_p2));
+	};
+};
+var _terezka$line_charts$Internal_Axis_Intersection$getX = function (_p3) {
+	var _p4 = _p3;
+	return function (_p5) {
+		return function (_) {
+			return _.x;
+		}(
+			_p4._0(_p5));
+	};
+};
+var _terezka$line_charts$Internal_Axis_Intersection$towardsZero = function (_p6) {
+	var _p7 = _p6;
+	return A3(_elm_lang$core$Basics$clamp, _p7.min, _p7.max, 0);
+};
+var _terezka$line_charts$Internal_Axis_Intersection$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Intersection$custom = F2(
+	function (toX, toY) {
+		return _terezka$line_charts$Internal_Axis_Intersection$Config(
+			function (_p8) {
+				var _p9 = _p8;
+				return A2(
+					_terezka$line_charts$Internal_Data$Point,
+					toX(_p9.x),
+					toY(_p9.y));
+			});
+	});
+var _terezka$line_charts$Internal_Axis_Intersection$default = A2(
+	_terezka$line_charts$Internal_Axis_Intersection$custom,
+	function (_) {
+		return _.min;
+	},
+	function (_) {
+		return _.min;
+	});
+var _terezka$line_charts$Internal_Axis_Intersection$atOrigin = A2(_terezka$line_charts$Internal_Axis_Intersection$custom, _terezka$line_charts$Internal_Axis_Intersection$towardsZero, _terezka$line_charts$Internal_Axis_Intersection$towardsZero);
+var _terezka$line_charts$Internal_Axis_Intersection$at = F2(
+	function (x, y) {
+		return A2(
+			_terezka$line_charts$Internal_Axis_Intersection$custom,
+			_elm_lang$core$Basics$always(x),
+			_elm_lang$core$Basics$always(y));
+	});
+
+var _terezka$line_charts$Internal_Axis_Title$config = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0;
+};
+var _terezka$line_charts$Internal_Axis_Title$Properties = F3(
+	function (a, b, c) {
+		return {view: a, position: b, offset: c};
+	});
+var _terezka$line_charts$Internal_Axis_Title$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Axis_Title$custom = F4(
+	function (position, x, y, title) {
+		return _terezka$line_charts$Internal_Axis_Title$Config(
+			{
+				view: title,
+				position: position,
+				offset: {ctor: '_Tuple2', _0: x, _1: y}
+			});
+	});
+var _terezka$line_charts$Internal_Axis_Title$atPosition = F3(
+	function (position, x, y) {
+		return function (_p2) {
+			return A4(
+				_terezka$line_charts$Internal_Axis_Title$custom,
+				position,
+				x,
+				y,
+				A2(_terezka$line_charts$Internal_Svg$label, 'inherit', _p2));
+		};
+	});
+var _terezka$line_charts$Internal_Axis_Title$atAxisMax = function () {
+	var position = F2(
+		function (data, range) {
+			return range.max;
+		});
+	return _terezka$line_charts$Internal_Axis_Title$atPosition(position);
+}();
+var _terezka$line_charts$Internal_Axis_Title$default = A2(_terezka$line_charts$Internal_Axis_Title$atAxisMax, 0, 0);
+var _terezka$line_charts$Internal_Axis_Title$atDataMax = function () {
+	var position = F2(
+		function (data, range) {
+			return A2(_elm_lang$core$Basics$min, data.max, range.max);
+		});
+	return _terezka$line_charts$Internal_Axis_Title$atPosition(position);
+}();
+
+var _terezka$line_charts$Internal_Axis$viewVerticalLabel = F4(
+	function (system, _p0, position, view) {
+		var _p1 = _p0;
+		var _p3 = _p1.length;
+		var _p2 = _p1.direction;
+		var xOffset = _terezka$line_charts$Internal_Axis_Tick$isPositive(_p2) ? (5 + _p3) : (-5 - _p3);
+		var anchor = _terezka$line_charts$Internal_Axis_Tick$isPositive(_p2) ? _terezka$line_charts$Internal_Svg$Start : _terezka$line_charts$Internal_Svg$End;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Svg$transform(
+					{
+						ctor: '::',
+						_0: A3(_terezka$line_charts$Internal_Svg$move, system, position.x, position.y),
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$line_charts$Internal_Svg$offset, xOffset, 5),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Svg$anchorStyle(anchor),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: view,
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$Internal_Axis$viewHorizontalLabel = F4(
+	function (system, _p4, position, view) {
+		var _p5 = _p4;
+		var _p6 = _p5.length;
+		var yOffset = _terezka$line_charts$Internal_Axis_Tick$isPositive(_p5.direction) ? (-5 - _p6) : (15 + _p6);
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Svg$transform(
+					{
+						ctor: '::',
+						_0: A3(_terezka$line_charts$Internal_Svg$move, system, position.x, position.y),
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$line_charts$Internal_Svg$offset, 0, yOffset),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Svg$anchorStyle(_terezka$line_charts$Internal_Svg$Middle),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: view,
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$Internal_Axis$attributesTick = function (_p7) {
+	var _p8 = _p7;
+	return {
+		ctor: '::',
+		_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+			_elm_lang$core$Basics$toString(_p8.width)),
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$stroke(
+				_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p8.color)),
+			_1: {ctor: '[]'}
+		}
+	};
+};
+var _terezka$line_charts$Internal_Axis$lengthOfTick = function (_p9) {
+	var _p10 = _p9;
+	var _p11 = _p10.length;
+	return _terezka$line_charts$Internal_Axis_Tick$isPositive(_p10.direction) ? (0 - _p11) : _p11;
+};
+var _terezka$line_charts$Internal_Axis$viewVerticalTick = F3(
+	function (system, _p12, tick) {
+		var _p13 = _p12;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__tick'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A5(
+					_terezka$line_charts$Internal_Svg$yTick,
+					system,
+					_terezka$line_charts$Internal_Axis$lengthOfTick(tick),
+					_terezka$line_charts$Internal_Axis$attributesTick(tick),
+					_p13.x,
+					_p13.y),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_terezka$line_charts$Internal_Utils$viewMaybe,
+						tick.label,
+						A3(_terezka$line_charts$Internal_Axis$viewVerticalLabel, system, tick, _p13)),
 					_1: {ctor: '[]'}
 				}
 			});
 	});
-var _juanedi$charty$Charty_LineChart$defaults = {drawPoints: true, background: 'transparent', colorAssignment: _juanedi$charty$Charty_Color$assignDefaults, labelPrecision: 2, drawLabels: true};
-var _juanedi$charty$Charty_LineChart$Series = F2(
-	function (a, b) {
-		return {label: a, data: b};
+var _terezka$line_charts$Internal_Axis$viewHorizontalTick = F3(
+	function (system, _p14, tick) {
+		var _p15 = _p14;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__tick'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A5(
+					_terezka$line_charts$Internal_Svg$xTick,
+					system,
+					_terezka$line_charts$Internal_Axis$lengthOfTick(tick),
+					_terezka$line_charts$Internal_Axis$attributesTick(tick),
+					_p15.y,
+					_p15.x),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_terezka$line_charts$Internal_Utils$viewMaybe,
+						tick.label,
+						A3(_terezka$line_charts$Internal_Axis$viewHorizontalLabel, system, tick, _p15)),
+					_1: {ctor: '[]'}
+				}
+			});
 	});
-var _juanedi$charty$Charty_LineChart$Config = F5(
-	function (a, b, c, d, e) {
-		return {drawPoints: a, background: b, colorAssignment: c, labelPrecision: d, drawLabels: e};
+var _terezka$line_charts$Internal_Axis$attributesLine = F2(
+	function (system, _p16) {
+		var _p17 = _p16;
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			_p17.events,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+					_elm_lang$core$Basics$toString(_p17.width)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p17.color)),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Svg$withinChartArea(system),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
 	});
-var _juanedi$charty$Charty_LineChart$DrawingSettings = F3(
-	function (a, b, c) {
-		return {padding: a, transform: b, yLabels: c};
+var _terezka$line_charts$Internal_Axis$viewVerticalAxisLine = F3(
+	function (system, axisPosition, config) {
+		return A5(
+			_terezka$line_charts$Internal_Svg$vertical,
+			system,
+			A2(_terezka$line_charts$Internal_Axis$attributesLine, system, config),
+			axisPosition,
+			config.start,
+			config.end);
 	});
-var _juanedi$charty$Charty_LineChart$Padding = F4(
+var _terezka$line_charts$Internal_Axis$viewHorizontalAxisLine = F3(
+	function (system, axisPosition, config) {
+		return A5(
+			_terezka$line_charts$Internal_Svg$horizontal,
+			system,
+			A2(_terezka$line_charts$Internal_Axis$attributesLine, system, config),
+			axisPosition,
+			config.start,
+			config.end);
+	});
+var _terezka$line_charts$Internal_Axis$viewVerticalTitle = F3(
+	function (system, at, _p18) {
+		var _p19 = _p18;
+		var _p21 = _p19.title;
+		var _p20 = _p21.offset;
+		var xOffset = _p20._0;
+		var yOffset = _p20._1;
+		var position = at(
+			A2(_p21.position, system.yData, system.y));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__title'),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Svg$transform(
+						{
+							ctor: '::',
+							_0: A3(_terezka$line_charts$Internal_Svg$move, system, position.x, position.y),
+							_1: {
+								ctor: '::',
+								_0: A2(_terezka$line_charts$Internal_Svg$offset, xOffset + 2, yOffset - 10),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Svg$anchorStyle(_terezka$line_charts$Internal_Svg$End),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _p21.view,
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$Internal_Axis$viewHorizontalTitle = F3(
+	function (system, at, _p22) {
+		var _p23 = _p22;
+		var _p25 = _p23.title;
+		var _p24 = _p25.offset;
+		var xOffset = _p24._0;
+		var yOffset = _p24._1;
+		var position = at(
+			A2(_p25.position, system.xData, system.x));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__title'),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Svg$transform(
+						{
+							ctor: '::',
+							_0: A3(_terezka$line_charts$Internal_Svg$move, system, position.x, position.y),
+							_1: {
+								ctor: '::',
+								_0: A2(_terezka$line_charts$Internal_Svg$offset, xOffset + 15, yOffset + 5),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Svg$anchorStyle(_terezka$line_charts$Internal_Svg$Start),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _p25.view,
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$line_charts$Internal_Axis$viewVertical = F3(
+	function (system, intersection, _p26) {
+		var _p27 = _p26;
+		var _p28 = _p27._0;
+		var viewConfig = {
+			line: A3(_terezka$line_charts$Internal_Axis_Line$config, _p28.axisLine, system.yData, system.y),
+			ticks: A3(_terezka$line_charts$Internal_Axis_Ticks$ticks, system.yData, system.y, _p28.ticks),
+			intersection: A2(_terezka$line_charts$Internal_Axis_Intersection$getX, intersection, system),
+			title: _terezka$line_charts$Internal_Axis_Title$config(_p28.title)
+		};
+		var at = function (y) {
+			return {x: viewConfig.intersection, y: y};
+		};
+		var viewTick = function (tick) {
+			return A3(
+				_terezka$line_charts$Internal_Axis$viewVerticalTick,
+				system,
+				at(tick.position),
+				tick);
+		};
+		var viewAxisLine = A2(_terezka$line_charts$Internal_Axis$viewVerticalAxisLine, system, viewConfig.intersection);
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__axis--vertical'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(_terezka$line_charts$Internal_Axis$viewVerticalTitle, system, at, viewConfig),
+				_1: {
+					ctor: '::',
+					_0: viewAxisLine(viewConfig.line),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$g,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('chart__ticks'),
+								_1: {ctor: '[]'}
+							},
+							A2(_elm_lang$core$List$map, viewTick, viewConfig.ticks)),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Axis$viewHorizontal = F3(
+	function (system, intersection, _p29) {
+		var _p30 = _p29;
+		var _p31 = _p30._0;
+		var viewConfig = {
+			line: A3(_terezka$line_charts$Internal_Axis_Line$config, _p31.axisLine, system.xData, system.x),
+			ticks: A3(_terezka$line_charts$Internal_Axis_Ticks$ticks, system.xData, system.x, _p31.ticks),
+			intersection: A2(_terezka$line_charts$Internal_Axis_Intersection$getY, intersection, system),
+			title: _terezka$line_charts$Internal_Axis_Title$config(_p31.title)
+		};
+		var at = function (x) {
+			return {x: x, y: viewConfig.intersection};
+		};
+		var viewTick = function (tick) {
+			return A3(
+				_terezka$line_charts$Internal_Axis$viewHorizontalTick,
+				system,
+				at(tick.position),
+				tick);
+		};
+		var viewAxisLine = A2(_terezka$line_charts$Internal_Axis$viewHorizontalAxisLine, system, viewConfig.intersection);
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__axis--horizontal'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(_terezka$line_charts$Internal_Axis$viewHorizontalTitle, system, at, viewConfig),
+				_1: {
+					ctor: '::',
+					_0: viewAxisLine(viewConfig.line),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$g,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('chart__ticks'),
+								_1: {ctor: '[]'}
+							},
+							A2(_elm_lang$core$List$map, viewTick, viewConfig.ticks)),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Axis$ticks = function (_p32) {
+	var _p33 = _p32;
+	return _p33._0.ticks;
+};
+var _terezka$line_charts$Internal_Axis$range = function (_p34) {
+	var _p35 = _p34;
+	return _p35._0.range;
+};
+var _terezka$line_charts$Internal_Axis$pixels = function (_p36) {
+	var _p37 = _p36;
+	return _elm_lang$core$Basics$toFloat(_p37._0.pixels);
+};
+var _terezka$line_charts$Internal_Axis$variable = function (_p38) {
+	var _p39 = _p38;
+	return _p39._0.variable;
+};
+var _terezka$line_charts$Internal_Axis$Properties = F6(
+	function (a, b, c, d, e, f) {
+		return {title: a, variable: b, pixels: c, range: d, axisLine: e, ticks: f};
+	});
+var _terezka$line_charts$Internal_Axis$ViewConfig = F4(
 	function (a, b, c, d) {
-		return {top: a, right: b, bottom: c, left: d};
+		return {line: a, ticks: b, intersection: c, title: d};
 	});
-var _juanedi$charty$Charty_LineChart$DatasetBounds = F4(
-	function (a, b, c, d) {
-		return {xMin: a, xMax: b, yMin: c, yMax: d};
+var _terezka$line_charts$Internal_Axis$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Axis$custom = _terezka$line_charts$Internal_Axis$Config;
+var _terezka$line_charts$Internal_Axis$default = F3(
+	function (pixels, title, variable) {
+		return _terezka$line_charts$Internal_Axis$custom(
+			{
+				title: A3(_terezka$line_charts$Internal_Axis_Title$atDataMax, 0, 0, title),
+				variable: function (_p40) {
+					return _elm_lang$core$Maybe$Just(
+						variable(_p40));
+				},
+				pixels: pixels,
+				range: A2(_terezka$line_charts$Internal_Axis_Range$padded, 20, 20),
+				axisLine: _terezka$line_charts$Internal_Axis_Line$rangeFrame(_terezka$line_charts$LineChart_Colors$gray),
+				ticks: _terezka$line_charts$Internal_Axis_Ticks$custom(
+					F2(
+						function (data, range) {
+							var rangeLong = range.max - range.min;
+							var smallest = A2(_terezka$line_charts$Internal_Coordinate$smallestRange, data, range);
+							var rangeSmall = smallest.max - smallest.min;
+							var diff = 1 - ((rangeLong - rangeSmall) / rangeLong);
+							var amount = _elm_lang$core$Basics$round(
+								(diff * _elm_lang$core$Basics$toFloat(pixels)) / 90);
+							return A2(
+								_elm_lang$core$List$map,
+								_terezka$line_charts$LineChart_Axis_Tick$float,
+								A2(
+									_terezka$line_charts$Internal_Axis_Values$float,
+									_terezka$line_charts$Internal_Axis_Values$around(amount),
+									smallest));
+						}))
+			});
+	});
+var _terezka$line_charts$Internal_Axis$full = F3(
+	function (pixels, title, variable) {
+		return _terezka$line_charts$Internal_Axis$custom(
+			{
+				title: A3(_terezka$line_charts$Internal_Axis_Title$atAxisMax, 0, 0, title),
+				variable: function (_p41) {
+					return _elm_lang$core$Maybe$Just(
+						variable(_p41));
+				},
+				pixels: pixels,
+				range: A2(_terezka$line_charts$Internal_Axis_Range$padded, 20, 20),
+				axisLine: _terezka$line_charts$Internal_Axis_Line$default,
+				ticks: _terezka$line_charts$Internal_Axis_Ticks$custom(
+					F2(
+						function (data, range) {
+							var amount = (pixels / 90) | 0;
+							var largest = A2(_terezka$line_charts$Internal_Coordinate$largestRange, data, range);
+							return A2(
+								_elm_lang$core$List$map,
+								_terezka$line_charts$LineChart_Axis_Tick$float,
+								A2(
+									_terezka$line_charts$Internal_Axis_Values$float,
+									_terezka$line_charts$Internal_Axis_Values$around(amount),
+									largest));
+						}))
+			});
+	});
+var _terezka$line_charts$Internal_Axis$time = F3(
+	function (pixels, title, variable) {
+		return _terezka$line_charts$Internal_Axis$custom(
+			{
+				title: A3(_terezka$line_charts$Internal_Axis_Title$atDataMax, 0, 0, title),
+				variable: function (_p42) {
+					return _elm_lang$core$Maybe$Just(
+						variable(_p42));
+				},
+				pixels: pixels,
+				range: A2(_terezka$line_charts$Internal_Axis_Range$padded, 20, 20),
+				axisLine: _terezka$line_charts$Internal_Axis_Line$rangeFrame(_terezka$line_charts$LineChart_Colors$gray),
+				ticks: _terezka$line_charts$Internal_Axis_Ticks$custom(
+					F2(
+						function (data, range) {
+							var rangeLong = range.max - range.min;
+							var smallest = A2(_terezka$line_charts$Internal_Coordinate$smallestRange, data, range);
+							var rangeSmall = smallest.max - smallest.min;
+							var diff = 1 - ((rangeLong - rangeSmall) / rangeLong);
+							var amount = _elm_lang$core$Basics$round(
+								(diff * _elm_lang$core$Basics$toFloat(pixels)) / 90);
+							return A2(
+								_elm_lang$core$List$map,
+								_terezka$line_charts$LineChart_Axis_Tick$time,
+								A2(_terezka$line_charts$Internal_Axis_Values$time, amount, smallest));
+						}))
+			});
+	});
+var _terezka$line_charts$Internal_Axis$none = F2(
+	function (pixels, variable) {
+		return _terezka$line_charts$Internal_Axis$custom(
+			{
+				title: _terezka$line_charts$Internal_Axis_Title$default(''),
+				variable: function (_p43) {
+					return _elm_lang$core$Maybe$Just(
+						variable(_p43));
+				},
+				pixels: pixels,
+				range: A2(_terezka$line_charts$Internal_Axis_Range$padded, 20, 20),
+				axisLine: _terezka$line_charts$Internal_Axis_Line$none,
+				ticks: _terezka$line_charts$Internal_Axis_Ticks$custom(
+					F2(
+						function (_p45, _p44) {
+							return {ctor: '[]'};
+						}))
+			});
+	});
+var _terezka$line_charts$Internal_Axis$picky = F4(
+	function (pixels, title, variable, ticks) {
+		return _terezka$line_charts$Internal_Axis$custom(
+			{
+				title: A3(_terezka$line_charts$Internal_Axis_Title$atAxisMax, 0, 0, title),
+				variable: function (_p46) {
+					return _elm_lang$core$Maybe$Just(
+						variable(_p46));
+				},
+				pixels: pixels,
+				range: A2(_terezka$line_charts$Internal_Axis_Range$padded, 20, 20),
+				axisLine: _terezka$line_charts$Internal_Axis_Line$default,
+				ticks: _terezka$line_charts$Internal_Axis_Ticks$custom(
+					F2(
+						function (_p48, _p47) {
+							return A2(_elm_lang$core$List$map, _terezka$line_charts$LineChart_Axis_Tick$float, ticks);
+						}))
+			});
 	});
 
-var _AnotherKamila$stalkme$CsvTsdb_Graph$records_to_dataset = function () {
-	var record2datapoint = function (r) {
+var _terezka$line_charts$LineChart_Axis_Range$custom = _terezka$line_charts$Internal_Axis_Range$custom;
+var _terezka$line_charts$LineChart_Axis_Range$window = _terezka$line_charts$Internal_Axis_Range$window;
+var _terezka$line_charts$LineChart_Axis_Range$padded = _terezka$line_charts$Internal_Axis_Range$padded;
+var _terezka$line_charts$LineChart_Axis_Range$default = _terezka$line_charts$Internal_Axis_Range$default;
+
+var _terezka$line_charts$LineChart_Axis_Line$custom = _terezka$line_charts$Internal_Axis_Line$custom;
+var _terezka$line_charts$LineChart_Axis_Line$none = _terezka$line_charts$Internal_Axis_Line$none;
+var _terezka$line_charts$LineChart_Axis_Line$rangeFrame = _terezka$line_charts$Internal_Axis_Line$rangeFrame;
+var _terezka$line_charts$LineChart_Axis_Line$full = _terezka$line_charts$Internal_Axis_Line$full;
+var _terezka$line_charts$LineChart_Axis_Line$default = _terezka$line_charts$Internal_Axis_Line$default;
+var _terezka$line_charts$LineChart_Axis_Line$Properties = F5(
+	function (a, b, c, d, e) {
+		return {color: a, width: b, events: c, start: d, end: e};
+	});
+
+var _terezka$line_charts$LineChart_Axis_Ticks$custom = _terezka$line_charts$Internal_Axis_Ticks$custom;
+var _terezka$line_charts$LineChart_Axis_Ticks$timeCustom = _terezka$line_charts$Internal_Axis_Ticks$timeCustom;
+var _terezka$line_charts$LineChart_Axis_Ticks$floatCustom = _terezka$line_charts$Internal_Axis_Ticks$floatCustom;
+var _terezka$line_charts$LineChart_Axis_Ticks$intCustom = _terezka$line_charts$Internal_Axis_Ticks$intCustom;
+var _terezka$line_charts$LineChart_Axis_Ticks$float = _terezka$line_charts$Internal_Axis_Ticks$float;
+var _terezka$line_charts$LineChart_Axis_Ticks$time = _terezka$line_charts$Internal_Axis_Ticks$time;
+var _terezka$line_charts$LineChart_Axis_Ticks$int = _terezka$line_charts$Internal_Axis_Ticks$int;
+var _terezka$line_charts$LineChart_Axis_Ticks$default = _terezka$line_charts$Internal_Axis_Ticks$float(5);
+
+var _terezka$line_charts$LineChart_Axis$custom = _terezka$line_charts$Internal_Axis$custom;
+var _terezka$line_charts$LineChart_Axis$none = _terezka$line_charts$Internal_Axis$none;
+var _terezka$line_charts$LineChart_Axis$picky = _terezka$line_charts$Internal_Axis$picky;
+var _terezka$line_charts$LineChart_Axis$time = _terezka$line_charts$Internal_Axis$time;
+var _terezka$line_charts$LineChart_Axis$full = _terezka$line_charts$Internal_Axis$full;
+var _terezka$line_charts$LineChart_Axis$default = _terezka$line_charts$Internal_Axis$default;
+var _terezka$line_charts$LineChart_Axis$Properties = F6(
+	function (a, b, c, d, e, f) {
+		return {title: a, variable: b, pixels: c, range: d, axisLine: e, ticks: f};
+	});
+
+var _terezka$line_charts$Internal_Dots$varietyAttributes = F2(
+	function (color, variety) {
+		var _p0 = variety;
+		switch (_p0.ctor) {
+			case 'Empty':
+				return {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+							_elm_lang$core$Basics$toString(_p0._0)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$fill('white'),
+							_1: {ctor: '[]'}
+						}
+					}
+				};
+			case 'Aura':
+				return {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+							_elm_lang$core$Basics$toString(_p0._0)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeOpacity(
+								_elm_lang$core$Basics$toString(_p0._1)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$fill(
+									_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				};
+			case 'Disconnected':
+				return {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke('white'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+							_elm_lang$core$Basics$toString(_p0._0)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$fill(
+								_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+							_1: {ctor: '[]'}
+						}
+					}
+				};
+			default:
+				return {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill(
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+					_1: {ctor: '[]'}
+				};
+		}
+	});
+var _terezka$line_charts$Internal_Dots$pathPlus = F2(
+	function (area, point) {
+		var side = _elm_lang$core$Basics$sqrt(area / 5);
+		var r3 = side;
+		var r6 = side / 2;
+		var commands = {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$core$Basics_ops['++'],
+				'M',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(point.x - r6),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						' ',
+						_elm_lang$core$Basics$toString((point.y - r3) - r6)))),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$core$Basics_ops['++'],
+					'v',
+					_elm_lang$core$Basics$toString(r3)),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'h',
+						_elm_lang$core$Basics$toString(0 - r3)),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$core$Basics_ops['++'],
+							'v',
+							_elm_lang$core$Basics$toString(r3)),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'h',
+								_elm_lang$core$Basics$toString(r3)),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$core$Basics_ops['++'],
+									'v',
+									_elm_lang$core$Basics$toString(r3)),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$core$Basics_ops['++'],
+										'h',
+										_elm_lang$core$Basics$toString(r3)),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$core$Basics_ops['++'],
+											'v',
+											_elm_lang$core$Basics$toString(0 - r3)),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$core$Basics_ops['++'],
+												'h',
+												_elm_lang$core$Basics$toString(r3)),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$core$Basics_ops['++'],
+													'v',
+													_elm_lang$core$Basics$toString(0 - r3)),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$core$Basics_ops['++'],
+														'h',
+														_elm_lang$core$Basics$toString(0 - r3)),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$core$Basics_ops['++'],
+															'v',
+															_elm_lang$core$Basics$toString(0 - r3)),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_elm_lang$core$Basics_ops['++'],
+																'h',
+																_elm_lang$core$Basics$toString(0 - r3)),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	'v',
+																	_elm_lang$core$Basics$toString(r3)),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		};
+		return A2(_elm_lang$core$String$join, ' ', commands);
+	});
+var _terezka$line_charts$Internal_Dots$pathTriangle = F2(
+	function (area, point) {
+		var side = _elm_lang$core$Basics$sqrt(
+			(area * 4) / _elm_lang$core$Basics$sqrt(3));
+		var height = (_elm_lang$core$Basics$sqrt(3) * side) / 2;
+		var fromMiddle = height - ((_elm_lang$core$Basics$tan(
+			_elm_lang$core$Basics$degrees(30)) * side) / 2);
+		var commands = {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$core$Basics_ops['++'],
+				'M',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(point.x),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						' ',
+						_elm_lang$core$Basics$toString(point.y - fromMiddle)))),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$core$Basics_ops['++'],
+					'l',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString((0 - side) / 2),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							' ',
+							_elm_lang$core$Basics$toString(height)))),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'h',
+						_elm_lang$core$Basics$toString(side)),
+					_1: {
+						ctor: '::',
+						_0: 'z',
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		};
+		return A2(_elm_lang$core$String$join, ' ', commands);
+	});
+var _terezka$line_charts$Internal_Dots$viewCross = F5(
+	function (events, variety, color, area, point) {
+		var rotation = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'rotate(45 ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(point.x),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					' ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(point.y),
+						')'))));
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$d(
+				A2(_terezka$line_charts$Internal_Dots$pathPlus, area, point)),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform(rotation),
+				_1: {ctor: '[]'}
+			}
+		};
+		return A2(
+			_elm_lang$svg$Svg$path,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				events,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					attributes,
+					A2(_terezka$line_charts$Internal_Dots$varietyAttributes, color, variety))),
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Dots$viewPlus = F5(
+	function (events, variety, color, area, point) {
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$d(
+				A2(_terezka$line_charts$Internal_Dots$pathPlus, area, point)),
+			_1: {ctor: '[]'}
+		};
+		return A2(
+			_elm_lang$svg$Svg$path,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				events,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					attributes,
+					A2(_terezka$line_charts$Internal_Dots$varietyAttributes, color, variety))),
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Dots$viewDiamond = F5(
+	function (events, variety, color, area, point) {
+		var rotation = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'rotate(45 ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(point.x),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					' ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(point.y),
+						')'))));
+		var side = _elm_lang$core$Basics$sqrt(area);
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$x(
+				_elm_lang$core$Basics$toString(point.x - (side / 2))),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$y(
+					_elm_lang$core$Basics$toString(point.y - (side / 2))),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$width(
+						_elm_lang$core$Basics$toString(side)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$height(
+							_elm_lang$core$Basics$toString(side)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$transform(rotation),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		};
+		return A2(
+			_elm_lang$svg$Svg$rect,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				events,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					attributes,
+					A2(_terezka$line_charts$Internal_Dots$varietyAttributes, color, variety))),
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Dots$viewSquare = F5(
+	function (events, variety, color, area, point) {
+		var side = _elm_lang$core$Basics$sqrt(area);
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$x(
+				_elm_lang$core$Basics$toString(point.x - (side / 2))),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$y(
+					_elm_lang$core$Basics$toString(point.y - (side / 2))),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$width(
+						_elm_lang$core$Basics$toString(side)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$height(
+							_elm_lang$core$Basics$toString(side)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		};
+		return A2(
+			_elm_lang$svg$Svg$rect,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				events,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					attributes,
+					A2(_terezka$line_charts$Internal_Dots$varietyAttributes, color, variety))),
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Dots$viewTriangle = F5(
+	function (events, variety, color, area, point) {
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$d(
+				A2(_terezka$line_charts$Internal_Dots$pathTriangle, area, point)),
+			_1: {ctor: '[]'}
+		};
+		return A2(
+			_elm_lang$svg$Svg$path,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				events,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					attributes,
+					A2(_terezka$line_charts$Internal_Dots$varietyAttributes, color, variety))),
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Dots$viewCircle = F5(
+	function (events, variety, color, area, point) {
+		var radius = _elm_lang$core$Basics$sqrt(area / _elm_lang$core$Basics$pi);
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$cx(
+				_elm_lang$core$Basics$toString(point.x)),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$cy(
+					_elm_lang$core$Basics$toString(point.y)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$r(
+						_elm_lang$core$Basics$toString(radius)),
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+		return A2(
+			_elm_lang$svg$Svg$circle,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				events,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					attributes,
+					A2(_terezka$line_charts$Internal_Dots$varietyAttributes, color, variety))),
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$Internal_Dots$viewShape = F5(
+	function (system, _p1, shape, color, point) {
+		var _p2 = _p1;
+		var view = function () {
+			var _p3 = shape;
+			switch (_p3.ctor) {
+				case 'Circle':
+					return _terezka$line_charts$Internal_Dots$viewCircle;
+				case 'Triangle':
+					return _terezka$line_charts$Internal_Dots$viewTriangle;
+				case 'Square':
+					return _terezka$line_charts$Internal_Dots$viewSquare;
+				case 'Diamond':
+					return _terezka$line_charts$Internal_Dots$viewDiamond;
+				case 'Cross':
+					return _terezka$line_charts$Internal_Dots$viewCross;
+				case 'Plus':
+					return _terezka$line_charts$Internal_Dots$viewPlus;
+				default:
+					return F5(
+						function (_p8, _p7, _p6, _p5, _p4) {
+							return _elm_lang$svg$Svg$text('');
+						});
+			}
+		}();
+		var pointSvg = A2(_terezka$line_charts$LineChart_Coordinate$toSvg, system, point);
+		var size = (2 * _elm_lang$core$Basics$pi) * _p2.radius;
+		return A5(
+			view,
+			{ctor: '[]'},
+			_p2.variety,
+			color,
+			size,
+			pointSvg);
+	});
+var _terezka$line_charts$Internal_Dots$viewSample = F5(
+	function (_p9, shape, color, system, data) {
+		var _p10 = _p9;
+		var _p11 = _p10._0.legend(
+			A2(
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.user;
+				},
+				data));
+		var style = _p11._0;
+		return A4(_terezka$line_charts$Internal_Dots$viewShape, system, style, shape, color);
+	});
+var _terezka$line_charts$Internal_Dots$view = F2(
+	function (_p12, data) {
+		var _p13 = _p12;
+		var _p14 = _p13.dotsConfig;
+		var config = _p14._0;
+		var _p15 = config.individual(data.user);
+		var style = _p15._0;
+		return A5(_terezka$line_charts$Internal_Dots$viewShape, _p13.system, style, _p13.shape, _p13.color, data.point);
+	});
+var _terezka$line_charts$Internal_Dots$StyleConfig = F2(
+	function (a, b) {
+		return {radius: a, variety: b};
+	});
+var _terezka$line_charts$Internal_Dots$Arguments = F4(
+	function (a, b, c, d) {
+		return {system: a, dotsConfig: b, shape: c, color: d};
+	});
+var _terezka$line_charts$Internal_Dots$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Dots$custom = function (style) {
+	return _terezka$line_charts$Internal_Dots$Config(
+		{
+			legend: function (_p16) {
+				return style;
+			},
+			individual: function (_p17) {
+				return style;
+			}
+		});
+};
+var _terezka$line_charts$Internal_Dots$customAny = _terezka$line_charts$Internal_Dots$Config;
+var _terezka$line_charts$Internal_Dots$Style = function (a) {
+	return {ctor: 'Style', _0: a};
+};
+var _terezka$line_charts$Internal_Dots$style = F2(
+	function (radius, variety) {
+		return _terezka$line_charts$Internal_Dots$Style(
+			{radius: radius, variety: variety});
+	});
+var _terezka$line_charts$Internal_Dots$Full = {ctor: 'Full'};
+var _terezka$line_charts$Internal_Dots$full = function (radius) {
+	return A2(_terezka$line_charts$Internal_Dots$style, radius, _terezka$line_charts$Internal_Dots$Full);
+};
+var _terezka$line_charts$Internal_Dots$Aura = F2(
+	function (a, b) {
+		return {ctor: 'Aura', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Dots$aura = F3(
+	function (radius, aura, opacity) {
+		return A2(
+			_terezka$line_charts$Internal_Dots$style,
+			radius,
+			A2(_terezka$line_charts$Internal_Dots$Aura, aura, opacity));
+	});
+var _terezka$line_charts$Internal_Dots$Disconnected = function (a) {
+	return {ctor: 'Disconnected', _0: a};
+};
+var _terezka$line_charts$Internal_Dots$disconnected = F2(
+	function (radius, border) {
+		return A2(
+			_terezka$line_charts$Internal_Dots$style,
+			radius,
+			_terezka$line_charts$Internal_Dots$Disconnected(border));
+	});
+var _terezka$line_charts$Internal_Dots$default = _terezka$line_charts$Internal_Dots$Config(
+	{
+		legend: function (_p18) {
+			return A2(_terezka$line_charts$Internal_Dots$disconnected, 10, 2);
+		},
+		individual: function (_p19) {
+			return A2(_terezka$line_charts$Internal_Dots$disconnected, 10, 2);
+		}
+	});
+var _terezka$line_charts$Internal_Dots$Empty = function (a) {
+	return {ctor: 'Empty', _0: a};
+};
+var _terezka$line_charts$Internal_Dots$empty = F2(
+	function (radius, border) {
+		return A2(
+			_terezka$line_charts$Internal_Dots$style,
+			radius,
+			_terezka$line_charts$Internal_Dots$Empty(border));
+	});
+var _terezka$line_charts$Internal_Dots$Plus = {ctor: 'Plus'};
+var _terezka$line_charts$Internal_Dots$Cross = {ctor: 'Cross'};
+var _terezka$line_charts$Internal_Dots$Diamond = {ctor: 'Diamond'};
+var _terezka$line_charts$Internal_Dots$Square = {ctor: 'Square'};
+var _terezka$line_charts$Internal_Dots$Triangle = {ctor: 'Triangle'};
+var _terezka$line_charts$Internal_Dots$Circle = {ctor: 'Circle'};
+var _terezka$line_charts$Internal_Dots$None = {ctor: 'None'};
+
+var _terezka$line_charts$LineChart_Dots$aura = _terezka$line_charts$Internal_Dots$aura;
+var _terezka$line_charts$LineChart_Dots$disconnected = _terezka$line_charts$Internal_Dots$disconnected;
+var _terezka$line_charts$LineChart_Dots$empty = _terezka$line_charts$Internal_Dots$empty;
+var _terezka$line_charts$LineChart_Dots$full = _terezka$line_charts$Internal_Dots$full;
+var _terezka$line_charts$LineChart_Dots$hoverMany = function (hovered) {
+	var styleIndividual = function (datum) {
+		return A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(datum),
+			hovered) ? A3(_terezka$line_charts$LineChart_Dots$aura, 7, 6, 0.3) : A2(_terezka$line_charts$LineChart_Dots$disconnected, 10, 2);
+	};
+	var styleLegend = function (_p0) {
+		return A2(_terezka$line_charts$LineChart_Dots$disconnected, 10, 2);
+	};
+	return _terezka$line_charts$Internal_Dots$customAny(
+		{legend: styleLegend, individual: styleIndividual});
+};
+var _terezka$line_charts$LineChart_Dots$hoverOne = function (maybeHovered) {
+	var styleIndividual = function (datum) {
+		return _elm_lang$core$Native_Utils.eq(
+			_elm_lang$core$Maybe$Just(datum),
+			maybeHovered) ? A3(_terezka$line_charts$LineChart_Dots$aura, 7, 6, 0.3) : A2(_terezka$line_charts$LineChart_Dots$disconnected, 10, 2);
+	};
+	var styleLegend = function (_p1) {
+		return A2(_terezka$line_charts$LineChart_Dots$disconnected, 10, 2);
+	};
+	return _terezka$line_charts$Internal_Dots$customAny(
+		{legend: styleLegend, individual: styleIndividual});
+};
+var _terezka$line_charts$LineChart_Dots$customAny = _terezka$line_charts$Internal_Dots$customAny;
+var _terezka$line_charts$LineChart_Dots$custom = _terezka$line_charts$Internal_Dots$custom;
+var _terezka$line_charts$LineChart_Dots$default = _terezka$line_charts$Internal_Dots$default;
+var _terezka$line_charts$LineChart_Dots$cross = _terezka$line_charts$Internal_Dots$Cross;
+var _terezka$line_charts$LineChart_Dots$plus = _terezka$line_charts$Internal_Dots$Plus;
+var _terezka$line_charts$LineChart_Dots$diamond = _terezka$line_charts$Internal_Dots$Diamond;
+var _terezka$line_charts$LineChart_Dots$square = _terezka$line_charts$Internal_Dots$Square;
+var _terezka$line_charts$LineChart_Dots$triangle = _terezka$line_charts$Internal_Dots$Triangle;
+var _terezka$line_charts$LineChart_Dots$circle = _terezka$line_charts$Internal_Dots$Circle;
+var _terezka$line_charts$LineChart_Dots$none = _terezka$line_charts$Internal_Dots$None;
+
+var _terezka$line_charts$Internal_Grid$viewLines = F5(
+	function (system, verticals, horizontals, width, color) {
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+				_elm_lang$core$Basics$toString(width)),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(color)),
+				_1: {ctor: '[]'}
+			}
+		};
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			A2(
+				_elm_lang$core$List$map,
+				A2(_terezka$line_charts$Internal_Svg$horizontalGrid, system, attributes),
+				horizontals),
+			A2(
+				_elm_lang$core$List$map,
+				A2(_terezka$line_charts$Internal_Svg$verticalGrid, system, attributes),
+				verticals));
+	});
+var _terezka$line_charts$Internal_Grid$viewDots = F5(
+	function (system, verticals, horizontals, radius, color) {
+		var dot = F2(
+			function (x, y) {
+				return A2(
+					_terezka$line_charts$LineChart_Coordinate$toSvg,
+					system,
+					A2(_terezka$line_charts$LineChart_Coordinate$Point, x, y));
+			});
+		var dots_ = function (g) {
+			return A2(
+				_elm_lang$core$List$map,
+				dot(g),
+				horizontals);
+		};
+		var dots = A2(_elm_lang$core$List$concatMap, dots_, verticals);
+		return A2(
+			_elm_lang$core$List$map,
+			A2(_terezka$line_charts$Internal_Svg$gridDot, radius, color),
+			dots);
+	});
+var _terezka$line_charts$Internal_Grid$view = F4(
+	function (system, xAxis, yAxis, grid) {
+		var hasGrid = function (tick) {
+			return tick.grid ? _elm_lang$core$Maybe$Just(tick.position) : _elm_lang$core$Maybe$Nothing;
+		};
+		var horizontals = A2(
+			_elm_lang$core$List$filterMap,
+			hasGrid,
+			A3(
+				_terezka$line_charts$Internal_Axis_Ticks$ticks,
+				system.yData,
+				system.y,
+				_terezka$line_charts$Internal_Axis$ticks(yAxis)));
+		var verticals = A2(
+			_elm_lang$core$List$filterMap,
+			hasGrid,
+			A3(
+				_terezka$line_charts$Internal_Axis_Ticks$ticks,
+				system.xData,
+				system.x,
+				_terezka$line_charts$Internal_Axis$ticks(xAxis)));
+		var _p0 = grid;
+		if (_p0.ctor === 'Dots') {
+			return A5(_terezka$line_charts$Internal_Grid$viewDots, system, verticals, horizontals, _p0._0, _p0._1);
+		} else {
+			return A5(_terezka$line_charts$Internal_Grid$viewLines, system, verticals, horizontals, _p0._0, _p0._1);
+		}
+	});
+var _terezka$line_charts$Internal_Grid$Lines = F2(
+	function (a, b) {
+		return {ctor: 'Lines', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Grid$lines = _terezka$line_charts$Internal_Grid$Lines;
+var _terezka$line_charts$Internal_Grid$default = A2(_terezka$line_charts$Internal_Grid$lines, 1, _terezka$line_charts$LineChart_Colors$grayLightest);
+var _terezka$line_charts$Internal_Grid$Dots = F2(
+	function (a, b) {
+		return {ctor: 'Dots', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Grid$dots = _terezka$line_charts$Internal_Grid$Dots;
+
+var _terezka$line_charts$LineChart_Grid$lines = _terezka$line_charts$Internal_Grid$lines;
+var _terezka$line_charts$LineChart_Grid$dots = _terezka$line_charts$Internal_Grid$dots;
+var _terezka$line_charts$LineChart_Grid$default = _terezka$line_charts$Internal_Grid$default;
+
+var _terezka$line_charts$Internal_Interpolation$after = F2(
+	function (a, b) {
+		return {
+			ctor: '::',
+			_0: a,
+			_1: {
+				ctor: '::',
+				_0: A2(_terezka$line_charts$Internal_Data$Point, b.x, a.y),
+				_1: {
+					ctor: '::',
+					_0: b,
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+	});
+var _terezka$line_charts$Internal_Interpolation$fakeLast = F2(
+	function (last0, last1) {
+		return A2(_terezka$line_charts$Internal_Data$Point, (last1.x + last1.x) - last0.x, last1.y);
+	});
+var _terezka$line_charts$Internal_Interpolation$stepped = function (sections) {
+	var expand = F2(
+		function (result, section) {
+			expand:
+			while (true) {
+				var _p0 = section;
+				if (_p0._0.ctor === '::') {
+					if (_p0._0._1.ctor === '::') {
+						var _p1 = _p0._0._1._0;
+						var _v1 = A2(
+							_elm_lang$core$Basics_ops['++'],
+							result,
+							A2(_terezka$line_charts$Internal_Interpolation$after, _p0._0._0, _p1)),
+							_v2 = {
+							ctor: '_Tuple2',
+							_0: {ctor: '::', _0: _p1, _1: _p0._0._1._1},
+							_1: _p0._1
+						};
+						result = _v1;
+						section = _v2;
+						continue expand;
+					} else {
+						if (_p0._1.ctor === 'Just') {
+							return A2(
+								_elm_lang$core$Basics_ops['++'],
+								result,
+								{
+									ctor: '::',
+									_0: A2(_terezka$line_charts$Internal_Data$Point, _p0._1._0.x, _p0._0._0.y),
+									_1: {ctor: '[]'}
+								});
+						} else {
+							return result;
+						}
+					}
+				} else {
+					return result;
+				}
+			}
+		});
+	return A2(
+		_elm_lang$core$List$map,
+		function (_p2) {
+			return A2(
+				_elm_lang$core$List$map,
+				_terezka$line_charts$Internal_Path$Line,
+				A2(
+					expand,
+					{ctor: '[]'},
+					_p2));
+		},
+		sections);
+};
+var _terezka$line_charts$Internal_Interpolation$sign = function (x) {
+	return (_elm_lang$core$Native_Utils.cmp(x, 0) < 0) ? -1 : 1;
+};
+var _terezka$line_charts$Internal_Interpolation$slope2 = F3(
+	function (point0, point1, t) {
+		var h = point1.x - point0.x;
+		return (!_elm_lang$core$Native_Utils.eq(h, 0)) ? ((((3 * (point1.y - point0.y)) / h) - t) / 2) : t;
+	});
+var _terezka$line_charts$Internal_Interpolation$toH = F2(
+	function (h0, h1) {
+		return _elm_lang$core$Native_Utils.eq(h0, 0) ? ((_elm_lang$core$Native_Utils.cmp(h1, 0) < 0) ? (0 * -1) : h1) : h0;
+	});
+var _terezka$line_charts$Internal_Interpolation$slope3 = F3(
+	function (point0, point1, point2) {
+		var h1 = point2.x - point1.x;
+		var h0 = point1.x - point0.x;
+		var s0h = A2(_terezka$line_charts$Internal_Interpolation$toH, h0, h1);
+		var s0 = (point1.y - point0.y) / s0h;
+		var s1h = A2(_terezka$line_charts$Internal_Interpolation$toH, h1, h0);
+		var s1 = (point2.y - point1.y) / s1h;
+		var p = ((s0 * h1) + (s1 * h0)) / (h0 + h1);
+		var slope = (_terezka$line_charts$Internal_Interpolation$sign(s0) + _terezka$line_charts$Internal_Interpolation$sign(s1)) * A2(
+			_elm_lang$core$Basics$min,
+			A2(
+				_elm_lang$core$Basics$min,
+				_elm_lang$core$Basics$abs(s0),
+				_elm_lang$core$Basics$abs(s1)),
+			0.5 * _elm_lang$core$Basics$abs(p));
+		return _elm_lang$core$Basics$isNaN(slope) ? 0 : slope;
+	});
+var _terezka$line_charts$Internal_Interpolation$monotoneCurve = F4(
+	function (point0, point1, tangent0, tangent1) {
+		var dx = (point1.x - point0.x) / 3;
+		return A3(
+			_terezka$line_charts$Internal_Path$CubicBeziers,
+			{x: point0.x + dx, y: point0.y + (dx * tangent0)},
+			{x: point1.x - dx, y: point1.y - (dx * tangent1)},
+			point1);
+	});
+var _terezka$line_charts$Internal_Interpolation$linear = _elm_lang$core$List$map(
+	_elm_lang$core$List$map(_terezka$line_charts$Internal_Path$Line));
+var _terezka$line_charts$Internal_Interpolation$Stepped = {ctor: 'Stepped'};
+var _terezka$line_charts$Internal_Interpolation$Monotone = {ctor: 'Monotone'};
+var _terezka$line_charts$Internal_Interpolation$Linear = {ctor: 'Linear'};
+var _terezka$line_charts$Internal_Interpolation$Previous = function (a) {
+	return {ctor: 'Previous', _0: a};
+};
+var _terezka$line_charts$Internal_Interpolation$monotonePart = F2(
+	function (points, _p3) {
+		monotonePart:
+		while (true) {
+			var _p4 = _p3;
+			var _p17 = _p4._0;
+			var _p16 = _p4._1;
+			var _p5 = {ctor: '_Tuple2', _0: _p17, _1: points};
+			_v4_4:
+			do {
+				if (_p5._0.ctor === 'First') {
+					if ((_p5._1.ctor === '::') && (_p5._1._1.ctor === '::')) {
+						if (_p5._1._1._1.ctor === '::') {
+							var _p8 = _p5._1._1._1._0;
+							var _p7 = _p5._1._1._0;
+							var _p6 = _p5._1._0;
+							var t1 = A3(_terezka$line_charts$Internal_Interpolation$slope3, _p6, _p7, _p8);
+							var t0 = A3(_terezka$line_charts$Internal_Interpolation$slope2, _p6, _p7, t1);
+							var _v5 = {
+								ctor: '::',
+								_0: _p7,
+								_1: {ctor: '::', _0: _p8, _1: _p5._1._1._1._1}
+							},
+								_v6 = {
+								ctor: '_Tuple2',
+								_0: _terezka$line_charts$Internal_Interpolation$Previous(t1),
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_p16,
+									{
+										ctor: '::',
+										_0: A4(_terezka$line_charts$Internal_Interpolation$monotoneCurve, _p6, _p7, t0, t1),
+										_1: {ctor: '[]'}
+									})
+							};
+							points = _v5;
+							_p3 = _v6;
+							continue monotonePart;
+						} else {
+							var _p13 = _p5._1._1._0;
+							var _p12 = _p5._1._0;
+							var t1 = A3(_terezka$line_charts$Internal_Interpolation$slope3, _p12, _p13, _p13);
+							return {
+								ctor: '_Tuple2',
+								_0: _terezka$line_charts$Internal_Interpolation$Previous(t1),
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_p16,
+									{
+										ctor: '::',
+										_0: A4(_terezka$line_charts$Internal_Interpolation$monotoneCurve, _p12, _p13, t1, t1),
+										_1: {
+											ctor: '::',
+											_0: _terezka$line_charts$Internal_Path$Line(_p13),
+											_1: {ctor: '[]'}
+										}
+									})
+							};
+						}
+					} else {
+						break _v4_4;
+					}
+				} else {
+					if ((_p5._1.ctor === '::') && (_p5._1._1.ctor === '::')) {
+						if (_p5._1._1._1.ctor === '::') {
+							var _p11 = _p5._1._1._1._0;
+							var _p10 = _p5._1._1._0;
+							var _p9 = _p5._1._0;
+							var t1 = A3(_terezka$line_charts$Internal_Interpolation$slope3, _p9, _p10, _p11);
+							var _v7 = {
+								ctor: '::',
+								_0: _p10,
+								_1: {ctor: '::', _0: _p11, _1: _p5._1._1._1._1}
+							},
+								_v8 = {
+								ctor: '_Tuple2',
+								_0: _terezka$line_charts$Internal_Interpolation$Previous(t1),
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_p16,
+									{
+										ctor: '::',
+										_0: A4(_terezka$line_charts$Internal_Interpolation$monotoneCurve, _p9, _p10, _p5._0._0, t1),
+										_1: {ctor: '[]'}
+									})
+							};
+							points = _v7;
+							_p3 = _v8;
+							continue monotonePart;
+						} else {
+							var _p15 = _p5._1._1._0;
+							var _p14 = _p5._1._0;
+							var t1 = A3(_terezka$line_charts$Internal_Interpolation$slope3, _p14, _p15, _p15);
+							return {
+								ctor: '_Tuple2',
+								_0: _terezka$line_charts$Internal_Interpolation$Previous(t1),
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_p16,
+									{
+										ctor: '::',
+										_0: A4(_terezka$line_charts$Internal_Interpolation$monotoneCurve, _p14, _p15, _p5._0._0, t1),
+										_1: {
+											ctor: '::',
+											_0: _terezka$line_charts$Internal_Path$Line(_p15),
+											_1: {ctor: '[]'}
+										}
+									})
+							};
+						}
+					} else {
+						break _v4_4;
+					}
+				}
+			} while(false);
+			return {ctor: '_Tuple2', _0: _p17, _1: _p16};
+		}
+	});
+var _terezka$line_charts$Internal_Interpolation$monotoneSection = F2(
+	function (points, _p18) {
+		var _p19 = _p18;
+		var _p23 = _p19._0;
+		var _p20 = function () {
+			var _p21 = points;
+			if (_p21.ctor === '::') {
+				var _p22 = _p21._0;
+				return A2(
+					_terezka$line_charts$Internal_Interpolation$monotonePart,
+					{ctor: '::', _0: _p22, _1: _p21._1},
+					{
+						ctor: '_Tuple2',
+						_0: _p23,
+						_1: {
+							ctor: '::',
+							_0: _terezka$line_charts$Internal_Path$Line(_p22),
+							_1: {ctor: '[]'}
+						}
+					});
+			} else {
+				return {
+					ctor: '_Tuple2',
+					_0: _p23,
+					_1: {ctor: '[]'}
+				};
+			}
+		}();
+		var t0 = _p20._0;
+		var commands = _p20._1;
 		return {
 			ctor: '_Tuple2',
-			_0: _elm_lang$core$Time$inSeconds(
-				_elm_lang$core$Date$toTime(r.date)),
-			_1: r.value
+			_0: t0,
+			_1: {ctor: '::', _0: commands, _1: _p19._1}
+		};
+	});
+var _terezka$line_charts$Internal_Interpolation$First = {ctor: 'First'};
+var _terezka$line_charts$Internal_Interpolation$monotone = function (sections) {
+	return _elm_lang$core$Tuple$second(
+		A3(
+			_elm_lang$core$List$foldr,
+			_terezka$line_charts$Internal_Interpolation$monotoneSection,
+			{
+				ctor: '_Tuple2',
+				_0: _terezka$line_charts$Internal_Interpolation$First,
+				_1: {ctor: '[]'}
+			},
+			sections));
+};
+var _terezka$line_charts$Internal_Interpolation$toCommands = F2(
+	function (interpolation, data) {
+		var pointsSections = _elm_lang$core$List$map(
+			function (_p24) {
+				return A2(
+					_elm_lang$core$Tuple$mapSecond,
+					_elm_lang$core$Maybe$map(
+						function (_) {
+							return _.point;
+						}),
+					A2(
+						_elm_lang$core$Tuple$mapFirst,
+						_elm_lang$core$List$map(
+							function (_) {
+								return _.point;
+							}),
+						_p24));
+			});
+		var points = _elm_lang$core$List$map(
+			function (_p25) {
+				return A2(
+					_elm_lang$core$List$map,
+					function (_) {
+						return _.point;
+					},
+					_elm_lang$core$Tuple$first(_p25));
+			});
+		var _p26 = interpolation;
+		switch (_p26.ctor) {
+			case 'Linear':
+				return _terezka$line_charts$Internal_Interpolation$linear(
+					points(data));
+			case 'Monotone':
+				return _terezka$line_charts$Internal_Interpolation$monotone(
+					points(data));
+			default:
+				return _terezka$line_charts$Internal_Interpolation$stepped(
+					pointsSections(data));
+		}
+	});
+
+var _terezka$line_charts$Internal_Line$toAreaAttributes = F3(
+	function (_p1, _p0, area) {
+		var _p2 = _p1;
+		var _p3 = _p0;
+		return {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$class('chart__interpolation__area__fragment'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$fill(
+					_eskimoblood$elm_color_extra$Color_Convert$colorToHex(
+						_p3._0.color(_p2._0.color))),
+				_1: {ctor: '[]'}
+			}
+		};
+	});
+var _terezka$line_charts$Internal_Line$viewArea = F5(
+	function (_p4, line, style, interpolation, data) {
+		var _p5 = _p4;
+		var _p7 = _p5.system;
+		var _p6 = _p5.area;
+		var attributes = {
+			ctor: '::',
+			_0: _terezka$line_charts$LineChart_Junk$withinChartArea(_p7),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$fillOpacity(
+					_elm_lang$core$Basics$toString(
+						_terezka$line_charts$Internal_Area$opacitySingle(_p6))),
+				_1: A3(_terezka$line_charts$Internal_Line$toAreaAttributes, line, style, _p6)
+			}
+		};
+		var ground = function (point) {
+			return A2(
+				_terezka$line_charts$Internal_Data$Point,
+				point.x,
+				_terezka$line_charts$Internal_Utils$towardsZero(_p7.y));
+		};
+		var commands = F3(
+			function (first, middle, last) {
+				return A3(
+					_terezka$line_charts$Internal_Utils$concat,
+					{
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Path$Move(
+							ground(
+								_terezka$line_charts$Internal_Path$toPoint(first))),
+						_1: {
+							ctor: '::',
+							_0: _terezka$line_charts$Internal_Path$Line(
+								_terezka$line_charts$Internal_Path$toPoint(first)),
+							_1: {ctor: '[]'}
+						}
+					},
+					interpolation,
+					{
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Path$Line(
+							ground(
+								_terezka$line_charts$Internal_Path$toPoint(last))),
+						_1: {ctor: '[]'}
+					});
+			});
+		return A2(
+			_terezka$line_charts$Internal_Utils$viewWithEdges,
+			interpolation,
+			F3(
+				function (first, middle, last) {
+					return A3(
+						_terezka$line_charts$Internal_Path$view,
+						_p7,
+						attributes,
+						A3(commands, first, middle, last));
+				}));
+	});
+var _terezka$line_charts$Internal_Line$toSeriesAttributes = F2(
+	function (_p9, _p8) {
+		var _p10 = _p9;
+		var _p11 = _p8;
+		var _p12 = _p11._0;
+		return {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__interpolation__line__fragment'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(
+						_eskimoblood$elm_color_extra$Color_Convert$colorToHex(
+							_p12.color(_p10._0.color))),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+							_elm_lang$core$Basics$toString(_p12.width)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeDasharray(
+								A2(
+									_elm_lang$core$String$join,
+									' ',
+									A2(_elm_lang$core$List$map, _elm_lang$core$Basics$toString, _p10._0.dashing))),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		};
+	});
+var _terezka$line_charts$Internal_Line$viewSample = F5(
+	function (_p13, line, area, data, sampleWidth) {
+		var _p14 = _p13;
+		var rectangleAttributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$x('0'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$y('0'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height('9'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$width(
+							_elm_lang$core$Basics$toString(sampleWidth)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		};
+		var sizeAttributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$x1('0'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$y1('0'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$x2(
+						_elm_lang$core$Basics$toString(sampleWidth)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$y2('0'),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		};
+		var style = _p14._0(
+			A2(
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.user;
+				},
+				data));
+		var lineAttributes = A2(_terezka$line_charts$Internal_Line$toSeriesAttributes, line, style);
+		var areaAttributes = {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$fillOpacity(
+				_elm_lang$core$Basics$toString(
+					_terezka$line_charts$Internal_Area$opacity(area))),
+			_1: A3(_terezka$line_charts$Internal_Line$toAreaAttributes, line, style, area)
+		};
+		var viewRectangle = function (_p15) {
+			var _p16 = _p15;
+			return A2(
+				_elm_lang$svg$Svg$rect,
+				A2(_elm_lang$core$Basics_ops['++'], areaAttributes, rectangleAttributes),
+				{ctor: '[]'});
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$line,
+					A2(_elm_lang$core$Basics_ops['++'], lineAttributes, sizeAttributes),
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_terezka$line_charts$Internal_Utils$viewIf,
+						_terezka$line_charts$Internal_Area$hasArea(area),
+						viewRectangle),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Line$viewSeries = F5(
+	function (_p17, line, style, interpolation, data) {
+		var _p18 = _p17;
+		var _p20 = _p18.system;
+		var attributes = {
+			ctor: '::',
+			_0: _terezka$line_charts$LineChart_Junk$withinChartArea(_p20),
+			_1: A2(_terezka$line_charts$Internal_Line$toSeriesAttributes, line, style)
+		};
+		return A2(
+			_terezka$line_charts$Internal_Utils$viewWithFirst,
+			data,
+			F2(
+				function (first, _p19) {
+					return A3(
+						_terezka$line_charts$Internal_Path$view,
+						_p20,
+						attributes,
+						{
+							ctor: '::',
+							_0: _terezka$line_charts$Internal_Path$Move(first.point),
+							_1: interpolation
+						});
+				}));
+	});
+var _terezka$line_charts$Internal_Line$viewDot = F3(
+	function ($arguments, _p22, _p21) {
+		var _p23 = _p22;
+		var _p25 = _p23._0;
+		var _p24 = _p21;
+		return _terezka$line_charts$Internal_Dots$view(
+			{
+				system: $arguments.system,
+				dotsConfig: $arguments.dotsConfig,
+				shape: _p25.shape,
+				color: _p24._0.color(_p25.color)
+			});
+	});
+var _terezka$line_charts$Internal_Line$viewSingle = F3(
+	function ($arguments, line, data) {
+		var style = function (_p26) {
+			var _p27 = _p26;
+			return _p27._0(
+				A2(
+					_elm_lang$core$List$map,
+					function (_) {
+						return _.user;
+					},
+					data));
+		}($arguments.lineConfig);
+		var sections = A4(
+			_terezka$line_charts$Internal_Utils$part,
+			function (_) {
+				return _.isReal;
+			},
+			data,
+			{ctor: '[]'},
+			{ctor: '[]'});
+		var parts = A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$first, sections);
+		var viewDots = A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__dots'),
+				_1: {ctor: '[]'}
+			},
+			A2(
+				_elm_lang$core$List$map,
+				A3(_terezka$line_charts$Internal_Line$viewDot, $arguments, line, style),
+				A2(
+					_elm_lang$core$List$filter,
+					function (_p28) {
+						return A2(
+							_terezka$line_charts$Internal_Data$isWithinRange,
+							$arguments.system,
+							function (_) {
+								return _.point;
+							}(_p28));
+					},
+					_elm_lang$core$List$concat(parts))));
+		var commands = A2(_terezka$line_charts$Internal_Interpolation$toCommands, $arguments.interpolation, sections);
+		var viewAreas = function (_p29) {
+			var _p30 = _p29;
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('chart__interpolation__area'),
+					_1: {ctor: '[]'}
+				},
+				A3(
+					_elm_lang$core$List$map2,
+					A3(_terezka$line_charts$Internal_Line$viewArea, $arguments, line, style),
+					commands,
+					parts));
+		};
+		var viewSeriess = A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__interpolation__line'),
+				_1: {ctor: '[]'}
+			},
+			A3(
+				_elm_lang$core$List$map2,
+				A3(_terezka$line_charts$Internal_Line$viewSeries, $arguments, line, style),
+				commands,
+				parts));
+		return {
+			ctor: '_Tuple3',
+			_0: A2(
+				_terezka$line_charts$Internal_Utils$viewIf,
+				_terezka$line_charts$Internal_Area$hasArea($arguments.area),
+				viewAreas),
+			_1: viewSeriess,
+			_2: viewDots
+		};
+	});
+var _terezka$line_charts$Internal_Line$viewStacked = F2(
+	function (area, _p31) {
+		var _p32 = _p31;
+		var toList = F2(
+			function (l, d) {
+				return {
+					ctor: '::',
+					_0: l,
+					_1: {
+						ctor: '::',
+						_0: d,
+						_1: {ctor: '[]'}
+					}
+				};
+			});
+		var bottoms = _elm_lang$core$List$concat(
+			A3(_elm_lang$core$List$map2, toList, _p32._1, _p32._2));
+		var opacity = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'opacity: ',
+			_elm_lang$core$Basics$toString(
+				_terezka$line_charts$Internal_Area$opacityContainer(area)));
+		return {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('chart__bottoms'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$style(opacity),
+						_1: {ctor: '[]'}
+					}
+				},
+				_p32._0),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$g,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$class('chart__tops'),
+						_1: {ctor: '[]'}
+					},
+					bottoms),
+				_1: {ctor: '[]'}
+			}
+		};
+	});
+var _terezka$line_charts$Internal_Line$viewNormal = function (_p33) {
+	var _p34 = _p33;
+	var view = F3(
+		function (area, line, dots) {
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('chart__line'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: area,
+					_1: {
+						ctor: '::',
+						_0: line,
+						_1: {
+							ctor: '::',
+							_0: dots,
+							_1: {ctor: '[]'}
+						}
+					}
+				});
+		});
+	return A4(_elm_lang$core$List$map3, view, _p34._0, _p34._1, _p34._2);
+};
+var _terezka$line_charts$Internal_Line$view = F3(
+	function ($arguments, lines, datas) {
+		var buildSeriesViews = (_elm_lang$core$Native_Utils.cmp(
+			_terezka$line_charts$Internal_Area$opacityContainer($arguments.area),
+			1) < 0) ? _terezka$line_charts$Internal_Line$viewStacked($arguments.area) : _terezka$line_charts$Internal_Line$viewNormal;
+		var container = _elm_lang$svg$Svg$g(
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__lines'),
+				_1: {ctor: '[]'}
+			});
+		return container(
+			buildSeriesViews(
+				_terezka$line_charts$Internal_Utils$unzip3(
+					A3(
+						_elm_lang$core$List$map2,
+						_terezka$line_charts$Internal_Line$viewSingle($arguments),
+						lines,
+						datas))));
+	});
+var _terezka$line_charts$Internal_Line$color = F3(
+	function (_p36, _p35, data) {
+		var _p37 = _p36;
+		var _p38 = _p35;
+		var _p39 = _p37._0(
+			A2(
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.user;
+				},
+				data));
+		var style = _p39._0;
+		return style.color(_p38._0.color);
+	});
+var _terezka$line_charts$Internal_Line$data = function (_p40) {
+	var _p41 = _p40;
+	return _p41._0.data;
+};
+var _terezka$line_charts$Internal_Line$shape = function (_p42) {
+	var _p43 = _p42;
+	return _p43._0.shape;
+};
+var _terezka$line_charts$Internal_Line$label = function (_p44) {
+	var _p45 = _p44;
+	return _p45._0.label;
+};
+var _terezka$line_charts$Internal_Line$SeriesConfig = F5(
+	function (a, b, c, d, e) {
+		return {color: a, shape: b, dashing: c, label: d, data: e};
+	});
+var _terezka$line_charts$Internal_Line$Arguments = F5(
+	function (a, b, c, d, e) {
+		return {system: a, dotsConfig: b, interpolation: c, lineConfig: d, area: e};
+	});
+var _terezka$line_charts$Internal_Line$Series = function (a) {
+	return {ctor: 'Series', _0: a};
+};
+var _terezka$line_charts$Internal_Line$line = F4(
+	function (color, shape, label, data) {
+		return _terezka$line_charts$Internal_Line$Series(
+			A5(
+				_terezka$line_charts$Internal_Line$SeriesConfig,
+				color,
+				shape,
+				{ctor: '[]'},
+				label,
+				data));
+	});
+var _terezka$line_charts$Internal_Line$dash = F5(
+	function (color, shape, label, dashing, data) {
+		return _terezka$line_charts$Internal_Line$Series(
+			A5(_terezka$line_charts$Internal_Line$SeriesConfig, color, shape, dashing, label, data));
+	});
+var _terezka$line_charts$Internal_Line$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Line$custom = _terezka$line_charts$Internal_Line$Config;
+var _terezka$line_charts$Internal_Line$Style = function (a) {
+	return {ctor: 'Style', _0: a};
+};
+var _terezka$line_charts$Internal_Line$style = F2(
+	function (width, color) {
+		return _terezka$line_charts$Internal_Line$Style(
+			{width: width, color: color});
+	});
+var _terezka$line_charts$Internal_Line$default = _terezka$line_charts$Internal_Line$Config(
+	function (_p46) {
+		return A2(_terezka$line_charts$Internal_Line$style, 1, _elm_lang$core$Basics$identity);
+	});
+var _terezka$line_charts$Internal_Line$wider = function (width) {
+	return _terezka$line_charts$Internal_Line$Config(
+		function (_p47) {
+			return A2(_terezka$line_charts$Internal_Line$style, width, _elm_lang$core$Basics$identity);
+		});
+};
+
+var _terezka$line_charts$LineChart_Line$style = _terezka$line_charts$Internal_Line$style;
+var _terezka$line_charts$LineChart_Line$custom = _terezka$line_charts$Internal_Line$custom;
+var _terezka$line_charts$LineChart_Line$hoverOne = function (hovered) {
+	return _terezka$line_charts$LineChart_Line$custom(
+		function (data) {
+			return A2(
+				_elm_lang$core$List$any,
+				function (_p0) {
+					return A2(
+						F2(
+							function (x, y) {
+								return _elm_lang$core$Native_Utils.eq(x, y);
+							}),
+						hovered,
+						_elm_lang$core$Maybe$Just(_p0));
+				},
+				data) ? A2(_terezka$line_charts$LineChart_Line$style, 3, _elm_lang$core$Basics$identity) : A2(_terezka$line_charts$LineChart_Line$style, 1, _elm_lang$core$Basics$identity);
+		});
+};
+var _terezka$line_charts$LineChart_Line$wider = _terezka$line_charts$Internal_Line$wider;
+var _terezka$line_charts$LineChart_Line$default = _terezka$line_charts$Internal_Line$default;
+
+var _elm_lang$svg$Svg_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$svg$Svg_Events$simpleOn = F2(
+	function (name, msg) {
+		return A2(
+			_elm_lang$svg$Svg_Events$on,
+			name,
+			_elm_lang$core$Json_Decode$succeed(msg));
+	});
+var _elm_lang$svg$Svg_Events$onBegin = _elm_lang$svg$Svg_Events$simpleOn('begin');
+var _elm_lang$svg$Svg_Events$onEnd = _elm_lang$svg$Svg_Events$simpleOn('end');
+var _elm_lang$svg$Svg_Events$onRepeat = _elm_lang$svg$Svg_Events$simpleOn('repeat');
+var _elm_lang$svg$Svg_Events$onAbort = _elm_lang$svg$Svg_Events$simpleOn('abort');
+var _elm_lang$svg$Svg_Events$onError = _elm_lang$svg$Svg_Events$simpleOn('error');
+var _elm_lang$svg$Svg_Events$onResize = _elm_lang$svg$Svg_Events$simpleOn('resize');
+var _elm_lang$svg$Svg_Events$onScroll = _elm_lang$svg$Svg_Events$simpleOn('scroll');
+var _elm_lang$svg$Svg_Events$onLoad = _elm_lang$svg$Svg_Events$simpleOn('load');
+var _elm_lang$svg$Svg_Events$onUnload = _elm_lang$svg$Svg_Events$simpleOn('unload');
+var _elm_lang$svg$Svg_Events$onZoom = _elm_lang$svg$Svg_Events$simpleOn('zoom');
+var _elm_lang$svg$Svg_Events$onActivate = _elm_lang$svg$Svg_Events$simpleOn('activate');
+var _elm_lang$svg$Svg_Events$onClick = _elm_lang$svg$Svg_Events$simpleOn('click');
+var _elm_lang$svg$Svg_Events$onFocusIn = _elm_lang$svg$Svg_Events$simpleOn('focusin');
+var _elm_lang$svg$Svg_Events$onFocusOut = _elm_lang$svg$Svg_Events$simpleOn('focusout');
+var _elm_lang$svg$Svg_Events$onMouseDown = _elm_lang$svg$Svg_Events$simpleOn('mousedown');
+var _elm_lang$svg$Svg_Events$onMouseMove = _elm_lang$svg$Svg_Events$simpleOn('mousemove');
+var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mouseout');
+var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
+var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
+
+var _terezka$line_charts$Internal_Events$position = _elm_lang$core$Json_Decode$oneOf(
+	{
+		ctor: '::',
+		_0: _debois$elm_dom$DOM$boundingClientRect,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$core$Json_Decode$lazy(
+				function (_p0) {
+					return _debois$elm_dom$DOM$parentElement(_terezka$line_charts$Internal_Events$position);
+				}),
+			_1: {ctor: '[]'}
+		}
+	});
+var _terezka$line_charts$Internal_Events$toJsonDecoder = F3(
+	function (data, system, _p1) {
+		var _p2 = _p1;
+		var handle = F3(
+			function (mouseX, mouseY, _p3) {
+				var _p4 = _p3;
+				var _p6 = _p4.width;
+				var _p5 = _p4.height;
+				var y = mouseY - _p4.top;
+				var x = mouseX - _p4.left;
+				var newSize = {width: _p6, height: _p5};
+				var heightPercent = _p5 / system.frame.size.height;
+				var widthPercent = _p6 / system.frame.size.width;
+				var newMargin = {top: system.frame.margin.top * heightPercent, right: system.frame.margin.right * widthPercent, bottom: system.frame.margin.bottom * heightPercent, left: system.frame.margin.left * widthPercent};
+				var newSystem = _elm_lang$core$Native_Utils.update(
+					system,
+					{
+						frame: {size: newSize, margin: newMargin}
+					});
+				return A3(
+					_p2._0,
+					data,
+					newSystem,
+					A2(_terezka$line_charts$LineChart_Coordinate$Point, x, y));
+			});
+		return A4(
+			_elm_lang$core$Json_Decode$map3,
+			handle,
+			A2(_elm_lang$core$Json_Decode$field, 'pageX', _elm_lang$core$Json_Decode$float),
+			A2(_elm_lang$core$Json_Decode$field, 'pageY', _elm_lang$core$Json_Decode$float),
+			_debois$elm_dom$DOM$target(_terezka$line_charts$Internal_Events$position));
+	});
+var _terezka$line_charts$Internal_Events$distanceY = F3(
+	function (system, searched, dot) {
+		return _elm_lang$core$Basics$abs(
+			A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, dot.y) - A2(_terezka$line_charts$LineChart_Coordinate$toSvgY, system, searched.y));
+	});
+var _terezka$line_charts$Internal_Events$distanceX = F3(
+	function (system, searched, dot) {
+		return _elm_lang$core$Basics$abs(
+			A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, dot.x) - A2(_terezka$line_charts$LineChart_Coordinate$toSvgX, system, searched.x));
+	});
+var _terezka$line_charts$Internal_Events$distance = F3(
+	function (system, searched, dot) {
+		return _elm_lang$core$Basics$sqrt(
+			Math.pow(
+				A3(_terezka$line_charts$Internal_Events$distanceX, system, searched, dot),
+				2) + Math.pow(
+				A3(_terezka$line_charts$Internal_Events$distanceY, system, searched, dot),
+				2));
+	});
+var _terezka$line_charts$Internal_Events$withinRadius = F4(
+	function (system, radius, searched, dot) {
+		return _elm_lang$core$Native_Utils.cmp(
+			A3(_terezka$line_charts$Internal_Events$distance, system, searched, dot),
+			radius) < 1;
+	});
+var _terezka$line_charts$Internal_Events$withinRadiusX = F4(
+	function (system, radius, searched, dot) {
+		return _elm_lang$core$Native_Utils.cmp(
+			A3(_terezka$line_charts$Internal_Events$distanceX, system, searched, dot),
+			radius) < 1;
+	});
+var _terezka$line_charts$Internal_Events$getNearestXHelp = F3(
+	function (points, system, searched) {
+		var distanceX_ = A2(_terezka$line_charts$Internal_Events$distanceX, system, searched);
+		var getClosest = F2(
+			function (point, allClosest) {
+				var _p7 = _elm_lang$core$List$head(allClosest);
+				if (_p7.ctor === 'Just') {
+					var _p8 = _p7._0;
+					return _elm_lang$core$Native_Utils.eq(_p8.point.x, point.point.x) ? {ctor: '::', _0: point, _1: allClosest} : ((_elm_lang$core$Native_Utils.cmp(
+						distanceX_(_p8.point),
+						distanceX_(point.point)) > 0) ? {
+						ctor: '::',
+						_0: point,
+						_1: {ctor: '[]'}
+					} : allClosest);
+				} else {
+					return {
+						ctor: '::',
+						_0: point,
+						_1: {ctor: '[]'}
+					};
+				}
+			});
+		return A3(
+			_elm_lang$core$List$foldl,
+			getClosest,
+			{ctor: '[]'},
+			points);
+	});
+var _terezka$line_charts$Internal_Events$getNearestHelp = F3(
+	function (points, system, searched) {
+		var distance_ = A2(_terezka$line_charts$Internal_Events$distance, system, searched);
+		var getClosest = F2(
+			function (point, closest) {
+				return (_elm_lang$core$Native_Utils.cmp(
+					distance_(closest.point),
+					distance_(point.point)) < 0) ? closest : point;
+			});
+		return A2(
+			_terezka$line_charts$Internal_Utils$withFirst,
+			A2(
+				_elm_lang$core$List$filter,
+				function (_) {
+					return _.isReal;
+				},
+				points),
+			_elm_lang$core$List$foldl(getClosest));
+	});
+var _terezka$line_charts$Internal_Events$toContainerAttributes = F3(
+	function (data, system, _p9) {
+		var _p10 = _p9;
+		var order = function (_p11) {
+			var _p12 = _p11;
+			return _p12._0 ? _elm_lang$core$Maybe$Just(
+				A2(_p12._1, data, system)) : _elm_lang$core$Maybe$Nothing;
+		};
+		return A2(_elm_lang$core$List$filterMap, order, _p10._0);
+	});
+var _terezka$line_charts$Internal_Events$toChartAttributes = F3(
+	function (data, system, _p13) {
+		var _p14 = _p13;
+		var order = function (_p15) {
+			var _p16 = _p15;
+			return _p16._0 ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+				A2(_p16._1, data, system));
+		};
+		return A2(_elm_lang$core$List$filterMap, order, _p14._0);
+	});
+var _terezka$line_charts$Internal_Events$Options = F3(
+	function (a, b, c) {
+		return {stopPropagation: a, preventDefault: b, catchOutsideChart: c};
+	});
+var _terezka$line_charts$Internal_Events$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _terezka$line_charts$Internal_Events$custom = _terezka$line_charts$Internal_Events$Config;
+var _terezka$line_charts$Internal_Events$default = _terezka$line_charts$Internal_Events$custom(
+	{ctor: '[]'});
+var _terezka$line_charts$Internal_Events$Event = F2(
+	function (a, b) {
+		return {ctor: 'Event', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Events$onMouseLeave = function (msg) {
+	return A2(
+		_terezka$line_charts$Internal_Events$Event,
+		false,
+		F2(
+			function (_p18, _p17) {
+				return A2(
+					_elm_lang$svg$Svg_Events$on,
+					'mouseleave',
+					_elm_lang$core$Json_Decode$succeed(msg));
+			}));
+};
+var _terezka$line_charts$Internal_Events$Decoder = function (a) {
+	return {ctor: 'Decoder', _0: a};
+};
+var _terezka$line_charts$Internal_Events$getSvg = _terezka$line_charts$Internal_Events$Decoder(
+	F3(
+		function (points, system, searched) {
+			return searched;
+		}));
+var _terezka$line_charts$Internal_Events$getData = _terezka$line_charts$Internal_Events$Decoder(
+	F3(
+		function (points, system, searchedSvg) {
+			return A2(_terezka$line_charts$LineChart_Coordinate$toData, system, searchedSvg);
+		}));
+var _terezka$line_charts$Internal_Events$getNearest = _terezka$line_charts$Internal_Events$Decoder(
+	F3(
+		function (points, system, searchedSvg) {
+			var searched = A2(_terezka$line_charts$LineChart_Coordinate$toData, system, searchedSvg);
+			return A2(
+				_elm_lang$core$Maybe$map,
+				function (_) {
+					return _.user;
+				},
+				A3(_terezka$line_charts$Internal_Events$getNearestHelp, points, system, searched));
+		}));
+var _terezka$line_charts$Internal_Events$getWithin = function (radius) {
+	return _terezka$line_charts$Internal_Events$Decoder(
+		F3(
+			function (points, system, searchedSvg) {
+				var searched = A2(_terezka$line_charts$LineChart_Coordinate$toData, system, searchedSvg);
+				var keepIfEligible = function (closest) {
+					return A4(_terezka$line_charts$Internal_Events$withinRadius, system, radius, searched, closest.point) ? _elm_lang$core$Maybe$Just(closest.user) : _elm_lang$core$Maybe$Nothing;
+				};
+				return A2(
+					_elm_lang$core$Maybe$andThen,
+					keepIfEligible,
+					A3(_terezka$line_charts$Internal_Events$getNearestHelp, points, system, searched));
+			}));
+};
+var _terezka$line_charts$Internal_Events$getNearestX = _terezka$line_charts$Internal_Events$Decoder(
+	F3(
+		function (points, system, searchedSvg) {
+			var searched = A2(_terezka$line_charts$LineChart_Coordinate$toData, system, searchedSvg);
+			return A2(
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.user;
+				},
+				A3(_terezka$line_charts$Internal_Events$getNearestXHelp, points, system, searched));
+		}));
+var _terezka$line_charts$Internal_Events$getWithinX = function (radius) {
+	return _terezka$line_charts$Internal_Events$Decoder(
+		F3(
+			function (points, system, searchedSvg) {
+				var searched = A2(_terezka$line_charts$LineChart_Coordinate$toData, system, searchedSvg);
+				var keepIfEligible = function (_p19) {
+					return A4(
+						_terezka$line_charts$Internal_Events$withinRadiusX,
+						system,
+						radius,
+						searched,
+						function (_) {
+							return _.point;
+						}(_p19));
+				};
+				return A2(
+					_elm_lang$core$List$map,
+					function (_) {
+						return _.user;
+					},
+					A2(
+						_elm_lang$core$List$filter,
+						keepIfEligible,
+						A3(_terezka$line_charts$Internal_Events$getNearestXHelp, points, system, searched)));
+			}));
+};
+var _terezka$line_charts$Internal_Events$map = F2(
+	function (f, _p20) {
+		var _p21 = _p20;
+		return _terezka$line_charts$Internal_Events$Decoder(
+			F3(
+				function (ps, s, p) {
+					return f(
+						A3(_p21._0, ps, s, p));
+				}));
+	});
+var _terezka$line_charts$Internal_Events$on = F3(
+	function (event, toMsg, decoder) {
+		return A2(
+			_terezka$line_charts$Internal_Events$Event,
+			false,
+			F2(
+				function (data, system) {
+					return A2(
+						_elm_lang$svg$Svg_Events$on,
+						event,
+						A3(
+							_terezka$line_charts$Internal_Events$toJsonDecoder,
+							data,
+							system,
+							A2(_terezka$line_charts$Internal_Events$map, toMsg, decoder)));
+				}));
+	});
+var _terezka$line_charts$Internal_Events$onClick = _terezka$line_charts$Internal_Events$on('click');
+var _terezka$line_charts$Internal_Events$click = function (msg) {
+	return _terezka$line_charts$Internal_Events$custom(
+		{
+			ctor: '::',
+			_0: A2(
+				_terezka$line_charts$Internal_Events$onClick,
+				msg,
+				_terezka$line_charts$Internal_Events$getWithin(30)),
+			_1: {ctor: '[]'}
+		});
+};
+var _terezka$line_charts$Internal_Events$onMouseMove = _terezka$line_charts$Internal_Events$on('mousemove');
+var _terezka$line_charts$Internal_Events$hoverMany = function (msg) {
+	return _terezka$line_charts$Internal_Events$custom(
+		{
+			ctor: '::',
+			_0: A2(_terezka$line_charts$Internal_Events$onMouseMove, msg, _terezka$line_charts$Internal_Events$getNearestX),
+			_1: {
+				ctor: '::',
+				_0: _terezka$line_charts$Internal_Events$onMouseLeave(
+					msg(
+						{ctor: '[]'})),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _terezka$line_charts$Internal_Events$hoverOne = function (msg) {
+	return _terezka$line_charts$Internal_Events$custom(
+		{
+			ctor: '::',
+			_0: A2(
+				_terezka$line_charts$Internal_Events$onMouseMove,
+				msg,
+				_terezka$line_charts$Internal_Events$getWithin(30)),
+			_1: {
+				ctor: '::',
+				_0: A3(
+					_terezka$line_charts$Internal_Events$on,
+					'touchstart',
+					msg,
+					_terezka$line_charts$Internal_Events$getWithin(100)),
+				_1: {
+					ctor: '::',
+					_0: A3(
+						_terezka$line_charts$Internal_Events$on,
+						'touchmove',
+						msg,
+						_terezka$line_charts$Internal_Events$getWithin(100)),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Events$onMouseLeave(
+							msg(_elm_lang$core$Maybe$Nothing)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _terezka$line_charts$Internal_Events$onMouseDown = _terezka$line_charts$Internal_Events$on('mousedown');
+var _terezka$line_charts$Internal_Events$onMouseUp = _terezka$line_charts$Internal_Events$on('mouseup');
+var _terezka$line_charts$Internal_Events$onWithOptions = F4(
+	function (event, options, toMsg, decoder) {
+		return A2(
+			_terezka$line_charts$Internal_Events$Event,
+			options.catchOutsideChart,
+			F2(
+				function (data, system) {
+					return A3(
+						_elm_lang$html$Html_Events$onWithOptions,
+						event,
+						A2(_elm_lang$html$Html_Events$Options, options.stopPropagation, options.preventDefault),
+						A3(
+							_terezka$line_charts$Internal_Events$toJsonDecoder,
+							data,
+							system,
+							A2(_terezka$line_charts$Internal_Events$map, toMsg, decoder)));
+				}));
+	});
+var _terezka$line_charts$Internal_Events$map2 = F3(
+	function (f, _p23, _p22) {
+		var _p24 = _p23;
+		var _p25 = _p22;
+		return _terezka$line_charts$Internal_Events$Decoder(
+			F3(
+				function (ps, s, p) {
+					return A2(
+						f,
+						A3(_p24._0, ps, s, p),
+						A3(_p25._0, ps, s, p));
+				}));
+	});
+var _terezka$line_charts$Internal_Events$map3 = F4(
+	function (f, _p28, _p27, _p26) {
+		var _p29 = _p28;
+		var _p30 = _p27;
+		var _p31 = _p26;
+		return _terezka$line_charts$Internal_Events$Decoder(
+			F3(
+				function (ps, s, p) {
+					return A3(
+						f,
+						A3(_p29._0, ps, s, p),
+						A3(_p30._0, ps, s, p),
+						A3(_p31._0, ps, s, p));
+				}));
+	});
+
+var _terezka$line_charts$LineChart_Events$map3 = _terezka$line_charts$Internal_Events$map3;
+var _terezka$line_charts$LineChart_Events$map2 = _terezka$line_charts$Internal_Events$map2;
+var _terezka$line_charts$LineChart_Events$map = _terezka$line_charts$Internal_Events$map;
+var _terezka$line_charts$LineChart_Events$getWithinX = _terezka$line_charts$Internal_Events$getWithinX;
+var _terezka$line_charts$LineChart_Events$getNearestX = _terezka$line_charts$Internal_Events$getNearestX;
+var _terezka$line_charts$LineChart_Events$getWithin = _terezka$line_charts$Internal_Events$getWithin;
+var _terezka$line_charts$LineChart_Events$getNearest = _terezka$line_charts$Internal_Events$getNearest;
+var _terezka$line_charts$LineChart_Events$getData = _terezka$line_charts$Internal_Events$getData;
+var _terezka$line_charts$LineChart_Events$getSvg = _terezka$line_charts$Internal_Events$getSvg;
+var _terezka$line_charts$LineChart_Events$onWithOptions = _terezka$line_charts$Internal_Events$onWithOptions;
+var _terezka$line_charts$LineChart_Events$on = _terezka$line_charts$Internal_Events$on;
+var _terezka$line_charts$LineChart_Events$onMouseLeave = _terezka$line_charts$Internal_Events$onMouseLeave;
+var _terezka$line_charts$LineChart_Events$onMouseUp = _terezka$line_charts$Internal_Events$onMouseUp;
+var _terezka$line_charts$LineChart_Events$onMouseDown = _terezka$line_charts$Internal_Events$onMouseDown;
+var _terezka$line_charts$LineChart_Events$onMouseMove = _terezka$line_charts$Internal_Events$onMouseMove;
+var _terezka$line_charts$LineChart_Events$onClick = _terezka$line_charts$Internal_Events$onClick;
+var _terezka$line_charts$LineChart_Events$custom = _terezka$line_charts$Internal_Events$custom;
+var _terezka$line_charts$LineChart_Events$click = _terezka$line_charts$Internal_Events$click;
+var _terezka$line_charts$LineChart_Events$hoverMany = _terezka$line_charts$Internal_Events$hoverMany;
+var _terezka$line_charts$LineChart_Events$hoverOne = _terezka$line_charts$Internal_Events$hoverOne;
+var _terezka$line_charts$LineChart_Events$default = _terezka$line_charts$Internal_Events$default;
+var _terezka$line_charts$LineChart_Events$Options = F3(
+	function (a, b, c) {
+		return {stopPropagation: a, preventDefault: b, catchOutsideChart: c};
+	});
+
+var _terezka$line_charts$Internal_Legends$defaultLegend = F2(
+	function (index, _p0) {
+		var _p1 = _p0;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__legend'),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Svg$transform(
+						{
+							ctor: '::',
+							_0: A2(
+								_terezka$line_charts$Internal_Svg$offset,
+								20,
+								_elm_lang$core$Basics$toFloat(index) * 20),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _p1.sample,
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$svg$Svg$g,
+						{
+							ctor: '::',
+							_0: _terezka$line_charts$Internal_Svg$transform(
+								{
+									ctor: '::',
+									_0: A2(_terezka$line_charts$Internal_Svg$offset, 40, 4),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(_terezka$line_charts$Internal_Svg$label, 'inherit', _p1.label),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Legends$defaultLegends = F8(
+	function (toX, toY, offsetX, offsetY, hovered, $arguments, system, legends) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__legends'),
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$Internal_Svg$transform(
+						{
+							ctor: '::',
+							_0: A3(
+								_terezka$line_charts$Internal_Svg$move,
+								system,
+								toX(system.x),
+								toY(system.y)),
+							_1: {
+								ctor: '::',
+								_0: A2(_terezka$line_charts$Internal_Svg$offset, offsetX, offsetY),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}
+			},
+			A2(_elm_lang$core$List$indexedMap, _terezka$line_charts$Internal_Legends$defaultLegend, legends));
+	});
+var _terezka$line_charts$Internal_Legends$viewSample = F4(
+	function (_p2, sampleWidth, line, data) {
+		var _p3 = _p2;
+		var _p5 = _p3.system;
+		var _p4 = _p3.lineConfig;
+		var shape = _terezka$line_charts$Internal_Line$shape(line);
+		var color = A3(_terezka$line_charts$Internal_Line$color, _p4, line, data);
+		var dotPosition = A2(
+			_terezka$line_charts$LineChart_Coordinate$toData,
+			_p5,
+			A2(_terezka$line_charts$Internal_Data$Point, sampleWidth / 2, 0));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__sample'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A5(_terezka$line_charts$Internal_Line$viewSample, _p4, line, _p3.area, data, sampleWidth),
+				_1: {
+					ctor: '::',
+					_0: A6(_terezka$line_charts$Internal_Dots$viewSample, _p3.dotsConfig, shape, color, _p5, data, dotPosition),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _terezka$line_charts$Internal_Legends$viewGrouped = F3(
+	function ($arguments, sampleWidth, container) {
+		var toLegend = F2(
+			function (line, data) {
+				return {
+					sample: A4(_terezka$line_charts$Internal_Legends$viewSample, $arguments, sampleWidth, line, data),
+					label: _terezka$line_charts$Internal_Line$label(line)
+				};
+			});
+		var legends = A3(_elm_lang$core$List$map2, toLegend, $arguments.lines, $arguments.data);
+		return A2(container, $arguments.system, legends);
+	});
+var _terezka$line_charts$Internal_Legends$viewFree = F5(
+	function (system, placement, viewLabel, line, data) {
+		var _p6 = function () {
+			var _p7 = placement;
+			if (_p7.ctor === 'Beginning') {
+				return {ctor: '_Tuple3', _0: data, _1: _terezka$line_charts$Internal_Svg$End, _2: -10};
+			} else {
+				return {
+					ctor: '_Tuple3',
+					_0: _elm_lang$core$List$reverse(data),
+					_1: _terezka$line_charts$Internal_Svg$Start,
+					_2: 10
+				};
+			}
+		}();
+		var orderedPoints = _p6._0;
+		var anchor = _p6._1;
+		var xOffset = _p6._2;
+		var transform = function (_p8) {
+			var _p9 = _p8;
+			return _terezka$line_charts$Internal_Svg$transform(
+				{
+					ctor: '::',
+					_0: A3(_terezka$line_charts$Internal_Svg$move, system, _p9.x, _p9.y),
+					_1: {
+						ctor: '::',
+						_0: A2(_terezka$line_charts$Internal_Svg$offset, xOffset, 3),
+						_1: {ctor: '[]'}
+					}
+				});
+		};
+		var viewLegend = function (_p10) {
+			var _p11 = _p10;
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: transform(_p11.point),
+					_1: {
+						ctor: '::',
+						_0: _terezka$line_charts$Internal_Svg$anchorStyle(anchor),
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: viewLabel(
+						_terezka$line_charts$Internal_Line$label(line)),
+					_1: {ctor: '[]'}
+				});
+		};
+		return A2(
+			_terezka$line_charts$Internal_Utils$viewMaybe,
+			_elm_lang$core$List$head(orderedPoints),
+			viewLegend);
+	});
+var _terezka$line_charts$Internal_Legends$viewFrees = F3(
+	function (_p12, placement, view) {
+		var _p13 = _p12;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('chart__legends'),
+				_1: {ctor: '[]'}
+			},
+			A3(
+				_elm_lang$core$List$map2,
+				A3(_terezka$line_charts$Internal_Legends$viewFree, _p13.system, placement, view),
+				_p13.lines,
+				_p13.data));
+	});
+var _terezka$line_charts$Internal_Legends$view = function ($arguments) {
+	var _p14 = $arguments.legends;
+	switch (_p14.ctor) {
+		case 'Free':
+			return A3(_terezka$line_charts$Internal_Legends$viewFrees, $arguments, _p14._0, _p14._1);
+		case 'Grouped':
+			return A3(
+				_terezka$line_charts$Internal_Legends$viewGrouped,
+				$arguments,
+				_p14._0,
+				_p14._1($arguments));
+		default:
+			return _elm_lang$svg$Svg$text('');
+	}
+};
+var _terezka$line_charts$Internal_Legends$Legend = F2(
+	function (a, b) {
+		return {sample: a, label: b};
+	});
+var _terezka$line_charts$Internal_Legends$Arguments = F9(
+	function (a, b, c, d, e, f, g, h, i) {
+		return {system: a, dotsConfig: b, lineConfig: c, area: d, lines: e, data: f, x: g, y: h, legends: i};
+	});
+var _terezka$line_charts$Internal_Legends$Grouped = F2(
+	function (a, b) {
+		return {ctor: 'Grouped', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Legends$hover = function (data) {
+	return A2(
+		_terezka$line_charts$Internal_Legends$Grouped,
+		30,
+		A5(
+			_terezka$line_charts$Internal_Legends$defaultLegends,
+			function (_) {
+				return _.max;
+			},
+			function (_) {
+				return _.max;
+			},
+			0,
+			10,
+			data));
+};
+var _terezka$line_charts$Internal_Legends$default = _terezka$line_charts$Internal_Legends$hover(
+	{ctor: '[]'});
+var _terezka$line_charts$Internal_Legends$hoverOne = function (maybeOne) {
+	var _p15 = maybeOne;
+	if (_p15.ctor === 'Just') {
+		return _terezka$line_charts$Internal_Legends$hover(
+			{
+				ctor: '::',
+				_0: _p15._0,
+				_1: {ctor: '[]'}
+			});
+	} else {
+		return _terezka$line_charts$Internal_Legends$hover(
+			{ctor: '[]'});
+	}
+};
+var _terezka$line_charts$Internal_Legends$grouped = F4(
+	function (toX, toY, offsetX, offsetY) {
+		return A2(
+			_terezka$line_charts$Internal_Legends$Grouped,
+			30,
+			A5(
+				_terezka$line_charts$Internal_Legends$defaultLegends,
+				toX,
+				toY,
+				offsetX,
+				offsetY,
+				{ctor: '[]'}));
+	});
+var _terezka$line_charts$Internal_Legends$groupedCustom = F2(
+	function (sampleWidth, container) {
+		return A2(
+			_terezka$line_charts$Internal_Legends$Grouped,
+			sampleWidth,
+			function (_p16) {
+				return container;
+			});
+	});
+var _terezka$line_charts$Internal_Legends$Free = F2(
+	function (a, b) {
+		return {ctor: 'Free', _0: a, _1: b};
+	});
+var _terezka$line_charts$Internal_Legends$None = {ctor: 'None'};
+var _terezka$line_charts$Internal_Legends$none = _terezka$line_charts$Internal_Legends$None;
+var _terezka$line_charts$Internal_Legends$Ending = {ctor: 'Ending'};
+var _terezka$line_charts$Internal_Legends$byEnding = _terezka$line_charts$Internal_Legends$Free(_terezka$line_charts$Internal_Legends$Ending);
+var _terezka$line_charts$Internal_Legends$Beginning = {ctor: 'Beginning'};
+var _terezka$line_charts$Internal_Legends$byBeginning = _terezka$line_charts$Internal_Legends$Free(_terezka$line_charts$Internal_Legends$Beginning);
+
+var _terezka$line_charts$LineChart_Legends$groupedCustom = _terezka$line_charts$Internal_Legends$groupedCustom;
+var _terezka$line_charts$LineChart_Legends$grouped = _terezka$line_charts$Internal_Legends$grouped;
+var _terezka$line_charts$LineChart_Legends$byBeginning = _terezka$line_charts$Internal_Legends$byBeginning;
+var _terezka$line_charts$LineChart_Legends$byEnding = _terezka$line_charts$Internal_Legends$byEnding;
+var _terezka$line_charts$LineChart_Legends$none = _terezka$line_charts$Internal_Legends$none;
+var _terezka$line_charts$LineChart_Legends$default = _terezka$line_charts$Internal_Legends$default;
+var _terezka$line_charts$LineChart_Legends$Legend = F2(
+	function (a, b) {
+		return {sample: a, label: b};
+	});
+
+var _terezka$line_charts$LineChart_Interpolation$stepped = _terezka$line_charts$Internal_Interpolation$Stepped;
+var _terezka$line_charts$LineChart_Interpolation$monotone = _terezka$line_charts$Internal_Interpolation$Monotone;
+var _terezka$line_charts$LineChart_Interpolation$linear = _terezka$line_charts$Internal_Interpolation$Linear;
+var _terezka$line_charts$LineChart_Interpolation$default = _terezka$line_charts$LineChart_Interpolation$linear;
+
+var _terezka$line_charts$LineChart_Axis_Intersection$custom = _terezka$line_charts$Internal_Axis_Intersection$custom;
+var _terezka$line_charts$LineChart_Axis_Intersection$at = _terezka$line_charts$Internal_Axis_Intersection$at;
+var _terezka$line_charts$LineChart_Axis_Intersection$atOrigin = _terezka$line_charts$Internal_Axis_Intersection$atOrigin;
+var _terezka$line_charts$LineChart_Axis_Intersection$default = _terezka$line_charts$Internal_Axis_Intersection$default;
+
+var _terezka$line_charts$LineChart$defaultLabel = {
+	ctor: '::',
+	_0: 'First',
+	_1: {
+		ctor: '::',
+		_0: 'Second',
+		_1: {
+			ctor: '::',
+			_0: 'Third',
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _terezka$line_charts$LineChart$defaultShapes = {
+	ctor: '::',
+	_0: _terezka$line_charts$Internal_Dots$Circle,
+	_1: {
+		ctor: '::',
+		_0: _terezka$line_charts$Internal_Dots$Triangle,
+		_1: {
+			ctor: '::',
+			_0: _terezka$line_charts$Internal_Dots$Cross,
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _terezka$line_charts$LineChart$defaultColors = {
+	ctor: '::',
+	_0: _terezka$line_charts$LineChart_Colors$pink,
+	_1: {
+		ctor: '::',
+		_0: _terezka$line_charts$LineChart_Colors$blue,
+		_1: {
+			ctor: '::',
+			_0: _terezka$line_charts$LineChart_Colors$gold,
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _terezka$line_charts$LineChart$defaultLines = A4(_elm_lang$core$List$map4, _terezka$line_charts$Internal_Line$line, _terezka$line_charts$LineChart$defaultColors, _terezka$line_charts$LineChart$defaultShapes, _terezka$line_charts$LineChart$defaultLabel);
+var _terezka$line_charts$LineChart$defaultConfig = F2(
+	function (toX, toY) {
+		return {
+			y: A3(_terezka$line_charts$LineChart_Axis$default, 400, '', toY),
+			x: A3(_terezka$line_charts$LineChart_Axis$default, 700, '', toX),
+			container: _terezka$line_charts$LineChart_Container$default('line-chart-1'),
+			interpolation: _terezka$line_charts$LineChart_Interpolation$default,
+			intersection: _terezka$line_charts$LineChart_Axis_Intersection$default,
+			legends: _terezka$line_charts$LineChart_Legends$default,
+			events: _terezka$line_charts$LineChart_Events$default,
+			junk: _terezka$line_charts$LineChart_Junk$default,
+			grid: _terezka$line_charts$LineChart_Grid$default,
+			area: _terezka$line_charts$LineChart_Area$default,
+			line: _terezka$line_charts$LineChart_Line$default,
+			dots: _terezka$line_charts$LineChart_Dots$default
+		};
+	});
+var _terezka$line_charts$LineChart$toSystem = F2(
+	function (config, data) {
+		var yRange = A2(
+			_terezka$line_charts$Internal_Coordinate$range,
+			function (_p0) {
+				return function (_) {
+					return _.y;
+				}(
+					function (_) {
+						return _.point;
+					}(_p0));
+			},
+			data);
+		var xRange = A2(
+			_terezka$line_charts$Internal_Coordinate$range,
+			function (_p1) {
+				return function (_) {
+					return _.x;
+				}(
+					function (_) {
+						return _.point;
+					}(_p1));
+			},
+			data);
+		var size = A2(
+			_terezka$line_charts$Internal_Coordinate$Size,
+			_terezka$line_charts$Internal_Axis$pixels(config.x),
+			_terezka$line_charts$Internal_Axis$pixels(config.y));
+		var hasArea = _terezka$line_charts$Internal_Area$hasArea(config.area);
+		var adjustDomainRange = function (domain) {
+			return hasArea ? _terezka$line_charts$Internal_Coordinate$ground(domain) : domain;
+		};
+		var container = A2(_terezka$line_charts$Internal_Container$properties, _elm_lang$core$Basics$identity, config.container);
+		var frame = A2(_terezka$line_charts$Internal_Coordinate$Frame, container.margin, size);
+		var system = {
+			frame: frame,
+			x: xRange,
+			y: adjustDomainRange(yRange),
+			xData: xRange,
+			yData: yRange,
+			id: container.id
+		};
+		return _elm_lang$core$Native_Utils.update(
+			system,
+			{
+				x: A2(
+					_terezka$line_charts$Internal_Axis_Range$applyX,
+					_terezka$line_charts$Internal_Axis$range(config.x),
+					system),
+				y: A2(
+					_terezka$line_charts$Internal_Axis_Range$applyY,
+					_terezka$line_charts$Internal_Axis$range(config.y),
+					system)
+			});
+	});
+var _terezka$line_charts$LineChart$setY = F2(
+	function (datum, y) {
+		return A3(
+			_terezka$line_charts$Internal_Data$Data,
+			datum.user,
+			A2(_terezka$line_charts$Internal_Data$Point, datum.point.x, y),
+			datum.isReal);
+	});
+var _terezka$line_charts$LineChart$normalize = function (datasets) {
+	var _p2 = datasets;
+	if (_p2.ctor === '::') {
+		var _p3 = _p2._0;
+		var toPercentage = F2(
+			function (highest, datum) {
+				return A2(_terezka$line_charts$LineChart$setY, datum, (100 * datum.point.y) / highest.point.y);
+			});
+		return A2(
+			_elm_lang$core$List$map,
+			A2(_elm_lang$core$List$map2, toPercentage, _p3),
+			{ctor: '::', _0: _p3, _1: _p2._1});
+	} else {
+		return datasets;
+	}
+};
+var _terezka$line_charts$LineChart$addBelows = F2(
+	function (data, dataBelow) {
+		var add = F2(
+			function (below, datum) {
+				return A2(_terezka$line_charts$LineChart$setY, below, below.point.y + datum.point.y);
+			});
+		var iterate = F4(
+			function (datum0, data, dataBelow, result) {
+				iterate:
+				while (true) {
+					var _p4 = {ctor: '_Tuple2', _0: data, _1: dataBelow};
+					if (_p4._0.ctor === '::') {
+						if (_p4._1.ctor === '::') {
+							var _p8 = _p4._1._0;
+							var _p7 = _p4._0._0;
+							var _p6 = _p4._1._1;
+							var _p5 = _p4._0._1;
+							if (_elm_lang$core$Native_Utils.cmp(_p7.point.x, _p8.point.x) > 0) {
+								if (_p8.isReal) {
+									var _v2 = datum0,
+										_v3 = {ctor: '::', _0: _p7, _1: _p5},
+										_v4 = _p6,
+										_v5 = {
+										ctor: '::',
+										_0: A2(add, _p8, datum0),
+										_1: result
+									};
+									datum0 = _v2;
+									data = _v3;
+									dataBelow = _v4;
+									result = _v5;
+									continue iterate;
+								} else {
+									var breakdata = _elm_lang$core$Native_Utils.update(
+										datum0,
+										{isReal: false});
+									var _v6 = datum0,
+										_v7 = {ctor: '::', _0: _p7, _1: _p5},
+										_v8 = _p6,
+										_v9 = {
+										ctor: '::',
+										_0: A2(add, _p8, datum0),
+										_1: result
+									};
+									datum0 = _v6;
+									data = _v7;
+									dataBelow = _v8;
+									result = _v9;
+									continue iterate;
+								}
+							} else {
+								var _v10 = _p7,
+									_v11 = _p5,
+									_v12 = {ctor: '::', _0: _p8, _1: _p6},
+									_v13 = result;
+								datum0 = _v10;
+								data = _v11;
+								dataBelow = _v12;
+								result = _v13;
+								continue iterate;
+							}
+						} else {
+							return result;
+						}
+					} else {
+						if (_p4._1.ctor === '::') {
+							var _p10 = _p4._1._0;
+							var _p9 = _p4._1._1;
+							if (_elm_lang$core$Native_Utils.cmp(datum0.point.x, _p10.point.x) < 1) {
+								var _v14 = datum0,
+									_v15 = {ctor: '[]'},
+									_v16 = _p9,
+									_v17 = {
+									ctor: '::',
+									_0: A2(add, _p10, datum0),
+									_1: result
+								};
+								datum0 = _v14;
+								data = _v15;
+								dataBelow = _v16;
+								result = _v17;
+								continue iterate;
+							} else {
+								var _v18 = datum0,
+									_v19 = {ctor: '[]'},
+									_v20 = _p9,
+									_v21 = {ctor: '::', _0: _p10, _1: result};
+								datum0 = _v18;
+								data = _v19;
+								dataBelow = _v20;
+								result = _v21;
+								continue iterate;
+							}
+						} else {
+							return result;
+						}
+					}
+				}
+			});
+		return _elm_lang$core$List$reverse(
+			A2(
+				_elm_lang$core$Maybe$withDefault,
+				{ctor: '[]'},
+				A2(
+					_terezka$line_charts$Internal_Utils$withFirst,
+					data,
+					F2(
+						function (first, rest) {
+							return A4(
+								iterate,
+								first,
+								rest,
+								dataBelow,
+								{ctor: '[]'});
+						}))));
+	});
+var _terezka$line_charts$LineChart$stack = function (dataset) {
+	var stackBelows = F2(
+		function (dataset, result) {
+			stackBelows:
+			while (true) {
+				var _p11 = dataset;
+				if (_p11.ctor === '::') {
+					var _p12 = _p11._1;
+					var _v23 = _p12,
+						_v24 = {
+						ctor: '::',
+						_0: A3(_elm_lang$core$List$foldl, _terezka$line_charts$LineChart$addBelows, _p11._0, _p12),
+						_1: result
+					};
+					dataset = _v23;
+					result = _v24;
+					continue stackBelows;
+				} else {
+					return result;
+				}
+			}
+		});
+	return _elm_lang$core$List$reverse(
+		A2(
+			stackBelows,
+			dataset,
+			{ctor: '[]'}));
+};
+var _terezka$line_charts$LineChart$toDataPoints = F2(
+	function (config, lines) {
+		var y = _terezka$line_charts$Internal_Axis$variable(config.y);
+		var x = _terezka$line_charts$Internal_Axis$variable(config.x);
+		var addPoint = function (datum) {
+			var _p13 = {
+				ctor: '_Tuple2',
+				_0: x(datum),
+				_1: y(datum)
+			};
+			if (_p13._0.ctor === 'Just') {
+				if (_p13._1.ctor === 'Just') {
+					return _elm_lang$core$Maybe$Just(
+						A3(
+							_terezka$line_charts$Internal_Data$Data,
+							datum,
+							A2(_terezka$line_charts$Internal_Data$Point, _p13._0._0, _p13._1._0),
+							true));
+				} else {
+					return _elm_lang$core$Maybe$Just(
+						A3(
+							_terezka$line_charts$Internal_Data$Data,
+							datum,
+							A2(_terezka$line_charts$Internal_Data$Point, _p13._0._0, 0),
+							false));
+				}
+			} else {
+				if (_p13._1.ctor === 'Just') {
+					return _elm_lang$core$Maybe$Nothing;
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			}
+		};
+		var data = A2(
+			_elm_lang$core$List$map,
+			function (_p14) {
+				return A2(
+					_elm_lang$core$List$filterMap,
+					addPoint,
+					_terezka$line_charts$Internal_Line$data(_p14));
+			},
+			lines);
+		var _p15 = config.area;
+		switch (_p15.ctor) {
+			case 'None':
+				return data;
+			case 'Normal':
+				return data;
+			case 'Stacked':
+				return _terezka$line_charts$LineChart$stack(data);
+			default:
+				return _terezka$line_charts$LineChart$normalize(
+					_terezka$line_charts$LineChart$stack(data));
+		}
+	});
+var _terezka$line_charts$LineChart$chartAreaAttributes = function (system) {
+	return {
+		ctor: '::',
+		_0: _elm_lang$svg$Svg_Attributes$x(
+			_elm_lang$core$Basics$toString(system.frame.margin.left)),
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$y(
+				_elm_lang$core$Basics$toString(system.frame.margin.top)),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width(
+					_elm_lang$core$Basics$toString(
+						_terezka$line_charts$Internal_Coordinate$lengthX(system))),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height(
+						_elm_lang$core$Basics$toString(
+							_terezka$line_charts$Internal_Coordinate$lengthY(system))),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	};
+};
+var _terezka$line_charts$LineChart$chartAreaPlatform = F3(
+	function (config, data, system) {
+		var attributes = _elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
+					_1: {ctor: '[]'}
+				},
+				_1: {
+					ctor: '::',
+					_0: _terezka$line_charts$LineChart$chartAreaAttributes(system),
+					_1: {
+						ctor: '::',
+						_0: A3(_terezka$line_charts$Internal_Events$toChartAttributes, data, system, config.events),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+		return A2(
+			_elm_lang$svg$Svg$rect,
+			attributes,
+			{ctor: '[]'});
+	});
+var _terezka$line_charts$LineChart$clipPath = function (system) {
+	return A2(
+		_elm_lang$svg$Svg$clipPath,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$id(
+				_terezka$line_charts$Internal_Utils$toChartAreaId(system.id)),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$rect,
+				_terezka$line_charts$LineChart$chartAreaAttributes(system),
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _terezka$line_charts$LineChart$container = F4(
+	function (config, _p16, junkHtml, plot) {
+		var _p17 = _p16;
+		var _p18 = _p17.frame;
+		var sizeStyles = A3(_terezka$line_charts$Internal_Container$sizeStyles, config.container, _p18.size.width, _p18.size.height);
+		var styles = _elm_lang$html$Html_Attributes$style(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'position', _1: 'relative'},
+				_1: sizeStyles
+			});
+		var userAttributes = A2(
+			_terezka$line_charts$Internal_Container$properties,
+			function (_) {
+				return _.attributesHtml;
+			},
+			config.container);
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '::', _0: styles, _1: userAttributes},
+			{ctor: '::', _0: plot, _1: junkHtml});
+	});
+var _terezka$line_charts$LineChart$viewBoxAttribute = function (_p19) {
+	var _p20 = _p19;
+	var _p21 = _p20.frame;
+	return _elm_lang$svg$Svg_Attributes$viewBox(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'0 0 ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(_p21.size.width),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					' ',
+					_elm_lang$core$Basics$toString(_p21.size.height)))));
+};
+var _terezka$line_charts$LineChart$viewCustom = F2(
+	function (config, lines) {
+		var junkLineInfo = function (line) {
+			return {
+				ctor: '_Tuple3',
+				_0: A3(
+					_terezka$line_charts$Internal_Line$color,
+					config.line,
+					line,
+					{ctor: '[]'}),
+				_1: _terezka$line_charts$Internal_Line$label(line),
+				_2: _terezka$line_charts$Internal_Line$data(line)
+			};
+		};
+		var getJunk = A3(
+			_terezka$line_charts$Internal_Junk$getLayers,
+			A2(_elm_lang$core$List$map, junkLineInfo, lines),
+			_terezka$line_charts$Internal_Axis$variable(config.x),
+			_terezka$line_charts$Internal_Axis$variable(config.y));
+		var data = A2(_terezka$line_charts$LineChart$toDataPoints, config, lines);
+		var dataSafe = A2(
+			_elm_lang$core$List$map,
+			_elm_lang$core$List$filter(
+				function (_) {
+					return _.isReal;
+				}),
+			data);
+		var dataAllSafe = _elm_lang$core$List$concat(dataSafe);
+		var system = A2(_terezka$line_charts$LineChart$toSystem, config, dataAllSafe);
+		var addGrid = _terezka$line_charts$Internal_Junk$addBelow(
+			A4(_terezka$line_charts$Internal_Grid$view, system, config.x, config.y, config.grid));
+		var junk = addGrid(
+			A2(getJunk, system, config.junk));
+		var viewLines = _terezka$line_charts$Internal_Line$view(
+			{system: system, interpolation: config.interpolation, dotsConfig: config.dots, lineConfig: config.line, area: config.area});
+		var viewLegends = _terezka$line_charts$Internal_Legends$view(
+			{
+				system: system,
+				legends: config.legends,
+				x: _terezka$line_charts$Internal_Axis$variable(config.x),
+				y: _terezka$line_charts$Internal_Axis$variable(config.y),
+				dotsConfig: config.dots,
+				lineConfig: config.line,
+				area: config.area,
+				data: dataSafe,
+				lines: lines
+			});
+		var dataAll = _elm_lang$core$List$concat(data);
+		var attributes = _elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: A2(
+					_terezka$line_charts$Internal_Container$properties,
+					function (_) {
+						return _.attributesSvg;
+					},
+					config.container),
+				_1: {
+					ctor: '::',
+					_0: A3(_terezka$line_charts$Internal_Events$toContainerAttributes, dataAll, system, config.events),
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '::',
+							_0: _terezka$line_charts$LineChart$viewBoxAttribute(system),
+							_1: {ctor: '[]'}
+						},
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+		return A4(
+			_terezka$line_charts$LineChart$container,
+			config,
+			system,
+			junk.html,
+			A2(
+				_elm_lang$svg$Svg$svg,
+				attributes,
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$svg$Svg$defs,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _terezka$line_charts$LineChart$clipPath(system),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$g,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('chart__junk--below'),
+								_1: {ctor: '[]'}
+							},
+							junk.below),
+						_1: {
+							ctor: '::',
+							_0: A2(viewLines, lines, data),
+							_1: {
+								ctor: '::',
+								_0: A3(_terezka$line_charts$LineChart$chartAreaPlatform, config, dataAll, system),
+								_1: {
+									ctor: '::',
+									_0: A3(_terezka$line_charts$Internal_Axis$viewHorizontal, system, config.intersection, config.x),
+									_1: {
+										ctor: '::',
+										_0: A3(_terezka$line_charts$Internal_Axis$viewVertical, system, config.intersection, config.y),
+										_1: {
+											ctor: '::',
+											_0: viewLegends,
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$svg$Svg$g,
+													{
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$class('chart__junk--above'),
+														_1: {ctor: '[]'}
+													},
+													junk.above),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}));
+	});
+var _terezka$line_charts$LineChart$dash = _terezka$line_charts$Internal_Line$dash;
+var _terezka$line_charts$LineChart$line = _terezka$line_charts$Internal_Line$line;
+var _terezka$line_charts$LineChart$view = F2(
+	function (toX, toY) {
+		return _terezka$line_charts$LineChart$viewCustom(
+			A2(_terezka$line_charts$LineChart$defaultConfig, toX, toY));
+	});
+var _terezka$line_charts$LineChart$view3 = F5(
+	function (toX, toY, dataset1, dataset2, dataset3) {
+		return A3(
+			_terezka$line_charts$LineChart$view,
+			toX,
+			toY,
+			_terezka$line_charts$LineChart$defaultLines(
+				{
+					ctor: '::',
+					_0: dataset1,
+					_1: {
+						ctor: '::',
+						_0: dataset2,
+						_1: {
+							ctor: '::',
+							_0: dataset3,
+							_1: {ctor: '[]'}
+						}
+					}
+				}));
+	});
+var _terezka$line_charts$LineChart$view2 = F4(
+	function (toX, toY, dataset1, dataset2) {
+		return A3(
+			_terezka$line_charts$LineChart$view,
+			toX,
+			toY,
+			_terezka$line_charts$LineChart$defaultLines(
+				{
+					ctor: '::',
+					_0: dataset1,
+					_1: {
+						ctor: '::',
+						_0: dataset2,
+						_1: {ctor: '[]'}
+					}
+				}));
+	});
+var _terezka$line_charts$LineChart$view1 = F3(
+	function (toX, toY, dataset) {
+		return A3(
+			_terezka$line_charts$LineChart$view,
+			toX,
+			toY,
+			_terezka$line_charts$LineChart$defaultLines(
+				{
+					ctor: '::',
+					_0: dataset,
+					_1: {ctor: '[]'}
+				}));
+	});
+var _terezka$line_charts$LineChart$Config = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return function (k) {
+											return function (l) {
+												return {x: a, y: b, container: c, intersection: d, interpolation: e, legends: f, events: g, area: h, grid: i, line: j, dots: k, junk: l};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
 		};
 	};
-	var grouplabel = function (_p0) {
+};
+
+var _terezka$line_charts$LineChart_Axis_Title$custom = _terezka$line_charts$Internal_Axis_Title$custom;
+var _terezka$line_charts$LineChart_Axis_Title$atPosition = _terezka$line_charts$Internal_Axis_Title$atPosition;
+var _terezka$line_charts$LineChart_Axis_Title$atAxisMax = _terezka$line_charts$Internal_Axis_Title$atAxisMax;
+var _terezka$line_charts$LineChart_Axis_Title$atDataMax = _terezka$line_charts$Internal_Axis_Title$atDataMax;
+var _terezka$line_charts$LineChart_Axis_Title$default = _terezka$line_charts$Internal_Axis_Title$default;
+
+var _AnotherKamila$stalkme$CsvTsdb_Graph$colorize = function (xs) {
+	var deg2color = function (x) {
+		return A3(
+			_elm_lang$core$Color$hsl,
+			_elm_lang$core$Basics$degrees(x),
+			0.8,
+			0.4);
+	};
+	var step = 360.0 / _elm_lang$core$Basics$toFloat(
+		_elm_lang$core$List$length(xs));
+	var colors = A2(
+		_elm_lang$core$List$map,
+		function (_p0) {
+			return deg2color(
+				A2(
+					F2(
+						function (x, y) {
+							return x * y;
+						}),
+					step,
+					_elm_lang$core$Basics$toFloat(_p0)));
+		},
+		A2(_elm_lang$core$List$range, 1, 50));
+	return A3(
+		_elm_lang$core$List$map2,
+		F2(
+			function (x, y) {
+				return x(y);
+			}),
+		xs,
+		colors);
+};
+var _AnotherKamila$stalkme$CsvTsdb_Graph$records_to_series = function () {
+	var grouplabel = function (_p1) {
 		return A2(
 			_elm_lang$core$Maybe$withDefault,
 			'whatever',
@@ -20859,15 +27774,24 @@ var _AnotherKamila$stalkme$CsvTsdb_Graph$records_to_dataset = function () {
 					function (_) {
 						return _.label;
 					},
-					_p0)));
+					_p1)));
 	};
 	var group2series = function (rs) {
 		return {
-			label: grouplabel(rs),
-			data: A2(_elm_lang$core$List$map, record2datapoint, rs)
+			ctor: '_Tuple2',
+			_0: grouplabel(rs),
+			_1: A2(
+				_elm_lang$core$List$sortBy,
+				function (_p2) {
+					return _elm_lang$core$Date$toTime(
+						function (_) {
+							return _.date;
+						}(_p2));
+				},
+				rs)
 		};
 	};
-	return function (_p1) {
+	return function (_p3) {
 		return A2(
 			_elm_lang$core$List$map,
 			group2series,
@@ -20882,23 +27806,817 @@ var _AnotherKamila$stalkme$CsvTsdb_Graph$records_to_dataset = function () {
 					function (_) {
 						return _.label;
 					},
-					_p1)));
+					_p3)));
 	};
 }();
-var _AnotherKamila$stalkme$CsvTsdb_Graph$config = {drawPoints: true, background: 'white', colorAssignment: _juanedi$charty$Charty_Color$assignDefaults, labelPrecision: 0, drawLabels: true};
-var _AnotherKamila$stalkme$CsvTsdb_Graph$view = function (_p2) {
+var _AnotherKamila$stalkme$CsvTsdb_Graph$config = F2(
+	function (size, id) {
+		return {
+			x: _terezka$line_charts$LineChart_Axis$custom(
+				{
+					title: A3(_terezka$line_charts$LineChart_Axis_Title$atDataMax, -20, 15, 'Date'),
+					variable: function (_p4) {
+						return _elm_lang$core$Maybe$Just(
+							_elm_lang$core$Date$toTime(
+								function (_) {
+									return _.date;
+								}(_p4)));
+					},
+					pixels: size.width,
+					range: A2(_terezka$line_charts$LineChart_Axis_Range$padded, 20, 20),
+					axisLine: _terezka$line_charts$LineChart_Axis_Line$default,
+					ticks: _terezka$line_charts$LineChart_Axis_Ticks$time(5)
+				}),
+			y: _terezka$line_charts$LineChart_Axis$custom(
+				{
+					title: _terezka$line_charts$LineChart_Axis_Title$default(''),
+					variable: function (_p5) {
+						return _elm_lang$core$Maybe$Just(
+							function (_) {
+								return _.value;
+							}(_p5));
+					},
+					pixels: size.height,
+					range: _terezka$line_charts$LineChart_Axis_Range$custom(
+						function (datarange) {
+							return {min: 0, max: datarange.max + 0.5};
+						}),
+					axisLine: _terezka$line_charts$LineChart_Axis_Line$default,
+					ticks: _terezka$line_charts$LineChart_Axis_Ticks$default
+				}),
+			container: _terezka$line_charts$LineChart_Container$custom(
+				{
+					attributesHtml: {ctor: '[]'},
+					attributesSvg: {ctor: '[]'},
+					size: _terezka$line_charts$LineChart_Container$relative,
+					margin: A4(_terezka$line_charts$LineChart_Container$Margin, 30, 30, 30, 30),
+					id: id
+				}),
+			interpolation: _terezka$line_charts$LineChart_Interpolation$default,
+			intersection: _terezka$line_charts$LineChart_Axis_Intersection$default,
+			legends: _terezka$line_charts$LineChart_Legends$none,
+			events: _terezka$line_charts$LineChart_Events$default,
+			junk: _terezka$line_charts$LineChart_Junk$default,
+			grid: _terezka$line_charts$LineChart_Grid$default,
+			area: _terezka$line_charts$LineChart_Area$default,
+			line: _terezka$line_charts$LineChart_Line$default,
+			dots: _terezka$line_charts$LineChart_Dots$default
+		};
+	});
+var _AnotherKamila$stalkme$CsvTsdb_Graph$view = F2(
+	function (size, id) {
+		var wrap_series = F2(
+			function (_p6, color) {
+				var _p7 = _p6;
+				return A4(_terezka$line_charts$LineChart$line, color, _terezka$line_charts$LineChart_Dots$circle, _p7._0, _p7._1);
+			});
+		return function (_p8) {
+			return A2(
+				_terezka$line_charts$LineChart$viewCustom,
+				A2(_AnotherKamila$stalkme$CsvTsdb_Graph$config, size, id),
+				_AnotherKamila$stalkme$CsvTsdb_Graph$colorize(
+					A2(
+						_elm_lang$core$List$map,
+						wrap_series,
+						_AnotherKamila$stalkme$CsvTsdb_Graph$records_to_series(_p8))));
+		};
+	});
+var _AnotherKamila$stalkme$CsvTsdb_Graph$init_model = {hovered: _elm_lang$core$Maybe$Nothing};
+var _AnotherKamila$stalkme$CsvTsdb_Graph$Model = function (a) {
+	return {hovered: a};
+};
+var _AnotherKamila$stalkme$CsvTsdb_Graph$Size = F2(
+	function (a, b) {
+		return {width: a, height: b};
+	});
+
+var _debois$elm_mdl$Material_Color$text = function (_p0) {
+	var _p1 = _p0;
+	return _debois$elm_mdl$Material_Options$cs(
+		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color-text--', _p1._0));
+};
+var _debois$elm_mdl$Material_Color$background = function (_p2) {
+	var _p3 = _p2;
+	return _debois$elm_mdl$Material_Options$cs(
+		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color--', _p3._0));
+};
+var _debois$elm_mdl$Material_Color$shadeName = function (shade) {
+	var _p4 = shade;
+	switch (_p4.ctor) {
+		case 'S50':
+			return '50';
+		case 'S100':
+			return '100';
+		case 'S200':
+			return '200';
+		case 'S300':
+			return '300';
+		case 'S400':
+			return '400';
+		case 'S500':
+			return '500';
+		case 'S600':
+			return '600';
+		case 'S700':
+			return '700';
+		case 'S800':
+			return '800';
+		case 'S900':
+			return '900';
+		case 'A100':
+			return 'A100';
+		case 'A200':
+			return 'A200';
+		case 'A400':
+			return 'A400';
+		default:
+			return 'A700';
+	}
+};
+var _debois$elm_mdl$Material_Color$hueName = function (color) {
+	var _p5 = color;
+	switch (_p5.ctor) {
+		case 'Indigo':
+			return 'indigo';
+		case 'Blue':
+			return 'blue';
+		case 'LightBlue':
+			return 'light-blue';
+		case 'Cyan':
+			return 'cyan';
+		case 'Teal':
+			return 'teal';
+		case 'Green':
+			return 'green';
+		case 'LightGreen':
+			return 'light-green';
+		case 'Lime':
+			return 'lime';
+		case 'Yellow':
+			return 'yellow';
+		case 'Amber':
+			return 'amber';
+		case 'Orange':
+			return 'orange';
+		case 'Brown':
+			return 'brown';
+		case 'BlueGrey':
+			return 'blue-grey';
+		case 'Grey':
+			return 'grey';
+		case 'DeepOrange':
+			return 'deep-orange';
+		case 'Red':
+			return 'red';
+		case 'Pink':
+			return 'pink';
+		case 'Purple':
+			return 'purple';
+		default:
+			return 'deep-purple';
+	}
+};
+var _debois$elm_mdl$Material_Color$scheme = F2(
+	function (primary, accent) {
+		var q = _elm_lang$core$String$map(
+			function (x) {
+				return _elm_lang$core$Native_Utils.eq(
+					x,
+					_elm_lang$core$Native_Utils.chr('-')) ? _elm_lang$core$Native_Utils.chr('_') : x;
+			});
+		var cssFile = function () {
+			var _p6 = accent;
+			switch (_p6.ctor) {
+				case 'Grey':
+					return '';
+				case 'Brown':
+					return '';
+				case 'BlueGrey':
+					return '';
+				default:
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						'.',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							q(
+								_debois$elm_mdl$Material_Color$hueName(primary)),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'-',
+								q(
+									_debois$elm_mdl$Material_Color$hueName(accent)))));
+			}
+		}();
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'material',
+			A2(_elm_lang$core$Basics_ops['++'], cssFile, '.min.css'));
+	});
+var _debois$elm_mdl$Material_Color$DeepPurple = {ctor: 'DeepPurple'};
+var _debois$elm_mdl$Material_Color$Purple = {ctor: 'Purple'};
+var _debois$elm_mdl$Material_Color$Pink = {ctor: 'Pink'};
+var _debois$elm_mdl$Material_Color$Red = {ctor: 'Red'};
+var _debois$elm_mdl$Material_Color$DeepOrange = {ctor: 'DeepOrange'};
+var _debois$elm_mdl$Material_Color$Grey = {ctor: 'Grey'};
+var _debois$elm_mdl$Material_Color$BlueGrey = {ctor: 'BlueGrey'};
+var _debois$elm_mdl$Material_Color$Brown = {ctor: 'Brown'};
+var _debois$elm_mdl$Material_Color$Orange = {ctor: 'Orange'};
+var _debois$elm_mdl$Material_Color$Amber = {ctor: 'Amber'};
+var _debois$elm_mdl$Material_Color$Yellow = {ctor: 'Yellow'};
+var _debois$elm_mdl$Material_Color$Lime = {ctor: 'Lime'};
+var _debois$elm_mdl$Material_Color$LightGreen = {ctor: 'LightGreen'};
+var _debois$elm_mdl$Material_Color$Green = {ctor: 'Green'};
+var _debois$elm_mdl$Material_Color$Teal = {ctor: 'Teal'};
+var _debois$elm_mdl$Material_Color$Cyan = {ctor: 'Cyan'};
+var _debois$elm_mdl$Material_Color$LightBlue = {ctor: 'LightBlue'};
+var _debois$elm_mdl$Material_Color$Blue = {ctor: 'Blue'};
+var _debois$elm_mdl$Material_Color$Indigo = {ctor: 'Indigo'};
+var _debois$elm_mdl$Material_Color$hues = _elm_lang$core$Array$fromList(
+	{
+		ctor: '::',
+		_0: _debois$elm_mdl$Material_Color$Indigo,
+		_1: {
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Color$Blue,
+			_1: {
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Color$LightBlue,
+				_1: {
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Color$Cyan,
+					_1: {
+						ctor: '::',
+						_0: _debois$elm_mdl$Material_Color$Teal,
+						_1: {
+							ctor: '::',
+							_0: _debois$elm_mdl$Material_Color$Green,
+							_1: {
+								ctor: '::',
+								_0: _debois$elm_mdl$Material_Color$LightGreen,
+								_1: {
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Color$Lime,
+									_1: {
+										ctor: '::',
+										_0: _debois$elm_mdl$Material_Color$Yellow,
+										_1: {
+											ctor: '::',
+											_0: _debois$elm_mdl$Material_Color$Amber,
+											_1: {
+												ctor: '::',
+												_0: _debois$elm_mdl$Material_Color$Orange,
+												_1: {
+													ctor: '::',
+													_0: _debois$elm_mdl$Material_Color$Brown,
+													_1: {
+														ctor: '::',
+														_0: _debois$elm_mdl$Material_Color$BlueGrey,
+														_1: {
+															ctor: '::',
+															_0: _debois$elm_mdl$Material_Color$Grey,
+															_1: {
+																ctor: '::',
+																_0: _debois$elm_mdl$Material_Color$DeepOrange,
+																_1: {
+																	ctor: '::',
+																	_0: _debois$elm_mdl$Material_Color$Red,
+																	_1: {
+																		ctor: '::',
+																		_0: _debois$elm_mdl$Material_Color$Pink,
+																		_1: {
+																			ctor: '::',
+																			_0: _debois$elm_mdl$Material_Color$Purple,
+																			_1: {
+																				ctor: '::',
+																				_0: _debois$elm_mdl$Material_Color$DeepPurple,
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _debois$elm_mdl$Material_Color$accentHues = _elm_lang$core$Array$fromList(
+	{
+		ctor: '::',
+		_0: _debois$elm_mdl$Material_Color$Indigo,
+		_1: {
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Color$Blue,
+			_1: {
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Color$LightBlue,
+				_1: {
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Color$Cyan,
+					_1: {
+						ctor: '::',
+						_0: _debois$elm_mdl$Material_Color$Teal,
+						_1: {
+							ctor: '::',
+							_0: _debois$elm_mdl$Material_Color$Green,
+							_1: {
+								ctor: '::',
+								_0: _debois$elm_mdl$Material_Color$LightGreen,
+								_1: {
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Color$Lime,
+									_1: {
+										ctor: '::',
+										_0: _debois$elm_mdl$Material_Color$Yellow,
+										_1: {
+											ctor: '::',
+											_0: _debois$elm_mdl$Material_Color$Amber,
+											_1: {
+												ctor: '::',
+												_0: _debois$elm_mdl$Material_Color$Orange,
+												_1: {
+													ctor: '::',
+													_0: _debois$elm_mdl$Material_Color$DeepOrange,
+													_1: {
+														ctor: '::',
+														_0: _debois$elm_mdl$Material_Color$Red,
+														_1: {
+															ctor: '::',
+															_0: _debois$elm_mdl$Material_Color$Pink,
+															_1: {
+																ctor: '::',
+																_0: _debois$elm_mdl$Material_Color$Purple,
+																_1: {
+																	ctor: '::',
+																	_0: _debois$elm_mdl$Material_Color$DeepPurple,
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _debois$elm_mdl$Material_Color$A700 = {ctor: 'A700'};
+var _debois$elm_mdl$Material_Color$A400 = {ctor: 'A400'};
+var _debois$elm_mdl$Material_Color$A200 = {ctor: 'A200'};
+var _debois$elm_mdl$Material_Color$A100 = {ctor: 'A100'};
+var _debois$elm_mdl$Material_Color$S900 = {ctor: 'S900'};
+var _debois$elm_mdl$Material_Color$S800 = {ctor: 'S800'};
+var _debois$elm_mdl$Material_Color$S700 = {ctor: 'S700'};
+var _debois$elm_mdl$Material_Color$S600 = {ctor: 'S600'};
+var _debois$elm_mdl$Material_Color$S500 = {ctor: 'S500'};
+var _debois$elm_mdl$Material_Color$S400 = {ctor: 'S400'};
+var _debois$elm_mdl$Material_Color$S300 = {ctor: 'S300'};
+var _debois$elm_mdl$Material_Color$S200 = {ctor: 'S200'};
+var _debois$elm_mdl$Material_Color$S100 = {ctor: 'S100'};
+var _debois$elm_mdl$Material_Color$S50 = {ctor: 'S50'};
+var _debois$elm_mdl$Material_Color$shades = _elm_lang$core$Array$fromList(
+	{
+		ctor: '::',
+		_0: _debois$elm_mdl$Material_Color$S50,
+		_1: {
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Color$S100,
+			_1: {
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Color$S200,
+				_1: {
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Color$S300,
+					_1: {
+						ctor: '::',
+						_0: _debois$elm_mdl$Material_Color$S400,
+						_1: {
+							ctor: '::',
+							_0: _debois$elm_mdl$Material_Color$S500,
+							_1: {
+								ctor: '::',
+								_0: _debois$elm_mdl$Material_Color$S600,
+								_1: {
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Color$S700,
+									_1: {
+										ctor: '::',
+										_0: _debois$elm_mdl$Material_Color$S800,
+										_1: {
+											ctor: '::',
+											_0: _debois$elm_mdl$Material_Color$S900,
+											_1: {
+												ctor: '::',
+												_0: _debois$elm_mdl$Material_Color$A100,
+												_1: {
+													ctor: '::',
+													_0: _debois$elm_mdl$Material_Color$A200,
+													_1: {
+														ctor: '::',
+														_0: _debois$elm_mdl$Material_Color$A400,
+														_1: {
+															ctor: '::',
+															_0: _debois$elm_mdl$Material_Color$A700,
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _debois$elm_mdl$Material_Color$C = function (a) {
+	return {ctor: 'C', _0: a};
+};
+var _debois$elm_mdl$Material_Color$color = F2(
+	function (hue, shade) {
+		return _debois$elm_mdl$Material_Color$C(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_debois$elm_mdl$Material_Color$hueName(hue),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'-',
+					_debois$elm_mdl$Material_Color$shadeName(shade))));
+	});
+var _debois$elm_mdl$Material_Color$white = _debois$elm_mdl$Material_Color$C('white');
+var _debois$elm_mdl$Material_Color$black = _debois$elm_mdl$Material_Color$C('black');
+var _debois$elm_mdl$Material_Color$primary = _debois$elm_mdl$Material_Color$C('primary');
+var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$C('primary-dark');
+var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
+var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
+var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
+
+var _debois$elm_mdl$Material_Chip$hasValue = function (m) {
+	var _p0 = m;
+	if (_p0.ctor === 'Just') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _debois$elm_mdl$Material_Chip$renderItem = function (item) {
+	var _p1 = item;
+	switch (_p1.ctor) {
+		case 'Contact':
+			return A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_p1._0,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip__contact'),
+					_1: _p1._1
+				},
+				_p1._2);
+		case 'Text':
+			return A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip__text'),
+					_1: _p1._0
+				},
+				_p1._1);
+		default:
+			return A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_p1._0,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip__action'),
+					_1: _p1._1
+				},
+				_p1._2);
+	}
+};
+var _debois$elm_mdl$Material_Chip$priority = function (item) {
+	var _p2 = item;
+	switch (_p2.ctor) {
+		case 'Contact':
+			return 0;
+		case 'Text':
+			return 1;
+		default:
+			return 2;
+	}
+};
+var _debois$elm_mdl$Material_Chip$deleteClick = function (msg) {
+	return A3(
+		_debois$elm_mdl$Material_Options$onWithOptions,
+		'click',
+		{stopPropagation: true, preventDefault: true},
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _debois$elm_mdl$Material_Chip$deleteLink = function (_p3) {
+	return _debois$elm_mdl$Material_Options_Internal$option(
+		F2(
+			function (link, config) {
+				return _elm_lang$core$Native_Utils.update(
+					config,
+					{
+						deleteLink: _elm_lang$core$Maybe$Just(
+							_elm_lang$html$Html_Attributes$href(link))
+					});
+			})(_p3));
+};
+var _debois$elm_mdl$Material_Chip$deleteIcon = function (_p4) {
+	return _debois$elm_mdl$Material_Options_Internal$option(
+		F2(
+			function (icon, config) {
+				return _elm_lang$core$Native_Utils.update(
+					config,
+					{
+						deleteIcon: _elm_lang$core$Maybe$Just(icon)
+					});
+			})(_p4));
+};
+var _debois$elm_mdl$Material_Chip$defaultConfig = {deleteIcon: _elm_lang$core$Maybe$Nothing, deleteLink: _elm_lang$core$Maybe$Nothing, deleteClick: _elm_lang$core$Maybe$Nothing};
+var _debois$elm_mdl$Material_Chip$Config = F3(
+	function (a, b, c) {
+		return {deleteIcon: a, deleteLink: b, deleteClick: c};
+	});
+var _debois$elm_mdl$Material_Chip$Action = F3(
+	function (a, b, c) {
+		return {ctor: 'Action', _0: a, _1: b, _2: c};
+	});
+var _debois$elm_mdl$Material_Chip$action = _debois$elm_mdl$Material_Chip$Action;
+var _debois$elm_mdl$Material_Chip$getActionElement = function (config) {
+	var click = function () {
+		var _p5 = config.deleteClick;
+		if (_p5.ctor === 'Just') {
+			return _debois$elm_mdl$Material_Options_Internal$attribute(_p5._0);
+		} else {
+			return _debois$elm_mdl$Material_Options$nop;
+		}
+	}();
+	var link = function () {
+		var _p6 = config.deleteLink;
+		if (_p6.ctor === 'Just') {
+			return _debois$elm_mdl$Material_Options_Internal$attribute(_p6._0);
+		} else {
+			return _debois$elm_mdl$Material_Options$nop;
+		}
+	}();
+	var hasClick = _debois$elm_mdl$Material_Chip$hasValue(config.deleteClick);
+	var hasLink = _debois$elm_mdl$Material_Chip$hasValue(config.deleteLink);
+	var actionElement = hasLink ? _elm_lang$html$Html$a : _elm_lang$html$Html$span;
+	var hasIcon = _debois$elm_mdl$Material_Chip$hasValue(config.deleteIcon);
+	var icon = hasIcon ? A2(_elm_lang$core$Maybe$withDefault, '', config.deleteIcon) : ((hasLink || hasClick) ? A2(_elm_lang$core$Maybe$withDefault, 'cancel', config.deleteIcon) : '');
+	var isDeletable = hasIcon || (hasLink || hasClick);
+	return isDeletable ? _elm_lang$core$Maybe$Just(
+		A3(
+			_debois$elm_mdl$Material_Chip$action,
+			actionElement,
+			{
+				ctor: '::',
+				_0: link,
+				_1: {
+					ctor: '::',
+					_0: click,
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Icon$view,
+					icon,
+					{ctor: '[]'}),
+				_1: {ctor: '[]'}
+			})) : _elm_lang$core$Maybe$Nothing;
+};
+var _debois$elm_mdl$Material_Chip$chip = F3(
+	function (element, props, items) {
+		var isContact = A2(
+			_elm_lang$core$List$any,
+			function (x) {
+				return _elm_lang$core$Native_Utils.eq(
+					_debois$elm_mdl$Material_Chip$priority(x),
+					0);
+			},
+			items);
+		var summary = A2(_debois$elm_mdl$Material_Options_Internal$collect, _debois$elm_mdl$Material_Chip$defaultConfig, props);
+		var config = summary.config;
+		var action = _debois$elm_mdl$Material_Chip$getActionElement(config);
+		var isDeletable = _debois$elm_mdl$Material_Chip$hasValue(action);
+		var withIcon = A2(
+			_elm_lang$core$Basics_ops['++'],
+			function () {
+				var _p7 = action;
+				if (_p7.ctor === 'Just') {
+					return {
+						ctor: '::',
+						_0: _p7._0,
+						_1: {ctor: '[]'}
+					};
+				} else {
+					return {ctor: '[]'};
+				}
+			}(),
+			items);
+		var content = A2(
+			_elm_lang$core$List$map,
+			_debois$elm_mdl$Material_Chip$renderItem,
+			A2(_elm_lang$core$List$sortBy, _debois$elm_mdl$Material_Chip$priority, withIcon));
+		return A3(
+			_debois$elm_mdl$Material_Options$styled,
+			element,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip'),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_debois$elm_mdl$Material_Options$when,
+							isContact,
+							_debois$elm_mdl$Material_Options$cs('mdl-chip--contact')),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_debois$elm_mdl$Material_Options$when,
+								isDeletable,
+								_debois$elm_mdl$Material_Options$cs('mdl-chip--deletable')),
+							_1: {
+								ctor: '::',
+								_0: _debois$elm_mdl$Material_Options_Internal$attribute(
+									_debois$elm_mdl$Material_Helpers$blurOn('mouseup')),
+								_1: {
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Options_Internal$attribute(
+										_debois$elm_mdl$Material_Helpers$blurOn('mouseleave')),
+									_1: {
+										ctor: '::',
+										_0: _debois$elm_mdl$Material_Options_Internal$attribute(
+											_debois$elm_mdl$Material_Helpers$blurOn('touchend')),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				},
+				props),
+			content);
+	});
+var _debois$elm_mdl$Material_Chip$button = function (props) {
 	return A2(
-		_elm_lang$html$Html$div,
+		_debois$elm_mdl$Material_Chip$chip,
+		_elm_lang$html$Html$button,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('csvtsdb-graph'),
+			_0: _debois$elm_mdl$Material_Options_Internal$attribute(
+				_elm_lang$html$Html_Attributes$type_('button')),
+			_1: props
+		});
+};
+var _debois$elm_mdl$Material_Chip$span = _debois$elm_mdl$Material_Chip$chip(_elm_lang$html$Html$span);
+var _debois$elm_mdl$Material_Chip$Text = F2(
+	function (a, b) {
+		return {ctor: 'Text', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Chip$content = _debois$elm_mdl$Material_Chip$Text;
+var _debois$elm_mdl$Material_Chip$text = F2(
+	function (props, txt) {
+		return A2(
+			_debois$elm_mdl$Material_Chip$Text,
+			props,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(txt),
+				_1: {ctor: '[]'}
+			});
+	});
+var _debois$elm_mdl$Material_Chip$Contact = F3(
+	function (a, b, c) {
+		return {ctor: 'Contact', _0: a, _1: b, _2: c};
+	});
+var _debois$elm_mdl$Material_Chip$contact = _debois$elm_mdl$Material_Chip$Contact;
+
+var _debois$elm_mdl$Material_Typography$uppercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-uppercase');
+var _debois$elm_mdl$Material_Typography$lowercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-lowercase');
+var _debois$elm_mdl$Material_Typography$capitalize = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-capitalize');
+var _debois$elm_mdl$Material_Typography$justify = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-justify');
+var _debois$elm_mdl$Material_Typography$right = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-right');
+var _debois$elm_mdl$Material_Typography$left = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-left');
+var _debois$elm_mdl$Material_Typography$center = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-center');
+var _debois$elm_mdl$Material_Typography$tableStriped = _debois$elm_mdl$Material_Options$cs('mdl-typography--table-striped');
+var _debois$elm_mdl$Material_Typography$nowrap = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-nowrap');
+var _debois$elm_mdl$Material_Typography$contrast = function (x) {
+	return A2(
+		_debois$elm_mdl$Material_Options$css,
+		'opacity',
+		_elm_lang$core$Basics$toString(x));
+};
+var _debois$elm_mdl$Material_Typography$menu = _debois$elm_mdl$Material_Options$cs('mdl-typography--menu-color-contrast');
+var _debois$elm_mdl$Material_Typography$button = _debois$elm_mdl$Material_Options$cs('mdl-typography--button-color-contrast');
+var _debois$elm_mdl$Material_Typography$caption = _debois$elm_mdl$Material_Options$cs('mdl-typography--caption-force-preferred-font-color-contrast');
+var _debois$elm_mdl$Material_Typography$body2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-2-force-preferred-font-color-contrast');
+var _debois$elm_mdl$Material_Typography$body1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-1-force-preferred-font-color-contrast');
+var _debois$elm_mdl$Material_Typography$subhead = _debois$elm_mdl$Material_Options$cs('mdl-typography--subhead-color-contrast');
+var _debois$elm_mdl$Material_Typography$title = _debois$elm_mdl$Material_Options$cs('mdl-typography--title-color-contrast');
+var _debois$elm_mdl$Material_Typography$headline = _debois$elm_mdl$Material_Options$cs('mdl-typography--headline-color-contrast');
+var _debois$elm_mdl$Material_Typography$display4 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-4-color-contrast');
+var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-3-color-contrast');
+var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-2-color-contrast');
+var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-1-color-contrast');
+
+var _AnotherKamila$stalkme$GraphView$label_chip = function (t) {
+	return A2(
+		_debois$elm_mdl$Material_Chip$button,
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Green, _debois$elm_mdl$Material_Color$S100)),
 			_1: {ctor: '[]'}
 		},
-		_elm_lang$core$List$singleton(
+		{
+			ctor: '::',
+			_0: A2(
+				_debois$elm_mdl$Material_Chip$content,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(t),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _AnotherKamila$stalkme$GraphView$view = function (model) {
+	var labels_title = A2(
+		_debois$elm_mdl$Material_Options$div,
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Typography$subhead,
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text('Select series to display:'),
+			_1: {ctor: '[]'}
+		});
+	var labels = _elm_lang$core$List$sort(
+		_elm_community$list_extra$List_Extra$unique(
 			A2(
-				_juanedi$charty$Charty_LineChart$view,
-				_AnotherKamila$stalkme$CsvTsdb_Graph$config,
-				_AnotherKamila$stalkme$CsvTsdb_Graph$records_to_dataset(_p2))));
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.label;
+				},
+				model.data)));
+	var labels_html = A2(_elm_lang$core$List$map, _AnotherKamila$stalkme$GraphView$label_chip, labels);
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Options$cs('view-chart'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_debois$elm_mdl$Material_Options$div,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('view-chart-select-series'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '::', _0: labels_title, _1: labels_html}),
+			_1: {
+				ctor: '::',
+				_0: A3(
+					_AnotherKamila$stalkme$CsvTsdb_Graph$view,
+					{width: 700, height: 400},
+					'view-chart-chart',
+					model.data),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 
 
@@ -21939,386 +29657,6 @@ var _AnotherKamila$stalkme$Update$update = F2(
 		}
 	});
 
-var _debois$elm_mdl$Material_Color$text = function (_p0) {
-	var _p1 = _p0;
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color-text--', _p1._0));
-};
-var _debois$elm_mdl$Material_Color$background = function (_p2) {
-	var _p3 = _p2;
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color--', _p3._0));
-};
-var _debois$elm_mdl$Material_Color$shadeName = function (shade) {
-	var _p4 = shade;
-	switch (_p4.ctor) {
-		case 'S50':
-			return '50';
-		case 'S100':
-			return '100';
-		case 'S200':
-			return '200';
-		case 'S300':
-			return '300';
-		case 'S400':
-			return '400';
-		case 'S500':
-			return '500';
-		case 'S600':
-			return '600';
-		case 'S700':
-			return '700';
-		case 'S800':
-			return '800';
-		case 'S900':
-			return '900';
-		case 'A100':
-			return 'A100';
-		case 'A200':
-			return 'A200';
-		case 'A400':
-			return 'A400';
-		default:
-			return 'A700';
-	}
-};
-var _debois$elm_mdl$Material_Color$hueName = function (color) {
-	var _p5 = color;
-	switch (_p5.ctor) {
-		case 'Indigo':
-			return 'indigo';
-		case 'Blue':
-			return 'blue';
-		case 'LightBlue':
-			return 'light-blue';
-		case 'Cyan':
-			return 'cyan';
-		case 'Teal':
-			return 'teal';
-		case 'Green':
-			return 'green';
-		case 'LightGreen':
-			return 'light-green';
-		case 'Lime':
-			return 'lime';
-		case 'Yellow':
-			return 'yellow';
-		case 'Amber':
-			return 'amber';
-		case 'Orange':
-			return 'orange';
-		case 'Brown':
-			return 'brown';
-		case 'BlueGrey':
-			return 'blue-grey';
-		case 'Grey':
-			return 'grey';
-		case 'DeepOrange':
-			return 'deep-orange';
-		case 'Red':
-			return 'red';
-		case 'Pink':
-			return 'pink';
-		case 'Purple':
-			return 'purple';
-		default:
-			return 'deep-purple';
-	}
-};
-var _debois$elm_mdl$Material_Color$scheme = F2(
-	function (primary, accent) {
-		var q = _elm_lang$core$String$map(
-			function (x) {
-				return _elm_lang$core$Native_Utils.eq(
-					x,
-					_elm_lang$core$Native_Utils.chr('-')) ? _elm_lang$core$Native_Utils.chr('_') : x;
-			});
-		var cssFile = function () {
-			var _p6 = accent;
-			switch (_p6.ctor) {
-				case 'Grey':
-					return '';
-				case 'Brown':
-					return '';
-				case 'BlueGrey':
-					return '';
-				default:
-					return A2(
-						_elm_lang$core$Basics_ops['++'],
-						'.',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							q(
-								_debois$elm_mdl$Material_Color$hueName(primary)),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'-',
-								q(
-									_debois$elm_mdl$Material_Color$hueName(accent)))));
-			}
-		}();
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			'material',
-			A2(_elm_lang$core$Basics_ops['++'], cssFile, '.min.css'));
-	});
-var _debois$elm_mdl$Material_Color$DeepPurple = {ctor: 'DeepPurple'};
-var _debois$elm_mdl$Material_Color$Purple = {ctor: 'Purple'};
-var _debois$elm_mdl$Material_Color$Pink = {ctor: 'Pink'};
-var _debois$elm_mdl$Material_Color$Red = {ctor: 'Red'};
-var _debois$elm_mdl$Material_Color$DeepOrange = {ctor: 'DeepOrange'};
-var _debois$elm_mdl$Material_Color$Grey = {ctor: 'Grey'};
-var _debois$elm_mdl$Material_Color$BlueGrey = {ctor: 'BlueGrey'};
-var _debois$elm_mdl$Material_Color$Brown = {ctor: 'Brown'};
-var _debois$elm_mdl$Material_Color$Orange = {ctor: 'Orange'};
-var _debois$elm_mdl$Material_Color$Amber = {ctor: 'Amber'};
-var _debois$elm_mdl$Material_Color$Yellow = {ctor: 'Yellow'};
-var _debois$elm_mdl$Material_Color$Lime = {ctor: 'Lime'};
-var _debois$elm_mdl$Material_Color$LightGreen = {ctor: 'LightGreen'};
-var _debois$elm_mdl$Material_Color$Green = {ctor: 'Green'};
-var _debois$elm_mdl$Material_Color$Teal = {ctor: 'Teal'};
-var _debois$elm_mdl$Material_Color$Cyan = {ctor: 'Cyan'};
-var _debois$elm_mdl$Material_Color$LightBlue = {ctor: 'LightBlue'};
-var _debois$elm_mdl$Material_Color$Blue = {ctor: 'Blue'};
-var _debois$elm_mdl$Material_Color$Indigo = {ctor: 'Indigo'};
-var _debois$elm_mdl$Material_Color$hues = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: _debois$elm_mdl$Material_Color$Indigo,
-		_1: {
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$Blue,
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Color$LightBlue,
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Color$Cyan,
-					_1: {
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$Teal,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$Green,
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$LightGreen,
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$Lime,
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Color$Yellow,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Color$Amber,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Color$Orange,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Color$Brown,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Color$BlueGrey,
-														_1: {
-															ctor: '::',
-															_0: _debois$elm_mdl$Material_Color$Grey,
-															_1: {
-																ctor: '::',
-																_0: _debois$elm_mdl$Material_Color$DeepOrange,
-																_1: {
-																	ctor: '::',
-																	_0: _debois$elm_mdl$Material_Color$Red,
-																	_1: {
-																		ctor: '::',
-																		_0: _debois$elm_mdl$Material_Color$Pink,
-																		_1: {
-																			ctor: '::',
-																			_0: _debois$elm_mdl$Material_Color$Purple,
-																			_1: {
-																				ctor: '::',
-																				_0: _debois$elm_mdl$Material_Color$DeepPurple,
-																				_1: {ctor: '[]'}
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _debois$elm_mdl$Material_Color$accentHues = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: _debois$elm_mdl$Material_Color$Indigo,
-		_1: {
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$Blue,
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Color$LightBlue,
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Color$Cyan,
-					_1: {
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$Teal,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$Green,
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$LightGreen,
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$Lime,
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Color$Yellow,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Color$Amber,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Color$Orange,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Color$DeepOrange,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Color$Red,
-														_1: {
-															ctor: '::',
-															_0: _debois$elm_mdl$Material_Color$Pink,
-															_1: {
-																ctor: '::',
-																_0: _debois$elm_mdl$Material_Color$Purple,
-																_1: {
-																	ctor: '::',
-																	_0: _debois$elm_mdl$Material_Color$DeepPurple,
-																	_1: {ctor: '[]'}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _debois$elm_mdl$Material_Color$A700 = {ctor: 'A700'};
-var _debois$elm_mdl$Material_Color$A400 = {ctor: 'A400'};
-var _debois$elm_mdl$Material_Color$A200 = {ctor: 'A200'};
-var _debois$elm_mdl$Material_Color$A100 = {ctor: 'A100'};
-var _debois$elm_mdl$Material_Color$S900 = {ctor: 'S900'};
-var _debois$elm_mdl$Material_Color$S800 = {ctor: 'S800'};
-var _debois$elm_mdl$Material_Color$S700 = {ctor: 'S700'};
-var _debois$elm_mdl$Material_Color$S600 = {ctor: 'S600'};
-var _debois$elm_mdl$Material_Color$S500 = {ctor: 'S500'};
-var _debois$elm_mdl$Material_Color$S400 = {ctor: 'S400'};
-var _debois$elm_mdl$Material_Color$S300 = {ctor: 'S300'};
-var _debois$elm_mdl$Material_Color$S200 = {ctor: 'S200'};
-var _debois$elm_mdl$Material_Color$S100 = {ctor: 'S100'};
-var _debois$elm_mdl$Material_Color$S50 = {ctor: 'S50'};
-var _debois$elm_mdl$Material_Color$shades = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: _debois$elm_mdl$Material_Color$S50,
-		_1: {
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$S100,
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Color$S200,
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Color$S300,
-					_1: {
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$S400,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$S500,
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$S600,
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$S700,
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Color$S800,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Color$S900,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Color$A100,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Color$A200,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Color$A400,
-														_1: {
-															ctor: '::',
-															_0: _debois$elm_mdl$Material_Color$A700,
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _debois$elm_mdl$Material_Color$C = function (a) {
-	return {ctor: 'C', _0: a};
-};
-var _debois$elm_mdl$Material_Color$color = F2(
-	function (hue, shade) {
-		return _debois$elm_mdl$Material_Color$C(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_debois$elm_mdl$Material_Color$hueName(hue),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'-',
-					_debois$elm_mdl$Material_Color$shadeName(shade))));
-	});
-var _debois$elm_mdl$Material_Color$white = _debois$elm_mdl$Material_Color$C('white');
-var _debois$elm_mdl$Material_Color$black = _debois$elm_mdl$Material_Color$C('black');
-var _debois$elm_mdl$Material_Color$primary = _debois$elm_mdl$Material_Color$C('primary');
-var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$C('primary-dark');
-var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
-var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
-var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
-
 var _debois$elm_mdl$Material_Scheme$scheme = F2(
 	function (primary, accent) {
 		return A2(
@@ -22818,34 +30156,6 @@ var _debois$elm_mdl$Material_Footer$middle = F2(
 				{props: props, content: content}));
 	});
 
-var _debois$elm_mdl$Material_Typography$uppercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-uppercase');
-var _debois$elm_mdl$Material_Typography$lowercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-lowercase');
-var _debois$elm_mdl$Material_Typography$capitalize = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-capitalize');
-var _debois$elm_mdl$Material_Typography$justify = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-justify');
-var _debois$elm_mdl$Material_Typography$right = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-right');
-var _debois$elm_mdl$Material_Typography$left = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-left');
-var _debois$elm_mdl$Material_Typography$center = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-center');
-var _debois$elm_mdl$Material_Typography$tableStriped = _debois$elm_mdl$Material_Options$cs('mdl-typography--table-striped');
-var _debois$elm_mdl$Material_Typography$nowrap = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-nowrap');
-var _debois$elm_mdl$Material_Typography$contrast = function (x) {
-	return A2(
-		_debois$elm_mdl$Material_Options$css,
-		'opacity',
-		_elm_lang$core$Basics$toString(x));
-};
-var _debois$elm_mdl$Material_Typography$menu = _debois$elm_mdl$Material_Options$cs('mdl-typography--menu-color-contrast');
-var _debois$elm_mdl$Material_Typography$button = _debois$elm_mdl$Material_Options$cs('mdl-typography--button-color-contrast');
-var _debois$elm_mdl$Material_Typography$caption = _debois$elm_mdl$Material_Options$cs('mdl-typography--caption-force-preferred-font-color-contrast');
-var _debois$elm_mdl$Material_Typography$body2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-2-force-preferred-font-color-contrast');
-var _debois$elm_mdl$Material_Typography$body1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-1-force-preferred-font-color-contrast');
-var _debois$elm_mdl$Material_Typography$subhead = _debois$elm_mdl$Material_Options$cs('mdl-typography--subhead-color-contrast');
-var _debois$elm_mdl$Material_Typography$title = _debois$elm_mdl$Material_Options$cs('mdl-typography--title-color-contrast');
-var _debois$elm_mdl$Material_Typography$headline = _debois$elm_mdl$Material_Options$cs('mdl-typography--headline-color-contrast');
-var _debois$elm_mdl$Material_Typography$display4 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-4-color-contrast');
-var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-3-color-contrast');
-var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-2-color-contrast');
-var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-1-color-contrast');
-
 var _debois$elm_mdl$Material_Card$stopClick = _debois$elm_mdl$Material_Options_Internal$attribute(
 	A2(_elm_lang$html$Html_Attributes$attribute, 'onclick', 'var event = arguments[0] || window.event; event.stopPropagation();'));
 var _debois$elm_mdl$Material_Card$block = function (block) {
@@ -22995,254 +30305,6 @@ var _debois$elm_mdl$Material_Card$title = F2(
 			},
 			block);
 	});
-
-var _debois$elm_mdl$Material_Chip$hasValue = function (m) {
-	var _p0 = m;
-	if (_p0.ctor === 'Just') {
-		return true;
-	} else {
-		return false;
-	}
-};
-var _debois$elm_mdl$Material_Chip$renderItem = function (item) {
-	var _p1 = item;
-	switch (_p1.ctor) {
-		case 'Contact':
-			return A3(
-				_debois$elm_mdl$Material_Options$styled,
-				_p1._0,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip__contact'),
-					_1: _p1._1
-				},
-				_p1._2);
-		case 'Text':
-			return A3(
-				_debois$elm_mdl$Material_Options$styled,
-				_elm_lang$html$Html$span,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip__text'),
-					_1: _p1._0
-				},
-				_p1._1);
-		default:
-			return A3(
-				_debois$elm_mdl$Material_Options$styled,
-				_p1._0,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip__action'),
-					_1: _p1._1
-				},
-				_p1._2);
-	}
-};
-var _debois$elm_mdl$Material_Chip$priority = function (item) {
-	var _p2 = item;
-	switch (_p2.ctor) {
-		case 'Contact':
-			return 0;
-		case 'Text':
-			return 1;
-		default:
-			return 2;
-	}
-};
-var _debois$elm_mdl$Material_Chip$deleteClick = function (msg) {
-	return A3(
-		_debois$elm_mdl$Material_Options$onWithOptions,
-		'click',
-		{stopPropagation: true, preventDefault: true},
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _debois$elm_mdl$Material_Chip$deleteLink = function (_p3) {
-	return _debois$elm_mdl$Material_Options_Internal$option(
-		F2(
-			function (link, config) {
-				return _elm_lang$core$Native_Utils.update(
-					config,
-					{
-						deleteLink: _elm_lang$core$Maybe$Just(
-							_elm_lang$html$Html_Attributes$href(link))
-					});
-			})(_p3));
-};
-var _debois$elm_mdl$Material_Chip$deleteIcon = function (_p4) {
-	return _debois$elm_mdl$Material_Options_Internal$option(
-		F2(
-			function (icon, config) {
-				return _elm_lang$core$Native_Utils.update(
-					config,
-					{
-						deleteIcon: _elm_lang$core$Maybe$Just(icon)
-					});
-			})(_p4));
-};
-var _debois$elm_mdl$Material_Chip$defaultConfig = {deleteIcon: _elm_lang$core$Maybe$Nothing, deleteLink: _elm_lang$core$Maybe$Nothing, deleteClick: _elm_lang$core$Maybe$Nothing};
-var _debois$elm_mdl$Material_Chip$Config = F3(
-	function (a, b, c) {
-		return {deleteIcon: a, deleteLink: b, deleteClick: c};
-	});
-var _debois$elm_mdl$Material_Chip$Action = F3(
-	function (a, b, c) {
-		return {ctor: 'Action', _0: a, _1: b, _2: c};
-	});
-var _debois$elm_mdl$Material_Chip$action = _debois$elm_mdl$Material_Chip$Action;
-var _debois$elm_mdl$Material_Chip$getActionElement = function (config) {
-	var click = function () {
-		var _p5 = config.deleteClick;
-		if (_p5.ctor === 'Just') {
-			return _debois$elm_mdl$Material_Options_Internal$attribute(_p5._0);
-		} else {
-			return _debois$elm_mdl$Material_Options$nop;
-		}
-	}();
-	var link = function () {
-		var _p6 = config.deleteLink;
-		if (_p6.ctor === 'Just') {
-			return _debois$elm_mdl$Material_Options_Internal$attribute(_p6._0);
-		} else {
-			return _debois$elm_mdl$Material_Options$nop;
-		}
-	}();
-	var hasClick = _debois$elm_mdl$Material_Chip$hasValue(config.deleteClick);
-	var hasLink = _debois$elm_mdl$Material_Chip$hasValue(config.deleteLink);
-	var actionElement = hasLink ? _elm_lang$html$Html$a : _elm_lang$html$Html$span;
-	var hasIcon = _debois$elm_mdl$Material_Chip$hasValue(config.deleteIcon);
-	var icon = hasIcon ? A2(_elm_lang$core$Maybe$withDefault, '', config.deleteIcon) : ((hasLink || hasClick) ? A2(_elm_lang$core$Maybe$withDefault, 'cancel', config.deleteIcon) : '');
-	var isDeletable = hasIcon || (hasLink || hasClick);
-	return isDeletable ? _elm_lang$core$Maybe$Just(
-		A3(
-			_debois$elm_mdl$Material_Chip$action,
-			actionElement,
-			{
-				ctor: '::',
-				_0: link,
-				_1: {
-					ctor: '::',
-					_0: click,
-					_1: {ctor: '[]'}
-				}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_debois$elm_mdl$Material_Icon$view,
-					icon,
-					{ctor: '[]'}),
-				_1: {ctor: '[]'}
-			})) : _elm_lang$core$Maybe$Nothing;
-};
-var _debois$elm_mdl$Material_Chip$chip = F3(
-	function (element, props, items) {
-		var isContact = A2(
-			_elm_lang$core$List$any,
-			function (x) {
-				return _elm_lang$core$Native_Utils.eq(
-					_debois$elm_mdl$Material_Chip$priority(x),
-					0);
-			},
-			items);
-		var summary = A2(_debois$elm_mdl$Material_Options_Internal$collect, _debois$elm_mdl$Material_Chip$defaultConfig, props);
-		var config = summary.config;
-		var action = _debois$elm_mdl$Material_Chip$getActionElement(config);
-		var isDeletable = _debois$elm_mdl$Material_Chip$hasValue(action);
-		var withIcon = A2(
-			_elm_lang$core$Basics_ops['++'],
-			function () {
-				var _p7 = action;
-				if (_p7.ctor === 'Just') {
-					return {
-						ctor: '::',
-						_0: _p7._0,
-						_1: {ctor: '[]'}
-					};
-				} else {
-					return {ctor: '[]'};
-				}
-			}(),
-			items);
-		var content = A2(
-			_elm_lang$core$List$map,
-			_debois$elm_mdl$Material_Chip$renderItem,
-			A2(_elm_lang$core$List$sortBy, _debois$elm_mdl$Material_Chip$priority, withIcon));
-		return A3(
-			_debois$elm_mdl$Material_Options$styled,
-			element,
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-chip'),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_debois$elm_mdl$Material_Options$when,
-							isContact,
-							_debois$elm_mdl$Material_Options$cs('mdl-chip--contact')),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_debois$elm_mdl$Material_Options$when,
-								isDeletable,
-								_debois$elm_mdl$Material_Options$cs('mdl-chip--deletable')),
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Options_Internal$attribute(
-									_debois$elm_mdl$Material_Helpers$blurOn('mouseup')),
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Options_Internal$attribute(
-										_debois$elm_mdl$Material_Helpers$blurOn('mouseleave')),
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Options_Internal$attribute(
-											_debois$elm_mdl$Material_Helpers$blurOn('touchend')),
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				},
-				props),
-			content);
-	});
-var _debois$elm_mdl$Material_Chip$button = function (props) {
-	return A2(
-		_debois$elm_mdl$Material_Chip$chip,
-		_elm_lang$html$Html$button,
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Options_Internal$attribute(
-				_elm_lang$html$Html_Attributes$type_('button')),
-			_1: props
-		});
-};
-var _debois$elm_mdl$Material_Chip$span = _debois$elm_mdl$Material_Chip$chip(_elm_lang$html$Html$span);
-var _debois$elm_mdl$Material_Chip$Text = F2(
-	function (a, b) {
-		return {ctor: 'Text', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Chip$content = _debois$elm_mdl$Material_Chip$Text;
-var _debois$elm_mdl$Material_Chip$text = F2(
-	function (props, txt) {
-		return A2(
-			_debois$elm_mdl$Material_Chip$Text,
-			props,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text(txt),
-				_1: {ctor: '[]'}
-			});
-	});
-var _debois$elm_mdl$Material_Chip$Contact = F3(
-	function (a, b, c) {
-		return {ctor: 'Contact', _0: a, _1: b, _2: c};
-	});
-var _debois$elm_mdl$Material_Chip$contact = _debois$elm_mdl$Material_Chip$Contact;
 
 var _debois$elm_mdl$Material_Elevation$transition = function (duration) {
 	return A2(
@@ -24010,7 +31072,7 @@ var _AnotherKamila$stalkme$View$view_content = function (model) {
 			case 'Track':
 				return _AnotherKamila$stalkme$TrackView$view(model);
 			case 'View':
-				return _AnotherKamila$stalkme$CsvTsdb_Graph$view(model.data);
+				return _AnotherKamila$stalkme$GraphView$view(model);
 			case 'Explore':
 				return _elm_lang$html$Html$text('Not Implemented Yet');
 			default:
@@ -24019,7 +31081,7 @@ var _AnotherKamila$stalkme$View$view_content = function (model) {
 					_elm_lang$html$Html$h1,
 					{
 						ctor: '::',
-						_0: _debois$elm_mdl$Material_Options$cs('mdl-typography--display-4'),
+						_0: _debois$elm_mdl$Material_Typography$display4,
 						_1: {
 							ctor: '::',
 							_0: _debois$elm_mdl$Material_Typography$center,
