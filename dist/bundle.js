@@ -28824,7 +28824,10 @@ var _AnotherKamila$stalkme$GraphView$label_chip = F2(
 var _AnotherKamila$stalkme$GraphView$view = function (model) {
 	var graph_config = {
 		id: 'view-chart-chart',
-		size: {width: model.window_size.width, height: model.window_size.height - 100},
+		size: {
+			width: model.window_size.width,
+			height: A2(_elm_lang$core$Basics$min, model.window_size.height - 100, model.window_size.width)
+		},
 		on_hover: _AnotherKamila$stalkme$Model$Hovered,
 		hovered: model.hovered_point
 	};
