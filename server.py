@@ -38,4 +38,4 @@ def static_files(request):
     return File(STATIC_DIR)
 
 if __name__ == '__main__':
-    run("localhost", PORT)
+    run(endpoint_description=r"tcp6:port={}:interface=\:\:".format(PORT))
