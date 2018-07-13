@@ -1,1 +1,1 @@
-web: make run
+web: make dontbuild && make run
