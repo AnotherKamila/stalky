@@ -2,11 +2,10 @@ module Model exposing (Model, Tab(..), Msg(..), init)
 
 import Http
 import Material
-import Navigation
 import Window
 import CsvTsdb.Model as CsvTsdb
 
-type Tab = Track | View | Explore | NotFound
+type Tab = Track | View | Explore | Welcome | NotFound
 
 type alias Model =
     { err             : String

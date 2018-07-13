@@ -9,6 +9,8 @@ Your data is truly in your hands -- everything is stored as CSVs, so you can ope
 
 My secret plan is to integrate this with a few hardware trackers, details TBA. I want to nail down the basics first though, so it will take a while.
 
+Check out the demo at <https://stalkydemo.herokuapp.com>!
+
 I want this!
 ------------
 

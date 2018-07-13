@@ -1,6 +1,5 @@
 module Main exposing (main)
 
-import Html
 import RouteUrl exposing (RouteUrlProgram)
 
 import Model

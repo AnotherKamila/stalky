@@ -1,4 +1,4 @@
-module TrackView exposing (..)
+module TrackView exposing (view)
 
 import Date.Extra         as Date
 import List.Extra         as List

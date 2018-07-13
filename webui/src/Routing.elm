@@ -3,7 +3,6 @@ module Routing exposing (url2tab, tab2url, location2messages, delta2url)
 import Navigation exposing (Location)
 import RouteUrl   exposing (UrlChange)
 
-
 import Model exposing (Model, Msg(..), Tab(..))
 
 url2tab : Location -> Tab
@@ -13,6 +12,7 @@ url2tab url = case url.hash of
     "#track"   -> Track
     "#view"    -> View
     "#explore" -> Explore
+    "#hello"   -> Welcome
     _          -> NotFound
 
 tab2url : Tab -> String
@@ -20,6 +20,7 @@ tab2url tab = case tab of
     Track    -> "#track"
     View     -> "#view"
     Explore  -> "#explore"
+    Welcome  -> "#hello"
     NotFound -> "#something-somewhere-went-terribly-wrong"
 
 location2messages : Location -> List Msg

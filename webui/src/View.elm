@@ -13,6 +13,7 @@ import Material.Typography as Typography
 import Config
 import TrackView
 import GraphView
+import WelcomeMessage
 
 import Model exposing (Model, Msg(..), Tab(..))
 
@@ -43,6 +44,7 @@ view model =
 
 -- HEADER --
 
+header : Model -> List (Html Msg)
 header model =
     [ Layout.row
         [ css "transition" "height 0.4s ease-in-out"
@@ -61,6 +63,7 @@ view_content model =
         Track    -> TrackView.view model
         View     -> GraphView.view model
         Explore  -> text "Not Implemented Yet"
+        Welcome  -> WelcomeMessage.view
         NotFound -> Options.styled Html.h1
             [ Typography.display4, Typography.center ]
             [ text "404" ]
@@ -68,6 +71,7 @@ view_content model =
 
 -- FOOTER --
 
+footer : Html Msg
 footer =
     let links = [ ("GitHub",   "https://github.com/"++Config.github_repo)
                 , ("Feedback", "https://goo.gl/forms/AlMtCnldYr3frELa2")

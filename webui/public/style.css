@@ -67,3 +67,13 @@ body {
 .view-chart-select-series .mdl-chip {
     margin: 2px;
 }
+
+.message {
+    width: 94%;
+    max-width: 500px;
+    margin: 2em auto;
+    padding: 1em;
+    color: rgb(63, 81, 181);
+    border: 1px solid rgb(63, 81, 181);
+    border-radius: 8px;
+}
