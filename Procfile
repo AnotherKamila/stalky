@@ -1,1 +1,1 @@
-web: make dontbuild && make run
+web: make dontbuild && ./server.py
