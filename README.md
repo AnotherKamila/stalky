@@ -9,13 +9,12 @@ Your data is truly in your hands -- everything is stored as CSVs, so you can ope
 
 My secret plan is to integrate this with a few hardware trackers, details TBA. I want to nail down the basics first though, so it will take a while.
 
-Check out the demo at <https://stalkydemo.herokuapp.com>!
+Check out the demo at [stalkydemo.herokuapp.com#hello](https://stalkydemo.herokuapp.com#hello)!
 
 I want this!
 ------------
 
 Requires `python3` and `node`\*. Install these using your package manager, e.g. `sudo apt-get install python3 nodejs`.
-
 
 Type `make run`, open <http://localhost:8500> and enjoy!
 
