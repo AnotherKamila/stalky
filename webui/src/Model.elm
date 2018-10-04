@@ -34,6 +34,7 @@ type Msg = SelectTab Tab
          | WindowResize Window.Size
          -- Boilerplate
          | Mdl (Material.Msg Msg) -- internal Mdl messages
+         | NoOp -- no operation (helpful for onKeyDown event listeners)
 
 
 -- INIT --

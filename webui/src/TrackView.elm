@@ -3,6 +3,7 @@ module TrackView exposing (view)
 import Date.Extra         as Date
 import List.Extra         as List
 import Html               exposing (Html, text)
+import Html.Events        exposing (keyCode)
 import Material
 import Material.Button    as Button
 import Material.Card      as Card
@@ -16,6 +17,7 @@ import Material.Table     as Table
 import Material.Textfield as Textfield
 
 import CsvTsdb.Model exposing (Record)
+import Json.Decode as Json
 
 import Model exposing (Model, Msg(..))
 
@@ -37,6 +39,7 @@ input model =
                 [ Textfield.label "your label (space) number"
                 , Textfield.value model.data_input
                 , Options.onInput DataInput -- TODO handle enter key
+                , onEnter DataSubmit
                 ] []
             , Button.render Mdl [1,1] model.mdl
                 [ Button.icon, Button.ripple, Button.colored
@@ -77,3 +80,14 @@ recents records = Table.table
     ]
 
 view_date = Date.toFormattedString "EEE MMM d, H:mm"
+
+-- onEnter helper
+onEnter msg =
+    Options.on "keydown" (Json.map (enterKey msg) keyCode)
+
+enterKey : Msg -> Int -> Msg
+enterKey msg int = 
+  if int == 13
+  then msg
+  else NoOp
+    
