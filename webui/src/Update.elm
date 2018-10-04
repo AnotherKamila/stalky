@@ -6,6 +6,7 @@ import List.Extra   as List
 import Result.Extra as Result
 import Task
 import Window
+import Debug
 
 import Model exposing (Model, Msg(..))
 import CsvTsdb.Api as CsvTsdb
@@ -24,6 +25,7 @@ update msg model =
         SeriesToggled s -> ({model | selected_series = toggle_member s model.selected_series}, Cmd.none)
         WindowResize s  -> ({model | window_size = s}, Cmd.none)
         Mdl m           -> Material.update Mdl m model -- Mdl action handler
+        NoOp            -> (model, Cmd.none) -- does nothing
 
 update_data new model = {model | data = new, recent_labels = find_labels new}
 find_labels = List.map .label >> List.unique >> List.take 15 >> List.sort -- Note: recent labels might be a separate query one day
